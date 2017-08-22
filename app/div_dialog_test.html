@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+    <style type="text/css">
+        .bigform-content {
+            border: solid 5px #DDD;
+            margin: 30px 20px;
+            overflow: hidden;
+            padding:20px;
+            position:relative;
+        }
+        .modal-custom{
+            position: absolute !important;
+        }
+        .modal-backdrop{
+            position: absolute !important;
+        }
+        .bigform-content h1 {
+            margin:0;
+        }
+        .bigform-content input[type=submit] {
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<p></p>
+<!--<div class="container">-->
+    <!--<div class="bigform-content">-->
+        <!--<div class="wpcol-one col-md-6">-->
+            <!--<h1>Hi, this is my form title</h1>-->
+
+        <!--</div>-->
+        <!--<div class="wpcol-one col-md-6">-->
+            <!--<p>This is my form</p>-->
+            <!--<label for="field-one">Field 1:</label>-->
+            <!--<input id="field-one" class="form-control" type="text" />-->
+            <!--<label for="field-two">Field 2:</label>-->
+            <!--<input id="field-two" class="form-control" type="text" />-->
+            <!--<label for="field-three">Field 1:</label>-->
+            <!--<input id="field-three" class="form-control" type="text" />-->
+            <!--<input id="submit-button" type="submit" value="Submit my form" class="btn btn-default" />-->
+        <!--</div>-->
+        <!--&lt;!&ndash;&lt;!&ndash; Modal &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal fade modal-custom" id="dialog_confirm_map" tabindex="-1" role="dialog" aria-labelledby="dialog_confirm_mapLabel" aria-hidden="true">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal-dialog">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>You didn't move the map pin, are you sure it is on your address/house?</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal-footer"> <span style="float:left"><button type="button" class="btn btn-default" data-dismiss="modal">No, I'll do it now </button></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span style="float:right"><button type="button" class="btn btn-primary" data-dismiss="modal" onClick="jQuery('#mapchanged').val(1);jQuery('#registration').submit();">Yes, I am sure</button></span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; /.modal-content &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; /.modal-dialog &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; /.modal &ndash;&gt;&ndash;&gt;-->
+
+        <!--<div class="modal fade modal-custom" id="dialog_confirm_map" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
+            <!--<div class="modal-dialog modal-sm" role="document">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>-->
+                        <!--<h4 class="modal-title" id="mySmallModalLabel">Small modal</h4>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+                        <!--...-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+            <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="dropdown">-->
+    <!--<button id="dLabel" class="btn btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+        <!--Dropdown trigger-->
+        <!--<span class="caret"></span>-->
+    <!--</button>-->
+    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">-->
+        <!--<li role="menuitem"><a href="#">Action</a></li>-->
+        <!--<li role="menuitem"><a href="#">Another action</a></li>-->
+        <!--<li role="menuitem"><a href="#">Something else here</a></li>-->
+        <!--<li class="divider"></li>-->
+        <!--<li role="menuitem"><a href="#">Separated link</a></li>-->
+    <!--</ul>-->
+<!--</div>-->
+<!--<div class="modal fade" id="largeModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">-->
+    <!--<div class="modal-dialog modal-lg" role="document">-->
+        <!--<div class="modal-content">-->
+
+            <!--<div class="modal-header">-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>-->
+                <!--<h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+                <!--...-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+    <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>-->
+<!--<p>Content outside div and modal</p>-->
+<!--<p>Hope it-->
+    <!--<input id="help-button" type="button" value="helps" class="btn btn-success" />-->
+<!--</p>-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        var dialog = new BootstrapDialog({
+            title:'Dip Tip',
+            type:'type-primary',
+            size:'size-small',
+            message:'保存中......',
+            closable: false
+        });
+        dialog.open();
+//        //getting click event to show modal
+//        $('#submit-button').click(function () {
+//            $('#dialog_confirm_map').modal('show');
+//
+//            //appending modal background inside the bigform-content
+//            $('.modal-backdrop').appendTo('.bigform-content');
+//            //removing body classes to able click events
+////            $('body').removeClass();
+//        });
+//
+//
+//        //just to prove actions outside modal
+//        $('#help-button').click(function () {
+////            alert("Action with modal opened or closed");
+//            $('#largeModel').modal();
+//        });
+//        //end just to prove actions outside modal
+    });
+</script>
+</body>
+</html>

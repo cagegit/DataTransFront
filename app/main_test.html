@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="build/all.min.css">
+</head>
+<body ng-controller="mainController">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- HEADER -->
+<header class="navbar clearfix" id="header">
+    <div class="container" id="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="/index" class="logo-ico">
+                <img src="img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive">
+                <!--<h3>数据集成平台</h3>-->
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+            <div class="visible-xs">
+                <a href="#" class="team-status-toggle switcher btn dropdown-toggle">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+            <!-- /TEAM STATUS FOR MOBILE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        <ul class="nav navbar-nav pull-left hidden-xs" id="navbar-left">
+            <li class="dropdown">
+                <a href="/index" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="main-ico"></i>
+                    <span class="name" translate="PROJECT"></span><!--项目-->
+                </a>
+            </li>
+            <li class="dropdown active">
+                <a href="#" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="fa fa-wrench"></i>
+                    <span class="name" translate="M_work"></span><!--工作区-->
+                </a>
+                <span class="nav-bottom-bar"></span>
+            </li>
+            <li class="dropdown" ng-cloak="" ng-hide="user.auth==='super'">
+                <a href="/config" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="config-ico"></i>
+                    <span class="name" translate="SYSTEM_CFG"></span><!--系统设置-->
+                </a>
+            </li>
+        </ul>
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+            <!-- BEGIN TODO DROPDOWN -->
+            <li class="dropdown tasks" id="header-tasks">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i>
+                    <span class="badge" ng-cloak="" ng-show="tserver.num>0" ng-bind="tserver.num"></span>
+                </a>
+                <ul class="dropdown-menu tasks">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-check"></i> {{'M_rwyxz' | translate:'{num:tserver.num}'}}</span><!--个任务运行中-->
+                    </li>
+                    <li ng-cloak="" ng-show="tserver.num>0">
+                        <div class="header clearfix">
+                            <div class="tasks-item">
+                                <div class="pull-left">Tserver</div>
+                                <div class="pull-right">
+                                    <i class="fa red fa-stop tasks-item-i" title="{{'STOP' | translate}}" ng-click="stopTerver()"></i><!--停止-->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="footer">
+                        <a href="javascript:void(0);">{{'M_yxht' | translate}}<i class="fa fa-arrow-circle-right"></i></a><!--运行中的后台程序-->
+                    </li>
+                </ul>
+            </li>
+            <!-- END TODO DROPDOWN -->
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="img/avatars/avatar3.jpg" style="visibility: hidden;" />
+                    <span class="username" ng-bind="user.name">Admin</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> {{'EXIT' | translate}}</a></li><!--退出-->
+                </ul>
+            </li>
+            <!-- \END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+
+</header>
+<!--/HEADER -->
+<!-- MAIN -->
+<div class="container container-make" >
+    <div class="row">
+        <div class="box border border-none">
+            <div class="box-title dipTabs">
+                <span class="watch-ico" tooltip-placement="bottom" uib-tooltip="{{'M_jk' | translate}}" title="" ng-click="showBigPage()"></span><!--监控-->
+                <h4><i class="fa fa-columns"></i><span class="hidden-inline-mobile" ng-bind="menu.currentGc"></span></h4><!--主界面-->
+            </div>
+            <div class="box-body">
+                <div class="header-tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#box_tab4" data-toggle="tab"><i class=""></i> <span class="" translate="M_work">工作区</span></a></li><!--工作区-->
+                        <li class=""><a href="#box_tab5" data-toggle="tab"><i class=""></i> <span class="" translate="M_sjk">数据库</span></a></li><!--数据库-->
+                        <li class=""><a href="#box_tab6" data-toggle="tab"><i class=""></i> <span class="" translate="M_gjj">工具集</span></a></li><!--工具集-->
+                        <li class=""><a href="#box_tab7" data-toggle="tab"><i class=""></i> <span class="" translate="M_mbk">模板库</span></a></li><!--模板库-->
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="box_tab4">
+                            <!--<p>Content #1</p>-->
+                            <!--<p> There were flying cantaloupes, rainbows and songs of happiness near by, I mean I was a little frightened by the flying fruit but I'll take this any day over prison inmates. </p>-->
+                            <div class="container container-make">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <!--操作-->
+                                        <div class="kj-op kj-btn-group group-ope">
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_xjz' | translate}}" title="" ng-click="createNewGroup()"><!--新建组-->
+                                                    <span class="km-btn-icon nav-new-bg"></span>
+                                                    <span class="km-btn-caption" translate="CREATE">新建</span><!--新建-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_bcst' | translate}}" title="" ng-click="saveCanvas()"><!--保存视图-->
+                                                    <span class="km-btn-icon nav-save-bg"></span>
+                                                    <span class="km-btn-caption" translate="SAVE">保存</span><!--保存-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_bjst' | translate}}" title="" ng-click="editGroup()"><!--编辑视图-->
+                                                    <span class="km-btn-icon nav-edit-bg"></span>
+                                                    <span class="km-btn-caption" translate="EDIT">编辑</span><!--编辑-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'DELETE' | translate}}" title="" ng-click="deleteComponent()"><!--删除-->
+                                                    <span class="km-btn-icon nav-dele-bg"></span>
+                                                    <span class="km-btn-caption" translate="Del">删除</span><!--删除-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span translate="OPERATE">操作</span><!--操作-->
+                                            </div>
+                                        </div>
+                                        <!--插入-->
+                                        <!--拖拽-->
+                                        <div id="kj-kj" class="kj-kj kj-btn-group group-drag">
+                                            <div class="component-panels" ng-class="{'component-panels-bg':menu.comPanelShow}" ng-mouseleave="menu.comPanelShow=false">
+                                                <div class="kj-btn-item tool pd-left5" id="database" type="database">
+                                                    <a href="javascript:void(0);"  class="btn drag-font" ng-disabled="comsDragable">
+                                                        <span class="km-btn-full database-bg"></span>
+                                                        <p class="text-center" translate="Cs_sjk">数据库</p><!--数据库-->
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="capture" type="capture">
+                                                    <a href="javascript:void(0);"  class="btn drag-font" ng-disabled="comsDragable">
+                                                        <span class="km-btn-full capture-bg"></span>
+                                                        <p class="text-center" translate="M_bz">捕捉</p><!--捕捉-->
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="queue" type="queue">
+                                                    <a href="javascript:void(0);" class="btn drag-font" ng-disabled="comsDragable">
+                                                        <span class="km-btn-full queue-bg"></span>
+                                                        <p class="text-center" translate="M_dl">队列</p><!--队列-->
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="loader" type="apply">
+                                                    <a href="javascript:void(0);" class="btn drag-font" ng-disabled="comsDragable">
+                                                        <span class="km-btn-full loader-bg"></span>
+                                                        <p class="text-center" translate="M_zz">装载</p><!--装载-->
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="transfer" type="transfer" >
+                                                    <a href="javascript:void(0);" class="btn drag-font" ng-disabled="comsDragable">
+                                                        <span class="km-btn-full server-bg"></span>
+                                                        <p class="text-center" translate="M_ccz">传输组</p><!--传输组-->
+                                                    </a>
+                                                </div>
+                                                <!--侧边slide-->
+                                                <div class="comps-slide">
+                                                    <a href="javascript:void(0);" ng-click="menu.comPanelShow=!menu.comPanelShow">
+                                                        <i class="fa" ng-class="{'fa-sort-down':!menu.comPanelShow,'fa-sort-up':menu.comPanelShow}"></i>
+                                                        <p></p>
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-append" ng-cloak="" ng-show="menu.comPanelShow">
+                                                    <div class="kj-btn-item1 tool pd-left5" id="etl" type="etl">
+                                                        <a href="javascript:void(0);" class="drag-font" >
+                                                            <span class="km-btn-full loader-bg"></span>
+                                                            <p class="text-center">ETL</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="kj-btn-item1 tool" id="publish" type="publisher">
+                                                        <a href="javascript:void(0);" class="drag-font" >
+                                                            <span class="km-btn-full loader-bg"></span>
+                                                            <p class="text-center">pulisher</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span translate="M_zj">组件</span><!--组件-->
+                                            </div>
+                                        </div>
+                                        <!--操作-->
+                                        <div class="kj-cz kj-btn-group" ng-cloak="ng-cloak" ng-show="com.operation">
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.start}" data-toggle="tooltip" data-placement="bottom" ng-click="startEngine()">
+                                                    <span class="km-btn-icon fa fa-play" ng-class="{'green':com.start}" ></span>
+                                                    <span class="km-btn-caption" translate="START">启动</span><!--启动-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.scn_start}" data-toggle="tooltip" data-placement="bottom" ng-click="startScnEngine()">
+                                                    <span class="km-btn-icon fa fa-forward" ng-class="{'green':com.scn_start}" ></span>
+                                                    <span class="km-btn-caption" translate="SCNST">SCN启动</span><!--SCN启动-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.restart}" data-toggle="tooltip" data-placement="bottom" ng-click="stopEngine()">
+                                                    <span class="km-btn-icon fa fa-stop" ng-class="{'red':com.restart}"></span>
+                                                    <span class="km-btn-caption" translate="STOP">停止</span><!--停止-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.stop}" data-toggle="tooltip" data-placement="bottom" ng-click="restartEngine()">
+                                                    <span class="km-btn-icon fa fa-repeat" ng-class="{'green':com.stop}"></span>
+                                                    <span class="km-btn-caption" translate="RESTART">重启</span><!--重启-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span translate="RUN">运行</span><!--运行-->
+                                            </div>
+                                        </div>
+                                        <!--对齐-->
+                                        <div class="kj-dq kj-btn-group">
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.left}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_zdq' | translate}}" title="{{'M_zdq' | translate}}" ng-click="changeDq(1)">
+                                                    <span class="km-btn-icon left-just-bg"></span>
+                                                    <span class="km-btn-caption" translate="M_zdq">左对齐</span><!--左对齐-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.right}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_ydq' | translate}}" title="{{'M_ydq' | translate}}" ng-click="changeDq(2)">
+                                                    <span class="km-btn-icon right-just-bg"></span>
+                                                    <span class="km-btn-caption" translate="M_ydq">右对齐</span><!--右对齐-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.top}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_sdq' | translate}}" title="{{'M_sdq' | translate}}" ng-click="changeDq(5)">
+                                                    <span class="km-btn-icon up-just-bg"></span>
+                                                    <span class="km-btn-caption" translate="M_sdq">上对齐</span><!--上对齐-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.bottom}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_xdq' | translate}}" title="{{'M_xdq' | translate}}" ng-click="changeDq(6)">
+                                                    <span class="km-btn-icon down-just-bg"></span>
+                                                    <span class="km-btn-caption" translate="M_xdq">下对齐</span><!--下对齐-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span translate="M_dq">对齐</span><!--对齐-->
+                                            </div>
+                                        </div>
+                                        <!--线条-->
+                                        <!--模式-->
+                                        <div class="kj-zh kj-btn-group">
+                                            <div class="kj-btn-item" ng-class="{'active':menu.moshi.map}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_stms' | translate}}" title="" ng-click="changeMs('map')"><!--视图模式-->
+                                                    <span class="km-btn-icon view-bg"></span>
+                                                    <span class="km-btn-caption" translate="M_st">视图</span><!--视图-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item"  ng-class="{'active':!menu.moshi.map}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="{{'M_lbms' | translate}}" title="" ng-click="changeMs('list')"><!--列表模式-->
+                                                    <span class="km-btn-icon list-bg"></span>
+                                                    <span class="km-btn-caption" translate="M_lb">列表</span><!--列表-->
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span translate="VIEW">查看</span><!--查看-->
+                                            </div>
+                                        </div>
+                                        <!--控制台-->
+                                        <div class="kj-kz kj-btn-group drag-console group-cons">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="toggleConsole()"  tooltip-placement="bottom" uib-tooltip="{{'M_yxxx' | translate}}" title="" ><!--运行信息-->
+                                                    <span class="km-btn-full conter-bg"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10" translate="M_yxxx">运行信息</span><!--运行信息-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="box_tab5">
+                            <div class="col-md-5">
+                                <div class="slide-bar">
+                                    <div class="flexslider carousel" id="flexbox">
+                                        <div class="flex-viewport">
+                                            <ul class="slides">
+                                                <li ng-click="checkCurModel($event,item)" ng-repeat="item in modelList" repeat-finish>
+                                                    <img src="img/data-slide.png" style="width: 50px;height: 35px;"><p ng-bind="item.db_name"></p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <ul class="flex-direction-nav">
+                                            <li class="flex-nav-prev"><a class="flex-prev" href="javascript:void(0);" tabindex="-1">Previous</a></li>
+                                            <li class="flex-nav-next"><a class="flex-next" href="javascript:void(0);" tabindex="-1">Next</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="box_tab6">
+                            <div class="container container-make">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--数据同步-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn-tool tool-del-border">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="full_syc_data()" >
+                                                    <span class="km-btn-full aspect-syn mlf-15"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10" translate="M_cltb">存量数据同步</span><!--存量数据同步-->
+                                            </div>
+                                        </div>
+                                        <!--导入-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn tool-del-border">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="inputPz()" >
+                                                    <span class="km-btn-full aspect-intro mlf-15"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                                <input style="display: none;" type="file" id="file" name="myfile">
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10" translate="M_pzhy">配置还原</span><!--配置还原-->
+                                            </div>
+                                        </div>
+                                        <!--导出-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn tool-del-border">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="outputPz()" >
+                                                    <span class="km-btn-full aspect-export mlf-15"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10" translate="M_pzbf">配置备份</span><!--配置备份-->
+                                            </div>
+                                        </div>
+                                        <!--tserver-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn tool-del-border">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="showTserverInfo()" >
+                                                    <span class="km-btn-full aspect-tserver mlf-15"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10">Tserver</span>
+                                            </div>
+                                        </div>
+                                        <!--导出错误-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn tool-del-border">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="outputErrFiles()" >
+                                                    <span class="km-btn-full aspect-export-err mlf-15"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10" translate="M_dccw">导出错误</span><!--导出错误-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----/模板---->
+                        <div class="tab-pane fade" id="box_tab7">
+                            <div class="container container-make">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--导出错误-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn tool-del-border">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="getComTemplate()" >
+                                                    <span class="km-btn-full aspect-export-model mlf-15"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10" translate="M_bzll">标准链路</span><!--标准链路-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----/模板---->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /MAIN-->
+<!-- DRAG BOX-->
+<div id="drag_box_id" class="container container-make drag-container page-header-fixed page-header-fixed">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-container">
+                <div class="page-sidebar navbar-collapse pull-left">
+                    <ul class="page-sidebar-menu">
+                        <li>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler hidden-phone" ng-click="toggleSideBar();" ><i class="fa" ng-class="{'fa-angle-double-left':isOpen,'fa-angle-double-right':!isOpen}"></i></div>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <li>
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <div class="sidebar-search clearfix">
+                                <input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="q"><!--搜索-->
+                                <span class="fa fa-search submit" ng-cloak=""></span>
+                            </div>
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" >
+                                <i class="fa pro-tit-logo"></i>
+                                <span class="title" ng-bind="proName"></span>
+                                <span class="arrow open"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="page-sidebar-menu2" id="page-slidebar">
+                        <li ng-class="{'animate-repeat':true,'active':group.active}" ng-repeat="group in groupList | filter:q as results">
+                            <a href="javascript:void(0);" class="group-list-one" ng-click="changeGroup(group)" context-menu="menuOptions">
+                                <i class="status" ng-class="{'green glyphicon glyphicon-ok-sign':group.load==='yes','greenyellow glyphicon glyphicon-warning-sign':group.load==='no'}" ng-cloak=""></i>
+                                <span class="title" ng-cloak="">{{group.title}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="main-bott-logo">
+                        <div class="logo-bott-ico"></div>
+                        <span class="main-logo-cp" translate="Gst">©2011-2016</span>
+                        <span class="main-logo-cp" translate="Gsw">翱旗创业（北京）科技有限公司</span><!--翱旗创业（北京）科技有限公司-->
+                        <span class="main-logo-ver add-cpright" translate="Bb">版本：5.0</span><!--版本：5.0-->
+                        <span class="main-logo-ver" translate="Syxk">使用许可：国家电网河南分公司</span><!--使用许可：国家电网河南分公司-->
+                    </div>
+                </div>
+                <div class="page-content drag-box">
+                    <div class="topo-map" id="viewMapId">
+                        <div class="widget-content">
+                            <!-- DRAG PANEL-->
+                            <div id="flowbox" class="flowbox" ng-click="clearView($event)" ></div>
+                            <div id="consoleUI" ui-view="master"></div>
+                        </div>
+                    </div>
+                    <div class="widget-normal"  style="display: none;" id="viewListId">
+                        <div class="gl-list">
+                            <!-- DRAG LIST -->
+                            <table class="table">
+                                <colgroup>
+                                    <col style="width: 10%">
+                                    <col style="width: 90%">
+                                </colgroup>
+                                <tr>
+                                    <th class="gl-row-first">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary gl-row-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" translate="M_zm">组名<span class="caret"></span></button><!--组名-->
+                                            <ul class="dropdown-menu" role="menu" >
+                                                <li><a href="javascript:void(0);" ng-repeat="item in groupList" ng-bind="item.title" ng-click="changeGroup(item)">group1</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th colspan="10">
+                                        <table class="table gr-row-table">
+                                            <colgroup>
+                                                <col style="width: 10%">
+                                                <col style="width: 15%">
+                                                <col style="width: 15%">
+                                                <col style="width: 15%">
+                                                <col style="width: 15%">
+                                                <col style="width: 10%">
+                                                <col style="width: 5%">
+                                                <col style="width: 5%">
+                                                <col style="width: 5%">
+                                                <col style="width: 5%">
+                                                <!--<col style="width: 5%">-->
+                                            </colgroup>
+                                            <tr>
+                                                <th>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary gl-row-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" translate="M_zjlx"><span class="caret"></span></button><!--组件类型-->
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="javascript:void(0);" ng-click="changAc('all')" translate="ALL">全部</a></li>
+                                                            <li><a href="javascript:void(0);" ng-click="changAc('dt')" translate="M_dtzj">动态组件</a></li>
+                                                            <li><a href="javascript:void(0);" ng-click="changAc('jt')" translate="M_jtzj">静态组件</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </th><th translate="M_zujm">组件名</th>
+                                                <th translate="STATUS">状态</th><th translate="M_kssj">开始时间</th><th>SCT</th>
+                                                <th>SCN</th><th>Insert</th><th>Update</th><th>Delete</th><th>DDL</th>
+                                                <!--<th>操作</th>-->
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                            <div class="table-str">
+                                <table class="table gl-table-body">
+                                    <colgroup>
+                                        <col style="width: 10%">
+                                        <col style="width: 90%">
+                                    </colgroup>
+                                    <tr>
+                                        <td class="gl-row-first" ng-bind="listView.group.title">group1</td>
+                                        <td colspan="10">
+                                            <table class="table gr-row-table-info">
+                                                <colgroup>
+                                                    <col style="width: 10%">
+                                                    <col style="width: 15%">
+                                                    <col style="width: 15%">
+                                                    <col style="width: 15%">
+                                                    <col style="width: 15%">
+                                                    <col style="width: 10%">
+                                                    <col style="width: 5%">
+                                                    <col style="width: 5%">
+                                                    <col style="width: 5%">
+                                                    <col style="width: 5%">
+                                                </colgroup>
+                                                <tr ng-repeat="item in listView.mapList">
+                                                    <td ng-bind="item.type">Database</td>
+                                                    <td ng-bind="item.name">db</td>
+                                                    <td ng-bind="item.status">-</td>
+                                                    <td ng-bind="item.st">-</td>
+                                                    <td ng-bind="item.temp">-</td>
+                                                    <td ng-bind="item.scn">-</td>
+                                                    <td ng-bind="item.insert">-</td>
+                                                    <td ng-bind="item.update">-</td>
+                                                    <td ng-bind="item.delete">-</td>
+                                                    <td ng-bind="item.ddl">-</td>
+                                                </tr>
+                                                <tr ng-cloak="ng-cloak" ng-show="listView.mapList.length===0">
+                                                    <td colspan="10" class="txt-align-center">No Data!</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /DRAG BOX-->
+<div id="mainDialogUi" ui-view ></div>
+<!--DRAG Ctrl-->
+<script type="text/javascript" src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+<script type="text/javascript" src="build/jq.all.min.js"></script>
+<script type="text/javascript" src="lib/r7_plumb.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //初始化拖拽控件
+        r7Plumb.dragInit();
+        var flowBox = $("#flowbox");
+        var appElement = document.querySelector('[ng-controller=mainController]');
+        flowBox.on("click","div.component",function () {
+            var flag =angular.element(appElement).scope().menu.dialog;
+            angular.element(appElement).scope().menu.dialog = !flag;
+            angular.element(appElement).scope().$apply();
+        });
+        $('#file').on('change',function () {
+            angular.element(appElement).scope().changeFiles();
+            angular.element(appElement).scope().$apply();
+        });
+    });
+</script>
+<!--/DRAG Ctrl-->
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="app.lib.js"></script>
+<script type="text/javascript" src="app.min.js"></script>
+<script type="text/javascript" src="template.tpl.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="build/jq.lib.js"></script>
+<script type="text/javascript" src="lib/echarts.js"></script>
+</body>
+</html>

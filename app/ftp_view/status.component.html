@@ -1,0 +1,161 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading">FTP属性</div><!--FTP属性-->
+        <div class="panel-body" >
+            <table class="table table-condensed">
+                <tr ng-cloak="" ng-if="$ctrl.real.com_id.length>0">
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info">组件ID：</label><!--组件ID：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.real.com_id" ng-init="$ctrl.params.ftp_id=false" ng-class="{'accord-pre':$ctrl.params.ftp_id}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_id"  ng-class="{'accord-next':$ctrl.params.ftp_id}">组件唯一标示</p><!--组件唯一标示-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_id=!$ctrl.params.ftp_id" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_id,'glyphicon-question-sign':!$ctrl.params.ftp_id}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info">FTP组件名称：</label><!--FTP组件名称：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.component_name" ng-init="$ctrl.params.ftp_name=false" ng-class="{'accord-pre':$ctrl.params.ftp_name}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_name"  ng-class="{'accord-next':$ctrl.params.ftp_name}">FTP组件名称的说明</p><!--FTP组件名称的说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_name=!$ctrl.params.ftp_name" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_name,'glyphicon-question-sign':!$ctrl.params.ftp_name}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info">传输类型：</label></div><!--传输类型：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.type" ng-init="$ctrl.params.ftp_type=false" ng-class="{'accord-pre':$ctrl.params.ftp_type}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_type"  ng-class="{'accord-next':$ctrl.params.ftp_type}">传输类型的说明</p><!--传输类型的说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_type=!$ctrl.params.ftp_type" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_type,'glyphicon-question-sign':!$ctrl.params.ftp_type}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info">服务器IP地址：</label><!--服务器IP地址：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.ip" ng-init="$ctrl.params.ftp_ip=false" ng-class="{'accord-pre':$ctrl.params.ftp_ip}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_ip"  ng-class="{'accord-next':$ctrl.params.ftp_ip}">服务器IP地址说明</p><!--服务器IP地址说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_ip=!$ctrl.params.ftp_ip" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_ip,'glyphicon-question-sign':!$ctrl.params.ftp_ip}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info">用户名：</label><!--用户名：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.user_name" ng-init="$ctrl.params.ftp_user=false" ng-class="{'accord-pre':$ctrl.params.ftp_user}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_user"  ng-class="{'accord-next':$ctrl.params.ftp_user}">用户名说明</p><!--用户名说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_user=!$ctrl.params.ftp_user" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_user,'glyphicon-question-sign':!$ctrl.params.ftp_user}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info">密码：</label></div><!--密码：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.passwd" ng-init="$ctrl.params.ftp_pwd=false" ng-class="{'accord-pre':$ctrl.params.ftp_pwd}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_pwd"  ng-class="{'accord-next':$ctrl.params.ftp_pwd}">密码说明</p><!--密码说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_pwd=!$ctrl.params.ftp_pwd" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_pwd,'glyphicon-question-sign':!$ctrl.params.ftp_pwd}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info">数据保存时间：</label></div><!--数据保存时间：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.save_time" ng-init="$ctrl.params.ftp_time=false" ng-class="{'accord-pre':$ctrl.params.ftp_time}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_time"  ng-class="{'accord-next':$ctrl.params.ftp_time}">数据保存时间说明</p><!--数据保存时间说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_time=!$ctrl.params.ftp_time" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_time,'glyphicon-question-sign':!$ctrl.params.ftp_time}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info">同步间隔：</label><!--同步间隔：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.wait" ng-init="$ctrl.params.ftp_jg=false" ng-class="{'accord-pre':$ctrl.params.ftp_jg}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_jg"  ng-class="{'accord-next':$ctrl.params.ftp_jg}">同步间隔说明</p><!--同步间隔说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_jg=!$ctrl.params.ftp_jg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_jg,'glyphicon-question-sign':!$ctrl.params.ftp_jg}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info">传输路径：</label><!--传输路径：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.ftp_path" ng-init="$ctrl.params.ftp_url=false" ng-class="{'accord-pre':$ctrl.params.ftp_url}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_url"  ng-class="{'accord-next':$ctrl.params.ftp_url}">传输路径说明</p><!--传输路径说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_url=!$ctrl.params.ftp_url" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_url,'glyphicon-question-sign':!$ctrl.params.ftp_url}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info">文件前缀：</label></div><!--文件前缀：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.ftp_filename" ng-init="$ctrl.params.ftp_flie=false" ng-class="{'accord-pre':$ctrl.params.ftp_flie}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.ftp_flie"  ng-class="{'accord-next':$ctrl.params.ftp_flie}">文件前缀说明</p><!--文件前缀说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.ftp_flie=!$ctrl.params.ftp_flie" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_flie,'glyphicon-question-sign':!$ctrl.params.ftp_flie}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,902 @@
+[32m[2017-08-02 17:22:08.213] [INFO] console - [39m
+[32m[2017-08-02 17:22:08.217] [INFO] console - [39m
+[32m[2017-08-02 17:22:08.220] [INFO] console - [39m  etl相关操作测试
+[32m[2017-08-02 17:22:08.228] [INFO] console - [39m[query_etl_config begin]
+[32m[2017-08-02 17:22:08.231] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.320] [INFO] console - [39mconnection is opening!!!
+[32m[2017-08-02 17:22:08.320] [INFO] console - [39mquery etl params.
+[36m[2017-08-02 17:22:08.327] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:08.327] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:08.333] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:08.418] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:08.424] [DEBUG] console - [39mSQL:[select value from nls_database_parameters where parameter = 'NLS_NCHAR_CHARACTERSET']
+[36m[2017-08-02 17:22:08.424] [DEBUG] console - [39mPARAMS:[]
+[36m[2017-08-02 17:22:08.429] [DEBUG] console - [39mSQL:[select value from nls_database_parameters where parameter = 'NLS_CHARACTERSET']
+[36m[2017-08-02 17:22:08.429] [DEBUG] console - [39mPARAMS:[]
+[36m[2017-08-02 17:22:08.431] [DEBUG] console - [39mSQL:[select value from nls_database_parameters where parameter = 'NLS_LANGUAGE']
+[36m[2017-08-02 17:22:08.431] [DEBUG] console - [39mPARAMS:[]
+[36m[2017-08-02 17:22:08.432] [DEBUG] console - [39mSQL:[select value from nls_database_parameters where parameter = 'NLS_TERRITORY']
+[36m[2017-08-02 17:22:08.432] [DEBUG] console - [39mPARAMS:[]
+[36m[2017-08-02 17:22:08.435] [DEBUG] console - [39mSQL:[SELECT PARAM_NAME, PARAM_VALUE FROM T_COMP_PARAM WHERE COMP_ID = ? AND PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:08.435] [DEBUG] console - [39mVAL:[etl_322,NORMAL]
+[32m[2017-08-02 17:22:08.435] [INFO] console - [39m[query_etl_config success]
+[32m[2017-08-02 17:22:08.475] [INFO] console - [39mStr ODBC db is closed!
+[32m[2017-08-02 17:22:08.477] [INFO] console - [39m=== { cset: { real_charset: 'ZHS16GBK', charset: [ 'ZHS16GBK' ] },
+  ncset: { real_ncharset: 'AL16UTF16', ncharset: [ 'AL16UTF16' ] },
+  cbset: { real_clobset: 'AL16UTF16', clobset: [ 'AL16UTF16' ] },
+  ncbset: { real_nclobset: 'AL16UTF16', nclobset: [ 'AL16UTF16' ] },
+  tset: 
+   { real_tar_set: '',
+     tar_set: 
+      [ 'ZHS16GBK',
+        'ASCII',
+        'GB18030',
+        'BIG5',
+        'GB2312',
+        'UTF-8',
+        'UTF-16BE',
+        'UTF-16LE',
+        'UTF8',
+        'UTF16',
+        'GBK',
+        'US7ASCII',
+        'ZHT16BIG5',
+        'ZHS16CGB231280',
+        'AL32UTF8',
+        'AL16UTF16',
+        'AL16UTF16LE',
+        'WE8MSWIN1252',
+        'CP1252',
+        'UTF-16',
+        'UTF-32',
+        'UTF-7',
+        'UTF-32BE',
+        'UTF-32LE',
+        'UTF7',
+        'UTF32',
+        'UTF16BE',
+        'UTF16LE',
+        'UTF32BE',
+        'UTF32LE',
+        'UCS-2',
+        'UCS-2LE',
+        'UCS-2BE',
+        'UCS2' ] },
+  interval: '5',
+  full_string: 'no' }
+[32m[2017-08-02 17:22:08.488] [INFO] console - [39m    ✓ 查询etl配置 query_etl_config (264ms)
+[32m[2017-08-02 17:22:08.491] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:08.492] [INFO] console - [39m[query_etl_user begin]
+[32m[2017-08-02 17:22:08.493] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.496] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:08.498] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:08.498] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:08.500] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:08.609] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:08.678] [DEBUG] console - [39mSQL:[select username from dba_users order by username]
+[36m[2017-08-02 17:22:08.678] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:08.678] [INFO] console - [39m[query_etl_user success]
+[32m[2017-08-02 17:22:08.679] [INFO] console - [39m=== { user: 
+   [ 'ALFREDO',
+     'ANONYMOUS',
+     'APEX_030200',
+     'APEX_PUBLIC_USER',
+     'APPQOSSYS',
+     'CR_TEST_01',
+     'CR_TEST_02',
+     'CR_TEST_03',
+     'CTXSYS',
+     'CTY',
+     'C_T_TEST21',
+     'DBSNMP',
+     'DCP_TEST_01',
+     'DCP_TEST_02',
+     'DCP_TEST_03',
+     'DIP',
+     'DK',
+     'DOMAIN1',
+     'EXFSYS',
+     'FLOWS_FILES',
+     'GKN',
+     'HR',
+     'HXX01',
+     'HXX02',
+     'HXX04',
+     'HXX05',
+     'INFORMATICADOMAIN',
+     'INFORMATICAMODE',
+     'INFORMATICAREPOS',
+     'JYP_TEST_01',
+     'JYP_TEST_02',
+     'KING_BASE',
+     'KYLIN',
+     'MDDATA',
+     'MDSYS',
+     'MGMT_VIEW',
+     'ND_TEST_01',
+     'ND_TEST_02',
+     'ND_TEST_03',
+     'ND_TEST_04',
+     'ND_TEST_05',
+     'ND_TEST_06',
+     'N_T_A',
+     'N_T_AAHQ',
+     'N_T_AJJHOZU',
+     'N_T_ASFMDPM',
+     'N_T_AT',
+     'N_T_AUVLNQONI',
+     'N_T_AYSQU',
+     'N_T_BMEKNKPVPE',
+     'N_T_GURNQB',
+     'N_T_IEWGZVBX',
+     'N_T_IFE',
+     'N_T_IJ',
+     'N_T_IM',
+     'N_T_JJFTD',
+     'N_T_JJRKOJMQT',
+     'N_T_JL',
+     'N_T_JLUQANEOHN',
+     'N_T_JLWAOQ',
+     'N_T_JO',
+     'N_T_JQ',
+     'N_T_JQDTQQU',
+     'N_T_JRL',
+     'N_T_JYRWTP',
+     'N_T_JYS',
+     'N_T_KAZMJ',
+     'N_T_KBDALFEI',
+     'N_T_KGL',
+     'N_T_KIYMZARI',
+     'N_T_KLBIJQVBMU',
+     'N_T_KPDT',
+     'N_T_KTDV',
+     'N_T_KWBJUJVFH',
+     'N_T_KWRZS',
+     'N_T_KYVQF',
+     'N_T_KZLV',
+     'N_T_L',
+     'N_T_LFHBBRMRG',
+     'N_T_LFRNHY',
+     'N_T_LG',
+     'N_T_LIA',
+     'N_T_LJGI',
+     'N_T_LJOAUYZFUL',
+     'N_T_LL',
+     'N_T_LMBTLGCYDN',
+     'N_T_LPKGT',
+     'N_T_LRSLRMRU',
+     'N_T_LVWTGF',
+     'N_T_LYWSCI',
+     'N_T_MERZPAILYD',
+     'N_T_MIJB',
+     'N_T_MK',
+     'N_T_MQRBVWR',
+     'N_T_MSL',
+     'N_T_MUKXLBOSR',
+     'N_T_MYQ',
+     'N_T_MYX',
+     'N_T_MZIEHHG',
+     'N_T_N',
+     ... 171 more items ] }
+[32m[2017-08-02 17:22:08.682] [INFO] console - [39m    ✓ etl schema信息查询 query_etl_user (189ms)
+[32m[2017-08-02 17:22:08.682] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:08.683] [INFO] console - [39m[query_etl_table begin]
+[32m[2017-08-02 17:22:08.684] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.685] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:08.687] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:08.687] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:08.689] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:08.733] [INFO] console - [39mStr ODBC db is closed!
+[32m[2017-08-02 17:22:08.844] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:08.868] [DEBUG] console - [39mSQL:[select object_name as "name" from dba_objects where owner not in ('SYS','SYSTEM','MGMT_VIEW','DBSNMP','SYSMAN','SDE','OUTLN','MDSYS','WMSYS','FLOWS_FILES','ORDDATA','CTXSYS','ANONYMOUS','SI_INFORMTN_SCHEMA','ORDSYS','EXFSYS','APPQOSSYS','XDB','ORDPLUGINS','OWBSYS','OLAPSYS','XS$NULL','APEX_PUBLIC_USER','SPATIAL_CSW_ADMIN_USR','SPATIAL_WFS_ADMIN_USR') and object_type='TABLE' and owner=? order by object_name desc]
+[36m[2017-08-02 17:22:08.868] [DEBUG] console - [39mPARAMS:[CR_TEST_01]
+[32m[2017-08-02 17:22:08.868] [INFO] console - [39m[query_etl_table success]
+[32m[2017-08-02 17:22:08.869] [INFO] console - [39m=== { tables: 
+   [ '渔政记录_9',
+     '渔政记录_8',
+     '渔政记录_7',
+     '渔政记录_6',
+     '渔政记录_20',
+     '渔政记录_19',
+     '渔政记录_18',
+     '渔政记录_17',
+     '渔政记录_16',
+     '渔政记录_15',
+     '渔政记录_14',
+     '渔政记录_13',
+     '渔政记录_12',
+     '渔政记录_11',
+     '渔政记录_10',
+     'rawtest',
+     'R7_LOADER_BKP',
+     'ORSERS',
+     'N_T_ZZXBJFFZ',
+     'N_T_ZWUMSKUL',
+     'N_T_ZUUNGHEO',
+     'N_T_ZUNPYCTG',
+     'N_T_ZUDROPJL',
+     'N_T_ZTLEWIXG',
+     'N_T_ZQIFSCAM',
+     'N_T_ZOGBNFGP',
+     'N_T_ZEWJYEYC',
+     'N_T_ZCORHIAM',
+     'N_T_ZCOAYIYA',
+     'N_T_ZBUHJUBR',
+     'N_T_YZSSBQAT',
+     'N_T_YWYRBVYO',
+     'N_T_YQSMVMPE',
+     'N_T_YLINDVNP',
+     'N_T_YKZNJSDR',
+     'N_T_YKXVJYNK',
+     'N_T_YHAFMRKM',
+     'N_T_YGUPXFCH',
+     'N_T_YGSIXYXV',
+     'N_T_YCVYHHIW',
+     'N_T_XYONPFZH',
+     'N_T_XUGTDOBE',
+     'N_T_XSWEZILP',
+     'N_T_XSJLPPOQ',
+     'N_T_XLJIZHQA',
+     'N_T_XHIGLWPD',
+     'N_T_XFVQNDCC',
+     'N_T_XFGQQFFS',
+     'N_T_XEQYOAUJ',
+     'N_T_XDADFECH',
+     'N_T_XCDWKWTH',
+     'N_T_XACZPWYY',
+     'N_T_WXKNKJUY',
+     'N_T_WWYQOZZJ',
+     'N_T_WWGENKRL',
+     'N_T_WVVTNAQZ',
+     'N_T_WVFAAMUV',
+     'N_T_WUZXUOGH',
+     'N_T_WOKQQGFL',
+     'N_T_WODOFKGX',
+     'N_T_WNRZWYIL',
+     'N_T_WIVJNWBG',
+     'N_T_WHHRBVML',
+     'N_T_WEYESTGG',
+     'N_T_WCPDRGGU',
+     'N_T_VVEFRUDT',
+     'N_T_VUIKAKKR',
+     'N_T_VSCEEDMN',
+     'N_T_VONVYDHN',
+     'N_T_VNJAOIFK',
+     'N_T_VLTXWTKI',
+     'N_T_VKYVDNLS',
+     'N_T_VKCLNQKX',
+     'N_T_VHMOHDIB',
+     'N_T_VHGXDEOT',
+     'N_T_UYBXIJGZ',
+     'N_T_UVIRFPZG',
+     'N_T_UVHDCMQR',
+     'N_T_URMNLRFN',
+     'N_T_UPNXPCGU',
+     'N_T_UPCFMOAJ',
+     'N_T_UIDTNLAE',
+     'N_T_UEYTPLMU',
+     'N_T_UDOELIZT',
+     'N_T_TZKAQMJJ',
+     'N_T_TWMVOPEW',
+     'N_T_TVBONLXX',
+     'N_T_TVAAKXCY',
+     'N_T_TSVGVRDD',
+     'N_T_TSINPLXZ',
+     'N_T_TOIIJJOX',
+     'N_T_TMYLLEKM',
+     'N_T_TMDXEPFG',
+     'N_T_TLLDDMNR',
+     'N_T_TKTRSUWH',
+     'N_T_TKTJBPGK',
+     'N_T_TIVQMVYB',
+     'N_T_THMSOLAB',
+     'N_T_TGVZTGIO',
+     'N_T_TDRBSUUY',
+     ... 292 more items ] }
+[32m[2017-08-02 17:22:08.871] [INFO] console - [39m    ✓ etl table信息查询 query_etl_table (188ms)
+[32m[2017-08-02 17:22:08.871] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:08.872] [INFO] console - [39m[query_column_list begin]
+[32m[2017-08-02 17:22:08.873] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.874] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:08.875] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:08.875] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:08.876] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:08.892] [INFO] console - [39mStr ODBC db is closed!
+[32m[2017-08-02 17:22:08.918] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:08.922] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:08.922] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:08.922] [INFO] console - [39m[query_column_list success]
+[32m[2017-08-02 17:22:08.922] [INFO] console - [39m=== { list: 
+   [ { column_name: 'APPLYID',
+       column_type: 'VARCHAR2',
+       column_length: 100 },
+     { column_name: 'APPLYTIME',
+       column_type: 'VARCHAR2',
+       column_length: 50 },
+     { column_name: 'ID', column_type: 'NUMBER', column_length: 22 },
+     { column_name: 'MOBILEPHONE',
+       column_type: 'VARCHAR2',
+       column_length: 40 },
+     { column_name: 'REPORTNAME',
+       column_type: 'VARCHAR2',
+       column_length: 200 },
+     { column_name: 'SOURCE_ID',
+       column_type: 'VARCHAR2',
+       column_length: 100 },
+     { column_name: 'STATUS',
+       column_type: 'VARCHAR2',
+       column_length: 100 },
+     { column_name: 'USERNAME',
+       column_type: 'VARCHAR2',
+       column_length: 400 },
+     { column_name: '表名',
+       column_type: 'VARCHAR2',
+       column_length: 200 },
+     { column_name: '工程编号',
+       column_type: 'VARCHAR2',
+       column_length: 20 },
+     { column_name: '工程名称',
+       column_type: 'VARCHAR2',
+       column_length: 200 },
+     { column_name: '省会',
+       column_type: 'VARCHAR2',
+       column_length: 100 } ] }
+[32m[2017-08-02 17:22:08.924] [INFO] console - [39m    ✓ etl查询表列信息 query_column_list (52ms)
+[32m[2017-08-02 17:22:08.926] [INFO] console - [39m[legal_check_expression begin]
+[32m[2017-08-02 17:22:08.927] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.928] [INFO] console - [39mconnection is opening!!!
+[32m[2017-08-02 17:22:08.928] [INFO] console - [39mcheck_expression.
+[36m[2017-08-02 17:22:08.930] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:08.930] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:08.932] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:08.933] [INFO] console - [39mStr ODBC db is closed!
+[32m[2017-08-02 17:22:08.960] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:08.962] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:08.962] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:08.967] [INFO] console - [39mStr ODBC db is closed!
+[32m[2017-08-02 17:22:08.967] [INFO] console - [39m[legal_check_expression success]
+[32m[2017-08-02 17:22:08.967] [INFO] console - [39m=== { column_name: [ 'USERNAME' ] }
+[32m[2017-08-02 17:22:08.969] [INFO] console - [39m    ✓ etl表达式合法性检查 legal_check_expression (44ms)
+[32m[2017-08-02 17:22:08.969] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:08.970] [INFO] console - [39m[query_etl_table_rule begin]
+[32m[2017-08-02 17:22:08.971] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.972] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:08.973] [DEBUG] console - [39mSQL:[SELECT a.COMP_ID FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_ADD_COLUMN c WHERE a.COMP_ID = ? AND a.PARAM_TYPE = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and b.ID = c.SET_ID and c.OBJECT = ?]
+[36m[2017-08-02 17:22:08.973] [DEBUG] console - [39mVAL:[etl_322,EXTERNAL,add_column,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:08.974] [DEBUG] console - [39mSQL:[SELECT a.COMP_ID FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_DELETE_COLUMN c WHERE a.COMP_ID = ? AND a.PARAM_TYPE = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and b.ID = c.SET_ID and c.OBJECT = ?]
+[36m[2017-08-02 17:22:08.974] [DEBUG] console - [39mVAL:[etl_322,EXTERNAL,delete_column,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:08.975] [DEBUG] console - [39mSQL:[SELECT a.COMP_ID FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_RECORD_FILTER c WHERE a.COMP_ID = ? AND a.PARAM_TYPE = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and b.ID = c.SET_ID and c.OBJECT = ?]
+[36m[2017-08-02 17:22:08.975] [DEBUG] console - [39mVAL:[etl_322,EXTERNAL,record_filter,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:08.976] [DEBUG] console - [39mSQL:[SELECT a.COMP_ID FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_COLUMN_MAPPING c WHERE a.COMP_ID = ? AND a.PARAM_TYPE = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and b.ID = c.SET_ID and c.OBJECT = ?]
+[36m[2017-08-02 17:22:08.976] [DEBUG] console - [39mVAL:[etl_322,EXTERNAL,column_mapping,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:08.976] [DEBUG] console - [39mSQL:[SELECT a.COMP_ID FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_TABLE_AUDIT c WHERE a.COMP_ID = ? AND a.PARAM_TYPE = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and b.ID = c.SET_ID and c.OBJECT = ?]
+[36m[2017-08-02 17:22:08.976] [DEBUG] console - [39mVAL:[etl_322,EXTERNAL,table_audit,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:08.977] [DEBUG] console - [39mSQL:[SELECT a.COMP_ID FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_OPERATION_TRANSFORM c WHERE a.COMP_ID = ? AND a.PARAM_TYPE = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and b.ID = c.SET_ID and c.OBJECT = ?]
+[36m[2017-08-02 17:22:08.977] [DEBUG] console - [39mVAL:[etl_322,EXTERNAL,operation_transform,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:08.977] [INFO] console - [39m[query_etl_table_rule success]
+[32m[2017-08-02 17:22:08.977] [INFO] console - [39m=== []
+[32m[2017-08-02 17:22:08.978] [INFO] console - [39m    ✓ etl表规则查询 query_etl_table_rule
+[32m[2017-08-02 17:22:08.978] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:08.978] [INFO] console - [39m    etl增加列规则测试
+[32m[2017-08-02 17:22:08.979] [INFO] console - [39m[save_etl_add_config begin]
+[32m[2017-08-02 17:22:08.982] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:08.984] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:08.985] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:08.985] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:08.988] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:08.988] [DEBUG] console - [39mVAL:[etl_322,add_column,EXTERNAL]
+[36m[2017-08-02 17:22:08.989] [DEBUG] console - [39mSQL:[delete from T_ETL_ADD_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:08.989] [DEBUG] console - [39mVAL:[13,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:08.989] [DEBUG] console - [39mSQL:[insert into T_ETL_ADD_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, DATA_TYPE, COLUMN_SOURCE, COLUMN_VALUE) values (?, ?, ?, ?, ? ,?, ?)]
+[36m[2017-08-02 17:22:08.990] [DEBUG] console - [39mVAL:[13,add_column,CR_TEST_01.渔政记录_9,col,string,string,hello]
+[36m[2017-08-02 17:22:08.990] [DEBUG] console - [39mSQL:[insert into T_ETL_ADD_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, DATA_TYPE, COLUMN_SOURCE, COLUMN_VALUE) values (?, ?, ?, ?, ? ,?, ?)]
+[36m[2017-08-02 17:22:08.990] [DEBUG] console - [39mVAL:[13,add_column,CR_TEST_01.渔政记录_9,col2,sysdata,scn,]
+[36m[2017-08-02 17:22:08.991] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:08.991] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:08.992] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:09.027] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:09.029] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:09.029] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:09.033] [INFO] console - [39mStr ODBC db is closed!
+[36m[2017-08-02 17:22:09.046] [DEBUG] console - [39mSQL:[insert into T_ETL_ADD_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, DATA_TYPE, COLUMN_SOURCE, COLUMN_VALUE, SQL_EXPRESSION, CONNECT_DB, DBNAME, BIND_NAME) values (?, ?, ?, ?, ?, ? ,?, ?, ?, ? ,?)]
+[36m[2017-08-02 17:22:09.047] [DEBUG] console - [39mVAL:[13,add_column,CR_TEST_01.渔政记录_9,col3,expression,expression,substr(:USERNAME,1,3),substr(:16,1,3),yes,,USERNAME,]
+[32m[2017-08-02 17:22:09.063] [INFO] console - [39m[save_etl_add_config success.]
+
+[32m[2017-08-02 17:22:09.063] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.065] [INFO] console - [39m      ✓ etl增加列规则保存 save_etl_add_config (87ms)
+[32m[2017-08-02 17:22:09.065] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.066] [INFO] console - [39m[query_etl_add_config begin]
+[32m[2017-08-02 17:22:09.067] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.068] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.069] [DEBUG] console - [39mSQL:[select a.ID db_name, b.PARAM_VALUE db_type FROM T_COMP_INFO a, T_COMP_PARAM b  WHERE a.ID = b.COMP_ID and a.TYPE = ? and a.GROUP_ID = ? and b.PARAM_TYPE = ? and b.PARAM_NAME = ?]
+[36m[2017-08-02 17:22:09.073] [DEBUG] console - [39mVAL:[DB,group_270,NORMAL,db_type]
+[36m[2017-08-02 17:22:09.075] [DEBUG] console - [39mSQL:[SELECT c.COLUMN_NAME, c.DATA_TYPE, c.COLUMN_SOURCE, c.COLUMN_VALUE FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_ADD_COLUMN c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.OBJECT = ? and c.DATA_TYPE IS NOT NULL and c.DATA_TYPE != ? order by c.SET_ID]
+[36m[2017-08-02 17:22:09.075] [DEBUG] console - [39mVAL:[etl_322,add_column,EXTERNAL,CR_TEST_01.渔政记录_9,expression]
+[36m[2017-08-02 17:22:09.076] [DEBUG] console - [39mSQL:[SELECT c.COLUMN_NAME, c.DATA_TYPE, c.COLUMN_VALUE, c.CONNECT_DB, c.DBNAME, c.BIND_NAME FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_ADD_COLUMN c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.OBJECT = ? and c.DATA_TYPE = ? order by c.SET_ID]
+[36m[2017-08-02 17:22:09.076] [DEBUG] console - [39mVAL:[etl_322,add_column,EXTERNAL,CR_TEST_01.渔政记录_9,expression]
+[36m[2017-08-02 17:22:09.080] [DEBUG] console - [39mSQL:[SELECT c.OBJECT tab, GROUP_CONCAT(CASE WHEN c.COLUMN_NAME   IS NULL THEN '' ELSE c.COlUMN_NAME   END,  CASE WHEN c.DATA_TYPE     IS NULL THEN '' ELSE c.DATA_TYPE     END,  CASE WHEN c.COLUMN_SOURCE IS NULL THEN '' ELSE c.COLUMN_SOURCE END,  CASE WHEN c.COLUMN_VALUE  IS NULL THEN '' ELSE c.COLUMN_VALUE  END,  CASE WHEN c.CONNECT_DB    IS NULL THEN '' ELSE c.CONNECT_DB    END,  CASE WHEN c.DBNAME        IS NULL THEN '' ELSE c.DBNAME        END ORDER BY c.COLUMN_NAME) col  FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_ADD_COLUMN c  WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID  GROUP BY c.OBJECT]
+[36m[2017-08-02 17:22:09.081] [DEBUG] console - [39mVAL:[etl_322,add_column,EXTERNAL]
+[32m[2017-08-02 17:22:09.081] [INFO] console - [39m[query_etl_add_config success]
+[32m[2017-08-02 17:22:09.082] [INFO] console - [39m=== { database: 
+   [ RowDataPacket { db_name: 'database_324', db_type: 'oracle' },
+     RowDataPacket { db_name: 'database_319', db_type: 'oracle' } ],
+  list: 
+   [ { column_name: 'col2',
+       data_type: 'sysdata',
+       column_value: 'scn' },
+     { column_name: 'col',
+       data_type: 'string',
+       column_value: 'hello' },
+     { column_name: 'col3',
+       data_type: 'expression',
+       expression: 'c3Vic3RyKDpVU0VSTkFNRSwxLDMp',
+       connect_db: 'yes',
+       db_name: '',
+       bind_name: [Object],
+       db_info: {} } ],
+  select_tab: [] }
+[32m[2017-08-02 17:22:09.083] [INFO] console - [39m      ✓ etl增加列信息查询 query_etl_add_config
+[32m[2017-08-02 17:22:09.084] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.084] [INFO] console - [39m[save_etl_table_rule begin]
+[32m[2017-08-02 17:22:09.085] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.086] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.086] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.086] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.088] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.088] [DEBUG] console - [39mVAL:[etl_322,add_column,EXTERNAL]
+[36m[2017-08-02 17:22:09.089] [DEBUG] console - [39mSQL:[select SET_ID from T_ETL_ADD_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.089] [DEBUG] console - [39mVAL:[13,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.090] [DEBUG] console - [39mSQL:[delete from T_ETL_ADD_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.090] [DEBUG] console - [39mVAL:[13,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.103] [INFO] console - [39m[save_etl_table_rule success.]
+[32m[2017-08-02 17:22:09.103] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.104] [INFO] console - [39m      ✓ etl增加列规则删除 save_etl_table_rule
+[32m[2017-08-02 17:22:09.104] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.105] [INFO] console - [39m    etl删除列规则测试
+[32m[2017-08-02 17:22:09.106] [INFO] console - [39m[save_etl_delete_config begin]
+[32m[2017-08-02 17:22:09.106] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.107] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.108] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.108] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.111] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.111] [DEBUG] console - [39mVAL:[etl_322,delete_column,EXTERNAL]
+[36m[2017-08-02 17:22:09.112] [DEBUG] console - [39mSQL:[delete from T_ETL_DELETE_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.112] [DEBUG] console - [39mVAL:[14,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.112] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.112] [DEBUG] console - [39mVAL:[14,delete_column,CR_TEST_01.渔政记录_9,APPLYTIME,VARCHAR2]
+[36m[2017-08-02 17:22:09.114] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.114] [DEBUG] console - [39mVAL:[14,delete_column,CR_TEST_01.渔政记录_9,MOBILEPHONE,VARCHAR2]
+[36m[2017-08-02 17:22:09.114] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.114] [DEBUG] console - [39mVAL:[14,delete_column,CR_TEST_01.渔政记录_9,REPORTNAME,VARCHAR2]
+[32m[2017-08-02 17:22:09.128] [INFO] console - [39m[save_etl_delete_config success.]
+
+[32m[2017-08-02 17:22:09.128] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.129] [INFO] console - [39m      ✓ etl删除列规则保存 save_etl_delete_config
+[32m[2017-08-02 17:22:09.129] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.130] [INFO] console - [39m[query_etl_delete_config begin]
+[32m[2017-08-02 17:22:09.130] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.132] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.133] [DEBUG] console - [39mSQL:[SELECT c.COLUMN_NAME column_name, c.COLUMN_TYPE column_type FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_DELETE_COLUMN c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.OBJECT = ? and c.COLUMN_NAME IS NOT NULL order by c.SET_ID]
+[36m[2017-08-02 17:22:09.133] [DEBUG] console - [39mVAL:[etl_322,delete_column,EXTERNAL,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.134] [DEBUG] console - [39mSQL:[SELECT c.OBJECT tab, CASE WHEN c.COLUMN_NAME IS NULL THEN '' ELSE c.COlUMN_NAME END col  FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_DELETE_COLUMN c  WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID  GROUP BY c.OBJECT]
+[36m[2017-08-02 17:22:09.134] [DEBUG] console - [39mVAL:[etl_322,delete_column,EXTERNAL]
+[32m[2017-08-02 17:22:09.135] [INFO] console - [39m[query_etl_delete_config success]
+[32m[2017-08-02 17:22:09.135] [INFO] console - [39m=== { list: 
+   [ RowDataPacket { column_name: 'REPORTNAME', column_type: 'VARCHAR2' },
+     RowDataPacket { column_name: 'APPLYTIME', column_type: 'VARCHAR2' },
+     RowDataPacket { column_name: 'MOBILEPHONE', column_type: 'VARCHAR2' } ],
+  select_tab: [] }
+[32m[2017-08-02 17:22:09.136] [INFO] console - [39m      ✓ etl删除列规则查询 query_etl_delete_config
+[32m[2017-08-02 17:22:09.137] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.137] [INFO] console - [39m[save_etl_table_rule begin]
+[32m[2017-08-02 17:22:09.137] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.138] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.138] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.138] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.140] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.140] [DEBUG] console - [39mVAL:[etl_322,delete_column,EXTERNAL]
+[36m[2017-08-02 17:22:09.142] [DEBUG] console - [39mSQL:[select SET_ID from T_ETL_DELETE_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.142] [DEBUG] console - [39mVAL:[14,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.144] [DEBUG] console - [39mSQL:[delete from T_ETL_DELETE_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.144] [DEBUG] console - [39mVAL:[14,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.175] [INFO] console - [39m[save_etl_table_rule success.]
+[32m[2017-08-02 17:22:09.175] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.176] [INFO] console - [39m      ✓ etl删除列规则删除 save_etl_table_rule (39ms)
+[32m[2017-08-02 17:22:09.176] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.176] [INFO] console - [39m    etl映射列规则测试
+[32m[2017-08-02 17:22:09.177] [INFO] console - [39m[query_etl_map_config begin]
+[32m[2017-08-02 17:22:09.177] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.179] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.182] [DEBUG] console - [39mSQL:[select a.ID db_name, b.PARAM_VALUE db_type FROM T_COMP_INFO a, T_COMP_PARAM b  WHERE a.ID = b.COMP_ID and a.TYPE = ? and a.GROUP_ID = ? and b.PARAM_TYPE = ? and b.PARAM_NAME = ?]
+[36m[2017-08-02 17:22:09.182] [DEBUG] console - [39mVAL:[DB,group_270,NORMAL,db_type]
+[36m[2017-08-02 17:22:09.183] [DEBUG] console - [39mSQL:[SELECT c.COLUMN_NAME, c.COLUMN_TYPE, c.MAPPING_NAME, c.MAPPING_TYPE, c.ORGL_EXPRESSION, c.CONNECT_DB, c.DBNAME, c.BIND_NAME FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_COLUMN_MAPPING c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.OBJECT = ? and c.COLUMN_NAME IS NOT NULL order by c.SET_ID]
+[36m[2017-08-02 17:22:09.183] [DEBUG] console - [39mVAL:[etl_322,column_mapping,EXTERNAL,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.185] [DEBUG] console - [39mSQL:[SELECT c.OBJECT tab, GROUP_CONCAT(CASE WHEN c.COLUMN_NAME   IS NULL THEN '' ELSE c.COlUMN_NAME END , CASE WHEN c.COLUMN_TYPE    IS NULL THEN '' ELSE c.COLUMN_TYPE END,  CASE WHEN c.MAPPING_NAME IS NULL THEN '' ELSE c.MAPPING_NAME END,  CASE WHEN c.ORGL_EXPRESSION IS NULL THEN '' ELSE c.ORGL_EXPRESSION END,  CASE WHEN c.CONNECT_DB IS NULL THEN '' ELSE c.CONNECT_DB END ,  CASE WHEN c.DBNAME IS NULL THEN '' ELSE c.DBNAME END ORDER BY c.COLUMN_NAME) col   FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_COLUMN_MAPPING c  WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID  GROUP BY c.OBJECT]
+[36m[2017-08-02 17:22:09.185] [DEBUG] console - [39mVAL:[etl_322,column_mapping,EXTERNAL]
+[32m[2017-08-02 17:22:09.185] [INFO] console - [39m[query_etl_map_config success]
+[32m[2017-08-02 17:22:09.185] [INFO] console - [39m=== { database: 
+   [ RowDataPacket { db_name: 'database_324', db_type: 'oracle' },
+     RowDataPacket { db_name: 'database_319', db_type: 'oracle' } ],
+  list: [],
+  select_tab: [] }
+[32m[2017-08-02 17:22:09.187] [INFO] console - [39m      ✓ etl映射列规则查询 query_etl_map_config
+[32m[2017-08-02 17:22:09.187] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.188] [INFO] console - [39m[save_etl_map_config begin]
+[32m[2017-08-02 17:22:09.188] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.189] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.190] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.190] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.192] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.192] [DEBUG] console - [39mVAL:[etl_322,column_mapping,EXTERNAL]
+[36m[2017-08-02 17:22:09.192] [DEBUG] console - [39mSQL:[delete from T_ETL_COLUMN_MAPPING where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.192] [DEBUG] console - [39mVAL:[15,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.193] [DEBUG] console - [39mSQL:[insert into T_ETL_COLUMN_MAPPING(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, COLUMN_TYPE, MAPPING_NAME, MAPPING_TYPE) values (?, ?, ?, ?, ? ,?, ?)]
+[36m[2017-08-02 17:22:09.193] [DEBUG] console - [39mVAL:[15,column_mapping,CR_TEST_01.渔政记录_9,MOBILEPHONE,VARCHAR2,APPLYID,VARCHAR2]
+[36m[2017-08-02 17:22:09.193] [DEBUG] console - [39mSQL:[insert into T_ETL_COLUMN_MAPPING(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, COLUMN_TYPE, MAPPING_NAME, MAPPING_TYPE) values (?, ?, ?, ?, ? ,?, ?)]
+[36m[2017-08-02 17:22:09.193] [DEBUG] console - [39mVAL:[15,column_mapping,CR_TEST_01.渔政记录_9,SOURCE_ID,VARCHAR2,表名,VARCHAR2]
+[32m[2017-08-02 17:22:09.228] [INFO] console - [39m[save_etl_map_config success.]
+
+[32m[2017-08-02 17:22:09.228] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.229] [INFO] console - [39m      ✓ etl映射列规则保存 save_etl_map_config (42ms)
+[32m[2017-08-02 17:22:09.229] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.229] [INFO] console - [39m[save_etl_table_rule begin]
+[32m[2017-08-02 17:22:09.230] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.233] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.234] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.234] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.235] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.235] [DEBUG] console - [39mVAL:[etl_322,column_mapping,EXTERNAL]
+[36m[2017-08-02 17:22:09.236] [DEBUG] console - [39mSQL:[select SET_ID from T_ETL_COLUMN_MAPPING where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.236] [DEBUG] console - [39mVAL:[15,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.236] [DEBUG] console - [39mSQL:[delete from T_ETL_COLUMN_MAPPING where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.236] [DEBUG] console - [39mVAL:[15,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.262] [INFO] console - [39m[save_etl_table_rule success.]
+[32m[2017-08-02 17:22:09.262] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.262] [INFO] console - [39m      ✓ etl映射列规则删除 save_etl_table_rule
+[32m[2017-08-02 17:22:09.263] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.263] [INFO] console - [39m    etl记录过滤规则测试
+[32m[2017-08-02 17:22:09.264] [INFO] console - [39m[save_etl_condition_config begin]
+[32m[2017-08-02 17:22:09.264] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.265] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.266] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.266] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.267] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.267] [DEBUG] console - [39mVAL:[etl_322,record_filter,EXTERNAL]
+[36m[2017-08-02 17:22:09.268] [DEBUG] console - [39mSQL:[delete from T_ETL_RECORD_FILTER where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.268] [DEBUG] console - [39mVAL:[16,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.269] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:09.269] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:09.270] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:09.310] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:09.313] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:09.313] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:09.324] [INFO] console - [39mStr ODBC db is closed!
+[36m[2017-08-02 17:22:09.325] [DEBUG] console - [39mSQL:[insert into T_ETL_RECORD_FILTER(SET_ID, RULE_TYPE, OBJECT, ORGL_EXPRESSION, SQL_EXPRESSION, OPTION1, CONNECT_DB, DBNAME, BIND_NAME) values (?, ?, ?, ?, ? ,?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.325] [DEBUG] console - [39mVAL:[16,record_filter,CR_TEST_01.渔政记录_9,{APPLYID}='abc',,yes,no,,APPLYID,]
+[32m[2017-08-02 17:22:09.345] [INFO] console - [39m[save_etl_condition_config success.]
+
+[32m[2017-08-02 17:22:09.345] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.346] [INFO] console - [39m      ✓ etl记录过滤规则保存 save_etl_condition_config (83ms)
+[32m[2017-08-02 17:22:09.346] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.347] [INFO] console - [39m[query_etl_condition_config begin]
+[32m[2017-08-02 17:22:09.347] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.349] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.351] [DEBUG] console - [39mSQL:[SELECT c.ORGL_EXPRESSION, c.OPTION1, c.CONNECT_DB, c.DBNAME, c.BIND_NAME FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_RECORD_FILTER c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.OBJECT = ? and c.ORGL_EXPRESSION IS NOT NULL order by c.SET_ID]
+[36m[2017-08-02 17:22:09.351] [DEBUG] console - [39mVAL:[etl_322,record_filter,EXTERNAL,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.352] [DEBUG] console - [39mSQL:[SELECT c.OBJECT tab, GROUP_CONCAT(CASE WHEN c.ORGL_EXPRESSION IS NULL THEN '' ELSE c.ORGL_EXPRESSION END,  CASE WHEN c.OPTION1    IS NULL THEN '' ELSE c.OPTION1    END,  CASE WHEN c.CONNECT_DB IS NULL THEN '' ELSE c.CONNECT_DB END,  CASE WHEN c.DBNAME     IS NULL THEN '' ELSE c.DBNAME     END ORDER BY c.ORGL_EXPRESSION DESC) col  FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_RECORD_FILTER c  WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID  GROUP BY c.OBJECT]
+[36m[2017-08-02 17:22:09.352] [DEBUG] console - [39mVAL:[etl_322,record_filter,EXTERNAL]
+[32m[2017-08-02 17:22:09.353] [INFO] console - [39m[query_etl_condition_config success]
+[32m[2017-08-02 17:22:09.353] [INFO] console - [39m=== { list: 
+   [ { expression: 'e0FQUExZSUR9PSdhYmMn',
+       option: 'yes',
+       connect_db: 'no',
+       db_name: '',
+       bind_name: [Object] } ],
+  select_tab: [] }
+[32m[2017-08-02 17:22:09.354] [INFO] console - [39m      ✓ etl记录过滤规则查询 query_etl_condition_config
+[32m[2017-08-02 17:22:09.354] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.354] [INFO] console - [39m[save_etl_table_rule begin]
+[32m[2017-08-02 17:22:09.355] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.355] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.356] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.356] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.357] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.357] [DEBUG] console - [39mVAL:[etl_322,record_filter,EXTERNAL]
+[36m[2017-08-02 17:22:09.358] [DEBUG] console - [39mSQL:[select SET_ID from T_ETL_RECORD_FILTER where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.358] [DEBUG] console - [39mVAL:[16,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.358] [DEBUG] console - [39mSQL:[delete from T_ETL_RECORD_FILTER where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.359] [DEBUG] console - [39mVAL:[16,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.420] [INFO] console - [39m[save_etl_table_rule success.]
+[32m[2017-08-02 17:22:09.420] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.421] [INFO] console - [39m      ✓ etl记录过滤规则删除 save_etl_table_rule (67ms)
+[32m[2017-08-02 17:22:09.421] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.422] [INFO] console - [39m    etl表审计规则测试
+[32m[2017-08-02 17:22:09.424] [INFO] console - [39m[save_etl_transform_config begin]
+[32m[2017-08-02 17:22:09.424] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.426] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.426] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.426] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.428] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.428] [DEBUG] console - [39mVAL:[etl_322,table_audit,EXTERNAL]
+[36m[2017-08-02 17:22:09.428] [DEBUG] console - [39mSQL:[delete from T_ETL_TABLE_AUDIT where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.428] [DEBUG] console - [39mVAL:[17,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.429] [DEBUG] console - [39mSQL:[insert into T_ETL_TABLE_AUDIT(SET_ID, RULE_TYPE, OBJECT, TABLE_PREFIX, TABLE_SUFFIX, KEEP_COPY, COLUMN_NAME, DATA_TYPE, COLUMN_SOURCE, COLUMN_VALUE) values (?, ?, ?, ?, ? ,?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.429] [DEBUG] console - [39mVAL:[17,table_audit,CR_TEST_01.渔政记录_9,pre,sufix,no,flag,string,string,标识]
+[36m[2017-08-02 17:22:09.430] [DEBUG] console - [39mSQL:[insert into T_ETL_TABLE_AUDIT(SET_ID, RULE_TYPE, OBJECT, TABLE_PREFIX, TABLE_SUFFIX, KEEP_COPY, COLUMN_NAME, DATA_TYPE, COLUMN_SOURCE, COLUMN_VALUE) values (?, ?, ?, ?, ? ,?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.430] [DEBUG] console - [39mVAL:[17,table_audit,CR_TEST_01.渔政记录_9,pre,sufix,no,opra,sysdata,operation,]
+[32m[2017-08-02 17:22:09.487] [INFO] console - [39m[save_etl_transform_config success.]
+
+[32m[2017-08-02 17:22:09.487] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.487] [INFO] console - [39m      ✓ etl表审计规则保存 save_etl_transform_config (65ms)
+[32m[2017-08-02 17:22:09.487] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.488] [INFO] console - [39m[query_etl_transform_config begin]
+[32m[2017-08-02 17:22:09.488] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.489] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.493] [DEBUG] console - [39mSQL:[select a.ID db_name, b.PARAM_VALUE db_type FROM T_COMP_INFO a, T_COMP_PARAM b  WHERE a.ID = b.COMP_ID and a.TYPE = ? and a.GROUP_ID = ? and b.PARAM_TYPE = ? and b.PARAM_NAME = ?]
+[36m[2017-08-02 17:22:09.493] [DEBUG] console - [39mVAL:[DB,group_270,NORMAL,db_type]
+[36m[2017-08-02 17:22:09.494] [DEBUG] console - [39mSQL:[SELECT c.TABLE_PREFIX, c.TABLE_SUFFIX, c.KEEP_COPY, c.COLUMN_NAME, c.DATA_TYPE, c.COLUMN_SOURCE, c.COLUMN_VALUE FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_TABLE_AUDIT c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.OBJECT = ? and c.COLUMN_NAME IS NOT NULL order by c.SET_ID]
+[36m[2017-08-02 17:22:09.494] [DEBUG] console - [39mVAL:[etl_322,table_audit,EXTERNAL,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.496] [DEBUG] console - [39mSQL:[SELECT c.OBJECT tab, GROUP_CONCAT(CASE WHEN c.TABLE_PREFIX IS NULL THEN '' ELSE c.TABLE_PREFIX END,  CASE WHEN c.TABLE_SUFFIX IS NULL THEN '' ELSE c.TABLE_SUFFIX END,  CASE WHEN c.KEEP_COPY    IS NULL THEN '' ELSE c.KEEP_COPY END,  CASE WHEN c.COLUMN_NAME  IS NULL THEN '' ELSE c.COlUMN_NAME END,  CASE WHEN c.DATA_TYPE    IS NULL THEN '' ELSE c.DATA_TYPE END,  CASE WHEN c.COLUMN_VALUE IS NULL THEN '' ELSE c.COLUMN_VALUE END ORDER BY c.COLUMN_NAME) col   FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_TABLE_AUDIT c  WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID  GROUP BY c.OBJECT]
+[36m[2017-08-02 17:22:09.496] [DEBUG] console - [39mVAL:[etl_322,table_audit,EXTERNAL]
+[32m[2017-08-02 17:22:09.496] [INFO] console - [39m[query_etl_transform_config success]
+[32m[2017-08-02 17:22:09.496] [INFO] console - [39m=== { database: 
+   [ RowDataPacket { db_name: 'database_324', db_type: 'oracle' },
+     RowDataPacket { db_name: 'database_319', db_type: 'oracle' } ],
+  list: 
+   [ { column_name: 'opra',
+       data_type: 'sysdata',
+       column_value: 'operation' },
+     { column_name: 'flag', data_type: 'string', column_value: '标识' } ],
+  table_prefix: 'pre',
+  table_suffix: 'sufix',
+  keep_copy: 'no',
+  select_tab: [] }
+[32m[2017-08-02 17:22:09.499] [INFO] console - [39m      ✓ etl表审计规则查询 query_etl_transform_config
+[32m[2017-08-02 17:22:09.499] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.499] [INFO] console - [39m[save_etl_table_rule begin]
+[32m[2017-08-02 17:22:09.500] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.501] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.501] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.501] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.504] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.504] [DEBUG] console - [39mVAL:[etl_322,table_audit,EXTERNAL]
+[36m[2017-08-02 17:22:09.510] [DEBUG] console - [39mSQL:[select SET_ID from T_ETL_TABLE_AUDIT where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.510] [DEBUG] console - [39mVAL:[17,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.512] [DEBUG] console - [39mSQL:[delete from T_ETL_TABLE_AUDIT where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.512] [DEBUG] console - [39mVAL:[17,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.528] [INFO] console - [39m[save_etl_table_rule success.]
+[32m[2017-08-02 17:22:09.528] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.529] [INFO] console - [39m      ✓ etl表审计规则删除 save_etl_table_rule
+[32m[2017-08-02 17:22:09.529] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.529] [INFO] console - [39m    etl操作转换测试
+[32m[2017-08-02 17:22:09.530] [INFO] console - [39m[save_etl_convert begin]
+[32m[2017-08-02 17:22:09.532] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.533] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.534] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.534] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.536] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.536] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL]
+[36m[2017-08-02 17:22:09.537] [DEBUG] console - [39mSQL:[delete from T_ETL_OPERATION_TRANSFORM where SET_ID = ? and RULE_TYPE = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.537] [DEBUG] console - [39mVAL:[18,insert_to_update,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.538] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:09.538] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:09.540] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:09.619] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:09.621] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:09.621] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:09.625] [INFO] console - [39mStr ODBC db is closed!
+[36m[2017-08-02 17:22:09.625] [DEBUG] console - [39mSQL:[insert into T_ETL_OPERATION_TRANSFORM(SET_ID, RULE_TYPE, OBJECT, ORGL_EXPRESSION, SQL_EXPRESSION, CONNECT_DB, DBNAME, BIND_NAME) values (?, ?, ?, ?, ? ,?, ?, ?)]
+[36m[2017-08-02 17:22:09.626] [DEBUG] console - [39mVAL:[18,insert_to_update,CR_TEST_01.渔政记录_9,:APPLYID=‘123’,:8=‘123’,yes,,APPLYID,]
+[32m[2017-08-02 17:22:09.645] [INFO] console - [39m[save_etl_convert success.]
+
+[32m[2017-08-02 17:22:09.645] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.646] [INFO] console - [39m      ✓ insert_to_update规则保存 save_etl_convert (116ms)
+[32m[2017-08-02 17:22:09.647] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.648] [INFO] console - [39m[query_etl_convert begin]
+[32m[2017-08-02 17:22:09.648] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.649] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.651] [DEBUG] console - [39mSQL:[SELECT c.SET_ID, c.ORGL_EXPRESSION, c.CONNECT_DB, c.DBNAME, c.BIND_NAME FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_OPERATION_TRANSFORM c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.RULE_TYPE = ? and c.OBJECT = ? order by c.SET_ID]
+[36m[2017-08-02 17:22:09.651] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL,insert_to_update,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.651] [INFO] console - [39m[query_etl_convert success]
+[32m[2017-08-02 17:22:09.651] [INFO] console - [39m=== { expression: 'OkFQUExZSUQ94oCYMTIz4oCZ',
+  connect_db: 'yes',
+  db_name: '',
+  bind_name: [ 'APPLYID', '' ] }
+[32m[2017-08-02 17:22:09.653] [INFO] console - [39m      ✓ insert_to_update规则查询 query_etl_convert
+[32m[2017-08-02 17:22:09.653] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.654] [INFO] console - [39m[save_etl_convert begin]
+[32m[2017-08-02 17:22:09.654] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.655] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.655] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.655] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.657] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.657] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL]
+[36m[2017-08-02 17:22:09.658] [DEBUG] console - [39mSQL:[delete from T_ETL_OPERATION_TRANSFORM where SET_ID = ? and RULE_TYPE = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.658] [DEBUG] console - [39mVAL:[18,update_to_insert_or_delete,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.658] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:09.659] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:09.659] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:09.685] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:09.687] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:09.687] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:09.692] [INFO] console - [39mStr ODBC db is closed!
+[36m[2017-08-02 17:22:09.692] [DEBUG] console - [39mSQL:[insert into T_ETL_OPERATION_TRANSFORM(SET_ID, RULE_TYPE, OBJECT, ORGL_EXPRESSION, SQL_EXPRESSION, CONNECT_DB, DBNAME, BIND_NAME) values (?, ?, ?, ?, ? ,?, ?, ?)]
+[36m[2017-08-02 17:22:09.692] [DEBUG] console - [39mVAL:[18,update_to_insert_or_delete,CR_TEST_01.渔政记录_9,{ID}=1000,,no,,ID,]
+[32m[2017-08-02 17:22:09.737] [INFO] console - [39m[save_etl_convert success.]
+
+[32m[2017-08-02 17:22:09.737] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.737] [INFO] console - [39m      ✓ update_to_insert/delete规则保存 save_etl_convert (84ms)
+[32m[2017-08-02 17:22:09.737] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.738] [INFO] console - [39m[query_etl_convert begin]
+[32m[2017-08-02 17:22:09.738] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.739] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.740] [DEBUG] console - [39mSQL:[SELECT c.SET_ID, c.ORGL_EXPRESSION, c.CONNECT_DB, c.DBNAME, c.BIND_NAME FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_OPERATION_TRANSFORM c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.RULE_TYPE = ? and c.OBJECT = ? order by c.SET_ID]
+[36m[2017-08-02 17:22:09.740] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL,update_to_insert_or_delete,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.741] [INFO] console - [39m[query_etl_convert success]
+[32m[2017-08-02 17:22:09.744] [INFO] console - [39m=== { expression: 'e0lEfT0xMDAw',
+  connect_db: 'no',
+  db_name: '',
+  bind_name: [ 'ID', '' ] }
+[32m[2017-08-02 17:22:09.745] [INFO] console - [39m      ✓ update_to_insert/delete规则查询 query_etl_convert
+[32m[2017-08-02 17:22:09.745] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.746] [INFO] console - [39m[save_etl_convert begin]
+[32m[2017-08-02 17:22:09.749] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.750] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.750] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.750] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.751] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.751] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL]
+[36m[2017-08-02 17:22:09.752] [DEBUG] console - [39mSQL:[delete from T_ETL_DELETE_TO_UPDATE_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.752] [DEBUG] console - [39mVAL:[18,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.753] [DEBUG] console - [39mSQL:[delete from T_ETL_ADD_COLUMN where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.753] [DEBUG] console - [39mVAL:[18,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.754] [DEBUG] console - [39mSQL:[delete from T_ETL_OPERATION_TRANSFORM where SET_ID = ? and RULE_TYPE = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.754] [DEBUG] console - [39mVAL:[18,delete_to_update,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.755] [DEBUG] console - [39mSQL:[select PARAM_NAME, PARAM_VALUE from T_COMP_PARAM where COMP_ID = ?]
+[36m[2017-08-02 17:22:09.755] [DEBUG] console - [39mVAL:[database_319]
+[32m[2017-08-02 17:22:09.756] [INFO] console - [39mDRIVER={oradriver};DBQ=172.16.1.62:1521/orcl;UID=nd_test_01;PWD=654321
+[32m[2017-08-02 17:22:09.809] [INFO] console - [39mStr ODBC db is opening....
+[36m[2017-08-02 17:22:09.812] [DEBUG] console - [39mSQL:[select COLUMN_NAME as "column_name", DATA_TYPE as "column_type", DATA_LENGTH as "column_length" from DBA_TAB_COLUMNS where owner='CR_TEST_01' and table_name='渔政记录_9' order by COLUMN_NAME]
+[36m[2017-08-02 17:22:09.812] [DEBUG] console - [39mPARAMS:[]
+[32m[2017-08-02 17:22:09.817] [INFO] console - [39mStr ODBC db is closed!
+[36m[2017-08-02 17:22:09.817] [DEBUG] console - [39mSQL:[insert into T_ETL_OPERATION_TRANSFORM(SET_ID, RULE_TYPE, OBJECT, ORGL_EXPRESSION, SQL_EXPRESSION, CONNECT_DB, DBNAME, BIND_NAME) values (?, ?, ?, ?, ? ,?, ?, ?)]
+[36m[2017-08-02 17:22:09.817] [DEBUG] console - [39mVAL:[18,delete_to_update,CR_TEST_01.渔政记录_9,{APPLYID}='xyz',,no,,APPLYID,]
+[36m[2017-08-02 17:22:09.818] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.818] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,APPLYID,VARCHAR2]
+[36m[2017-08-02 17:22:09.819] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.819] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,APPLYTIME,VARCHAR2]
+[36m[2017-08-02 17:22:09.819] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.819] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,USERNAME,VARCHAR2]
+[36m[2017-08-02 17:22:09.820] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.820] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,表名,VARCHAR2]
+[36m[2017-08-02 17:22:09.820] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.820] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,工程编号,VARCHAR2]
+[36m[2017-08-02 17:22:09.820] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.820] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,工程名称,VARCHAR2]
+[36m[2017-08-02 17:22:09.821] [DEBUG] console - [39mSQL:[insert into T_ETL_DELETE_TO_UPDATE_COLUMN(SET_ID, RESERVE_ALL, OBJECT, COLUMN_NAME, COLUMN_TYPE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.821] [DEBUG] console - [39mVAL:[18,no,CR_TEST_01.渔政记录_9,省会,VARCHAR2]
+[36m[2017-08-02 17:22:09.821] [DEBUG] console - [39mSQL:[insert into T_ETL_ADD_COLUMN(SET_ID, RULE_TYPE, OBJECT, COLUMN_NAME, DATA_TYPE, COLUMN_SOURCE, COLUMN_VALUE) values (?, ?, ?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.821] [DEBUG] console - [39mVAL:[18,add_column,CR_TEST_01.渔政记录_9,flag,string,string,D]
+[32m[2017-08-02 17:22:09.845] [INFO] console - [39m[save_etl_convert success.]
+
+[32m[2017-08-02 17:22:09.845] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.846] [INFO] console - [39m      ✓ delete_to_update规则保存 save_etl_convert (100ms)
+[32m[2017-08-02 17:22:09.846] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.847] [INFO] console - [39m[query_etl_convert begin]
+[32m[2017-08-02 17:22:09.847] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.848] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.849] [DEBUG] console - [39mSQL:[SELECT c.SET_ID, c.ORGL_EXPRESSION, c.CONNECT_DB, c.DBNAME, c.BIND_NAME FROM T_COMP_PARAM a, T_COMP_DEPEND_SETS b, T_ETL_OPERATION_TRANSFORM c WHERE a.COMP_ID = ? AND a.PARAM_NAME = ? AND a.PARAM_TYPE = ? AND a.PARAM_VALUE = b.ID AND b.ID = c.SET_ID and c.RULE_TYPE = ? and c.OBJECT = ? order by c.SET_ID]
+[36m[2017-08-02 17:22:09.849] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL,delete_to_update,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.850] [DEBUG] console - [39mSQL:[SELECT COLUMN_NAME name, DATA_TYPE type, COLUMN_SOURCE source, COLUMN_VALUE value FROM T_ETL_ADD_COLUMN WHERE SET_ID = ?    AND OBJECT = ?   ORDER BY COLUMN_NAME]
+[36m[2017-08-02 17:22:09.850] [DEBUG] console - [39mVAL:[18,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.850] [DEBUG] console - [39mSQL:[SELECT COLUMN_NAME name, COLUMN_TYPE type FROM T_ETL_DELETE_TO_UPDATE_COLUMN WHERE SET_ID = ?    AND OBJECT = ?   ORDER BY OBJECT, COLUMN_NAME]
+[36m[2017-08-02 17:22:09.850] [DEBUG] console - [39mVAL:[18,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.851] [INFO] console - [39m[query_etl_convert success]
+[32m[2017-08-02 17:22:09.851] [INFO] console - [39m=== { expression: 'e0FQUExZSUR9PSd4eXon',
+  connect_db: 'no',
+  db_name: '',
+  bind_name: [ 'APPLYID', '' ],
+  add_column: [ RowDataPacket { name: 'flag', type: 'string', source: 'string', value: 'D' } ],
+  reserve_all: 'no',
+  column: 
+   [ RowDataPacket { name: 'APPLYID', type: 'VARCHAR2' },
+     RowDataPacket { name: 'APPLYTIME', type: 'VARCHAR2' },
+     RowDataPacket { name: 'USERNAME', type: 'VARCHAR2' },
+     RowDataPacket { name: '工程名称', type: 'VARCHAR2' },
+     RowDataPacket { name: '工程编号', type: 'VARCHAR2' },
+     RowDataPacket { name: '省会', type: 'VARCHAR2' },
+     RowDataPacket { name: '表名', type: 'VARCHAR2' } ] }
+[32m[2017-08-02 17:22:09.853] [INFO] console - [39m      ✓ delete_to_update规则查询 query_etl_convert
+[32m[2017-08-02 17:22:09.854] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.854] [INFO] console - [39m[save_etl_table_rule begin]
+[32m[2017-08-02 17:22:09.854] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.855] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.855] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.855] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.858] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.858] [DEBUG] console - [39mVAL:[etl_322,operation_transform,EXTERNAL]
+[36m[2017-08-02 17:22:09.858] [DEBUG] console - [39mSQL:[select SET_ID from T_ETL_OPERATION_TRANSFORM where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.858] [DEBUG] console - [39mVAL:[18,CR_TEST_01.渔政记录_9]
+[36m[2017-08-02 17:22:09.859] [DEBUG] console - [39mSQL:[delete from T_ETL_OPERATION_TRANSFORM where SET_ID = ? and OBJECT = ?]
+[36m[2017-08-02 17:22:09.859] [DEBUG] console - [39mVAL:[18,CR_TEST_01.渔政记录_9]
+[32m[2017-08-02 17:22:09.878] [INFO] console - [39m[save_etl_table_rule success.]
+[32m[2017-08-02 17:22:09.879] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.879] [INFO] console - [39m      ✓ etl操作转换规则删除 save_etl_table_rule
+[32m[2017-08-02 17:22:09.879] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.880] [INFO] console - [39m    etl批量规则测试
+[32m[2017-08-02 17:22:09.881] [INFO] console - [39m[save_batch_rule begin]
+[32m[2017-08-02 17:22:09.881] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.882] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.882] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.882] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.885] [DEBUG] console - [39mSQL:[delete from T_ETL_RULE_SET_DETAIL where group_id = ? and rule_set_type = ? and rule_set_name = ?]
+[36m[2017-08-02 17:22:09.885] [DEBUG] console - [39mVAL:[group_270,filter,bat_filter]
+[36m[2017-08-02 17:22:09.886] [DEBUG] console - [39mSQL:[insert into T_ETL_RULE_SET_DETAIL(GROUP_ID, RULE_SET_TYPE, RULE_SET_NAME, OBJNAME, RULE_ID, CONNECTDB, DBNAME, OPTIONS, SQLEXP, ORIEXP, BINDVAR, REPVALUE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.886] [DEBUG] console - [39mVAL:[group_270,filter,bat_filter,CR_TEST_01.渔政记录_9,0,yes,,yes,:8='%s',:APPLYID='%s',APPLYID,,code]
+[36m[2017-08-02 17:22:09.887] [DEBUG] console - [39mSQL:[select id from T_ETL_RULE_SET where GROUP_ID = ? and RULE_SET_NAME = ? and RULE_SET_TYPE = ?]
+[36m[2017-08-02 17:22:09.887] [DEBUG] console - [39mVAL:[group_270,bat_filter,filter]
+[36m[2017-08-02 17:22:09.887] [DEBUG] console - [39mSQL:[delete from T_WEB_CACHE where comp_id = ?]
+[36m[2017-08-02 17:22:09.887] [DEBUG] console - [39mVAL:[group_270_filter_bat_filter]
+[36m[2017-08-02 17:22:09.888] [DEBUG] console - [39mSQL:[insert into T_WEB_CACHE values (?, ?)]
+[36m[2017-08-02 17:22:09.888] [DEBUG] console - [39mVAL:[group_270_filter_bat_filter,[{"id":0,"checked":true,"coder":"code","resered":"yes","expression":"OkFQUExZSUQ9JyVzJw==","value":":APPLYID='...","bdList":["APPLYID"],"dbInfo":{},"list":[{"user":"CR_TEST_01","list":["渔政记录_9"]}],"connect_db":"yes"}]]
+[32m[2017-08-02 17:22:09.920] [INFO] console - [39m[save_batch_rule success.]
+
+[32m[2017-08-02 17:22:09.920] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:09.921] [INFO] console - [39m      ✓ etl批量过滤规则保存 save_batch_rule (41ms)
+[32m[2017-08-02 17:22:09.921] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:09.921] [INFO] console - [39m[save_batch_codevalue begin]
+[32m[2017-08-02 17:22:09.922] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:09.923] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:09.923] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:09.923] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:09.925] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:09.925] [DEBUG] console - [39mVAL:[etl_322,filter,EXTERNAL]
+[36m[2017-08-02 17:22:09.925] [DEBUG] console - [39mSQL:[delete from T_ETL_BATCH_RULES where SET_ID = ? and RULE_SET_TYPE = ? and RULE_SET_NAME = ?]
+[36m[2017-08-02 17:22:09.925] [DEBUG] console - [39mVAL:[19,filter,bat_filter]
+[36m[2017-08-02 17:22:09.937] [DEBUG] console - [39mSQL:[insert into T_ETL_BATCH_RULES(SET_ID, RULE_SET_TYPE, RULE_SET_NAME, CODER, VALUE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:09.937] [DEBUG] console - [39mVAL:[19,filter,bat_filter,code,'abc']
+[32m[2017-08-02 17:22:10.070] [INFO] console - [39m[save_batch_codevalue success.]
+
+[32m[2017-08-02 17:22:10.070] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:10.071] [INFO] console - [39m      ✓ etl批量过滤值绑定 save_batch_codevalue (150ms)
+[32m[2017-08-02 17:22:10.071] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:10.071] [INFO] console - [39m[save_batch_rule begin]
+[32m[2017-08-02 17:22:10.072] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:10.073] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:10.073] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:10.073] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:10.074] [DEBUG] console - [39mSQL:[delete from T_ETL_RULE_SET_DETAIL where group_id = ? and rule_set_type = ? and rule_set_name = ?]
+[36m[2017-08-02 17:22:10.074] [DEBUG] console - [39mVAL:[group_270,transform,trans_bat]
+[36m[2017-08-02 17:22:10.125] [DEBUG] console - [39mSQL:[insert into T_ETL_RULE_SET_DETAIL(GROUP_ID, RULE_SET_TYPE, RULE_SET_NAME, OBJNAME, RULE_ID, CONNECTDB, DBNAME, OPTIONS, SQLEXP, ORIEXP, BINDVAR, REPVALUE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:10.125] [DEBUG] console - [39mVAL:[group_270,transform,trans_bat,CR_TEST_01.渔政记录_9,0,no,,yes,{ID}='%s',{ID}='%s',ID,,code2]
+[36m[2017-08-02 17:22:10.126] [DEBUG] console - [39mSQL:[select id from T_ETL_RULE_SET where GROUP_ID = ? and RULE_SET_NAME = ? and RULE_SET_TYPE = ?]
+[36m[2017-08-02 17:22:10.126] [DEBUG] console - [39mVAL:[group_270,trans_bat,transform]
+[36m[2017-08-02 17:22:10.127] [DEBUG] console - [39mSQL:[delete from T_WEB_CACHE where comp_id = ?]
+[36m[2017-08-02 17:22:10.127] [DEBUG] console - [39mVAL:[group_270_transform_trans_bat]
+[36m[2017-08-02 17:22:10.127] [DEBUG] console - [39mSQL:[insert into T_WEB_CACHE values (?, ?)]
+[36m[2017-08-02 17:22:10.127] [DEBUG] console - [39mVAL:[group_270_transform_trans_bat,[{"id":0,"checked":true,"coder":"code2","resered":"yes","expression":"e0lEfT0nJXMn","value":"{ID}='%s'","bdList":["ID"],"dbInfo":{},"list":[{"user":"CR_TEST_01","list":["渔政记录_9"]}],"connect_db":"no"}]]
+[32m[2017-08-02 17:22:10.183] [INFO] console - [39m[save_batch_rule success.]
+
+[32m[2017-08-02 17:22:10.184] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:10.185] [INFO] console - [39m      ✓ etl操作转换规则保存 save_batch_rule (114ms)
+[32m[2017-08-02 17:22:10.185] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:10.185] [INFO] console - [39m[save_batch_codevalue begin]
+[32m[2017-08-02 17:22:10.186] [INFO] console - [39mmd5 check success!!!
+[32m[2017-08-02 17:22:10.187] [INFO] console - [39mconnection is opening!!!
+[36m[2017-08-02 17:22:10.187] [DEBUG] console - [39mSQL:[set autocommit = 0]
+[36m[2017-08-02 17:22:10.187] [DEBUG] console - [39mVAL:[]
+[36m[2017-08-02 17:22:10.190] [DEBUG] console - [39mSQL:[select b.ID from T_COMP_PARAM a, T_COMP_DEPEND_SETS b where a.COMP_ID = ? and a.PARAM_NAME = ? and a.PARAM_VALUE = b.ID and a.PARAM_TYPE = ?]
+[36m[2017-08-02 17:22:10.190] [DEBUG] console - [39mVAL:[etl_322,update,EXTERNAL]
+[36m[2017-08-02 17:22:10.190] [DEBUG] console - [39mSQL:[delete from T_ETL_BATCH_RULES where SET_ID = ? and RULE_SET_TYPE = ? and RULE_SET_NAME = ?]
+[36m[2017-08-02 17:22:10.191] [DEBUG] console - [39mVAL:[20,update,trans_bat]
+[36m[2017-08-02 17:22:10.191] [DEBUG] console - [39mSQL:[insert into T_ETL_BATCH_RULES(SET_ID, RULE_SET_TYPE, RULE_SET_NAME, CODER, VALUE) values (?, ?, ?, ?, ?)]
+[36m[2017-08-02 17:22:10.191] [DEBUG] console - [39mVAL:[20,update,trans_bat,code2,'123']
+[32m[2017-08-02 17:22:10.233] [INFO] console - [39m[save_batch_codevalue success.]
+
+[32m[2017-08-02 17:22:10.234] [INFO] console - [39m=== SUCCESS
+[32m[2017-08-02 17:22:10.234] [INFO] console - [39m      ✓ etl批量转换值绑定 save_batch_codevalue (49ms)
+[32m[2017-08-02 17:22:10.234] [INFO] console - [39mconnection is close!!!
+[32m[2017-08-02 17:22:10.234] [INFO] console - [39m
+[32m[2017-08-02 17:22:10.235] [INFO] console - [39m
+[32m[2017-08-02 17:22:10.235] [INFO] console - [39m  32 passing (2s)
+[32m[2017-08-02 17:22:10.235] [INFO] console - [39m

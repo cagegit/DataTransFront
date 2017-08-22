@@ -1,0 +1,61 @@
+<!--
+ 选择表modal
+-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title">选择表</h3>
+</div>
+<div class="modal-body">
+    <div class="etl-bgl">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="etl-bgl-left">
+                    <div class="etl-bgl-head">
+                        <input type="text" placeholder="用户名搜索" ng-model="$ctrl.userFilter" ng-model-options="{debounce:300}">
+                    </div>
+                    <div class="etl-bgl-body">
+                        <ul>
+                            <li ng-repeat="uname in ($ctrl.selUsers=($ctrl.users | filter:$ctrl.userFilter)) track by $index" class="bgl-user-list">
+                                <a href="javascript:void(0);" ng-click="$ctrl.getTable(uname,$event)" ng-bind="uname"></a></li>
+                            <li ng-cloak="" ng-if="$ctrl.users.length===0"><a href="javascript:void(0);" >No User!</a></li>
+                            <li ng-cloak="" ng-if="$ctrl.users.length>0 && $ctrl.selUsers.length===0"><a href="javascript:void(0);" >No Result!</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="etl-bgl-left">
+                    <div class="etl-bgl-head2">
+                        <input type="checkbox" class="sbox1" ng-model="$ctrl.ckAll" ng-change="$ctrl.checkAll()">
+                        <input type="text" placeholder="表名搜索" ng-model="$ctrl.tableFilter" ng-model-options="{debounce:300}">
+                    </div>
+                    <div class="etl-bgl-body">
+                        <table class="table">
+                            <colgroup>
+                                <col style="width: 10%">
+                                <col style="width: 90%">
+                            </colgroup>
+                            <tr ng-repeat="item in ($ctrl.selTables=($ctrl.tables | filter:{name:$ctrl.tableFilter} | orderBy:'-item.checked')) track by $index">
+                                <td><input type="checkbox" ng-model="item.checked" ng-change="$ctrl.checkOne(item)"></td>
+                                <td><a href="javascript:void(0);" ng-bind="item.name"></a></td>
+                            </tr>
+                            <tr ng-cloak="" ng-if="$ctrl.loading">
+                                <td colspan="2" class="etl-center"><a href="javascript:void(0);" >Loading......</a></td>
+                            </tr>
+                            <tr ng-cloak="" ng-if="$ctrl.tables.length===0 && !$ctrl.loading">
+                                <td colspan="2" class="etl-center"><a href="javascript:void(0);">No User!</a></td>
+                            </tr>
+                            <tr ng-cloak="" ng-if="$ctrl.tables.length>0 && $ctrl.selTables.length===0">
+                                <td colspan="2" class="etl-center"><a href="javascript:void(0);">No Result!</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning btn-sm" type="button" ng-click="$ctrl.cancel()">取消</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-click="$ctrl.saveSelectList()">确定</button>
+</div>

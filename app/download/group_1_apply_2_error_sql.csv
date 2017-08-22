@@ -1,0 +1,2 @@
+"time","user","object","action","operation","type","detailed_message"
+"""2017-07-27T02:00:11.000Z""","ND_TEST_01","TEST_ZHF","Auto Exclude Table","INSERT","Access Database Error942","SCN=[286481115] XID=[4222262089648911]\nROWID=[AACx4FAAEAAIkjzAAA]\n\nError Code: 942\nError Message: ORA-00942: table or view does not exist\n\n\nERROR SQL:\nINSERT INTO ""SCOTT"".""TEST_ZHF"" (\n  ""ID"",\n  ""NAME1"",\n  ""REMARK""\n)\nVALUES\n(\n  1,\n  'test',\n  'soho'\n)\n"

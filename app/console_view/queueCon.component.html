@@ -1,0 +1,343 @@
+<div class="main-console inspector">
+    <div class="inspector-toggle"><i class="fa fa-bars drag-console" style="visibility: hidden;"></i></div>
+    <div class="inspector-body container-fluid">
+        <div class="tabs-container">
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane" ng-cloak="" ng-class="{'active':$ctrl.cons.currentTab==='tab1'}">
+                    <div class="panel panel-default">
+                        <div class="row">
+                            <div class="panel-heading" translate-once="Cs_dlzjzt"></div><!--队列组件运行状态-->
+                            <div class="panel-body">
+                                <div class="col-md-5">
+                                    <div class="console-cap-info">
+                                        <div class="console-queue-info">
+                                            <div class="cap-wrong-bar">
+                                                <span class="bar-name" translate-once="Cs_dlxx"></span><!--队列信息-->
+                                            </div>
+                                            <table class="table">
+                                                <tr>
+                                                    <td translate-once="Cs_dlmc"></td><!--队列名称：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.queue_name">11</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td translate-once="Cs_dlbscn"></td><!--队列开始SCN号：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.start_scn">11</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td translate-once="Cs_dlescn"></td><!--队列结束SCN号：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.last_scn">11</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td translate-once="Cs_zxxlh"></td><!--文件最小序列号：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.start_fno">11</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td translate-once="Cs_zdxlh"></td><!--文件最大序列号：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.last_fno">11</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td translate-once="Cs_dlbsj"></td><!--队列开始时间：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.start_sct">11</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td translate-once="Cs_dlesj"></td><!--队列结束时间：-->
+                                                    <td><span class="ci-label" ng-bind="$ctrl.info.last_sct">11</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="console-cap-info">
+                                        <div class="cap-wrong-info">
+                                            <div class="cap-wrong-bar clearfix">
+                                                <span class="bar-title" translate-once="Cs_dlwjlb"></span><!--队列文件列表-->
+                                                <input type="text" class="search-box" ng-model="$ctrl.fileNameFilter" translate-once-placeholder="SEARCH"><i class="fa fa-search search-queue-icon"></i><!--搜索-->
+                                            </div>
+                                            <table class="table">
+                                                <tr>
+                                                    <th translate-once="Cs_dlwj"></th><!--队列文件-->
+                                                    <th translate-once="Cs_dax"></th><!--大小-->
+                                                    <th translate-once="Cs_csrq"></th><!--产生日期-->
+                                                    <th translate-once="Cs_zxsl"></th><!--最小SCN/LSN-->
+                                                    <th translate-once="Cs_zdsl"></th><!--最大SCN/LSN-->
+                                                    <th translate-once="Cs_zxsj"></th><!--最小时间-->
+                                                    <th translate-once="Cs_zdsj"></th><!--最大时间-->
+                                                </tr>
+                                                <tr ng-repeat="item in ($ctrl.fileList | filter:{file_name:$ctrl.fileNameFilter}) track by $index">
+                                                    <td ng-bind="item.file_name">/home/r7/data/oracle/t1</td>
+                                                    <td ng-bind="item.size">20000bytes</td>
+                                                    <td ng-bind="item.create_time">2016.9.27</td>
+                                                    <td ng-bind="item.start_scn">60000</td>
+                                                    <td ng-bind="item.last_scn">90000</td>
+                                                    <td ng-bind="item.start_sct">2016-9-27 12:12:00</td>
+                                                    <td ng-bind="item.last_sct">2016-10-27 12:12:00</td>
+                                                </tr>
+                                                <tr ng-show="$ctrl.fileList.length===0">
+                                                    <td colspan="7" class="con-text-center">No Data!</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="tab-pane" ng-cloak="" ng-class="{'active':$ctrl.cons.currentTab==='tab2'}">
+                    <div class="panel panel-default">
+                        <div class="row">
+                            <div class="panel-heading" translate-once="Cs_dltj"></div><!--队列统计-->
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="console-loader">
+                                        <div class="console-queue-left-area">
+                                            <div class="loader-detail-info">
+                                                <div class="detail-info-head">
+                                                    <a class="btn btn-primary" ng-click="$ctrl.selectAllData()" translate-once="Cs_qbsj"></a><!--全部数据-->
+                                                </div>
+                                                <div class="detail-info-body">
+                                                    <div id="queue_tj_tree" class="ztree"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="console-queue-right-area">
+                                            <div class="console-queue-tj-bar">
+                                                <div class="pull-left">
+                                                    <label class="cap-label" translate-once="Cs_zsfs"></label><!--展示方式：-->
+                                                    <select  ng-model="$ctrl.tj.c_type" ng-change="$ctrl.changeTj()">
+                                                        <option value="bar" translate-once="Cs_zhu"></option><!--柱状图-->
+                                                        <option value="line" translate-once="Cs_zhe"></option><!--折线图-->
+                                                        <option value="pie" translate-once="Cs_bing"></option><!--饼状图-->
+                                                    </select>
+                                                    <!--<label class="cap-label">Top10：</label>-->
+                                                    <!--<input type="checkbox" ng-model="tj.isTop">-->
+                                                    <!--<label class="cap-label" ng-cloak="" ng-show="tj.isTop">条件：</label>-->
+                                                    <!--<select  ng-model="user_t" ng-cloak="" ng-show="tj.isTop">-->
+                                                    <!--<option value="U">用户名</option>-->
+                                                    <!--<option value="T">表名</option>-->
+                                                    <!--</select>-->
+                                                    <!--<select ng-model="ut" ng-cloak="" ng-show="tj.isTop">-->
+                                                    <!--<option value="DML">DML</option>-->
+                                                    <!--<option value="DDL">DDL</option>-->
+                                                    <!--<option value="INS">INSERT</option>-->
+                                                    <!--<option value="UPD">UPDATE</option>-->
+                                                    <!--<option value="DEL">DELETE</option>-->
+                                                    <!--<option value="LEN">FLOW</option>-->
+                                                    <!--</select>-->
+                                                    <label class="cap-label" translate-once="Cs_sjfw"></label><!--时间范围：-->
+                                                    <input type="text" ng-model="$ctrl.tj.start_time" id="dl-dark-start">
+                                                    --<input type="text" ng-model="$ctrl.tj.end_time" id="dl-dark-end">
+                                                    <button class="btn btn-default" ng-click="$ctrl.selectUserData()" translate-once="SEARCH"></button><!--搜索-->
+                                                </div>
+                                                <div class="pull-right">
+                                                    <a href="javascript:void(0);" class="btn" ng-class="{'btn-default':$ctrl.nowType==='yy','btn-primary':$ctrl.nowType!=='yy'}" ng-click="$ctrl.setType('yy')" translate-once="Y"></a>
+                                                    <a href="javascript:void(0);" class="btn" ng-class="{'btn-default':$ctrl.nowType==='mo','btn-primary':$ctrl.nowType!=='mo'}" ng-click="$ctrl.setType('mo')" translate-once="M"></a>
+                                                    <a href="javascript:void(0);" class="btn" ng-class="{'btn-default':$ctrl.nowType==='dd','btn-primary':$ctrl.nowType!=='dd'}" ng-click="$ctrl.setType('dd')" translate-once="D"></a>
+                                                    <a href="javascript:void(0);" class="btn" ng-class="{'btn-default':$ctrl.nowType==='hh','btn-primary':$ctrl.nowType!=='hh'}" ng-click="$ctrl.setType('hh')" translate-once="H"></a>
+                                                    <a href="javascript:void(0);" class="btn" ng-class="{'btn-default':$ctrl.nowType==='mm','btn-primary':$ctrl.nowType!=='mm'}" ng-click="$ctrl.setType('mm')" translate-once="Mm"></a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="console-queue-tj-pan">
+                                                <div id="queue_bj_chart" class="queue-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-3" class="tab-pane" ng-cloak="" ng-class="{'active':$ctrl.cons.currentTab==='tab3'}">
+                    <div class="panel panel-default">
+                        <div class="row">
+                            <div class="panel-heading">
+                                {{'Cs_dlzs' | translate}} {{$ctrl.detailTitle}}<!--队列展示-->
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12" ng-cloak="" ng-show="$ctrl.pz.mainL">
+                                    <div class="console-cap-dlzs">
+                                        <div class="console-queue-bar clearfix">
+                                            <div class="pull-left">
+                                                <label class="cap-label" translate-once="Cs_sjfw"></label><input type="text" ng-model="$ctrl.mainParam.startTime" id="dl-dark-sh-start" >--
+                                                <input type="text" ng-model="$ctrl.mainParam.endTime"  id="dl-dark-sh-end"><!--时间范围：-->
+                                                <label class="cap-label" translate-once="Cs_swh"></label><input type="text" ng-model="$ctrl.mainParam.swNumber" ><!--事务号：-->
+                                                <button class="btn btn-default" ng-click="$ctrl.searchListByParams()" translate-once="SEARCH"></button><!--搜索-->
+                                                <button class="btn btn-default" ng-click="$ctrl.resetParams()" translate-once="RESET" style="margin-left: 10px"></button><!--重置-->
+                                            </div>
+                                        </div>
+                                        <div class="console-table-pan">
+                                            <table class="table">
+                                                <colgroup>
+                                                    <col style="width: 10%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 10%;">
+                                                </colgroup>
+                                                <tr>
+                                                    <th><input type="checkbox" style="vertical-align: middle" ng-model="$ctrl.mck" ng-change="$ctrl.selectedAll()" title="{{'Ld_qx' | translate}}"></th><!--全选-->
+                                                    <th translate-once="Cs_sj"></th><!--时间-->
+                                                    <th translate-once="Cs_swh"></th><!--事务号-->
+                                                    <th translate-once="Cs_jls"></th><!--记录数-->
+                                                    <th translate-once="Cs_xsxx"></th><!--详细信息-->
+                                                    <th translate-once="Cs_swhg"></th><!--事务回滚-->
+                                                </tr>
+                                            </table>
+                                            <div class="console-table-main-pan">
+                                                <table class="table">
+                                                    <colgroup>
+                                                        <col style="width: 10%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 10%;">
+                                                    </colgroup>
+                                                    <tr ng-repeat="item in $ctrl.swList track by $index">
+                                                        <td><input type="checkbox" name="xz" class="mainCbList" value="{{item.xid}}"></td>
+                                                        <td ng-bind="item.time">2016-09-02 14:48:31</td>
+                                                        <td ng-bind="item.xid">4644212313132</td>
+                                                        <td ng-bind="item.nrec">1</td>
+                                                        <td><a href="javascript:void(0);" class="btn" ng-click="$ctrl.getDetail(item)" translate-once="VIEW"></a></td><!--查看-->
+                                                        <td><a href="javascript:void(0);" class="btn" ng-click="$ctrl.backDetail(item)" translate-once="ROLL"></a></td><!--回滚-->
+                                                    </tr>
+                                                    <tr ng-show="$ctrl.pz.mainLoading">
+                                                        <td colspan="6" class="con-text-center" style="border-top: none !important;"><img src="../img/15.gif"></td>
+                                                    </tr>
+                                                    <tr ng-show="!$ctrl.pz.mainLoading && $ctrl.swList.length===0">
+                                                        <td class="con-text-center" colspan="6" style="border-top: none !important;">No Data!</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="cap-foot-bar clearfix">
+                                            <div class="pull-left">
+                                                <button class="btn box-dl" ng-disabled="$ctrl.swList.length===0" ng-click="$ctrl.clearSelected()" translate-once="Cs_qcxz"></button><!--清除选中-->
+                                            </div>
+                                            <div class="pull-right">
+                                                <div page pre="$ctrl.pagePre()" next="$ctrl.pageNext()"  tiao="$ctrl.tiao()" tt="$ctrl.ptotal" cnum="$ctrl.pnum" snum="$ctrl.fy.snum"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" ng-cloak="" ng-show="$ctrl.pz.detailL">
+                                    <div class="console-cap-dlzs" ng-cloak="" ng-class="{'cap-detail-show':$ctrl.pz.detail}">
+                                        <div class="console-queue-bar clearfix">
+                                            <div class="pull-left">
+                                                <label class="cap-label" translate-once="Cs_yhm"></label><input type="text" ng-model="$ctrl.detailParam.userName"><!--用户名：-->
+                                                <label class="cap-label" translate-once="Cs_bm1"></label><input type="text" ng-model="$ctrl.detailParam.tabName"><!--表名：-->
+                                                <label class="cap-label" translate-once="Cs_cz"></label><!--操作：-->
+                                                <select  ng-model="$ctrl.detailParam.option">
+                                                    <option value=""></option>
+                                                    <option value="INSERT">INSERT</option>
+                                                    <option value="UPDATE">UPDATE</option>
+                                                    <option value="DELETE">DELETE</option>
+                                                    <option value="LOBWRITE">LOBWRITE</option>
+                                                    <option value="DDL">DDL</option>
+                                                </select>
+                                                <label class="cap-label">SCN：</label><input type="text" ng-model="$ctrl.detailParam.scnNumber">
+                                                <button class="btn btn-default" ng-click="$ctrl.searchDetailList()" translate-once="SEARCH"></button><!--搜索-->
+                                                <button class="btn btn-default" ng-click="$ctrl.resetDetailList()" translate-once="RESET" style="margin-left: 10px"></button><!--重置-->
+                                            </div>
+                                            <div class="pull-right">
+                                                <i class="fa fa-reply cap-close" title="{{'Cs_fnzlb' | translate}}" ng-click="$ctrl.backToMain()"></i><!--返回主列表-->
+                                            </div>
+                                        </div>
+                                        <div class="console-table-pan">
+                                            <table class="table title-table">
+                                                <colgroup>
+                                                    <col style="width: 10%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 15%;">
+                                                    <col style="width: 10%;">
+                                                    <col style="width: 10%;">
+                                                    <col style="width: 10%;">
+                                                </colgroup>
+                                                <tr>
+                                                    <th translate-once="Cs_sj"></th><!--时间-->
+                                                    <th translate-once="UNAME"></th><!--用户名-->
+                                                    <th translate-once="Cs_bm"></th><!--表名-->
+                                                    <th translate-once="OPERATE"></th><!--操作-->
+                                                    <th>SCN</th><th>LENGTH</th>
+                                                    <th translate-once="Cs_sqlck"></th><!--SQL查看-->
+                                                    <th translate-once="ROLL"></th><!--回滚-->
+                                                </tr>
+                                            </table>
+                                            <div class="console-table-main-pan pull-left">
+                                                <table class="table">
+                                                    <colgroup>
+                                                        <col style="width: 10%;">
+                                                        <col style="width: 15%;">
+                                                        <col style="width: 15%;">
+                                                        <col style="width: 15%;">
+                                                        <col style="width: 15%;">
+                                                        <col style="width: 10%;">
+                                                        <col style="width: 10%;">
+                                                        <col style="width: 10%;">
+                                                    </colgroup>
+                                                    <tr ng-repeat="item in $ctrl.clist track by $index">
+                                                        <td ng-bind="item.time">2016-09-02 14:48:31</td>
+                                                        <td ng-bind="item.owner">YK</td>
+                                                        <td ng-bind="item.table">IT_EMPLOYEES</td>
+                                                        <td ng-bind="item.opc">INSERT</td>
+                                                        <td ng-bind="item.scn">4986486</td>
+                                                        <td ng-bind="item.length">469</td>
+                                                        <td><a href="javascript:void(0);" ng-click="$ctrl.showSql(item)" class="btn" translate-once="DISPLAY"></a></td><!--展示-->
+                                                        <td><a href="javascript:void(0);" class="btn" translate-once="ROLL"></a></td><!--回滚-->
+                                                    </tr>
+                                                    <tr ng-show="$ctrl.pz.detailLoading">
+                                                        <td colspan="8" class="con-text-center"><img src="../img/15.gif"></td>
+                                                    </tr>
+                                                    <tr ng-show="!$ctrl.pz.detailLoading && $ctrl.clist.length===0">
+                                                        <td colspan="8" class="con-text-center">No Data!</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="cap-detail-sql pull-right">
+                                                <div class="clearfix">
+                                                    <div class="pull-left">
+                                                        <p class="cap-detail-title" translate-once="Cs_sqlxx"></p><!--SQL语句详细-->
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <div class="cap-detail-title">
+                                                            <a href="javascript:void(0);" ng-click="$ctrl.closeSqlPanel()" translate-once="CLOSE"></a><!--关闭-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cap-detail-pre"><p translate-once="Cs_sqlyj"></p><textarea readonly ng-bind="$ctrl.detail.sql">1231313</textarea></div><!--SQL语句-->
+                                                <div class="cap-detail-next"><p translate-once="Cs_hgyj"></p><textarea readonly ng-bind="$ctrl.detail.hg">13123123</textarea></div><!--回滚语句-->
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="cap-foot-bar clearfix">
+                                            <div class="pull-right">
+                                                <div page pre="$ctrl.cpagePre()" next="$ctrl.cpageNext()" tiao="$ctrl.ctiao()" tt="$ctrl.ctotal"  cnum="$ctrl.cnum" snum="$ctrl.fy.csnum"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li ng-class="{'active':$ctrl.cons.currentTab==='tab1'}">
+                <a class="custom-tab" href="javascript:void(0);" ng-click="$ctrl.showTab(1)" aria-expanded="true" translate-once="Cs_yxzt"></a><!--运行状态-->
+            </li>
+            <li ng-class="{'active':$ctrl.cons.currentTab==='tab2'}">
+                <a class="custom-tab" href="javascript:void(0);" ng-click="$ctrl.showTab(2)" aria-expanded="false" translate-once="Cs_dltj"></a><!--队列统计-->
+            </li>
+            <li ng-class="{'active':$ctrl.cons.currentTab==='tab3'}">
+                <a class="custom-tab" href="javascript:void(0);" ng-click="$ctrl.showTab(3)" aria-expanded="false" translate-once="Cs_dlzs"></a><!--队列展示-->
+            </li>
+        </ul>
+    </div>
+</div>

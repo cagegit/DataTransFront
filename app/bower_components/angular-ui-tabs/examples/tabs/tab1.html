@@ -1,0 +1,18 @@
+<h3>Volatile tab</h3>
+
+<form name="volatileForm">
+  <div>
+    <label>Persistent data:</label> <input ng-model="$data.model">
+  </div>
+  <div>
+    <label>Non Persistent data:</label> <input ng-model="model1">
+  </div>
+</form>
+
+<div class="bindings">
+  <label>Bindings:</label>
+  <ul>
+    <li class="persistent"><label>Persistent:</label> <span>{{ $data.model }}</span></li>
+    <li class="non-persistent"><label>Non persistent:</label> <span>{{ model1 }}</span></li>
+  </ul>
+</div>

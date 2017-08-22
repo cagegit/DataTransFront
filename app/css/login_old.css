@@ -1,0 +1,142 @@
+.login-html .login-body{
+    width:100%;
+    height:100%;
+    background: -webkit-linear-gradient(to bottom right, #5884ab , #ffffff); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(to bottom right, #5884ab , #ffffff); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(to bottom right, #5884ab , #ffffff); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom right, #5884ab , #ffffff); /* 标准的语法 */
+    font-size:14px;
+    font-family: "微软雅黑", serif;
+    font-weight:500;
+}
+.login-box{
+    width:400px;
+    height:276px;
+    border-radius: 2%;
+}
+.login-center {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.login-title{
+    width:100%;
+}
+.login-logo{
+    width: 110px;
+    height:80px;
+    background: url("../img/login.png") no-repeat;
+}
+.lang-selet{
+    width:50%;
+    height:18px;
+    margin:16px 0 20px 100px;
+}
+.lang-selet a{
+    cursor: pointer;
+    font-size:14px;
+    font-family: "微软雅黑", serif;
+    font-weight:500;
+    color:#ffffff;
+}
+.lang-selet a:hover{
+    color:#005bab;
+    text-decoration: none;
+    border-bottom:2px solid #005bab;
+}
+.lang-selet > span{
+    font-weight:500;
+    color:#ffffff;
+}
+.login-form{
+    position: relative;
+    height:136px;
+}
+
+.login-input-heit{
+    height:40px;
+    margin-left:6px;
+}
+.input-text{
+    width: 100px;
+    height:40px;
+    text-align: right;
+    font-size: 16px;
+    font-weight:500;
+    font-family: "微软雅黑", serif;
+    padding:0 !important;
+    margin-top:6px;
+    color:#ffffff;
+}
+.input-bar{
+    height:40px;
+    width:285px;
+
+}
+.login-input{
+    margin-right: 30px;
+    padding:0;
+}
+.login-sure{
+    display: block;
+    width:67px;
+    height:67px;
+    border-radius: 50%;
+    background: url("../img/login-sure1.png") no-repeat;
+    position: absolute;
+    top:14px;
+    right:-20px;
+    cursor: pointer;
+}
+.login-sure:hover{
+    background: url("../img/login-sure2.png") no-repeat;
+}
+.login-radio{
+    padding: 0;
+    margin:16px 0 0 80px;
+    position: absolute;
+    bottom:0;
+    right:72px;
+}
+.login-waring{
+    font-family: "微软雅黑", serif;
+    color:red;
+    font-size:14px;
+    margin:-14px 0 0 62px;
+}
+.login-radio label{
+    padding:0;
+    font-size:14px;
+    font-family: "微软雅黑", serif;
+    color:#ffffff;
+    margin-right:40px;
+}
+.login-err-info{
+    padding-top: 20px;
+    padding-left: 35px;
+}
+.login-err-info .alert{
+    margin-bottom: -10px;
+    padding-left: 66px;
+}
+.lang-text{
+    color: #fff;
+}
+.lang-text.active{
+    color: #428bca;
+}
+.err-box{
+    color: #c12e2a;
+}
+
+
+
+
+
+
+
+
+
+
+

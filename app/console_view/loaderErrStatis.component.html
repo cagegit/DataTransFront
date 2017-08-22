@@ -1,0 +1,64 @@
+<!--loader错误统计-->
+<div class="console-loader-area">
+    <div class="console-loader-bar">
+        <div class="pull-right">
+            <button class="btn btn-default" ng-click="$ctrl.getErrStatList()" translate-once="FRESH"></button><!--刷新 -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="console-loader-pan">
+        <table class="table">
+            <colgroup>
+                <col style="width:5%">
+                <col style="width:20%">
+                <col style="width:25%">
+                <col style="width:25%">
+                <col style="width:25%">
+                <!--<col style="width:15%">-->
+                <!--<col style="width:15%">-->
+            </colgroup>
+            <tr>
+                <th><input type="checkbox" ng-model="$ctrl.loader_err_stat.ckAll" ng-change="$ctrl.ckErrAllChange()" title="{{'Ld_qx' | translate}}"></th><!--全选 -->
+                <th translate-once="UNAME"></th><!--用户名 -->
+                <th translate-once="Cs_bm"></th><!--表名 -->
+                <th translate-once="Cs_cwzts"></th><!--错误总条数 -->
+                <th translate-once="Cs_hlts"></th><!--忽略条数 -->
+                <!--<th>自动修复成功条数</th><th>是否为排除表</th>-->
+            </tr>
+        </table>
+        <div class="loader-list" id="loader-err-stat-id">
+            <table class="table">
+                <colgroup>
+                    <col style="width:5%">
+                    <col style="width:20%">
+                    <col style="width:25%">
+                    <col style="width:25%">
+                    <col style="width:25%">
+                    <!--<col style="width:15%">-->
+                    <!--<col style="width:15%">-->
+                </colgroup>
+                <tr ng-repeat="item in $ctrl.errList track by $index">
+                    <td><input type="checkbox" class="mainStatList" ng-model="item.checked" ng-change="$ctrl.ckErrItemChange(item)"></td>
+                    <td ng-bind="item.owner"></td>
+                    <td ng-bind="item.table_name"></td>
+                    <td ng-bind="item.error_allnum"></td>
+                    <td ng-bind="item.error_skipnum"></td>
+                    <!--<td ng-bind="item.error_autonum"></td>-->
+                    <!--<td ng-bind="item.status"></td>-->
+                </tr>
+                <tr ng-cloak="" ng-show="$ctrl.loader_err_stat.loading">
+                    <td  class="con-text-center" colspan="5"><img src="../img/15.gif"></td>
+                </tr>
+                <tr ng-cloak="" ng-show="!$ctrl.loader_err_stat.loading && $ctrl.errList.length===0">
+                    <td  class="con-text-center" colspan="5">No Data!</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="cap-foot-bar clearfix">
+        <div class="pull-left">
+            <!--<button class="btn box" ng-click="exceptCkList()">排除选中表</button>-->
+            <!--<button class="btn box" ng-click="reSyncCkList()" >重新同步选中表</button>-->
+        </div>
+    </div>
+</div>

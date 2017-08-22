@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="angular-tabs.demo" ng-controller="angularTabsDemoCtrl">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Angular Tabs</title>
+
+  <link rel="stylesheet" href="../dist/styles/blue.css">
+  <link rel="stylesheet" href="angular-tabs-demo.css">
+  <link rel="stylesheet" href="angular-tabs-demo-blue.css">
+
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../dist/angular-tabs.js"></script>
+  <script src="angular-tabs-demo-app.js"></script>
+  <script src="tabs/tab1-controller.js"></script>
+  <script src="tabs/tab2-controller.js"></script>
+</head>
+
+<body>
+
+<main>
+  <h1>Angular Tabs Demo</h1>
+
+  <header>
+    <button class="tab-type-volatile" ng-click="addTabType1()">Add volatile tab</button>
+    <button class="tab-type-dom-persistent" ng-click="addTabType2()">Add DOM persistent tab</button>
+  </header>
+
+  <section class="angular-tabs-example">
+    <div tab-header></div>
+    <div tab-view></div>
+  </section>
+
+  <section class="debug">
+    <h4>Debug</h4>
+    <p>{{tabs}}</p>
+  </section>
+</main>
+
+
+</body>
+</html>

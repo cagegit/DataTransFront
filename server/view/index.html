@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="title"></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="build/index.min.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body ng-controller="indexCtrl">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- HEADER -->
+<header class="navbar clearfix" id="header">
+    <div class="container" id="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="/index" class="logo-ico">
+                <img src="img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive">
+                <!--<h3>数据集成平台</h3>-->
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+            <div class="visible-xs">
+                <a href="#" class="team-status-toggle switcher btn dropdown-toggle">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+            <!-- /TEAM STATUS FOR MOBILE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        <ul class="nav navbar-nav pull-left hidden-xs">
+            <li class="dropdown active" ng-cloak="" ng-hide="user.auth==='super'">
+                <a href="/config" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="config-ico"></i>
+                    <span class="name" translate-once="SYSTEM_CFG"></span><!--系统设置-->
+                </a>
+                <span class="nav-bottom-bar"></span>
+            </li>
+        </ul>
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="img/avatars/avatar3.jpg" style="visibility: hidden;" />
+                    <span class="username" ng-bind="user.name"></span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> {{'EXIT' | translate}}</a></li><!--退出-->
+                </ul>
+            </li>
+            <!-- \END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+</header>
+<!--/HEADER -->
+<div class="pro-container index-search-bar">
+    <div class="container">
+        <div class="row pro-header">
+            <div class="col-md-8">
+                <div class="mj-search">
+                    <input translate-once-placeholder="Idx_xjxmss" class="search-txt" type="text" ng-model="searchQ" style="border-radius:24px" maxlength="80"><!--项目搜索-->
+                    <span class="search-icon index-search-ico" ></span>
+                </div>
+            </div>
+            <div class="col-md-4 clearfix">
+                <div class="pro-new-btn  pull-right" ng-click="addProject()">
+                    <span class="new-pro-ico"></span>
+                    <a href="javascript:void(0);" translate-once="Idx_xjxm"></a><!--新建项目-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container index-project-list">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pro-list-header">
+                <div class="proheading"><span class="prtitle" translate-once="Idx_xmlb"></span></div><!--项目列表-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-show="proList.length ===0" ng-cloak="" class="pro_box" style="height:300px; border:2px dashed #eeeeee;position: relative;margin:0 15px 0 15px !important;">
+            <div class="fa fa-plus" ng-cloak="" style="height:20px;top:48%;left:49%;color:#000;position: absolute;"><span ng-cloak="" translate-once="Idx_qxjxm"></span></div><!--请新建项目-->
+        </div>
+        <div class="col-md-2 pro-item" ng-repeat="project in proList | filter:{name:searchQ}" ng-cloak ng-mouseenter="isDel = true" ng-mouseleave="isDel = false">
+            <div class="firstRadius"></div>
+            <div class="secondRadius"></div>
+            <div class="pro-item-detail">
+                <a class="bgImg" href="javascript:void(0);" ng-click="locationToMain(project)">
+                    <div class="itemIcon"><span class="fa fa-line-chart"></span></div>
+                    <p class="peity-charts data-attributes">
+                        <span data-peity='{"fill":["orange","#eeeeee"],"innerRadius":20,"radius":60}'>5/7</span>
+                    </p>
+                </a>
+                <div class="projectName">
+                    <span class="lastUpdate">{{'Idx_cjsj' | translate}}{{ project.create_time }}</span>
+                    <div class="title" title="{{ project.name }}">{{ project.name }}</div>
+                </div>
+            </div>
+            <div class="fa fa-times pro-del-ico" ng-click="delProject(project)" ng-show="isDel"></div>
+        </div>
+    </div>
+</div>
+<!--<div class="fa fa-plus"></div>-->
+<div class="copyright">
+    <div class="copyright-cont clearfix">
+        <div class="bottom-logo"></div>
+        <div class="copy-info">
+            <p translate-once="Gs" class="com-name"></p><!--©2011-2016翱旗创业(北京)科技有限公司-->
+            <!--<p translate="Bb">版本：5.0</p>&lt;!&ndash;版本：5.0&ndash;&gt;-->
+            <!--<span translate="Syxk">使用许可：国家电网河南分公司</span>&lt;!&ndash;使用许可：国家电网河南分公司&ndash;&gt;-->
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="lib/jquery.peity.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".data-attributes span").peity("donut");
+    });
+</script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="build/other.lib.min.js"></script>
+<script type="text/javascript" src="sysconfig_view/sys_index.js"></script>
+<script type="text/javascript" src="service/dipHttpService.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Db_jbsx"></div><!--基本属性-->
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <tr ng-cloak="" ng-show="$ctrl.real.com_id.length>0">
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Dl_id"></label><!--队列ID：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.real.com_id" ng-class="{'accord-pre':$ctrl.params.qpId}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.qpId"  ng-class="{'accord-next':$ctrl.params.qpId}" translate-once="Dl_wybs"></p><!--队列唯一标示-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.qpId=!$ctrl.params.qpId" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpId,'glyphicon-question-sign':!$ctrl.params.qpId}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Dl_mc"></label><!--队列名称：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.queue_name" ng-class="{'accord-pre':$ctrl.params.qpn}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.qpn"  ng-class="{'accord-next':$ctrl.params.qpn}" translate-once="Dl_mcsm"></p><!--队列名称-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.qpn=!$ctrl.params.qpn" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpn,'glyphicon-question-sign':!$ctrl.params.qpn}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Dl_dgwjdx"></label><!--单个文件大小：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.file_size" ng-class="{'accord-pre':$ctrl.params.qpsiz}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.qpsiz"  ng-class="{'accord-next':$ctrl.params.qpsiz}" translate-once="Dl_dgwjsm"></p><!--单个文件大小说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.qpsiz=!$ctrl.params.qpsiz" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpsiz,'glyphicon-question-sign':!$ctrl.params.qpsiz}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Dl_blsj"></label><!--保留时间：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.save_hour+$ctrl.real.hour" ng-class="{'accord-pre':$ctrl.params.qpsati}"></span><!--小时-->
+                                <p ng-cloak ng-show="$ctrl.params.qpsati"  ng-class="{'accord-next':$ctrl.params.qpsati}" translate-once="Dl_blsjsm"></p><!--保留时间说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.qpsati=!$ctrl.params.qpsati" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpsati,'glyphicon-question-sign':!$ctrl.params.qpsati}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Dl_sftj"></label><!--是否统计：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.charts" ng-class="{'accord-pre':$ctrl.params.qpsta}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.qpsta"  ng-class="{'accord-next':$ctrl.params.qpsta}" translate-once="Dl_sftjsm"></p><!--最大日志个数说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.qpsta=!$ctrl.params.qpsta" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpsta,'glyphicon-question-sign':!$ctrl.params.qpsta}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

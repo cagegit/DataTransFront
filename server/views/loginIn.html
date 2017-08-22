@@ -1,0 +1,84 @@
+<!DOCTYPE html><!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js login-html lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js login-html lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js login-html lt-ie9"> <![endif]--><!--[if gt IE 8]><!--><html lang="en" ng-app="myApp" class="no-js login-html"><!--<![endif]--><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="author" content="ThemeBucket"><title>DIP 数据集成平台 登录</title><link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css"><link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css"><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"><link rel="stylesheet" href="css/login_old.css"><script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script></head><body class="login-body"><!--[if lt IE 9]>
+<p class="browsehappy" style="background-color: #F5B500;font-size: x-large;line-height: 80px;height: 80px;">系统检测到您正在使用低于IE9版本的浏览器，本系统仅支持IE9及IE9以上版本，请<a href="http://browsehappy.com/">升级</a>您的浏览器或者使用<strong>Chrome(谷歌)</strong>、Safari(苹果)、FireFox(火狐)浏览器。</p>
+<style scoped="scoped">
+    .login-box {
+        display: none;
+    }
+    .login-copr{
+        bottom:inherit;
+        left: 40%;
+    }
+</style>
+<![endif]--><div class="login-box login-center" ng-controller="loginCtrl"><div class="login-title"><div class="login-logo center-block"></div></div><div class="lang-selet"><a href="javascript:void(0);" class="lang-text" ng-class="{'active':lang=='cn'}" ng-click="changeLang('cn')" ng-bind="'100005' | translate">中文</a> <span>&nbsp;|&nbsp;</span> <a href="javascript:void(0);" class="lang-text" ng-class="{'active':lang=='en'}" ng-click="changeLang('en')">English</a></div><form role="form" class="login-form clearfix" name="form" novalidate><div class="row"><div class="form-group login-input-heit clearfix"><label class="input-text pull-left" ng-bind="'100001' | translate">账号：</label><div class="login-input pull-right"><input type="text" name="userName" ng-model="property.uname" required class="form-control input-bar" ng-change="err.nameErr=false;err.serviceErr=null;" ng-class="{'err-box':(form.userName.$dirty && form.userName.$error.required) ||err.nameErr }" placeholder="{{'100008' | translate}}"></div></div><div class="form-group login-input-heit clearfix"><label class="input-text pull-left" ng-bind="'100002' | translate">密码：</label><div class="login-input pull-right"><input type="password" name="password" ng-model="property.upwd" required class="form-control input-bar" ng-change="err.pwdErr=false;err.serviceErr=null;" ng-class="{'err-box':(form.password.$dirty && form.password.$error.required) || err.pwdErr}" placeholder="{{'100009' | translate}}"></div></div><button class="login-sure" title="login" ng-click="loginIn()"></button></div><div class="login-err-info" ng-cloak="ng-cloak" ng-show="(form.userName.$invalid && form.userName.$dirty) || (form.password.$invalid && form.password.$dirty) || err.nameErr || err.pwdErr"><div class="alert text-danger" ng-show="(form.userName.$dirty && form.userName.$error.required) || err.nameErr ">{{'100006' | translate}}</div><div class="alert text-danger" ng-show="(form.password.$dirty && form.password.$error.required) || err.pwdErr">{{'100007' | translate}}</div></div><div class="login-err-info" ng-cloak="ng-cloak" ng-show="err.serviceErr"><div class="alert text-danger" ng-bind="err.serviceErr"></div></div></form></div><script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script><script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script><script type="text/javascript" src="bower_components/angular/angular.min.js"></script><script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script><script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script><script type="text/javascript" src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script><script type="text/javascript">var myApp = angular.module('myApp',['pascalprecht.translate']);
+    myApp.config(['$httpProvider','$translateProvider',function($httpProvider,$translateProvider) {
+        var lang = window.localStorage.lang ||'cn';
+        $translateProvider.preferredLanguage(lang);
+        $translateProvider.useStaticFilesLoader({
+            prefix: './i18n/',
+            suffix: '.json'
+        });
+        // Enable escaping of HTML
+        $translateProvider.useSanitizeValueStrategy('escapeParameters');
+    }]);
+    myApp.controller('loginCtrl',['$scope','$http','$translate','$filter','$window',function ($scope,$http,$translate,$filter,$window) {
+        $scope.property ={
+            uname:'',
+            upwd:'',
+            auth:'nomal'
+        };
+        $scope.lang=window.localStorage.lang;
+        $scope.err= {
+            nameErr:false,
+            pwdErr:false,
+            serviceErr:null
+        };
+        $scope.loginIn = function () {
+            if($scope.form.$invalid){
+                if($scope.form.userName.$error.required){
+                    $scope.err.nameErr=true;
+                    return;
+                }
+                if($scope.form.password.$error.required){
+                    $scope.err.pwdErr=true;
+                    return;
+                }
+            }
+            var dd = {userName:$scope.property.uname,password:$scope.property.upwd,auth:$scope.property.auth};
+            $.ajax({
+                type:"POST",
+                url:'/loginIn',
+                data:dd,
+                dataType:'json',
+                cache:false
+            })
+            .success(function (data) {
+                if(data.auth){
+                    $scope.err.serviceErr=null;
+                    $window.location.href=data.url;
+                }else{
+                    $scope.err.serviceErr=$filter('translate')('100011');
+                }
+            })
+            .error(function (data, status, headers, config) {
+                $scope.err.serviceErr=$filter('translate')('100010');
+            }).complete(function () {
+                $scope.$apply();
+            });
+        };
+        $scope.changeLang = function (lan) {
+            if(lan === window.localStorage.lang){
+                return;
+            }
+            if(lan ==='cn'){
+                $scope.lang='cn';
+                $translate.use(lan);
+                window.localStorage.lang = lan;
+                window.location.reload();
+            }else if(lan==='en'){
+                $scope.lang='en';
+                $translate.use(lan);
+                window.localStorage.lang = lan;
+                window.location.reload();
+            }
+        }
+    }]);</script></body></html>

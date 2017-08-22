@@ -1,0 +1,92 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Db_jbsx"></div><!--基本属性-->
+        <div class="panel-body" >
+            <table class="table table-condensed cap-form-tip">
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_id"></label></td><!--数据库ID：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.real.comId">Oracle</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_mc"></label></td><!--数据库名称：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.dbName">Oracle</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_lx"></label></td><!--数据库类型：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.dbType">SqlServer</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_zwbh"></label></td><!--作为捕获数据源：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.bh==='yes'?$ctrl.real.yes:$ctrl.real.no"></span></td><!--是否-->
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_smc"></label></td><!--Service名称：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.serviceName">ORACLE_NAME</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_fwqdz"></label></td><!--服务器地址：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.ipAddress">172.16.1.1</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_port"></label></td><!--端口：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.port">1521</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_uname"></label></td><!--用户名：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.uName">User1</span></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label class="text-info" translate-once="Db_pwd"></label></td><!--密码：-->
+                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.uPwd?'******':''">******</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="clearfix">
+                <h5 class="pull-left" translate-once="Db_hjcs"></h5><!--环境测试-->
+                <button class="btn btn-primary pull-right btn-sm" style="margin-top: -5px;" tooltip-placement="bottom" uib-tooltip="{{'Db_csljhj' | translate}}" ng-click="$ctrl.testDbInfo()" ng-disabled="$ctrl.isTesting" translate-once="Db_cslj"></button><!--测试数据库连接及数据库环境 测试数据库连接-->
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed" ng-cloak="" ng-show="$ctrl.data.testing">
+                <tr class="test-env">
+                    <th translate-once="DESC"></th><!--描述-->
+                    <th translate-once="STATUS"></th><!--状态-->
+                    <th translate-once="DETAIL"></th><!--详细-->
+                </tr>
+                <tr ng-hide="$ctrl.property.bh==='no'">
+                    <td translate-once="Db_gdrzms"></td><!--归档日志模式-->
+                    <td ng-bind="$ctrl.data.gd.status">success</td>
+                    <td ng-bind="$ctrl.data.gd.message">ARCHIVELOG</td>
+                </tr>
+                <tr>
+                    <td translate-once="Db_bb"></td><!--数据库版本-->
+                    <td ng-bind="$ctrl.data.dbv.status">success</td>
+                    <td ng-bind="$ctrl.data.dbv.message">11.2.0.1.0</td>
+                </tr>
+                <tr>
+                    <td translate-once="Db_yhqxjc"></td><!--用户权限检查-->
+                    <td ng-bind="$ctrl.data.auth.status">success</td>
+                    <td ng-bind="$ctrl.data.auth.message"></td>
+                </tr>
+                <tr ng-hide="$ctrl.property.dbType==='mysql' || $ctrl.property.dbType==='db2'">
+                    <td translate-once="Db_dbmsjc"></td><!--DBMS权限检查-->
+                    <td ng-bind="$ctrl.data.dbms.status">success</td>
+                    <td ng-bind="$ctrl.data.dbms.message"></td>
+                </tr>
+                <tr  ng-hide="$ctrl.property.bh==='no' || $ctrl.property.dbType==='sqlserver'|| $ctrl.property.dbType==='mysql' || $ctrl.property.dbType==='db2'">
+                    <td translate-once="Db_bcrz"></td><!--补充日志-->
+                    <td ng-bind="$ctrl.data.bcrz.status">success</td>
+                    <td ng-bind="$ctrl.data.bcrz.message"></td>
+                </tr>
+            </table>
+            <table class="table table-bordered test-db-empty table-condensed" ng-cloak="" ng-hide="$ctrl.data.testing">
+                <tr>
+                    <td align="center" ng-bind-html="$ctrl.data.dbTestInfo"></td><!--测试数据库连接信息测试展示区域-->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

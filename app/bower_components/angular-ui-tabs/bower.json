@@ -1,0 +1,31 @@
+{
+    "name": "angular-ui-tabs",
+    "main": [
+        "dist/angular-tabs.min.js",
+        "dist/styles/**/*.css"
+    ],
+    "version": "0.1.5",
+    "authors": [
+        "Dmytro Podyachiy",
+        "Abdelhakim Bachar"
+    ],
+    "keywords": [
+        "angularjs",
+        "tabs"
+    ],
+    "private": false,
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules"
+    ],
+    "devDependencies": {
+        "angular": "~1.3.0",
+        "angular-mocks": "~1.3.0",
+        "jquery": "1.11.1",
+        "normalize.css": "~3.0.2"
+    },
+    "dependencies": {
+        "jquery": "1.11.1"
+    }
+}

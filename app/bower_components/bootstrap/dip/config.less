@@ -1,0 +1,362 @@
+//系统配置<----------------------
+.sys-header{
+  border-bottom:1px solid #ffffff;
+  width:100%;
+  position:fixed;
+  z-index: 999;
+}
+.sys-body{
+  background: #f0f3f6;
+  font-size:14px;
+  font-family: "微软雅黑", serif;
+  color:#333333;
+  height:100%;
+
+}
+.sys-layout{
+  min-height:2000px;
+  _height:2000px;
+  height:auto;
+}
+.sys-left {
+  width: 200px;
+  position: fixed;
+  top:50px;
+  background: #ffffff;
+  margin-right: 20px;
+  border-right: 1px solid #cdd2d2;
+  .sys-nav-list {
+    min-height:2000px;
+    _height:2000px;
+    height:auto;
+    & li {
+      width: 199px;
+      height: 50px !important;
+      margin: 0 !important;
+      border-top: 1px solid #e7e7e7;
+      &:last-child {
+        border-bottom: 1px solid #e7e7e7;
+      }
+      & > a {
+        height: 50px;
+        &:hover {
+          border-bottom: 1px solid #ffffff;
+        }
+      }
+    }
+  }
+}
+.sys-right{
+  height:100%;
+  padding:40px 0 40px 0;
+  position: absolute;
+  left:255px;
+  .err-check-panel{
+    margin-top:50px;
+    -webkit-box-shadow:  2px 2px 8px #4F4F4F;
+    -moz-box-shadow:  2px 2px 8px #4F4F4F;
+    box-shadow: 2px 2px 8px #4F4F4F;
+  }
+  .panel{
+    padding:0 0 10px 0 !important;
+    .panel-heading{
+      background: #ffffff;
+    }
+    .panel-body{
+      div[class^="col-md-"]{
+        padding:0;
+      }
+      .cont-sty{
+        margin-top:20px;
+        .tit-waring{
+          height:28px;
+          border-radius: 5px;
+          border:1px solid #ffc7c7;
+          background: #ffecec;
+          div{
+            margin:2px 0 0 8px;
+            color:#fc4b75;
+          }
+        }
+      }
+      .int-text{
+        margin:6px 8px 0 0;
+      }
+      .list-row{
+        margin-bottom:15px !important;
+      }
+      .watch-area{
+        width:100%;
+        height:200px;
+        border-radius:4px;
+        overflow: auto;
+        resize: none;
+      }
+      .watch-area-width{
+        width:90%;
+      }
+      .iphone-area{
+        width:100%;
+        height:320px;
+        border-radius:4px;
+        overflow: auto;
+        resize: none;
+      }
+    }
+  }
+}
+.err-add-height{
+  padding-top: 80px;
+  margin-top: -45px;
+}
+ul.affix{
+  top: -30px; /* Set the top position of pinned element */
+}
+.sys-group-tit{
+  font-size:16px;
+  margin-bottom:30px;
+}
+.sys-send-tit{
+  font-size:15px;
+  margin:0 0 30px 25px;
+  color:#0b5a93;
+  position: relative;
+  .emial-cont{
+    width:22px;
+    height: 18px;
+    display: inline-block;
+    background: url("../../../img/sys-email.png") no-repeat;
+    margin-right:8px;
+  }
+  .message-cont{
+    width:22px;
+    height: 18px;
+    display: inline-block;
+    background: url("../../../img/sys-message.png") no-repeat;
+    margin-right:8px;
+  }
+  p{
+    display: inline-block;
+    position: absolute;
+    top:-1px;
+  }
+}
+.mess-send-way{
+  position: relative;
+  .send-radio{
+    position: absolute;
+    top:6px;
+    left:-12px;
+  }
+}
+.panel-line{
+  position: relative;
+  .devid-line{
+    position: absolute;
+    bottom:94px;
+    height:1px;
+    width:100%;
+    border:1px solid #e6e9ef;
+  }
+}
+.sys-send-cofig{
+  padding-bottom:28px;
+}
+.panel-dis-height{
+  margin-top:30px !important;
+}
+.lice-up-panel{
+  margin-top:30px !important;
+  .panel-body{
+    padding:0 0 60px 0;
+    .lice-cont{
+      margin:50px 0 28px 138px;
+      .config-selet-pile{
+        margin-bottom:10px;
+        position: relative;
+        .selet-file-ope{
+          position: absolute;
+          top:2px;
+          left:80px;
+          .up-search{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            background: url("../../../img/up-search.png") no-repeat;
+            margin-right:8px;
+            cursor: pointer;
+          }
+          .up-search-text{
+            position: absolute;
+            top:-1px;
+            left:30px;
+            display: inline-block;
+            width:900px;
+          }
+        }
+      }
+      .config-up-pile{
+        position: relative;
+        .up-cont{
+          display: inline-block;
+        }
+        .up-status{
+          width:25px;
+          height:22px;
+          display: inline-block;
+          padding-top:-8px;
+          background: url("../../../img/up-status.png") no-repeat;
+          margin-right:16px;
+        }
+        .up-div{
+          width:300px;
+          height:45px;
+          display: inline-block;
+          background: #e3eaf4;
+          border-radius: 4px;
+          font-size:12px;
+          margin-top:8px;
+          position: relative;
+          top:16px;
+          .up-file-phto{
+            display: inline-block;
+            width:36px;
+            height:45px;
+            background: url("../../../img/up-file.png") no-repeat 6px 8px;
+          }
+          .up-file-info{
+            width:210px;
+            height:36px;
+            position: absolute;
+            top:2px;
+            left:44px;
+            p{
+              margin-bottom:2px;
+            }
+            .up-file-size{
+              color:#666666;
+              span{
+                color:#3d882d;
+              }
+            }
+          }
+          .up-dele-ope{
+            position: absolute;
+            top:6px;
+            right:10px;
+            color:#0f6099;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+.config-user-list{
+  position: relative;
+  .user-tit-ope{
+    position: absolute;
+    display: inline-block;
+    width:130px;
+    height:20px;
+    top:0;
+    right:5px;
+    .user-tit-modi{
+      cursor: pointer;
+      i{
+        display: inline-block;
+        width:18px;
+        height:18px;
+        background: url("../../../img/modify.png") no-repeat;
+      }
+      em{
+        font-style: normal;
+        position: absolute;
+        top:-2px;
+        left:24px;
+      }
+    }
+    .user-tit-delet{
+      cursor: pointer;
+      i{
+        display: inline-block;
+        width:18px;
+        height:18px;
+        background: url("../../../img/delet.png") no-repeat;
+        position: absolute;
+        left:70px;
+      }
+      em{
+        font-style: normal;
+        position: absolute;
+        top:-2px;
+        left:93px;
+      }
+    }
+  }
+}
+.user-cancle{
+  position: absolute;
+  bottom:40px;
+  right:32%;
+}
+.user-list-panel{
+  margin:30px 0 80px 0 !important;
+  padding-bottom:95px !important;
+  position: relative;
+  .user-list-submit{
+    position: absolute;
+    bottom:20px;
+    right:-0px;
+  }
+  .user-bottom-height{
+    margin-bottom:95px !important;
+  }
+}
+.user-list-padding{
+  padding-bottom:40px !important;
+}
+.user-com-phot{
+  width:70px;
+  height:70px;
+  margin-bottom:6px;
+}
+.user-dele-list ,.user-normal-list{
+  margin:20px 0 50px 60px;
+  .user-dele-mess ,.user-normal-mess{
+    height:95px;
+    width:70px;
+    display: inline-block;
+    margin:0 36px 40px 0;
+    .user-normal-phot{
+      &:extend(.user-com-phot);
+      background: url("../../../img/user-list.png") no-repeat;
+      position: relative;
+      .dele-tage{
+        display: block;
+        width:18px;
+        height:18px;
+        cursor: pointer;
+        background: url("../../../img/dele-tag.png") no-repeat;
+        position: absolute;
+        top:0;
+        right:0;
+      }
+    }
+  }
+}
+.sys-nav-list li.active a, .sys-nav-list li.active a:hover{
+  color: #fff;
+  background: #0088cc;
+  border: 1px solid #0088cc;
+}
+.tit-edit-logo{
+  display: inline-block;
+  width:15px;
+  height:15px;
+  margin-left: 8px;
+  margin-bottom:-3px;
+  cursor: pointer;
+  background: url("../../../img/tit-edit.png") no-repeat;
+}
+//系统配置---------------------->

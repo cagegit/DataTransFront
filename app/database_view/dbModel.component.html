@@ -1,0 +1,54 @@
+<div class="modal-dialog slide-panel" id="modal-dialog" ng-cloak ng-show="$ctrl.menu.dialog">
+    <div class="modal-content slide-bg-color">
+        <div class="modal-header header-bg-color">
+            <button type="button" class="close" ng-click="$ctrl.redirectTo('/')" ><span class="fa fa-close"></span></button><h4 class="modal-title" translate-once="Db_mbxx"></h4><!--数据库模板信息-->
+        </div>
+        <div class="modal-body slide-bg-color">
+            <div class="panel slide-bg-color">
+                <div class="panel-body ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" translate-once="Db_mbnr"></div><!--模板内容-->
+                        <div class="panel-body" >
+                            <table class="table table-condensed cap-form-tip">
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_mbmc"></label></td><!--数据库模板名称：-->
+                                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.db_name">Oracle</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_lx"></label></td><!--数据库类型：-->
+                                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.db_type">SqlServer</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_smc"></label></td><!--Service名称：-->
+                                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.db_id">ORACLE_NAME</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_fwqdz"></label></td><!--服务器地址：-->
+                                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.db_ip">172.16.1.1</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_port"></label></td><!--端口：-->
+                                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.db_port">1521</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_uname"></label></td><!--用户名：-->
+                                    <td class="col-sm-9"><span class="ci-label" ng-bind="$ctrl.property.db_user">User1</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-3"><label class="text-info" translate-once="Db_pwd"></label></td><!--密码：-->
+                                    <td class="col-sm-9"><span class="ci-label">******</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="pull-right">
+                                <button class="btn btn-primary btn-sm" ng-click="$ctrl.deleteModelDb()" translate-once="DELETE"></button><!--删除-->
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

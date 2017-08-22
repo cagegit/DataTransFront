@@ -1,0 +1,124 @@
+<!--
+审计表界面 组件
+-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title" id="modal-title">审计表规则</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="row etl-all-rule">
+        <div class="col-md-4">
+            <div class="etl-add-trans-left">
+                <h4>源端字段列表</h4>
+                <ul style="height: 415px;overflow: auto;">
+                    <li ng-repeat="field in $ctrl.fieldList track by $index" ng-bind="field.column_name"></li>
+                    <li ng-if="$ctrl.fieldList.length===0">No Data!</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="etl-add-rule-right" id="etl-add-rule-right">
+                <h4>配置规则</h4>
+                <div class="dropdown">
+                    <button id="dLabel" class="btn btn-info btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        操作<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.openTargetsModal()">选取目标库对应表名</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.openApplyToModal()">该策略应用到其他表</a></li>
+                    </ul>
+
+                    <span class="rule-table-name" ng-bind="$ctrl.targetLabel"></span>
+                </div>
+                <div class="etl-modal-body">
+                    <table class="table table-bordered table-hover">
+                        <colgroup>
+                            <col style="width: 10%">
+                            <col style="width: 30%">
+                            <col style="width: 20%">
+                            <col style="width: 30%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <tr>
+                            <td><input type="checkbox" class="cl-etl-all" title="全选" ng-change="$ctrl.changeAllCheck()" ng-model="$ctrl.ckAll"></td>
+                            <td><b>字段名称</b></td>
+                            <td><b>值类型</b></td>
+                            <td><b>字段值</b></td>
+                            <td><b>编辑</b></td>
+                        </tr>
+                        <tr ng-repeat="item in $ctrl.addList track by $index">
+                            <td><input type="checkbox" class="cl-etl-input" ng-model="item.checked" ng-change="$ctrl.changeOne(item)"></td>
+                            <td>
+                                <select style="width: 100%;height: 100%;" ng-model="item.name">
+                                    <option ng-repeat="name in item.names track by $index"  ng-value="name" ng-bind="name"></option>
+                                </select>
+                            </td>
+                            <td ng-bind="item.desc">bbb</td>
+                            <td ng-bind="item.value">ccc</td>
+                            <td><a class="btn" href="javascript:void(0);" ng-click="$ctrl.editColumn(item)"><i class="fa fa-edit"></i></a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="etl-margin-top10">
+                    保留同步功能：<select ng-selected="$ctrl.transInfo.keep_copy" ng-model="$ctrl.transInfo.keep_copy">
+                          <option value="yes">是</option>
+                          <option value="no">否</option>
+                         </select>
+                    <span class="etl-fix-input-left">表前缀：</span><input type="text" class="etl-fix-input" maxlength="20" ng-model="$ctrl.transInfo.table_prefix">
+                    <span>表后缀：</span><input type="text" class="etl-fix-input" maxlength="20" ng-model="$ctrl.transInfo.table_suffix">
+                </div>
+                <div class="etl-margin-top10">
+                    <button class="btn btn-info btn-sm" ng-click="$ctrl.addColumn()">增加行</button>
+                    <button class="btn btn-info btn-sm" ng-click="$ctrl.deleteColumn()">删除行</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveTransformRule()">保存</button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--字段值编辑界面-->
+<script type="text/ng-template" id="transformModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">编辑列字段</h3>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered">
+            <tr>
+                <td>字段：</td>
+                <td><input type="text" class="form-control" ng-model="$ct.model.name" maxlength="20"></td>
+            </tr>
+            <tr>
+                <td>值类型：</td>
+                <td><select ng-model="$ct.model.type">
+                    <option value="string">固定字符串</option>
+                    <option value="sysdata">系统变量</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>字段值：</td>
+                <td><input type="text" class="form-control" ng-cloak="" ng-model="$ct.model.value" ng-show="$ct.model.type==='string'" maxlength="60">
+                    <select ng-cloak="" ng-model="$ct.model.value" ng-show="$ct.model.type==='sysdata'">
+                        <option value="scn">scn</option>
+                        <option value="sct">sct</option>
+                        <option value="cscn">cscn</option>
+                        <option value="csct">csct</option>
+                        <option value="sysdate">sysdate</option>
+                        <option value="operation">operation</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" type="button" ng-click="$ct.ok()">确定</button>
+    </div>
+</script>

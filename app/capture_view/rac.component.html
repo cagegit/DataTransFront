@@ -1,0 +1,36 @@
+<div class="col-lg-12">
+    <div class="rac-info-body">
+        <ng-form  name="racForm" novalidate>
+        <div class="clearfix">
+            <div class="pull-left">源库RAC信息：</div>
+            <div class="pull-right">
+                <a class="btn glyphicon glyphicon-plus" ng-click="$ctrl.plusRacs()" title="添加rac信息" style="margin-right: 5px"></a>
+                <a class="btn glyphicon glyphicon-minus" ng-disabled="$ctrl.racs.length===0" ng-click="$ctrl.removeRacs()" title="删除rac信息"></a>
+            </div>
+        </div>
+        <div class="rac-info-body-list" ng-cloak="" ng-show="$ctrl.racs.length>0">
+            <table class="table table-bordered table-condensed">
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 20%">
+                    <col style="width: 25%">
+                    <col style="width: 15%">
+                    <col style="width: 10%">
+                    <col style="width: 20%">
+                </colgroup>
+                <tr>
+                    <th>Thread</th><th>Instance Name</th><th>IP</th><th>PORT</th><th>ENABLE</th><th>PATH</th>
+                </tr>
+                <tr ng-repeat="item in $ctrl.racs track by $index">
+                    <td><input type="text" class="form-control" ng-model="item.thread" required maxlength="10"></td>
+                    <td><input type="text" class="form-control" ng-model="item.name" required maxlength="30"></td>
+                    <td><input type="text" class="form-control" ng-model="item.ip" required placeholder="127.0.0.1" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" maxlength="20"></td>
+                    <td><input type="text" class="form-control" ng-model="item.port" required placeholder="3000" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" maxlength="10"></td>
+                    <td><input type="checkbox" ng-model="item.enable" class="cbox"></td>
+                    <td><input type="text" class="form-control" ng-model="item.path" maxlength="30"></td>
+                </tr>
+            </table>
+        </div>
+        </ng-form>
+    </div>
+</div>

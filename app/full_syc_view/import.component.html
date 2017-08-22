@@ -1,0 +1,156 @@
+<!--导入配置界面-->
+<div class="full-syc-modal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="full-syc-title">
+                <label><input type="checkbox" ng-model="$ctrl.fromOldData" ng-disabled="$ctrl.maps.length===0">从已有数据文件导入</label>
+            </div>
+            <div class="full-syc-has-data" ng-cloak="" ng-show="$ctrl.fromOldData">
+                <div class="full-syc-sel">
+                    <select ng-model="$ctrl.selectSync" ng-options="item.name for item in $ctrl.maps track by item.id" ng-change="$ctrl.changeSync()"></select>
+                </div>
+                <div class="full-syc-body">
+                    <div class="full-body-left">
+                        <input type="text" placeholder="Schema名搜索" ng-model="$ctrl.userFilter">
+                        <ul>
+                            <li ng-repeat="item in ($ctrl.schemasList | filter:{name:$ctrl.userFilter}) track by $index" ng-bind="item.name" ng-click="$ctrl.schemaCheck(item,$event)"></li>
+                            <li ng-cloak="" ng-show="$ctrl.schemasList.length===0 && !$ctrl.loading1">No Schema!</li>
+                            <li ng-cloak="" ng-if="$ctrl.loading1">Loading......</li>
+                        </ul>
+                    </div>
+                    <div class="full-body-right">
+                        <input type="text" placeholder="表名搜索" class="sel-box" ng-model="$ctrl.tableFilter"> <label class="sel-condition">
+                        <input type="checkbox" ng-model="$ctrl.isErrorOnly" ng-change="$ctrl.errorOnlyChange()">只显示导出错误表</label>
+                        <div class="full-body-table">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 20%">
+                                    <col style="width: 80%">
+                                </colgroup>
+                                <tr>
+                                    <td><input type="checkbox" ng-model="$ctrl.ckAll" ng-click="$ctrl.checkAll()"></td>
+                                    <td>表名</td>
+                                </tr>
+                                <tr ng-repeat="item in ($ctrl.selTables=($ctrl.tables | filter:{name:$ctrl.tableFilter,status:$ctrl.isError})) track by $index">
+                                    <td><input type="checkbox" ng-model="item.checked" ng-click="$ctrl.checkOne(item)"></td>
+                                    <td ng-bind="item.name"></td>
+                                </tr>
+                                <tr ng-cloak="" ng-show="$ctrl.tables.length===0 && !$ctrl.loading">
+                                    <td colspan="2" class="etl-center">No Table!</td>
+                                </tr>
+                                <tr ng-cloak="" ng-if="$ctrl.loading">
+                                    <td colspan="2" class="etl-center">Loading......</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="full-syc-title">
+                <label class="input-label">选择导入内容
+                    <select ng-model="$ctrl.imp.imp_dict_only">
+                        <option value="0">导入全部数据</option>
+                        <option value="1">只导入表结构及索引</option>
+                    </select>
+                </label>
+            </div>
+            <div class="full-syc-body1" ng-if="$ctrl.imp.imp_dict_only==='0'">
+                <ul>
+                    <li>
+                        <label class="label1"><i class="red">*</i><span>导入任务并发数</span>
+                            <input type="text" class="ibox" ng-model="$ctrl.imp.imp_simu" maxlength="5" style="margin-left: -9px;" gl-num></label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_rebuild_tab">重建目标表</label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_rebuild_ind">重建索引</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>导入表内并发数</span><input type="text" class="ibox" ng-model="$ctrl.imp.imp_tab_simu" maxlength="5" gl-num></label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_truncate_tab">清空目标表</label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_backup_file">保留数据文件</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>导入字符集</span>
+                            <select ng-model="$ctrl.imp.imp_nls_lang">
+                                <option ng-repeat="x in $ctrl.charset" value="{{x}}" ng-bind="x"></option>
+                            </select>
+                        </label>
+                        <label class="label4" ng-hide="$ctrl.isOther" ng-cloak=""><input type="checkbox" ng-model="$ctrl.imp.imp_use_tabs_map">表空间映射</label>
+                        <a href="javascript:void(0);" ng-click="$ctrl.editTableSpace()" class="fa fa-edit" ng-cloak="" ng-if="$ctrl.imp.imp_use_tabs_map"></a>
+                        <label class="label4" ng-hide="$ctrl.isOther" ng-cloak=""><i class="red">*</i><input type="checkbox" ng-model="$ctrl.imp.imp_rebuild_object">重建对象</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="full-syc-body1" ng-cloak="" ng-if="$ctrl.imp.imp_dict_only==='1'">
+                <ul>
+                    <li>
+                        <label class="label1"><span><i class="red">*</i>导入任务并发数</span>
+                            <input type="text" class="ibox" ng-model="$ctrl.imp.imp_simu" maxlength="5" style="margin-left: -9px;" gl-num></label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_rebuild_tab">重建目标表</label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_backup_file">保留数据文件</label>
+                    </li>
+                    <li>
+                        <label class="label1"><i class="red">*</i><input type="checkbox" ng-model="$ctrl.imp.imp_rebuild_object">重建对象</label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_rebuild_ind">重建索引</label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_truncate_tab">清空目标表</label>
+                        <label class="label4"><input type="checkbox" ng-model="$ctrl.imp.imp_use_tabs_map">表空间映射</label>
+                        <a href="javascript:void(0);" ng-click="$ctrl.editTableSpace()" class="fa fa-edit" ng-cloak="" ng-if="$ctrl.imp.imp_use_tabs_map"></a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-cloak="" ng-if="$ctrl.isOracle">
+                <div class="full-syc-title">
+                    <label class="input-label">选择导入方式
+                        <select ng-model="$ctrl.imp.imp_ora_op">
+                            <option value="1">以DP方式装载</option>
+                            <option value="0">以非DP方式装载</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="full-syc-body1">
+                    <ul>
+                        <li>
+                            <label class="label3"><input type="checkbox" ng-model="$ctrl.imp.imp_write_log">导入时记录redo日志（异构不支持）</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 full-syc-foot">
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveImport()">确认</button>
+            </div>
+            <div class="checkbox"></div>
+        </div>
+    </div>
+</div>
+<!--详情页-->
+<script type="text/ng-template" id="tableSpaceModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">表空间映射编辑</h3>
+    </div>
+    <div class="modal-body">
+        <div class="import-table-space-modal">
+            <table>
+                <colgroup>
+                    <col style="width: 40%">
+                    <col style="width: 60%">
+                </colgroup>
+                <tr>
+                    <td>表空间名</td>
+                    <td>表空间映射名</td>
+                </tr>
+                <tr ng-repeat="item in $ct.tableSpaces track by $index">
+                    <td ng-bind="item.name"></td>
+                    <td><input type="text" ng-model="item.map_name" maxlength="100"></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.tableSpaces.length===0">
+                    <td colspan="2" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">关闭</button>
+        <button class="btn btn-primary btn-sm" type="button" ng-click="$ct.save()">保存</button>
+    </div>
+</script>

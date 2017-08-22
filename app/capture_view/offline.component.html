@@ -1,0 +1,56 @@
+<form name="mac" novalidate>
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title" ng-bind="::$ctrl.title"></h3>
+</div>
+<div class="modal-body">
+    <div class="capture-offline-model">
+            <div class="row">
+                <div class="col-md-12" ng-cloak="" ng-show="mac.lxServerIp.$dirty && mac.lxServerIp.$invalid">
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxServerIp.$error.required">服务器IP地址不能为空！</div>
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxServerIp.$error.pattern">服务器IP地址不合法！</div>
+                </div>
+                <div class="col-md-4 label-title">服务器IP地址：</div>
+                <div class="col-md-8 label-content">
+                    <input type="text" class="form-control" ng-model="$ctrl.logFx.db_ip" name="lxServerIp" placeholder="127.0.0.1" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required maxlength="30">
+                </div>
+                <div class="col-md-12" ng-cloak="" ng-show="mac.lxServiceName.$dirty && mac.lxServiceName.$invalid">
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxServiceName.$error.required">Service名称不能为空！</div>
+                </div>
+                <div class="col-md-4 label-title">Service名称：</div>
+                <div class="col-md-8 label-content">
+                    <input type="text" class="form-control" ng-model="$ctrl.logFx.db_id" name="lxServiceName" required maxlength="100">
+                </div>
+                <div class="col-md-12" ng-cloak="" ng-show="mac.lxPort.$dirty && mac.lxPort.$invalid">
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxPort.$error.required">端口不能为空！</div>
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxPort.$error.pattern">端口格式不合法！</div>
+                </div>
+                <div class="col-md-4 label-title">端口：</div>
+                <div class="col-md-8 label-content">
+                    <input type="text" class="form-control" ng-model="$ctrl.logFx.db_port" name="lxPort" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required maxlength="10">
+                </div>
+                <div class="col-md-12" ng-cloak="" ng-show="mac.lxUsername.$dirty && mac.lxUsername.$invalid">
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxUsername.$error.required">用户名不能为空！</div>
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxUsername.$error.maxlength">用户名长度不超过60个字符！</div>
+                </div>
+                <div class="col-md-4 label-title">用户名：</div>
+                <div class="col-md-8 label-content">
+                    <input type="text" class="form-control" ng-model="$ctrl.logFx.db_user" name="lxUsername" ng-maxlength="60" required>
+                </div>
+                <div class="col-md-12" ng-cloak="" ng-show="mac.lxPassword.$dirty && mac.lxPassword.$invalid">
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxPassword.$error.required">密码不能为空！</div>
+                    <div class="alert alert-danger" ng-cloak="" ng-show="mac.lxPassword.$error.maxlength">密码长度不超过60个字符！</div>
+                </div>
+                <div class="col-md-4 label-title">密码：</div>
+                <div class="col-md-8 label-content">
+                    <input type="password" class="form-control" ng-model="$ctrl.logFx.db_password" name="lxPassword" ng-maxlength="60" required>
+                </div>
+            </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning btn-sm" type="button" ng-click="$ctrl.cancel()">取消</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-disabled="mac.$invalid" ng-click="$ctrl.ok()">保存</button>
+</div>
+</form>

@@ -1,0 +1,151 @@
+<!--database配置界面-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span>
+    </button>
+    <h3 class="modal-title" id="modal-title">数据库配置</h3>
+</div>
+<form name="etlDb" novalidate>
+<div class="modal-body" id="modal-body">
+<div class="row etl-db-modal">
+
+    <table class="table">
+        <tr>
+            <td>
+                <div class="col-sm-12">
+                    <div class="alert alert-info">
+                        <i class="fa fa-info"></i> 温馨提醒：保存数据库信息之前，请先测试数据库连接！
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    名称：
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="db_name" ng-model="$ctrl.model.db_name" maxlength="30" required ng-pattern="/^[a-zA-Z]\w{0,29}$/">
+                </div>
+                <div class="col-sm-12" ng-cloak="" ng-show="etlDb.db_name.$dirty && etlDb.db_name.$invalid">
+                    <div class="alert alert-danger" ng-show="etlDb.db_name.$error.required">
+                        名称不能为空！
+                    </div>
+                    <div class="alert alert-danger" ng-show="etlDb.db_name.$error.pattern">
+                        名称只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过30位！
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    数据库类型：
+                </div>
+                <div class="col-sm-9">
+                    <select class="form-control" ng-model="$ctrl.model.db_type" ng-options="item for item in $ctrl.dbs"></select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    服务器IP地址：
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" name="db_ip" class="form-control" ng-model="$ctrl.model.db_ip" ng-model-options="{debounce: 500}" placeholder="127.0.0.1"
+                           ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required>
+                </div>
+                <div class="col-sm-12" ng-cloak="" ng-show="etlDb.db_ip.$dirty && etlDb.db_ip.$invalid">
+                    <div class="alert alert-danger" ng-show="etlDb.db_ip.$error.required">
+                        服务器IP地址不能为空！
+                    </div>
+                    <div class="alert alert-danger" ng-show="etlDb.db_ip.$error.pattern">
+                        服务器IP地址格式不合法！
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    服务器端口：
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" name="db_port" class="form-control" ng-model="$ctrl.model.db_port" ng-model-options="{debounce: 200}"
+                           ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required>
+                </div>
+                <div class="col-sm-12" ng-cloak="" ng-show="etlDb.db_port.$dirty && etlDb.db_port.$invalid">
+                    <div class="alert alert-danger" ng-show="etlDb.db_port.$error.required">
+                        服务器端口不能为空！
+                    </div>
+                    <div class="alert alert-danger" ng-show="etlDb.db_port.$error.pattern">
+                        服务器端口格式不合法！
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    Service名称：
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="db_id" ng-model="$ctrl.model.db_id" ng-pattern="/^[a-zA-Z]\w{0,29}$/" required maxlength="30">
+                </div>
+                <div class="col-sm-12" ng-cloak="" ng-show="etlDb.db_id.$dirty && etlDb.db_id.$invalid">
+                    <div class="alert alert-danger" ng-show="etlDb.db_id.$error.required">
+                        Service名称不能为空！
+                    </div>
+                    <div class="alert alert-danger" ng-show="etlDb.db_id.$error.pattern">
+                        Service名称只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过30位！
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    用户名：
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="db_user" ng-model="$ctrl.model.db_user" ng-maxlength="30" required maxlength="30">
+                </div>
+                <div class="col-sm-12" ng-cloak="" ng-show="etlDb.db_user.$dirty && etlDb.db_user.$invalid">
+                    <div class="alert alert-danger" ng-show="etlDb.db_user.$error.required">
+                        用户名不能为空！
+                    </div>
+                    <div class="alert alert-danger" ng-show="etlDb.db_user.$error.maxlength">
+                        用户名长度不能超过30位！
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-3">
+                    密码：
+                </div>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" name="db_passoword" ng-model="$ctrl.model.db_password" required maxlength="60">
+                </div>
+                <div class="col-sm-12" ng-cloak="" ng-show="etlDb.db_passoword.$dirty && etlDb.db_passoword.$invalid">
+                    <div class="alert alert-danger" ng-show="etlDb.db_passoword.$error.required">
+                        密码不能为空！
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+<div class="modal-footer">
+    <div class="pull-left">
+        <button class="btn btn-info btn-sm" type="button" ng-click="$ctrl.testDbConnect()" ng-disabled="formQu.$invalid || $ctrl.isTest">测试数据库连接</button>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveDbInfo()" ng-disabled="formQu.$invalid || $ctrl.notPass">保存</button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+</form>

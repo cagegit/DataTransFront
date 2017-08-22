@@ -1,0 +1,625 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Cp_cpsx"></div><!--Capture属性-->
+        <div class="panel-body">
+            <div class="capture-property-name cap-form-tip remove-border clearfix" ng-cloak="" ng-show="$ctrl.real.com_id.length>0">
+                <div class="col-md-3">
+                    <label class="text-info"><span class="red"></span>Capture ID：</label>
+                </div>
+                <div class="col-md-8 clearfix">
+                    <span class="ci-label" style="line-height: 30px;" ng-bind="$ctrl.real.com_id" ng-class="{'accord-pre':$ctrl.params.capId}"></span>
+                    <p ng-cloak ng-show="$ctrl.params.capId"  ng-class="{'accord-next':$ctrl.params.capId}" translate-once="Cp_wybs"></p><!--Capture组件唯一标示-->
+                </div>
+                <div class="col-md-1">
+                    <span ng-click="$ctrl.params.capId=!$ctrl.params.capId" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.capId,'glyphicon-question-sign':!$ctrl.params.capId}"></span>
+                </div>
+            </div>
+            <div class="capture-property-name cap-form-tip clearfix remove-border">
+                <div class="col-md-3">
+                    <label class="text-info"><span class="red">*</span>{{'Cp_cpmc' | translate}}</label><!--Capture 名称：-->
+                </div>
+                <div class="col-md-8 clearfix">
+                    <span class="ci-label" style="line-height: 30px;" ng-bind="$ctrl.property.captureName" ng-class="{'accord-pre':$ctrl.params.captureName}"></span>
+                    <p ng-cloak ng-show="$ctrl.params.captureName"  ng-class="{'accord-next':$ctrl.params.captureName}" translate-once="Cp_mcsm"></p><!--Capture 名称说明-->
+                </div>
+                <div class="col-md-1">
+                    <span ng-click="$ctrl.params.captureName=!$ctrl.params.captureName" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.captureName,'glyphicon-question-sign':!$ctrl.params.captureName}"></span>
+                </div>
+            </div>
+            <div class="panel panel-default col-md-5 capture-selt">
+                <div class="panel-heading inner-paner" translate-once="Cp_wxlb"></div><!--未选列表-->
+                <div class="panel-body inner-paner">
+                    <select  name="unselect_user" multiple  class="selt-ul"  ng-model="$ctrl.data.unselModel" >
+                        <option class="list-group-item" value="{{item}}" ng-repeat="item in $ctrl.data.unselList track by $index">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 capture-selt">
+                <div class="vertical-center">
+                    <button type="button" class="btn btn-default center-block" ng-bind="$ctrl.data.left"></button>
+                    <button type="button" class="btn btn-default center-block push_select" ng-bind="$ctrl.data.right"></button>
+                </div>
+            </div>
+            <div class="panel panel-default col-md-5 capture-selt">
+                <div class="panel-heading inner-paner" translate-once="Cp_yxlb"></div><!--已选列表-->
+                <div class="panel-body inner-paner">
+                    <select name="select_user" multiple class="selt-ul"  ng-model="$ctrl.data.selModel">
+                        <option class="list-group-item"  value="{{item}}" ng-repeat="item in $ctrl.data.selList track by $index">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row rac-info-panel" ng-cloak="" ng-show="$ctrl.racs.length>0">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" translate-once="Cp_ykrac"></div><!--源库RAC信息-->
+                        <div class="panel-body">
+                            <div class="rac-info-body">
+                                <table class="table table-bordered">
+                                    <colgroup>
+                                        <col style="width: 10%">
+                                        <col style="width: 10%">
+                                        <col style="width: 20%">
+                                        <col style="width: 15%">
+                                        <col style="width: 10%">
+                                        <col style="width: 25%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>Thread</th><th>Instance Name</th><th>IP</th><th>PORT</th><th>ENABLE</th><th>PATH</th>
+                                    </tr>
+                                    <tr ng-repeat="item in $ctrl.racs track by $index">
+                                        <td ng-bind="item.thread"></td>
+                                        <td ng-bind="item.name"></td>
+                                        <td ng-bind="item.ip"></td>
+                                        <td ng-bind="item.port"></td>
+                                        <td ng-bind="item.enable"></td>
+                                        <td ng-bind="item.path"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <uib-accordion close-others="oneAtATime">
+                <div  uib-accordion-group class="panel panel-default" style="margin-top:10px;margin-bottom: 0 !important;" is-open="$ctrl.data.superConfig">
+                    <uib-accordion-heading>
+                        {{'Cp_gjxx' | translate}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': $ctrl.data.superConfig, 'glyphicon-chevron-down': !$ctrl.data.superConfig}"></i>
+                    </uib-accordion-heading><!--高级选项-->
+                    <div class="panel-body" >
+                        <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbConf.nowDB==='oracle'">
+                            <!--Capture字符集-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">Capture字符集：</label></div><!--Capture字符集：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.nls_lang" ng-class="{'accord-pre':$ctrl.params.zfj}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zfj}" ng-show="$ctrl.params.zfj" ng-cloak="">Capture字符集说明</p><!--Capture字符集说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zfj=!$ctrl.params.zfj" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zfj,'glyphicon-question-sign':!$ctrl.params.zfj}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--抓取日志间隔-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.capture_interval+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.zqjg}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_xtjg"></label><!--Capture 心跳间隔：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.capture_heartbeat+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.xtjg}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.xtjg" ng-class="{'accord-next':$ctrl.params.xtjg}"  translate-once="Cp_xtjgsm"></p><!--Capture 心跳间隔只能设置在300-600s之间-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.xtjg=!$ctrl.params.xtjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.xtjg,'glyphicon-question-sign':!$ctrl.params.xtjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_fxcqjg"></label><!--分析重启间隔：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.logminer_restart_time+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.cqjg}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.cqjg"  ng-class="{'accord-next':$ctrl.params.cqjg}" translate-once="Cp_fxjgzn"></p><!--分析重启间隔只能在300-3600s之间-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.cqjg=!$ctrl.params.cqjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cqjg,'glyphicon-question-sign':!$ctrl.params.cqjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--预计scn查找时间-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">预计scn查找时间：</label></div><!--预计scn查找时间：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.scn_evaluate_time+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.scnxx}">1</span>
+                                            <p  ng-class="{'accord-next':$ctrl.params.scnxx}" ng-show="$ctrl.params.scnxx" ng-cloak="">预计scn查找时间的说明</p><!--预计scn查找时间的说明-->
+                                        </div>
+                                        <div  class="col-md-1">
+                                            <span ng-click="$ctrl.params.scnxx=!$ctrl.params.scnxx" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.scnxx,'glyphicon-question-sign':!$ctrl.params.scnxx}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--回查scn上限-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">回查scn上限：</label></div><!--回查scn上限：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.back_scn" ng-class="{'accord-pre':$ctrl.params.racscn}">1</span>
+                                            <p  ng-class="{'accord-next':$ctrl.params.racscn}" ng-show="$ctrl.params.racscn" ng-cloak="">回查scn上限的说明</p><!--回查scn上限的说明-->
+                                        </div>
+                                        <div  class="col-md-1">
+                                            <span ng-click="$ctrl.params.racscn=!$ctrl.params.racscn" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.racscn,'glyphicon-question-sign':!$ctrl.params.racscn}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_swcdx"></label><!--事务槽大小：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.transaction_slot_size+'K'" ng-class="{'accord-pre':$ctrl.params.swc}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.swc"  ng-class="{'accord-next':$ctrl.params.swc}" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.swc=!$ctrl.params.swc" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swc,'glyphicon-question-sign':!$ctrl.params.swc}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_swczds"></label><!--事务槽最大数：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.max_transaction_slot" ng-class="{'accord-pre':$ctrl.params.swczd}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.swczd"  ng-class="{'accord-next':$ctrl.params.swczd}" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.swczd=!$ctrl.params.swczd" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swczd,'glyphicon-question-sign':!$ctrl.params.swczd}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_ncdldx"></label><!--内存队列大小：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.internal_queue_size+'M'" ng-class="{'accord-pre':$ctrl.params.ncdl}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.ncdl"  ng-class="{'accord-next':$ctrl.params.ncdl}" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.ncdl=!$ctrl.params.ncdl" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ncdl,'glyphicon-question-sign':!$ctrl.params.ncdl}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_bqzlb"></label><!--不抓取lob字段：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label"  ng-bind="$ctrl.property.lob_skip==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.lobzd}">no</span>
+                                            <p ng-cloak ng-show="$ctrl.params.lobzd"  ng-class="{'accord-next':$ctrl.params.lobzd}" translate-once="Cp_lbxxsm"></p><!--不抓取lob字段的下限的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.lobzd=!$ctrl.params.lobzd" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.lobzd,'glyphicon-question-sign':!$ctrl.params.lobzd}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--抓取Grant DDL-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取Grant DDL：</label></div><!--抓取Grant DDL：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.capture_grant==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.skipGrant}">no</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.skipGrant}" ng-show="$ctrl.params.skipGrant" ng-cloak="">是否抓取grant DDL</p><!--是否抓取grant DDL-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.skipGrant=!$ctrl.params.skipGrant" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.skipGrant,'glyphicon-question-sign':!$ctrl.params.skipGrant}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--全部列更新-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">全部列更新：</label></div><!--全部列更新：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.full_column_update==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.fullColUpdate}">no</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.fullColUpdate}" ng-show="$ctrl.params.fullColUpdate" ng-cloak="">对于update delete语句是否设置全部列信息</p><!--对于update delete语句是否设置全部列信息-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.fullColUpdate=!$ctrl.params.fullColUpdate" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.fullColUpdate,'glyphicon-question-sign':!$ctrl.params.fullColUpdate}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--使用在线字典-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">使用在线字典：</label></div><!--使用在线字典：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.use_online_dict==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.onLine}">no</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.onLine}" ng-show="$ctrl.params.onLine" ng-cloak="">使用在线字典的说明</p><!--使用在线字典的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.onLine=!$ctrl.params.onLine" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.onLine,'glyphicon-question-sign':!$ctrl.params.onLine}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--并发-->
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">并发：</label></div><!--并发：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.concurrent==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.bingf}">no</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.bingf}" ng-show="$ctrl.params.bingf" ng-cloak="">并发的说明</p><!--并发的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.bingf=!$ctrl.params.bingf" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bingf,'glyphicon-question-sign':!$ctrl.params.bingf}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--并发个数-->
+                            <tr ng-cloak="" ng-show="$ctrl.property.concurrent==='yes'">
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">并发个数：</label></div><!--并发个数：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.parallel" ng-class="{'accord-pre':$ctrl.params.bfgs}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.bfgs}" ng-show="$ctrl.params.bfgs" ng-cloak="">并发个数的说明</p><!--并发个数的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.bfgs=!$ctrl.params.bfgs" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bfgs,'glyphicon-question-sign':!$ctrl.params.bfgs}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--sqlserver高级选项配置-->
+                        <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbConf.nowDB==='sqlserver'">
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.capture_interval+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.zqjg}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">Checkpoint间隔：</label></div><!--Checkpoint间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.checkpoint_interval+$ctrl.data.hour" ng-class="{'accord-pre':$ctrl.params.cpjg}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.cpjg}" ng-show="$ctrl.params.cpjg" ng-cloak="">Checkpoint间隔说明</p><!--Checkpoint间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.cpjg=!$ctrl.params.cpjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cpjg,'glyphicon-question-sign':!$ctrl.params.cpjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">Snapshot间隔：</label></div><!--Checkpoint间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.snapshot_interval+$ctrl.data.hour" ng-class="{'accord-pre':$ctrl.params.ssjg}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.ssjg}" ng-show="$ctrl.params.ssjg" ng-cloak="">Snapshot间隔说明</p><!--Snapshot间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.ssjg=!$ctrl.params.ssjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ssjg,'glyphicon-question-sign':!$ctrl.params.ssjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">fetch重连数据库间隔：</label></div><!--fetch重连数据库间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.fetch_delay_reconnect+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.fccl}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.fccl}" ng-show="$ctrl.params.fccl" ng-cloak="">fetch重连数据库间隔说明</p><!--fetch重连数据库间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.fccl=!$ctrl.params.fccl" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.fccl,'glyphicon-question-sign':!$ctrl.params.fccl}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">补充日志后全表同步：</label></div><!--补充日志后全表同步：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.sync_when_extend_log==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.bcrztb}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.bcrztb}" ng-show="$ctrl.params.bcrztb" ng-cloak="">补充日志后全表同步的说明</p><!--补充日志后全表同步的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.bcrztb=!$ctrl.params.bcrztb" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bcrztb,'glyphicon-question-sign':!$ctrl.params.bcrztb}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">createTable后加补充日志：</label></div><!--createTable后加补充日志：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.extend_log_when_create==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.ctbcrz}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.ctbcrz}" ng-show="$ctrl.params.ctbcrz" ng-cloak="">createTable后加补充日志的说明</p><!--createTable后加补充日志的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.ctbcrz=!$ctrl.params.ctbcrz" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ctbcrz,'glyphicon-question-sign':!$ctrl.params.ctbcrz}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取loader装载数据：</label></div><!--抓取loader装载数据：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.cap_loader_data==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.zqlzz}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqlzz}" ng-show="$ctrl.params.zqlzz" ng-cloak="">抓取loader装载数据的说明</p><!--抓取loader装载数据的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqlzz=!$ctrl.params.zqlzz" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqlzz,'glyphicon-question-sign':!$ctrl.params.zqlzz}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">忽略未更新字段：</label></div><!--忽略未更新字段：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.full_column_update==='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.hlwgx}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.hlwgx}" ng-show="$ctrl.params.hlwgx" ng-cloak="">忽略未更新字段的说明</p><!--忽略未更新字段的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.hlwgx=!$ctrl.params.hlwgx" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.hlwgx,'glyphicon-question-sign':!$ctrl.params.hlwgx}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--db2高级选项配置-->
+                        <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbConf.nowDB==='db2'">
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.capture_interval+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.zqjg}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_swcdx"></label><!--事务槽大小：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.transaction_slot_size" ng-class="{'accord-pre':$ctrl.params.swc}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.swc"  ng-class="{'accord-next':$ctrl.params.swc}" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.swc=!$ctrl.params.swc" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swc,'glyphicon-question-sign':!$ctrl.params.swc}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_swczds"></label><!--事务槽最大数：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.max_transaction_slot" ng-class="{'accord-pre':$ctrl.params.swczd}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.swczd"  ng-class="{'accord-next':$ctrl.params.swczd}">事务槽最大数的说明</p><!--事务槽最大数的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.swczd=!$ctrl.params.swczd" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swczd,'glyphicon-question-sign':!$ctrl.params.swczd}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">日志槽大小：</label></div><!--日志槽大小：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.log_slot_size" ng-class="{'accord-pre':$ctrl.params.rzcdx}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.rzcdx}" ng-show="$ctrl.params.rzcdx" ng-cloak="">每个读取日志槽的大小</p><!--每个读取日志槽的大小-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.rzcdx=!$ctrl.params.rzcdx" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.rzcdx,'glyphicon-question-sign':!$ctrl.params.rzcdx}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">最大日志槽个数：</label></div><!--最大日志槽个数：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.max_log_slot" ng-class="{'accord-pre':$ctrl.params.mlsgs}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.mlsgs}" ng-show="$ctrl.params.mlsgs" ng-cloak="">最大日志槽的个数</p><!--最大日志槽的个数-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.mlsgs=!$ctrl.params.mlsgs" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.mlsgs,'glyphicon-question-sign':!$ctrl.params.mlsgs}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">update列命中率：</label></div><!--update列命中率：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.update_ratio" ng-class="{'accord-pre':$ctrl.params.upmzl}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.upmzl}" ng-show="$ctrl.params.upmzl" ng-cloak="">update被改变的列占所有列的最小比例</p><!--update被改变的列占所有列的最小比例-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.upmzl=!$ctrl.params.upmzl" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.upmzl,'glyphicon-question-sign':!$ctrl.params.upmzl}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取loader装载数据：</label></div><!--抓取loader装载数据：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.cap_loader_data=='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.zqlzz}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqlzz}" ng-show="$ctrl.params.zqlzz" ng-cloak="">抓取loader装载数据的说明</p><!--抓取loader装载数据的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqlzz=!$ctrl.params.zqlzz" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqlzz,'glyphicon-question-sign':!$ctrl.params.zqlzz}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">只读取日志：</label></div><!--只读取日志：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.readlog_only" ng-class="{'accord-pre':$ctrl.params.zdqrz}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zdqrz}" ng-show="$ctrl.params.zdqrz" ng-cloak="">只进行日志的读取，不进行日志的分析</p><!--只进行日志的读取，不进行日志的分析-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zdqrz=!$ctrl.params.zdqrz" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zdqrz,'glyphicon-question-sign':!$ctrl.params.zdqrz}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取不带cdc属性的建表语句：</label></div><!--抓取不带cdc属性的建表语句：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.db2_set_cdc" ng-class="{'accord-pre':$ctrl.params.bdcdc}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.bdcdc}" ng-show="$ctrl.params.bdcdc" ng-cloak="">可以抓取不带data capture changes属性的create table语句，并将其设置成data capture changes属性</p>
+                                            <!--可以抓取不带data capture changes属性的create table语句，并将其设置成data capture changes属性-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.bdcdc=!$ctrl.params.bdcdc" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bdcdc,'glyphicon-question-sign':!$ctrl.params.bdcdc}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--mysql高级选项配置-->
+                        <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbConf.nowDB!=='oracle' && $ctrl.dbConf.nowDB!=='sqlserver' && $ctrl.dbConf.nowDB !=='db2'">
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.capture_interval+$ctrl.data.second" ng-class="{'accord-pre':$ctrl.params.zqjg}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3">
+                                            <label class="text-info" translate-once="Cp_swcdx"></label><!--事务槽大小：-->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="ci-label" ng-bind="$ctrl.property.transaction_slot_size+'K'" ng-class="{'accord-pre':$ctrl.params.swc}">1</span>
+                                            <p ng-cloak ng-show="$ctrl.params.swc"  ng-class="{'accord-next':$ctrl.params.swc}" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.swc=!$ctrl.params.swc" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swc,'glyphicon-question-sign':!$ctrl.params.swc}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row cap-form-tip">
+                                        <div class="col-md-3"><label class="text-info">抓取loader装载数据：</label></div><!--抓取loader装载数据：-->
+                                        <div class="col-md-8 clearfix">
+                                            <span class="ci-label" ng-bind="$ctrl.property.cap_loader_data=='yes'?$ctrl.data.yes:$ctrl.data.no" ng-class="{'accord-pre':$ctrl.params.zqlzz}">1</span>
+                                            <p ng-class="{'accord-next':$ctrl.params.zqlzz}" ng-show="$ctrl.params.zqlzz" ng-cloak="">抓取loader装载数据的说明</p><!--抓取loader装载数据的说明-->
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span ng-click="$ctrl.params.zqlzz=!$ctrl.params.zqlzz" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqlzz,'glyphicon-question-sign':!$ctrl.params.zqlzz}"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+    </div>
+</div>

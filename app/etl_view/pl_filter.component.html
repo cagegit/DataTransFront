@@ -1,0 +1,82 @@
+<!--批量过滤界面-->
+<div class="etl-pl-rule">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="etl-pl-head">
+                <div class="etl-pl-head1">
+                    <select ng-model="$ctrl.filter_way" ng-change="$ctrl.changeRuleType()">
+                        <option value="filter">批量过滤</option>
+                        <option value="transform">批量转换</option>
+                    </select>
+                </div>
+                <input type="text" class="etl-pl-head2" placeholder="搜索规则集" ng-model="$ctrl.ruleFilter">
+                <div class="etl-pl-head3">
+                    <ul>
+                        <li ng-repeat="name in ($ctrl.selUsers=($ctrl.users | filter:$ctrl.ruleFilter)) track by $index">
+                            <a href="javascript:void(0);" ng-bind="name" ng-click="$ctrl.getRule(name,$event)"></a>
+                        </li>
+                        <li ng-cloak="" ng-if="$ctrl.users.length===0"><a href="javascript:void(0);">No Data!</a></li>
+                        <li ng-cloak="" ng-if="$ctrl.users.length>0  && $ctrl.selUsers.length===0"><a href="javascript:void(0);">No Result!</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="etl-pl-foot clearfix">
+                <input type="text" placeholder="添加规则集名" maxlength="100" ng-model="$ctrl.newRuleName">
+                <button class="btn btn-default btn-sm" ng-click="$ctrl.addRuleName()" ng-disabled="!$ctrl.newRuleName"  tooltip-placement="bottom" uib-tooltip="{{$ctrl.addBtnTip}}">添加</button>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="etl-pl-right">
+                <div class="etl-pl-right-body" id="etlPlList">
+                    <table class="table table-striped">
+                        <colgroup>
+                            <col style="width: 5%">
+                            <col style="width: 10%">
+                            <col style="width: 20%">
+                            <col style="width: 30%">
+                            <col style="width: 10%">
+                            <col style="width: 15%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <tr>
+                            <td><input type="checkbox" ng-model="$ctrl.ckAll" ng-change="$ctrl.checkAll()"></td>
+                            <td>ID</td>
+                            <td>是否保留</td>
+                            <td>表达式</td>
+                            <td>编辑</td>
+                            <td>变量名</td>
+                            <td>复用</td>
+                        </tr>
+                        <tr ng-repeat="item in $ctrl.rules track by $index">
+                            <td><input type="checkbox" ng-model="item.checked" ng-change="$ctrl.checkOne(item)" class="etl-pl-item"></td>
+                            <td ng-bind="item.id"></td>
+                            <td><label><input type="radio" value="yes" ng-model="item.resered">yes</label><label><input type="radio" value="no" ng-model="item.resered">no</label></td>
+                            <td><code ng-bind="item.value"></code></td>
+                            <td><a href="javascript:void(0);" class="btn fa fa-edit pl-edit" ng-click="$ctrl.editExpression(item)"></a></td>
+                            <td><input type="text" style="width: 100%" maxlength="30" ng-model="item.coder" ng-change="item.coder?item.checked=true:item.checked=false"></td>
+                            <td><a href="javascript:void(0);" class="btn fa fa-copy pl-edit" ng-disabled="$ctrl.isApply" ng-click="$ctrl.applyRuleToOthers(item)"  tooltip-placement="bottom" uib-tooltip="{{$ctrl.applyTips}}"></a></td>
+                        </tr>
+                        <tr ng-cloak="" ng-if="$ctrl.loading">
+                            <td class="etl-center" colspan="7"><a href="javascript:void(0);">Loading......</a></td>
+                        </tr>
+                        <tr ng-cloak="" ng-if="$ctrl.rules.length===0 && !$ctrl.loading">
+                            <td class="etl-center" colspan="7"><a href="javascript:void(0);">No Data!</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="etl-pl-right-foot clearfix">
+                    <div class="pull-left">
+                        <button class="btn btn-info btn-sm" ng-disabled="$ctrl.users.length===0" ng-click="$ctrl.addNewColumn()">添加行</button>
+                        <button class="btn btn-info btn-sm" ng-disabled="$ctrl.users.length===0" ng-click="$ctrl.deleteColumn()">删除行</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 etl-margin-top10">
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.savePlRule()"  ng-disabled="$ctrl.users.length===0">保存</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

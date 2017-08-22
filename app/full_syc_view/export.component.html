@@ -1,0 +1,137 @@
+<!--导出配置界面-->
+<div class="full-syc-modal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="full-syc-title">
+                <label><input type="checkbox" ng-model="$ctrl.exportAll">导出全部数据</label>
+            </div>
+            <div class="full-syc-tree" ng-show="$ctrl.exportAll">
+                <div id="fullSycTree" class="ztree"></div>
+            </div>
+            <div class="full-syc-body" ng-cloak="" ng-show="!$ctrl.exportAll">
+                <div class="full-body-left">
+                    <input type="text" placeholder="Schema名搜索" ng-model="$ctrl.userFilter">
+                    <ul>
+                        <li ng-repeat="item in ($ctrl.schemasList | filter:{name:$ctrl.userFilter}) track by $index" ng-bind="item.name" ng-click="$ctrl.schemaCheck(item,$event)"></li>
+                        <li ng-cloak="" ng-show="$ctrl.schemasList.length===0">No Schema!</li>
+                    </ul>
+                </div>
+                <div class="full-body-right">
+                    <input type="text" class="sel-box" placeholder="表名搜索" ng-model="$ctrl.tableFilter">
+                    <div class="full-body-table">
+                        <table>
+                            <colgroup>
+                                <col style="width: 10%">
+                                <col style="width: 70%">
+                                <col style="width: 20%">
+                            </colgroup>
+                            <tr>
+                                <td><input type="checkbox" ng-model="$ctrl.ckAll" ng-click="$ctrl.checkAll()"></td>
+                                <td>表名</td>
+                                <td>条件编辑</td>
+                            </tr>
+                            <tr ng-repeat="item in ($ctrl.selTables=($ctrl.tables | filter:{name:$ctrl.tableFilter})) track by $index">
+                                <td><input type="checkbox" ng-model="item.checked" ng-click="$ctrl.checkOne(item)"></td>
+                                <td ng-bind="item.name"></td>
+                                <td><a href="javascript:void(0);" class="fa fa-edit" ng-click="$ctrl.editClause(item)"></a></td>
+                            </tr>
+                            <tr ng-cloak="" ng-show="$ctrl.tables.length===0">
+                                <td colspan="3" class="etl-center">No Table!</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="full-syc-title">
+                <select class="title-select" ng-model="$ctrl.exp.exp_dict_only">
+                    <option value="0">导出全部数据</option>
+                    <option value="1">只导出表结构及索引</option>
+                </select>
+            </div>
+            <div class="full-syc-body1" ng-if="$ctrl.exp.exp_dict_only==='0'">
+                <ul ng-if="!$ctrl.isOther" ng-cloak="">
+                    <li>
+                        <label class="label1"><i class="red">*</i><span>导出任务并发数</span>
+                            <input type="text" class="ibox" ng-model="$ctrl.exp.exp_simu" maxlength="5" style="margin-left: -9px;" gl-num></label>
+                        <label class="label2"><input type="checkbox" ng-model="$ctrl.exp.exp_create_table">创建表结构</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>指定SCN号</span><input type="text" class="ibox" ng-model="$ctrl.exp.exp_scn" maxlength="50"></label>
+                        <label class="label2"><input type="checkbox" ng-model="$ctrl.exp.exp_create_index">导出表索引及约束</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>指定表内并发数</span><input type="text" class="ibox" ng-model="$ctrl.exp.exp_tab_simu" maxlength="5" gl-num></label>
+                        <label class="label2"><input type="checkbox" ng-model="$ctrl.exp.exp_string">将数据导出为字符串</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>导出字符集</span>
+                            <select ng-model="$ctrl.exp.exp_nls_lang" ng-options="x for x in $ctrl.charset"></select>
+                        </label>
+                        <label class="label2"><input type="checkbox" ng-model="$ctrl.exp.exp_use_etl">使用etl规则</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>导出文件大小</span><input type="text" class="ibox" ng-model="$ctrl.exp.file_size" maxlength="8" gl-num>M</label>
+                    </li>
+                    <li ng-hide="$ctrl.isOracleToOther" ng-cloak="">
+                        <label class="label3"><i class="red">*</i><input type="checkbox" ng-model="$ctrl.exp.exp_create_object">导出其他对象（序列、触发器、存储过程等）</label>
+                    </li>
+                </ul>
+                <ul ng-if="$ctrl.isOther" ng-cloak="">
+                    <li>
+                        <label class="label1"><i class="red">*</i><span>导出任务并发数</span>
+                            <input type="text" class="ibox" ng-model="$ctrl.exp.exp_simu" maxlength="5" style="margin-left: -9px;" gl-num></label>
+                        <label class="label2"><input type="checkbox" ng-model="$ctrl.exp.exp_create_table">创建表结构</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>导出字符集</span>
+                            <select ng-model="$ctrl.exp.exp_nls_lang" ng-options="x for x in $ctrl.charset"></select>
+                        </label>
+                        <label class="label2"><input type="checkbox" ng-model="$ctrl.exp.exp_create_index">导出表索引及约束</label>
+                    </li>
+                    <li>
+                        <label class="label1"><span>导出文件大小</span><input type="text" class="ibox" ng-model="$ctrl.exp.file_size" maxlength="8" gl-num>K</label>
+                        <label class="label2" style="margin-left: 71px"><input type="checkbox" ng-model="$ctrl.exp.exp_string">将数据导出为字符串</label>
+                    </li>
+                    <li>
+                        <label class="label1"><input type="checkbox" ng-model="$ctrl.exp.exp_use_etl">使用etl规则</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="full-syc-body1" ng-cloak="" ng-if="$ctrl.exp.exp_dict_only==='1'">
+                <ul>
+                    <li>
+                        <label class="label1"><i class="red">*</i><span>导出任务并发数</span><input type="text" class="ibox" ng-model="$ctrl.exp.exp_simu" maxlength="5" style="margin-left: -9px;"  gl-num></label>
+                    </li>
+                    <li>
+                        <label class="label3"><i class="red">*</i><input type="checkbox" ng-model="$ctrl.exp.exp_create_object">导出其他对象（序列、触发器、存储过程等）</label>
+                    </li>
+                    <li>
+                        <label class="label3" style="margin-left: 15px"><input type="checkbox" ng-model="$ctrl.exp.exp_use_etl">使用etl规则</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 full-syc-foot">
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveExportCfg()">确认</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--详情页-->
+<script type="text/ng-template" id="exportRuleModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">导出条件编辑</h3>
+    </div>
+    <div class="modal-body">
+         <div class="export-rule-edit-modal">
+              <textarea maxlength="1000" ng-model="$ct.rule"></textarea>
+         </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">关闭</button>
+        <button class="btn btn-primary btn-sm" type="button" ng-click="$ct.save()">保存</button>
+    </div>
+</script>

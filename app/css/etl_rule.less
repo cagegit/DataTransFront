@@ -1,0 +1,1211 @@
+@ddd-color:#ddd;
+//etl 样式
+.etl-rule{
+  border: 1px solid #ddd;
+  background-color: #fff;
+  position: relative;
+  & > .row{
+    padding: 10px;
+  }
+}
+.etl-rule-left{
+  height: 250px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  .etl-rule-head{
+    padding: 10px;
+    height: 44px;
+    overflow: hidden;
+    & input{
+      width: 100%;
+    }
+  }
+  .etl-rule-body{
+    margin: 0 10px;
+    height: 204px;
+    overflow: auto;
+    //border: 1px solid #ddd;
+    & a{
+      padding-left: 5px;
+      color: #333;
+    }
+    ul li{
+       &.active{
+         a {color: #fff;}
+         background-color: #337ab7 !important;
+       }
+    }
+  }
+  &:nth-child(2){
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+//etl弹窗样式
+.modal-custom, .modal-backdrop {
+  position: absolute !important;
+}
+.etl-rule-modal{
+  li{
+    & >input{
+      margin-right: 60px;
+    }
+    & > label{
+      font-weight: normal;
+      cursor: pointer;
+    }
+    &:first-child > label{
+      font-weight: bold;
+    }
+  }
+}
+#dialog_confirm_map{
+  .modal-content{
+    border-radius: 6px;
+    .modal-header{
+      position: static;
+      z-index: auto;
+    }
+    .modal-body{
+      position: relative;
+      height: auto ;
+      width: auto;
+    }
+  }
+}
+//elt add-rule class
+
+.etl-all-rule{
+  .dropdown-menu li a{
+    border: none;
+    line-height: 1.42857143;
+    padding: 3px 20px;
+  }
+}
+.etl-add-rule-left{
+  border: 1px solid #ddd;
+  padding: 10px;
+  h4{
+    padding: 0 0 10px;
+  }
+  ul{
+    border: 1px solid #ddd;
+    height: 380px;
+    & >li{
+      margin: 0 5px;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      border-bottom: 1px solid lighten(@ddd-color,5%);
+      line-height: 24px;
+    }
+    & >li:hover{
+      background: #F5F5F5;
+    }
+  }
+}
+.etl-add-trans-left{
+  border: 1px solid #ddd;
+  padding: 10px;
+  h4{
+    padding: 0 0 10px;
+  }
+  ul{
+    border: 1px solid #ddd;
+    height: 415px;
+    & >li{
+      margin: 0 5px;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      border-bottom: 1px solid lighten(@ddd-color,5%);
+      line-height: 24px;
+    }
+    & >li:hover{
+      background: #F5F5F5;
+    }
+  }
+}
+.etl-add-rule-right {
+  border: 1px solid #ddd;
+  padding: 10px;
+  h4 {
+    padding: 0 0 10px;
+  }
+  .dropdown {
+    margin-bottom: 10px;
+  }
+  .rule-table-name {
+    margin-left: 15px;
+  }
+}
+@bds-height:300px;
+//表达式编辑
+.rule-bds-edit{
+  padding: 10px;
+  border: 1px solid #ddd;
+  .alert{
+    margin-bottom: 10px;
+  }
+  pre{
+    margin-bottom: 0;
+  }
+  .rule-bds-edit-left{
+    height: @bds-height;
+    width: 30%;
+    float: left;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    h4{
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+    }
+    ul{
+      padding: 0 10px;
+      height: 260px;
+      overflow: auto;
+      & >li{
+        line-height: 24px;
+        border-bottom: 1px solid lighten(@ddd-color,5%);
+        text-overflow: ellipsis;
+        word-break: break-all;
+      }
+      & >li:hover{
+        background: #F5F5F5;
+      }
+    }
+  }
+  .rule-bds-edit-right{
+    height: @bds-height;
+    float: left;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-left: none;
+    //overflow: hidden;
+    h4{
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+    }
+    .work-area{
+      height: 260px;
+      padding: 5px;
+      ul{
+        float: left;
+        display: none;
+        height: 100%;
+        border: 1px solid #ddd;
+        margin-right: 5px;
+        overflow: auto;
+        & >li{
+          line-height: 24px;
+          border-bottom: 1px solid lighten(@ddd-color,5%);
+          text-overflow: ellipsis;
+          word-break: break-all;
+          margin: 0 5px;
+        }
+      }
+      textarea{
+        float: left;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  //字段变量的展示与关闭
+  .work-area-on{
+    .work-area > ul{
+      display:block;
+      width: 24%;
+    }
+    .work-area > textarea{
+      width: 75%;
+    }
+  }
+  .rule-bds-edit-footer{
+    margin-top: 10px;
+  }
+}
+//目标库弹窗样式
+.etl-target-tree{
+  max-height: 200px;overflow: auto;
+}
+.small-modal-panel{
+  top:10%;
+}
+//应用到其他表界面
+.etl-apply-other{
+  max-height: 300px;
+  overflow: hidden;
+  .a-body{
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    .list-ul{
+      li{
+        border-bottom: 1px solid #ddd;
+        height: 30px;
+        display: block;
+      }
+      .list-li-left{
+        width: 10%;
+        padding: 5px;
+        float: left;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        input{
+          margin: 0 !important;
+        }
+      }
+      .list-li-right{
+        width: 90%;
+        border-left: 1px solid #ddd;
+        padding: 5px;
+        margin: 0;
+        float: left;
+        p{
+          text-overflow: ellipsis;
+          word-break: break-all;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+    }
+    .apply-list{
+      height: 200px;
+      overflow: auto;
+      table{
+        width: 100%;
+        tr >td:first-child{
+          width: 10%;
+          border-bottom: 1px solid #ddd;
+          padding: 5px;
+        }
+        tr >td:last-child{
+          border-left:1px solid #ddd;
+          border-bottom: 1px solid #ddd;
+          padding: 5px;
+          line-height: normal;
+          word-break: break-all;
+        }
+      }
+    }
+  }
+}
+.etl-margin-top10{
+  margin-top: 10px;
+}
+.etl-margin-bottom10{
+  margin-bottom: 10px;
+}
+.etl-fix-input{
+  width: 25%;
+}
+.etl-fix-input-left{
+  margin-left: 10px;
+}
+.etl-fix-input-right{
+  margin-right: 10px;
+}
+.etl-modal-body{
+  height: 300px;
+  overflow: auto;
+}
+//记录过滤界面
+.etl-condition-modal{
+  .condition-head{
+    .dropdown{
+      margin:10px auto;
+    }
+  }
+  .condition-body{
+    height: 350px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    .table tr th{
+      border: 1px solid #ddd;
+      &:first-child{
+        border-left: none;
+      }
+      &:last-child{
+        border-right: none;
+      }
+    }
+    .table tr td{
+      padding: 5px 8px;
+      border: 1px solid #ddd;
+      word-break: break-all;
+      &:first-child{
+        border-left: none;
+      }
+      &:last-child{
+        border-right: none;
+      }
+    }
+    label{
+      font-weight: normal;
+    }
+    input{
+      margin: 0;
+      vertical-align: middle;
+    }
+    a{
+      font-size: 2rem;
+    }
+    i{
+      cursor: pointer;
+      font-size: medium;
+    }
+    code{
+      color: #000;
+    }
+  }
+}
+//etl映射列界面
+.etl-map-modal{
+  .map-head{
+    .dropdown{
+      margin:10px auto;
+    }
+    .rule-table-name {
+      margin-left: 15px;
+    }
+  }
+  .map-body{
+    height: 350px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-top:none;
+    .table tr th{
+      border: 1px solid #ddd;
+      &:first-child{
+        border-left: none;
+      }
+      &:last-child{
+        border-right: none;
+      }
+    }
+    .table tr td{
+      padding: 5px 8px;
+      border: 1px solid #ddd;
+      word-break: break-all;
+      &:first-child{
+        border-left: none;
+      }
+      &:last-child{
+        border-right: none;
+      }
+    }
+    label{
+      font-weight: normal;
+    }
+    input{
+      margin: 0;
+      vertical-align: middle;
+    }
+    select{
+      width: 100%;
+    }
+    a{
+      font-size: 2rem;
+    }
+    i{
+      cursor: pointer;
+      font-size: medium;
+    }
+    code{
+      color: #000;
+    }
+  }
+}
+//数据库配置样式
+.etl-db-modal{
+  .alert{
+    margin: 10px auto 0;
+    padding: 10px;
+  }
+}
+//etl表过滤记录过滤
+.etl-bgl{
+  border: 1px solid #ddd;
+  background-color: #fff;
+  position: relative;
+  & > .row{
+    padding: 10px;
+  }
+}
+.etl-bgl-left{
+  height: 500px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  .etl-bgl-head{
+    padding: 10px;
+    height: 44px;
+    overflow: hidden;
+    & input{
+      width: 100%;
+    }
+  }
+  .etl-bgl-head2{
+    padding: 10px;
+    height: 44px;
+    overflow: hidden;
+    .sbox{
+      vertical-align: sub;
+      margin-left: 5px;
+      margin-right: 8%;
+    }
+    .sbox1{
+      vertical-align: sub;
+      margin-left: 10px;
+      margin-right: 6%;
+    }
+    label{
+      font-weight: normal;
+      padding: 0 5px;
+      cursor: pointer;
+      input{
+        vertical-align: sub;
+        margin-right: 5px;
+      }
+    }
+    .flabel{
+      margin-left: 10%;
+    }
+    > input{
+      padding-left: 5px;
+    }
+  }
+  .etl-bgl-body{
+    margin: 0 10px;
+    height: 454px;
+    overflow: auto;
+    //border: 1px solid #ddd;
+    ul li:nth-child(odd){
+      a{
+        background:lighten(@ddd-color,10%);
+      }
+    }
+    ul li a{
+      padding: 5px;
+      //padding-left: 5px;
+      color: #333;
+      display: inline-block;
+      word-break: break-all;
+      width: 100%;
+      &:hover{
+        color: #fff;
+        background-color: #337ab7;
+      }
+    }
+    .active{
+      a{
+        color: #fff;
+        background-color: #337ab7 !important;
+      }
+    }
+    table tr td{
+      padding: 5px;
+      word-break: break-all;
+      input{
+        vertical-align: sub;
+        margin-left: 5px;
+      }
+      a{
+        word-break: break-all;
+      }
+      label{
+        font-weight: normal;
+      }
+    }
+    table tr{
+      &:nth-child(odd){
+        background:lighten(@ddd-color,10%);
+      }
+      &:hover{
+        a{color: #fff;}
+        color: #fff;
+        background-color: #337ab7;
+      }
+    }
+    .czgl-tr:hover{
+      background:lighten(@ddd-color,10%);
+      a{color: #333;}
+      color: #333;
+    }
+    .etl-center{
+      text-align: center;
+    }
+  }
+  &:nth-child(2){
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+@li-hover:#337ab7;
+//批量过滤样式
+@pl-ul-height:400px;
+@pl-table-height:471px;
+.etl-pl-rule{
+  background-color: #fff;
+  padding: 5px;
+  .etl-pl-head{
+    padding: 10px;
+    border: 1px solid #ddd;
+    .etl-pl-head1{
+      padding: 0 0 10px;
+    }
+    .etl-pl-head2{
+      margin-bottom: 5px;
+      width: 100%;
+    }
+    .etl-pl-head3{
+      height: @pl-ul-height;
+      overflow: auto;
+      ul li:nth-child(odd){
+        a{
+          background:lighten(@ddd-color,10%);
+        }
+      }
+      ul li a{
+        padding: 5px;
+        color: #333;
+        display: inline-block;
+        word-break: break-all;
+        width: 100%;
+        &:hover{
+          color: #fff;
+          background-color: #337ab7;
+        }
+      }
+      .active{
+        a{
+          color: #fff;
+          background-color: lighten(@li-hover,10%) !important;
+        }
+      }
+    }
+  }
+  .etl-pl-foot{
+    margin-top: 10px;
+    padding:10px;
+    border: 1px solid #ddd;
+    input{
+      width: 68%;
+      float: left;
+    }
+    button{
+      padding: 2px 10px;
+      float: right;
+    }
+  }
+  .etl-pl-right{
+    border: 1px solid #ddd;
+    padding: 10px;
+    .etl-pl-right-head{
+      label{
+        font-weight: normal;
+        padding-bottom: 5px;
+      }
+      button{
+        padding: 2px 10px;
+        margin-left: 10px;
+      }
+    }
+    .etl-pl-right-body{
+      border: 1px solid #ddd;
+      height: @pl-table-height;
+      overflow: auto;
+      table tr{
+        &:hover{
+          a{color: #fff;}
+          color: #fff;
+          background-color: #337ab7;
+          input{
+            color: #333;
+          }
+        }
+        &:nth-child(1):hover{
+          a{color: #333;}
+          color: #333;
+          background:lighten(@ddd-color,10%);
+        }
+        code{
+          color: #000;
+        }
+        label{
+          font-weight: normal;
+          input{
+            vertical-align: sub;
+          }
+        }
+        & td{
+          padding: 5px;
+          word-break: break-all;
+        }
+      }
+      .pl-edit{
+         font-size: 16px;
+      }
+    }
+    .etl-pl-right-foot{
+      margin-top: 16px;
+      input{
+        width: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      span{
+        padding: 0 5px;
+      }
+    }
+    .etl-center{
+      text-align: center;
+    }
+  }
+}
+@ypz-rule-height:500px;
+.etl-ypz-rule{
+  background-color: #fff;
+  padding: 10px;
+  .etl-ypz-rule-head{
+    border: 1px solid #ddd;
+    padding: 10px;
+    .current-rule{
+      margin-left: 10px;
+      margin-right: 15px;
+    }
+    .current-cz{
+      display: inline-block;
+    }
+    label{
+      font-weight: normal;
+      vertical-align: sub;
+      cursor: pointer;
+    }
+  }
+  .etl-ypz-rule-body{
+    border: 1px solid #ddd;
+    border-top:none;
+    padding: 10px;
+    height: @ypz-rule-height;
+    overflow: auto;
+    ul li:nth-child(odd){
+      a{
+        background:lighten(@ddd-color,10%);
+      }
+    }
+    ul li a{
+      padding: 5px;
+      color: #333;
+      display: inline-block;
+      word-break: break-all;
+      width: 100%;
+      &:hover{
+        color: #fff;
+        background-color: #337ab7;
+      }
+    }
+  }
+}
+.etl-center{
+  text-align: center;
+}
+//批量配置
+@etl-pt-height:400px;
+@etl-pt-ul:440px;
+
+.etl-pt-rule{
+  background-color: #fff;
+  padding: 10px;
+  .etl-pt-name{
+    margin-left: 10px;
+  }
+  .etl-pt-type{
+    margin-bottom: 10px;
+    height: 24px;
+    line-height: 24px;
+  }
+  .etl-pt-left{
+    border: 1px solid #ddd;
+    padding: 10px;
+    > input{
+      margin-bottom: 10px;
+    }
+    .etl-pt-left-body{
+      height:@etl-pt-ul;
+      overflow: auto;
+      border: 1px solid #ddd;
+      ul li{
+        padding: 5px;
+        word-break: break-all;
+        & a{
+          margin-left: 5px;
+          color: #333;
+          word-break: break-all;
+          width: 100%;
+        }
+        & input{
+          vertical-align: sub;
+        }
+        &:nth-child(odd){
+          background:lighten(@ddd-color,10%);
+        }
+        &:hover{
+          a{
+            color: #fff;
+          }
+          color: #fff;
+          background-color: lighten(@li-hover,10%);
+        }
+      }
+      .active{
+        a{
+          color: #fff;
+        }
+        color: #fff;
+        background-color: lighten(@li-hover,10%) !important;
+      }
+    }
+  }
+  .etl-pt-right{
+    border: 1px solid #ddd;
+    padding: 10px;
+    > input{
+      margin-bottom: 10px;
+    }
+    .etl-pt-body{
+      border: 1px solid #ddd;
+      height: @etl-pt-height;
+      overflow: auto;
+      table tr{
+        &:nth-child(1):hover{
+          a{color: #333;}
+          color: #333;
+          background:lighten(@ddd-color,10%);
+        }
+        & td{
+          padding: 5px;
+          word-break: break-all;
+          input{
+            width: 60%;
+          }
+        }
+        &:hover{
+          a{
+            color: #fff;
+          }
+          input{
+            color: #333;
+          }
+          color: #fff;
+          background-color: lighten(@li-hover,10%);
+        }
+      }
+    }
+    .etl-pt-foot{
+      margin-top: 10px;
+    }
+  }
+  .etl-pt-footer{
+    margin-top: 10px;
+  }
+}
+.cfg-rule-detail-modal{
+  height: 300px;
+  overflow: auto;
+  code{
+    color: #000;
+    word-break: break-all;
+  }
+  table td td{
+    word-break: break-all;
+  }
+}
+//全同步样式
+.full-syc-modal{
+  border: 1px solid #ddd;
+  background-color: #fff;
+  position: relative;
+  & > .row{
+    padding: 10px;
+  }
+  .full-syc-title{
+    label{
+      font-weight: normal;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    input{
+      vertical-align: sub;
+      margin-right: 5px;
+      height: 15px;
+      width: 15px;
+    }
+    .title-select{
+      margin: 20px auto;
+    }
+    .input-label{
+      margin-top: 20px;
+      select{
+        vertical-align: sub;
+      }
+    }
+  }
+  .full-syc-tree{
+    border: 1px solid #ddd;
+    height: 200px;
+    overflow: auto;
+    padding: 10px;
+  }
+  .full-syc-body{
+    border: 1px solid #ddd;
+    height: 300px;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .full-syc-sel{
+    margin-bottom: 10px;
+    select{
+      width: 30%;
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+  .full-body-left{
+    width: 30%;
+    float: left;
+    overflow: hidden;
+    height: 100%;
+    input{
+      margin-bottom: 10px;
+    }
+    ul{
+      border: 1px solid #ddd;
+      height: 244px;
+      overflow: auto;
+      &>li{
+        word-break: break-all;
+        padding: 5px;
+        cursor: pointer;
+        &:nth-child(odd){
+          background:lighten(@ddd-color,10%);
+        }
+        &:hover{
+          color: #fff;
+          background-color: lighten(@li-hover,10%);
+        }
+      }
+      li.active{
+        color: #fff;
+        background-color: lighten(@li-hover,10%);
+      }
+    }
+  }
+  .full-body-right{
+    width: 65%;
+    height: 100%;
+    overflow: hidden;
+    float: right;
+    .sel-box{
+      margin-bottom: 10px;
+    }
+    .sel-condition{
+      font-weight: normal;
+      margin-left: 15px;
+      cursor: pointer;
+      input{
+        vertical-align: sub;
+        height: 15px;
+        width: 15px;
+        margin-right: 3px;
+      }
+    }
+    .full-body-table{
+      border: 1px solid #ddd;
+      height: 244px;
+      overflow: auto;
+    }
+    table{
+      width: 100%;
+    }
+    table tr{
+      &:nth-child(odd){
+        background:lighten(@ddd-color,10%);
+      }
+      &:nth-child(1):hover{
+        color: #333;
+        background:lighten(@ddd-color,10%);
+      }
+      & td{
+        padding: 5px;
+        word-break: break-all;
+        input{
+          margin: 0;
+        }
+        a{
+          font-size: 1.6rem;
+          text-decoration: none;
+          padding-left: 2px;
+        }
+      }
+      &:hover{
+        a{
+          color: #fff;
+        }
+        color: #fff;
+        background-color: lighten(@li-hover,10%);
+      }
+    }
+  }
+  .full-syc-body1{
+    border: 1px solid #ddd;
+    overflow: hidden;
+    ul li{
+      margin: 10px auto;
+      .ibox{
+        width: 150px;
+      }
+      .label1{
+        margin-left: 10px;
+      }
+      .label2{
+        margin-left: 80px;
+        cursor: pointer;
+        input{
+          vertical-align: sub;
+          margin-right: 5px;
+          height: 15px;
+          width: 15px;
+        }
+      }
+      .label3{
+        margin-left: 10px;
+        cursor: pointer;
+        input{
+          vertical-align: sub;
+          margin-right: 5px;
+          height: 15px;
+          width: 15px;
+        }
+      }
+      .label4{
+        margin-left: 75px;
+        cursor: pointer;
+        input{
+          vertical-align: sub;
+          margin-right: 5px;
+          height: 15px;
+          width: 15px;
+        }
+      }
+      label{
+        font-weight: normal;
+        span{
+          width: 150px;
+          display: inline-block;
+        }
+      }
+      select{
+        width: 150px;
+        line-height: 24px;
+        height: 24px;
+      }
+    }
+  }
+  .full-syc-foot{
+    margin: 10px auto;
+  }
+}
+.full-syc-model-ss{
+  padding: 10px;
+  .model-ss-head{
+    .ss-top{
+      margin-bottom: 10px;
+      select{
+        width: 200px;
+        height: 24px;
+        line-height: 24px;
+      }
+    }
+    .ss-bottom{
+      hr{
+        margin: 5px auto;
+      }
+    }
+    b{
+      padding-left: 5px;
+    }
+    ul{
+      border: 1px solid #ddd;
+      margin-top: 10px;
+      & li{
+        display: inline-block;
+        padding: 8px;
+        width: 45%;
+      }
+    }
+  }
+  .model-ss-foot{
+    margin-top: 10px;
+    .sel-box{
+      margin: 10px auto;
+    }
+    .btn{
+      padding: 2px 5px;
+      margin-left: 10px;
+    }
+    .full-body-table{
+      border: 1px solid #ddd;
+      height: 244px;
+      overflow: auto;
+    }
+    table{
+      width: 100%;
+    }
+    table tr{
+      &:nth-child(odd){
+        background:lighten(@ddd-color,10%);
+      }
+      &:nth-child(1):hover{
+        color: #333;
+        background:lighten(@ddd-color,10%);
+      }
+      & td{
+        padding: 5px;
+        word-break: break-all;
+        input{
+          margin: 0;
+        }
+        a{
+          font-size: 1.6rem;
+          text-decoration: none;
+          padding-left: 2px;
+        }
+      }
+      &:hover{
+        a{
+          color: #fff;
+        }
+        color: #fff;
+        background-color: lighten(@li-hover,10%);
+      }
+    }
+  }
+}
+.full-syc-footer{
+  margin-bottom: 20px;
+}
+.export-rule-edit-modal{
+   height: 300px;
+   overflow: hidden;
+   textarea{
+     width: 100%;
+     height: 100%;
+   }
+}
+.import-table-space-modal{
+  height: 300px;
+  overflow: auto;
+  table{
+    width: 100%;
+  }
+  table tr{
+    &:nth-child(odd){
+      background:lighten(@ddd-color,10%);
+    }
+    &:nth-child(1):hover{
+      color: #333;
+      background:lighten(@ddd-color,10%);
+    }
+    & td{
+      padding: 5px;
+      word-break: break-all;
+      input{
+        margin: 0;
+      }
+    }
+    &:hover{
+      color: #fff;
+      input{
+        color: #333;
+      }
+      background-color: lighten(@li-hover,10%);
+    }
+  }
+}
+.full-syc-main-loader{
+  margin: 10px auto 10px;
+  label{
+    font-weight: normal;
+  }
+  select{
+    vertical-align: sub;
+    width: 150px;
+  }
+  i{
+    font-size: 1.8rem;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+}
+.capture-offline-model{
+  .alert{
+    margin-bottom: 0;
+  }
+  .label-title{
+    margin-top: 10px;
+    padding-top: 5px;
+  }
+  .label-content{
+    margin: 10px auto;
+  }
+}
+///etl-delete to update
+.etl-operation-delete{
+  height: 300px;
+  overflow: auto;
+}
+.etl-delete-box{
+  height: 360px;border: none;
+}
+.etl-delete-select{
+  border: 0;
+  height: 312px!important;
+  width: 100%;
+  background: #F5F5F5;
+  option{
+    padding: 10px 5px;
+  }
+}
+.etl-delete-div{
+  display: inline-block;
+  margin-left: 20px;
+  button:last-child{
+    margin-left: 10px;
+  }
+}
+.etl-line-height30{
+  line-height: 30px;
+}
+.db-test-danger{
+  color: #a94442;
+}
+//etl delete to update 弹框样式
+.etl-flags-dialog-model{
+  margin-top: 6%;
+  .etl-flags{
+    height: 350px;
+    width: 100%;
+    overflow: auto;
+  }
+}
+.customsLoaderList{
+   padding: 5px;
+   border: 1px solid #ddd;
+   height: 300px;
+  .customsLoaderHead{
+    margin-bottom: 5px;
+  }
+  .customsLoaderTab{
+    width: 100%;
+    height: 230px;
+  }
+}

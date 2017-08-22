@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dip/main2.css">
+    <!--<link rel="stylesheet" type="text/css" href="lib/sweetalert.css">-->
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/new_date/jquery.datetimepicker.min.css">
+</head>
+<body ng-controller="mainController">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- HEADER -->
+<header class="navbar clearfix" id="header">
+    <div class="container" id="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="index.html">
+                <img src="img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive">
+                <!--<strong>R7 DIP</strong>-->
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+            <div class="visible-xs">
+                <a href="#" class="team-status-toggle switcher btn dropdown-toggle">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+            <!-- /TEAM STATUS FOR MOBILE -->
+            <!-- SIDEBAR COLLAPSE -->
+            <!--<div id="sidebar-collapse" class="sidebar-collapse btn">-->
+                <!--<i class="fa fa-bars"-->
+                   <!--data-icon1="fa fa-bars"-->
+                   <!--data-icon2="fa fa-bars" ></i>-->
+            <!--</div>-->
+            <!-- /SIDEBAR COLLAPSE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        <ul class="nav navbar-nav pull-left hidden-xs" id="navbar-left">
+            <li class="dropdown">
+                <a href="index.html" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="fa fa-product-hunt"></i>
+                    <span class="name">项目</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="fa fa-users"></i>
+                    <span class="name">主界面</span>
+                    <!--<i class="fa fa-angle-down"></i>-->
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-cog"></i>
+                    <span class="name">配置中心</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu skins">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-leaf"></i>系统设置</span>
+                    </li>
+                    <li><a href="#" data-skin="default">项目管理</a></li>
+                    <li><a href="#" data-skin="night">操作设置</a></li>
+                    <li><a href="#" data-skin="earth">错误检测系统</a></li>
+                    <li><a href="#" data-skin="utopia">错误发送系统</a></li>
+                    <li><a href="#" data-skin="nature">上传License</a></li>
+                    <li><a href="#" data-skin="graphite">用户管理</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+            <!-- BEGIN NOTIFICATION DROPDOWN -->
+            <!-- BEGIN TODO DROPDOWN -->
+            <li class="dropdown" id="header-tasks">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i>
+                    <span class="badge">1</span>
+                </a>
+                <ul class="dropdown-menu tasks">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-check"></i> 1 个任务运行中</span>
+                    </li>
+                    <li>
+                        <div class="header clearfix">
+                            <div class="tasks-item">
+                                <div class="pull-left">Tserver</div>
+                                <div class="pull-right">
+                                    <i class="fa red fa-stop tasks-item-i" title="停止"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="footer">
+                        <a href="javascript:void(0);">运行中的后台程序<i class="fa fa-arrow-circle-right"></i></a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END TODO DROPDOWN -->
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user" id="header-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="img/avatars/avatar3.jpg" style="visibility: hidden;" />
+                    <span class="username">Admin</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#"><i class="fa fa-eye"></i> Privacy Settings</a></li>
+                    <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+
+</header>
+<!--/HEADER -->
+<!-- MAIN -->
+<div class="container container-make" >
+    <div class="row">
+        <div class="box border border-none">
+            <div class="box-title dipTabs">
+                <h4><i class="fa fa-columns"></i><span class="hidden-inline-mobile" ng-bind="menu.currentGc">主界面</span></h4>
+            </div>
+            <div class="box-body">
+                <div class="tabbable header-tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#box_tab4" data-toggle="tab"><i class="fa fa-home"></i> <span class="hidden-inline-mobile">界面</span></a></li>
+                        <li class=""><a href="#box_tab5" data-toggle="tab"><i class="fa fa-flask"></i> <span class="hidden-inline-mobile">数据源</span></a></li>
+                        <li class=""><a href="#box_tab6" data-toggle="tab"><i class="fa fa-desktop"></i> <span class="hidden-inline-mobile">工具集</span></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="box_tab4">
+                            <!--<p>Content #1</p>-->
+                            <!--<p> There were flying cantaloupes, rainbows and songs of happiness near by, I mean I was a little frightened by the flying fruit but I'll take this any day over prison inmates. </p>-->
+                            <div class="container container-make">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <!--操作-->
+                                        <div class="kj-op kj-btn-group group-ope">
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="新建组" title="" ng-click="createNewGroup()">
+                                                    <span class="km-btn-icon nav-new-bg"></span>
+                                                    <span class="km-btn-caption">新建</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="保存视图" title="" ng-click="saveCanvas()">
+                                                    <span class="km-btn-icon nav-save-bg"></span>
+                                                    <span class="km-btn-caption">保存</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="编辑视图" title="" ng-click="saveCanvas()">
+                                                    <span class="km-btn-icon nav-edit-bg"></span>
+                                                    <span class="km-btn-caption">编辑</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="删除" title="" ng-click="deleteComponent()">
+                                                    <span class="km-btn-icon nav-dele-bg"></span>
+                                                    <span class="km-btn-caption">删除</span>
+                                               </a>
+                                             </div>
+                                            <div class="kj-desc">
+                                                <span>操作</span>
+                                            </div>
+                                        </div>
+                                        <!--插入-->
+                                        <div class="kj-cr kj-btn-group group-insert">
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="插入下一级组件" title="" ng-click="appendNext()">
+                                                    <span class="km-btn-icon grand-bg"></span>
+                                                    <span class="km-btn-caption">插入下一级控件</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="插入同级组件" title="" ng-click="appendSibling()">
+                                                    <span class="km-btn-icon grand-bg"></span>
+                                                    <span class="km-btn-caption">插入同级控件</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="插入同级组件" title="" ng-click="appendFront()">
+                                                    <span class="km-btn-icon grand-bg"></span>
+                                                    <span class="km-btn-caption">插入上一级控件</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span>插入</span>
+                                            </div>
+                                        </div>
+                                        <!--拖拽-->
+                                        <div id="kj-kj" class="kj-kj kj-btn-group group-drag">
+                                            <div class="component-panels component-panels-bg">
+                                                <div class="kj-btn-item tool pd-left5" id="database" type="database">
+                                                    <a href="javascript:void(0);"  class="drag-font" >
+                                                        <span class="km-btn-full database-bg"></span>
+                                                        <p class="text-center">数据库</p>
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="capture" type="capture">
+                                                    <a href="javascript:void(0);"  class="drag-font" >
+                                                        <span class="km-btn-full capture-bg"></span>
+                                                        <p class="text-center">捕捉</p>
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="queue" type="queue">
+                                                    <a href="javascript:void(0);" class="drag-font" >
+                                                        <span class="km-btn-full queue-bg"></span>
+                                                        <p class="text-center">队列</p>
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="loader" type="apply">
+                                                    <a href="javascript:void(0);" class="drag-font" >
+                                                        <span class="km-btn-full loader-bg"></span>
+                                                        <p class="text-center">装载</p>
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-item tool" id="transfer" type="tclient">
+                                                    <a href="javascript:void(0);" class="drag-font" >
+                                                        <span class="km-btn-full server-bg"></span>
+                                                        <p class="text-center">传输组</p>
+                                                    </a>
+                                                </div>
+                                                <div class="comps-slide">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="fa fa-sort-up"></i>
+                                                        <p></p>
+                                                    </a>
+                                                </div>
+                                                <div class="kj-btn-append">
+                                                    <div class="kj-btn-item1 tool pd-left5" id="etl" type="etl">
+                                                        <a href="javascript:void(0);" class="drag-font" >
+                                                            <span class="km-btn-full loader-bg"></span>
+                                                            <p class="text-center">ETL</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="kj-btn-item1 tool" id="sss" type="publisher">
+                                                        <a href="javascript:void(0);" class="drag-font" >
+                                                            <span class="km-btn-full loader-bg"></span>
+                                                            <p class="text-center">pulisher</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span>拖拽</span>
+                                            </div>
+                                        </div>
+                                        <!--操作-->
+                                        <div class="kj-cz kj-btn-group" ng-cloak="ng-cloak" ng-show="com.operation">
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.start}" data-toggle="tooltip" data-placement="bottom" title="启动组件" ng-click="startEngine()">
+                                                    <span class="km-btn-icon fa fa-play" ng-class="{'green':com.start}" ></span>
+                                                    <span class="km-btn-caption">启动</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.scn_start}" data-toggle="tooltip" data-placement="bottom" title="启动组件" ng-click="startScnEngine()">
+                                                    <span class="km-btn-icon fa fa-play" ng-class="{'green':com.scn_start}" ></span>
+                                                    <span class="km-btn-caption">SCN启动</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.restart}" data-toggle="tooltip" data-placement="bottom" title="停止组件" ng-click="stopEngine()">
+                                                    <span class="km-btn-icon fa fa-stop" ng-class="{'red':com.restart}"></span>
+                                                    <span class="km-btn-caption">停止</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" ng-class="{'disabled':!com.stop}" data-toggle="tooltip" data-placement="bottom" title="重启组件" ng-click="restartEngine()">
+                                                    <span class="km-btn-icon fa fa-repeat" ng-class="{'green':com.stop}"></span>
+                                                    <span class="km-btn-caption">重启</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span>操作</span>
+                                            </div>
+                                        </div>
+                                        <!--对齐-->
+                                        <div class="kj-dq kj-btn-group">
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.left}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="左对齐" title="左对齐" ng-click="changeDq(1)">
+                                                    <span class="km-btn-icon left-just-bg"></span>
+                                                    <span class="km-btn-caption">左对齐</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.right}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="右对齐" title="右对齐" ng-click="changeDq(2)">
+                                                    <span class="km-btn-icon right-just-bg"></span>
+                                                    <span class="km-btn-caption">右对齐</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.center}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="居中对齐" title="居中对齐" ng-click="changeDq(3)">
+                                                    <span class="km-btn-icon center-bg"></span>
+                                                    <span class="km-btn-caption">居中</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.justify}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="左右靠拢" title="左右靠拢" ng-click="changeDq(4)">
+                                                    <span class="km-btn-icon aside-bg"></span>
+                                                    <span class="km-btn-caption">靠拢</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.top}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="上对齐" title="上对齐" ng-click="changeDq(5)">
+                                                    <span class="km-btn-icon up-just-bg"></span>
+                                                    <span class="km-btn-caption">上对齐</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item" ng-class="{'active':menu.dq.bottom}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="下对齐" title="下对齐" ng-click="changeDq(6)">
+                                                    <span class="km-btn-icon down-just-bg"></span>
+                                                    <span class="km-btn-caption">下对齐</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span>对齐</span>
+                                            </div>
+                                        </div>
+                                        <!--线条-->
+                                        <div class="kj-xt kj-btn-group group-line">
+                                            <div class="kj-btn-item active">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="折线" title="">
+                                                    <span class="km-btn-icon broken-line"></span>
+                                                    <span class="km-btn-caption">折线</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="直线" title="">
+                                                    <span class="km-btn-icon straight-line"></span>
+                                                    <span class="km-btn-caption">直线</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="曲线" title="曲线">
+                                                    <span class="km-btn-icon curve"></span>
+                                                    <span class="km-btn-caption">曲线</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span>线条</span>
+                                            </div>
+                                        </div>
+                                        <!--模式-->
+                                        <div class="kj-zh kj-btn-group">
+                                            <div class="kj-btn-item" ng-class="{'active':menu.moshi.map}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="视图模式" title="" ng-click="changeMs('map')">
+                                                    <span class="km-btn-icon view-bg"></span>
+                                                    <span class="km-btn-caption">视图</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-btn-item"  ng-class="{'active':!menu.moshi.map}">
+                                                <a href="javascript:void(0);" class="btn" tooltip-placement="bottom" uib-tooltip="列表模式" title="" ng-click="changeMs('list')">
+                                                    <span class="km-btn-icon list-bg"></span>
+                                                    <span class="km-btn-caption">列表</span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc">
+                                                <span>模式</span>
+                                            </div>
+                                        </div>
+                                        <!--控制台-->
+                                        <div class="kj-kz kj-btn-group drag-console group-cons">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="toggleConsole()"  tooltip-placement="bottom" uib-tooltip="控制台" title="" >
+                                                    <span class="km-btn-full conter-bg"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10">控制台</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="box_tab5">
+                            <p>Content #2</p>
+                            <p> There were flying cantaloupes, rainbows and songs of happiness near by, I mean I was a little frightened by the flying fruit but I'll take this any day over prison inmates. I skipped closer and closer to the festivities and when I arrived I seen all my friends I had went to high school with there were holding hands and singing Kumbayah around the camp ice.. Yes It was a giant block of ice situated on three wood logs. </p>
+                        </div>
+                        <div class="tab-pane fade" id="box_tab6">
+                            <div class="container container-make">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--数据同步-->
+                                        <div class="kj-kz kj-btn-group drag-console group-syn">
+                                            <div class="kj-btn-item drag-console" >
+                                                <a href="javascript:void(0);" class="btn" ng-click="full_syc_data()" >
+                                                    <span class="km-btn-full aspect-syn" style="margin-left: 10px"></span>
+                                                    <span class="km-btn-caption"></span>
+                                                </a>
+                                            </div>
+                                            <div class="kj-desc drag-console">
+                                                <span class="text-center magin-top-10">数据同步</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /MAIN-->
+<!-- DRAG BOX-->
+<div id="drag_box_id" class="container container-make drag-container page-header-fixed page-sidebar-closed">
+ <div class="row">
+     <div class="col-md-12">
+         <div class="page-container">
+
+         <div class="page-sidebar navbar-collapse collapse pull-left">
+             <ul class="page-sidebar-menu" id="page-slidebar">
+                 <li>
+                     <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                     <div class="sidebar-toggler hidden-phone"  ng-click="toggleSideBar()"></div>
+                     <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                 </li>
+                 <li>
+                     <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                     <form class="sidebar-search">
+                         <div class="input-box">
+                             <a href="javascript:;" class="remove"></a>
+                             <input type="text" placeholder="Search..." ng-model="q">
+                             <!--<input type="button" class="submit fa fa-search" value=" ">-->
+                             <span class="submit fa fa-search"></span>
+                         </div>
+                     </form>
+                     <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                 </li>
+                 <li >
+                     <a href="javascript:void(0);" >
+                         <i class="fa fa-product-hunt"></i>
+                         <span class="title">阿里巴巴容灾项目</span>
+                         <span class="arrow open"></span>
+                     </a>
+                 </li>
+                 <li ng-class="{'animate-repeat':true,'active':group.active}" ng-repeat="group in groupList | filter:q as results">
+                     <a href="javascript:void(0);" class="group-list-one" ng-click="changeGroup(group)" context-menu="menuOptions">
+                         <i class="fa fa-desktop"></i>
+                         <span class="title">{{group.title}}</span>
+                         <span class="status" ng-class="{'greenyellow glyphicon glyphicon-ok-sign':group.load==='yes','yellow glyphicon glyphicon-warning-sign':group.load==='no'}"></span>
+                         <span ng-class="{'selected':group.active}"></span>
+                     </a>
+                 </li>
+             </ul>
+         </div>
+         <div class="page-content drag-box">
+              <div class="topo-map"  ng-show="menu.moshi.map">
+                   <div class="widget-content">
+                        <!-- DRAG PANEL-->
+                        <div id="flowbox" class="flowbox" ng-click="clearView($event)" ></div>
+                        <div id="consoleUI" ui-view="master"></div>
+                   </div>
+              </div>
+             <div class="widget-normal"  ng-cloak  ng-show="!menu.moshi.map">
+                 <div class="gl-list">
+                     <!-- DRAG LIST -->
+                          <table class="table">
+                              <colgroup>
+                                  <col style="width: 10%">
+                                  <col style="width: 90%">
+                              </colgroup>
+                              <tr>
+                                  <th class="gl-row-first">
+                                      <div class="btn-group">
+                                          <button type="button" class="btn btn-primary gl-row-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">组名<span class="caret"></span></button>
+                                          <ul class="dropdown-menu" role="menu" >
+                                              <li><a href="javascript:void(0);" ng-repeat="item in groupList" ng-bind="item.title" ng-click="changeGroup(item)">group1</a></li>
+                                          </ul>
+                                      </div>
+                                  </th>
+                                  <th colspan="10">
+                                      <table class="table gr-row-table">
+                                          <colgroup>
+                                              <col style="width: 10%">
+                                              <col style="width: 15%">
+                                              <col style="width: 10%">
+                                              <col style="width: 15%">
+                                              <col style="width: 15%">
+                                              <col style="width: 10%">
+                                              <col style="width: 5%">
+                                              <col style="width: 5%">
+                                              <col style="width: 5%">
+                                              <col style="width: 5%">
+                                              <col style="width: 5%">
+                                          </colgroup>
+                                          <tr>
+                                              <th>
+                                                  <div class="btn-group">
+                                                  <button type="button" class="btn btn-primary gl-row-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">组件类型<span class="caret"></span></button>
+                                                      <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="javascript:void(0);">全部</a></li>
+                                                          <li><a href="javascript:void(0);">动态组件</a></li>
+                                                          <li><a href="javascript:void(0);">静态组件</a></li>
+                                                      </ul>
+                                                  </div>
+                                              </th><th>组件名</th>
+                                              <th>状态</th><th>开始时间</th><th>时间戳</th>
+                                              <th>SCN/LSN</th><th>Insert</th><th>Update</th><th>Delete</th><th>DDL</th><th>操作</th>
+                                          </tr>
+                                      </table>
+                                  </th>
+                              </tr>
+                          </table>
+                          <div class="table-str">
+                              <table class="table gl-table-body">
+                                  <colgroup>
+                                      <col style="width: 10%">
+                                      <col style="width: 90%">
+                                  </colgroup>
+                                  <tr>
+                                      <td class="gl-row-first" ng-bind="listView.group.title">group1</td>
+                                      <td colspan="10">
+                                          <table class="table gr-row-table-info">
+                                              <colgroup>
+                                                  <col style="width: 10%">
+                                                  <col style="width: 15%">
+                                                  <col style="width: 10%">
+                                                  <col style="width: 15%">
+                                                  <col style="width: 15%">
+                                                  <col style="width: 10%">
+                                                  <col style="width: 5%">
+                                                  <col style="width: 5%">
+                                                  <col style="width: 5%">
+                                                  <col style="width: 5%">
+                                                  <col style="width: 5%">
+                                              </colgroup>
+                                              <tr ng-repeat="item in listView.mapList">
+                                                  <td ng-bind="item.type">Database</td>
+                                                  <td ng-bind="item.name">db</td>
+                                                  <td ng-bind="item.status">-</td>
+                                                  <td ng-bind="item.st">-</td>
+                                                  <td ng-bind="item.temp">-</td>
+                                                  <td ng-bind="item.scn">-</td>
+                                                  <td ng-bind="item.insert">-</td>
+                                                  <td ng-bind="item.update">-</td>
+                                                  <td ng-bind="item.delete">-</td>
+                                                  <td ng-bind="item.ddl">-</td>
+                                                  <td><a href="javascript:void(0);" class="fa fa-remove"></a></td>
+                                              </tr>
+                                              <tr ng-cloak="ng-cloak" ng-show="listView.mapList.length===0">
+                                                  <td colspan="11" class="con-text-center">No Data!</td>
+                                              </tr>
+                                          </table>
+                                      </td>
+                                  </tr>
+                              </table>
+                          </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     </div>
+ </div>
+</div>
+
+<!-- /DRAG BOX-->
+
+
+<div id="mainDialogUi" ui-view ></div>
+
+<!--DRAG Ctrl-->
+<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<!--<script type="text/javascript" src="lib/sweetalert.min.js"></script>-->
+<script type="text/javascript" src="lib/jquery-ui-1.11.2.min.js"></script>
+<script type="text/javascript" src="lib/jquery.ui-contextmenu.js"></script>
+<script type="text/javascript" src="lib/jquery.ztree.core.min.js"></script>
+<script type="text/javascript" src="lib/jquery.ztree.excheck.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="bower_components/js-base64/base64.min.js"></script>
+<script type="text/javascript" src="lib/jsPlumb-1.7.10-min.js"></script>
+<script type="text/javascript" src="lib/r7PlumbSelectArea.js"></script>
+<script type="text/javascript" src="lib/r7_plumb.js"></script>
+<script type="text/javascript" src="lib/new_date/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //初始化拖拽控件
+        r7Plumb.dragInit();
+        var flowBox = $("#flowbox");
+        flowBox.on("click","div.component",function () {
+            var appElement = document.querySelector('[ng-controller=mainController]');
+            var flag = angular.element(appElement).scope().menu.dialog;
+            angular.element(appElement).scope().menu.dialog = !flag;
+            angular.element(appElement).scope().$apply();
+        });
+    });
+</script>
+<!--/DRAG Ctrl-->
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="bower_components/ui-bootstrap/dist/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="context_menu/context_menu_directive.js"></script>
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="service/dipHttpService.js"></script>
+<script type="text/javascript" src="database_view/db_view.js"></script>
+<script type="text/javascript" src="console_view/console_view.js"></script>
+<script type="text/javascript" src="group_view/group_view.js"></script>
+<script type="text/javascript" src="capture_view/cp_view.js"></script>
+<script type="text/javascript" src="queue_view/queue_view.js"></script>
+<script type="text/javascript" src="loader_view/loader_view.js"></script>
+<script type="text/javascript" src="full_syc_view/full_syc_view.js"></script>
+<script type="text/javascript" src="tclient_view/tclient_view.js"></script>
+<script type="text/javascript" src="tserver_view/tserver_view.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="lib/echarts.js"></script>
+</body>
+</html>

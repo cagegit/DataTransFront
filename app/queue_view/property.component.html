@@ -1,0 +1,212 @@
+<div role="tabpanel" class="tab-pane">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Db_jbsx"></div><!--基本属性-->
+        <form name="form2" autocomplete="off" novalidate>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tr ng-cloak="" ng-show="$ctrl.real.com_id.length>0">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3">
+                                    <label class="text-info" translate-once="Dl_id"></label><!--队列ID：-->
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="ci-label" ng-bind="$ctrl.real.com_id" ng-class="{'accord-pre':$ctrl.params.qpId}">1</span>
+                                    <p ng-cloak ng-show="$ctrl.params.qpId" ng-class="{'accord-next':$ctrl.params.qpId}" translate-once="Dl_wybs"></p><!--队列唯一标示-->
+                                </div>
+                                <div class="col-md-1">
+                                    <span ng-click="$ctrl.params.qpId=!$ctrl.params.qpId" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpId,'glyphicon-question-sign':!$ctrl.params.qpId}"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="form2.queue_name.$dirty && form2.queue_name.$invalid">
+                                    <div class="alert alert-danger" ng-show="form2.queue_name.$error.required" translate-once="Dl_tip1"></div><!--队列名称不能为空！-->
+                                    <div class="alert alert-danger" ng-show="form2.queue_name.$error.pattern" translate-once="Dl_tip2"></div><!--队列名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Dl_mc"></label></div>
+                                <!--队列名称：-->
+                                <div class="col-md-8 clearfix">
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.qpn}" type="text" name="queue_name" ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" ng-model="$ctrl.property.queue_name" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.qpn}" ng-show="$ctrl.params.qpn" ng-cloak="" translate-once="Dl_mcsm"></p><!--队列名称说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.qpn=!$ctrl.params.qpn">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpn,'glyphicon-question-sign':!$ctrl.params.qpn}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="form2.filesize.$dirty && form2.filesize.$invalid">
+                                    <div class="alert alert-danger" ng-show="form2.filesize.$error.required" translate-once="Dl_tip3"></div><!--单个文件大小不能为空！-->
+                                    <div class="alert alert-danger" ng-show="form2.filesize.$error.pattern" translate-once="Dl_tip4"></div><!--单个文件大小只能为大于0的数字且长度不超过5位数！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Dl_dgwjdx"></label></div><!--单个文件大小：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.qpsiz}">
+                                        <input type="text" class="form-control" name="filesize" ng-pattern="/^[1-9][0-9]{0,4}$/" required ng-model="$ctrl.property.file_size"/>
+                                        <span class="input-group-addon">M</span>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.qpsiz}" ng-show="$ctrl.params.qpsiz" ng-cloak="" translate-once="Dl_dgwjsm"></p><!--单个文件大小说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.qpsiz=!$ctrl.params.qpsiz">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpsiz,'glyphicon-question-sign':!$ctrl.params.qpsiz}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="form2.keepTime.$dirty && form2.keepTime.$invalid">
+                                    <div class="alert alert-danger" ng-show="form2.keepTime.$error.required" translate-once="Dl_tip5"></div><!--保留时间不能为空！-->
+                                    <div class="alert alert-danger" ng-show="form2.keepTime.$error.pattern" translate-once="Dl_tip6"></div><!--保留时间只能为大于0的数字,且长度不超过10位-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Dl_blsj"></label></div>
+                                <!--保留时间：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.qpsati}">
+                                        <input type="text" class="form-control" placeholder="5" name="keepTime" ng-pattern="/^[1-9][0-9]{0,9}$/" required ng-model="$ctrl.property.save_hour"/>
+                                        <span class="input-group-addon" translate-once="HOUR"></span><!--小时-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.qpsati}" ng-show="$ctrl.params.qpsati" ng-cloak="" translate-once="Dl_blsjsm"></p><!--保留时间说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.qpsati=!$ctrl.params.qpsati">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpsati,'glyphicon-question-sign':!$ctrl.params.qpsati}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Dl_tjdl"></label></div>
+                                <!--统计队列：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.qpsta}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.charts" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.charts" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.qpsta}" ng-show="$ctrl.params.qpsta" ng-cloak="" translate-once="Dl_tjdlsm"></p><!--统计队列的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.qpsta=!$ctrl.params.qpsta">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.qpsta,'glyphicon-question-sign':!$ctrl.params.qpsta}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix">
+                    <button class="btn btn-sm btn-primary pull-right" ng-disabled="form2.$invalid || $ctrl.isSaving" ng-click="$ctrl.save_queue_info()" translate-once="SAVE"></button><!--保存-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel panel-default" is-open="$ctrl.data.superConfig">
+            <uib-accordion-heading>
+                {{'Dl_sctjsj' | translate}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up':$ctrl.data.superConfig, 'glyphicon-chevron-down':!$ctrl.data.superConfig}"></i>
+            </uib-accordion-heading><!--删除统计数据-->
+            <form name="tj_form" autocomplete="off" novalidate>
+                <div class="panel-body clearfix">
+                    <table class="table table-condensed">
+                        <tr>
+                            <td style="padding-top: 0;border-top: none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert-info"><i class="fa fa-info"></i>{{'Dl_qltj' | translate}}</div><!--清理所选时间段内的数据统计信息，不会对数据库内部数据造成影响！-->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="tj_form.last_time.$invalid">
+                                        <div class="alert alert-danger" ng-show="tj_form.last_time.$error.required" translate-once="Dl_tip7"></div><!--截止时间不能为空！-->
+                                        <div class="alert alert-danger" ng-show="tj_form.last_time.$error.pattern" translate-once="Dl_tip8"></div><!--输入的截止时间不合法！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Dl_qcjzsj"></label></div>
+                                    <!--清除截止时间：-->
+                                    <div class="col-md-8 clearfix">
+                                        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0)">
+                                            <div class="input-group" ng-class="{'accord-pre':$ctrl.tj.deadline}">
+                                                <input class="form-control" name="last_time" ng-model="$ctrl.tj.endTime" ng-pattern="/^(\d{4})\-(\d{2})\-(\d{2}) (\d{2}):(\d{2})$/" required/>
+                                                <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                                            </div>
+                                            <p ng-class="{'accord-next':$ctrl.tj.deadline}" ng-show="$ctrl.tj.deadline" ng-cloak="" translate-once="Dl_jzsjsm"></p><!--截止时间说明-->
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <datetimepicker data-ng-model="$ctrl.tj.endTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown2',modelType:'YYYY-MM-DD HH:mm'}"/>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip clearfix" ng-click="$ctrl.tj.deadline=!$ctrl.tj.deadline">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.tj.deadline,'glyphicon-question-sign':!$ctrl.tj.deadline}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3"><label class="text-info" translate-once="Dl_qczssj"></label></div><!--清除展示数据：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="input-group" ng-class="{'accord-pre':$ctrl.tj.sw}">
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.tj.sws" value="yes"/>{{'YES' |translate}}</label><!--是-->
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.tj.sws" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.tj.sw}" ng-show="$ctrl.tj.sw" ng-cloak="" translate-once="Dl_qcsm"></p><!--清除展示数据的说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.tj.sw=!$ctrl.tj.sw">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.tj.sw,'glyphicon-question-sign':!$ctrl.tj.sw}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3"><label class="text-info" translate-once="Dl_qctj"></label></div><!--清除统计数据：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="input-group" ng-class="{'accord-pre':$ctrl.tj.ct}">
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.tj.charts" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.tj.charts" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.tj.ct}" ng-show="$ctrl.tj.ct" ng-cloak="" translate-once="Dl_qctjsm"></p><!--清除统计数据的说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.tj.ct=!$ctrl.tj.ct">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.tj.ct,'glyphicon-question-sign':!$ctrl.tj.ct}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-footer clearfix" style="margin-bottom: 35px;">
+                    <button class="btn btn-sm btn-primary pull-right" ng-disabled="tj_form.$invalid || $ctrl.isRemoving" ng-click="$ctrl.removeLogData()" translate-once="Dl_qrqc"></button><!--确认清除-->
+                </div>
+            </form>
+        </div>
+    </uib-accordion>
+</div>

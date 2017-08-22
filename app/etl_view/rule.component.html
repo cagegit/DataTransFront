@@ -1,0 +1,91 @@
+<!--
+   etl规则配置界面
+-->
+<div class="etl-rule" id="etl_rule_id">
+    <div class="row" >
+        <div class="col-md-5">
+            <div class="etl-rule-left">
+                <div class="etl-rule-head">
+                    <input type="text" placeholder="用户名搜索" ng-model="$ctrl.u_filter">
+                </div>
+                <div class="etl-rule-body">
+                    <ul>
+                        <li ng-repeat="uname in $ctrl.users | filter:$ctrl.u_filter" ng-class="{'active':$ctrl.current_user===uname}">
+                            <a href="javascript:void(0);" ng-click="$ctrl.showTables(uname)" title="{{uname}}" ng-bind="uname"></a>
+                        </li>
+                        <li ng-cloak="" ng-if="$ctrl.users.length===0"><a href="javascript:void(0);" >No Users!</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="etl-rule-left">
+                <div class="etl-rule-head">
+                    <input type="text" placeholder="表名搜索" ng-model="$ctrl.t_filter">
+                </div>
+                <div class="etl-rule-body">
+                    <ul>
+                        <li ng-repeat="tname in $ctrl.tables | filter:$ctrl.t_filter" ng-class="{'active':$ctrl.current_table===tname}">
+                            <a href="javascript:void(0);" ng-click="$ctrl.getRuleByName(tname)" title="{{tname}}" ng-bind="tname"></a>
+                        </li>
+                        <li ng-cloak="" ng-if="!$ctrl.onLoading && $ctrl.tables.length===0"><a href="javascript:void(0);" >No Tables!</a></li>
+                        <li ng-cloak="" ng-if="$ctrl.onLoading"><a href="javascript:void(0);" >Loading......</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="etl-rule-right">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col style="width: 25%">
+                        <col style="width: 50%">
+                        <col style="width: 25%">
+                    </colgroup>
+                    <tr>
+                        <td colspan="3" ng-bind="$ctrl.current_map"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>序号</strong></td><td><strong>规则</strong></td><td><strong>操作</strong></td>
+                    </tr>
+                    <tr ng-repeat="item in $ctrl.rules track by $index">
+                        <td ng-bind="$index+1"></td>
+                        <td ng-bind="item.title">增加列</td>
+                        <td><a href="javascript:void(0)" style="margin-right: 20px;" ng-click="$ctrl.editRuleInfo(item.name)">编辑</a><a href="javascript:void(0)" ng-click="$ctrl.deleteRules($index)">删除</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-default btn-sm" style="margin-right: 10px" ng-click="$ctrl.showRules()">增加规则</button>
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveEtlTableRules()">保存</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-custom" id="dialog_confirm_map" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="mySmallModalLabel">增加规则</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="etl-rule-modal">
+                        <li><input type="checkbox" id="qx" ng-change="$ctrl.changeCA()" ng-model="$ctrl.ckAll.checked"><label for="qx">全选</label></li>
+                        <li><input type="checkbox" ng-change="$ctrl.sonChange(0)" ng-model="$ctrl.ckSon[0].checked" ng-disabled="$ctrl.ckSon[0].read" class="etl-rule-add-name" id="zjl"><label for="zjl">增加列</label></li>
+                        <li><input type="checkbox" ng-change="$ctrl.sonChange(1)" ng-model="$ctrl.ckSon[1].checked" ng-disabled="$ctrl.ckSon[1].read" class="etl-rule-add-name" id="scl"><label for="scl">删除列</label></li>
+                        <li><input type="checkbox" ng-change="$ctrl.sonChange(2)" ng-model="$ctrl.ckSon[2].checked" ng-disabled="$ctrl.ckSon[2].read" class="etl-rule-add-name" id="jlgl"><label for="jlgl">映射列</label></li>
+                        <li><input type="checkbox" ng-change="$ctrl.sonChange(3)" ng-model="$ctrl.ckSon[3].checked" ng-disabled="$ctrl.ckSon[3].read" class="etl-rule-add-name" id="ysl"><label for="ysl">记录过滤</label></li>
+                        <li><input type="checkbox" ng-change="$ctrl.sonChange(4)" ng-model="$ctrl.ckSon[4].checked" ng-disabled="$ctrl.ckSon[4].read" class="etl-rule-add-name" id="sjb"><label for="sjb">审计表</label></li>
+                        <li><input type="checkbox" ng-change="$ctrl.sonChange(5)" ng-model="$ctrl.ckSon[5].checked" ng-disabled="$ctrl.ckSon[5].read" class="etl-rule-add-name" id="czzh"><label for="czzh">操作转换</label></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm pull-right" ng-click="$ctrl.appendRules()">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Tc_cszj"></div><!--传输组件-->
+        <div class="panel-body" >
+            <table class="table table-condensed">
+                <tr ng-cloak="" ng-show="$ctrl.real.com_id.length>0">
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Tc_zjid"></label><!--组件ID:-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.real.com_id" ng-class="{'accord-pre':$ctrl.params.tcid}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.tcid"  ng-class="{'accord-next':$ctrl.params.tcid}" translate-once="Tc_wybs"></p><!--组件唯一标示-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.tcid=!$ctrl.params.tcid" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.tcid,'glyphicon-question-sign':!$ctrl.params.tcid}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Tc_zjmc"></label><!--Tclient组件名称:-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.component_name" ng-class="{'accord-pre':$ctrl.params.cliModu}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliModu"  ng-class="{'accord-next':$ctrl.params.cliModu}" translate-once="Tc_mcsm"></p><!--Tclient组件名称说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliModu=!$ctrl.params.cliModu" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliModu,'glyphicon-question-sign':!$ctrl.params.cliModu}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Tc_fwqip"></label><!--服务器IP地址：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.ip" ng-class="{'accord-pre':$ctrl.params.cliIpd}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliIpd"  ng-class="{'accord-next':$ctrl.params.cliIpd}" translate-once="Tc_ipsm"></p><!--服务器IP地址说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliIpd=!$ctrl.params.cliIpd" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliIpd,'glyphicon-question-sign':!$ctrl.params.cliIpd}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Tc_dk"></label><!--端口：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.port" ng-class="{'accord-pre':$ctrl.params.cliPor}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliPor"  ng-class="{'accord-next':$ctrl.params.cliPor}" translate-once="Tc_dksm"></p><!--端口说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliPor=!$ctrl.params.cliPor" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliPor,'glyphicon-question-sign':!$ctrl.params.cliPor}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_sjklx"></label></div><!--数据库类型：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.db_type" ng-class="{'accord-pre':$ctrl.params.cliOra}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliOra"  ng-class="{'accord-next':$ctrl.params.cliOra}" translate-once="Tc_sjksm"></p><!--数据库类型说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliOra=!$ctrl.params.cliOra" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliOra,'glyphicon-question-sign':!$ctrl.params.cliOra}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_cszm"></label></div><!--传输组名：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.group_name" ng-class="{'accord-pre':$ctrl.params.cliGrop}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliGrop"  ng-class="{'accord-next':$ctrl.params.cliGrop}" translate-once="Tc_cszmsm"></p><!--传输组名说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliGrop=!$ctrl.params.cliGrop" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliGrop,'glyphicon-question-sign':!$ctrl.params.cliGrop}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_csdlm"></label></div><!--传输队列名：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.queue_name" ng-class="{'accord-pre':$ctrl.params.cliQue}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliQue"  ng-class="{'accord-next':$ctrl.params.cliQue}" translate-once="Tc_dlmsm"></p><!--传输队列名说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliQue=!$ctrl.params.cliQue" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliQue,'glyphicon-question-sign':!$ctrl.params.cliQue}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Tc_tsyhm"></label><!--Tserver用户名：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.user" ng-class="{'accord-pre':$ctrl.params.cliUser}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliUser"  ng-class="{'accord-next':$ctrl.params.cliUser}" translate-once="Tc_yhmsm"></p><!--Tserver用户名说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliUser=!$ctrl.params.cliUser" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliUser,'glyphicon-question-sign':!$ctrl.params.cliUser}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Tc_tsmm"></label><!--Tserver密码:-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.passwd" ng-class="{'accord-pre':$ctrl.params.cliPass}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliPass"  ng-class="{'accord-next':$ctrl.params.cliPass}" translate-once="Tc_tsmmsm"></p><!--Tserver密码说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliPass=!$ctrl.params.cliPass" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliPass,'glyphicon-question-sign':!$ctrl.params.cliPass}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!--<tr>-->
+                <!--<td>-->
+                <!--<div class="row cap-form-tip">-->
+                <!--<div class="col-md-3">-->
+                <!--<label class="text-info">传输包大小:</label>-->
+                <!--</div>-->
+                <!--<div class="col-md-8">-->
+                <!--<span class="ci-label" ng-bind="property.pkg_size + 'kb'" ng-class="{'accord-pre':$ctrl.params.cliPacksize}">1</span>-->
+                <!--<p ng-cloak ng-show="$ctrl.params.cliPacksize"  ng-class="{'accord-next':$ctrl.params.cliPacksize}">传输队列名说明</p>-->
+                <!--</div>-->
+                <!--<div class="col-md-1">-->
+                <!--<span ng-click="$ctrl.params.cliPacksize=!$ctrl.params.cliPacksize" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliPacksize,'glyphicon-question-sign':!$ctrl.params.cliPacksize}"></span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</td>-->
+                <!--</tr>-->
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_ys"></label></div><!--压缩：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.compress" ng-class="{'accord-pre':$ctrl.params.cliCompre}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliCompre"  ng-class="{'accord-next':$ctrl.params.cliCompre}" translate-once="Tc_yssm"></p><!--压缩说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliCompre=!$ctrl.params.cliCompre" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliCompre,'glyphicon-question-sign':!$ctrl.params.cliCompre}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_jm"></label></div><!--加密：-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.encrypt==='yes'?'SM4':'AES'" ng-class="{'accord-pre':$ctrl.params.cliEnc}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.cliEnc"  ng-class="{'accord-next':$ctrl.params.cliEnc}" translate-once="Tc_jmsm"></p><!--加密说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.cliEnc=!$ctrl.params.cliEnc" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliEnc,'glyphicon-question-sign':!$ctrl.params.cliEnc}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

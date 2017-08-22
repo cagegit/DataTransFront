@@ -1,0 +1,134 @@
+<div class="main-console inspector">
+    <div class="inspector-toggle"><i class="fa fa-bars drag-console" style="visibility: hidden;"></i></div>
+    <div class="inspector-body container-fluid">
+        <div class="tabs-container">
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane" ng-cloak="" ng-class="{'active':$ctrl.cons.currentTab==='tab1'}">
+                    <div class="panel panel-default">
+                        <div class="row">
+                            <div class="panel-heading" translate-once="Cs_zjyxzt"></div><!--Capture组件运行状态-->
+                            <div class="panel-body">
+                                <div class="col-md-4">
+                                    <div class="console-cap cap-first-info">
+                                        <h4 translate-once="Cs_jcxx"></h4><!--进程信息-->
+                                        <table class="table">
+                                            <tr>
+                                                <th translate-once="Cs_dqjx"></th><!--当前进程-->
+                                                <th translate-once="Cs_jcmc"></th><!--进程名称-->
+                                                <th translate-once="Cs_jcid"></th><!--进程ID-->
+                                                <th translate-once="Cs_sjk"></th><!--数据库-->
+                                                <th translate-once="Cs_zt"></th><!--状态-->
+                                            </tr>
+                                            <tr ng-repeat="item in $ctrl.data.servers track by $index">
+                                                <td><input type="radio" ng-model="$ctrl.data.currentId" ng-click="$ctrl.getDetail(item)" ng-value="item.pid"/></td>
+                                                <td ng-bind="item.program_name">0</td>
+                                                <td ng-bind="item.pid">0</td>
+                                                <td ng-bind="item.db_name">0</td>
+                                                <td ng-bind="item.status">0</td>
+                                            </tr>
+                                            <tr ng-show="$ctrl.data.servers.length===0">
+                                                <td colspan="5" class="con-text-center" align="center">No Data!</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="console-cap cap-first-info">
+                                        <h4 translate-once="Cs_dkxx"></h4><!--断点信息-->
+                                        <table class="table">
+                                            <tr>
+                                                <td translate-once="Cs_zxwwc"></td><td><input type="text" readonly="readonly" ng-model="$ctrl.data.start_scn"/></td><!--最小未完成事务scn/lsn:-->
+                                            </tr>
+                                            <tr>
+                                                <td translate-once="Cs_zdscn"></td><td><input type="text" readonly="readonly" ng-model="$ctrl.data.complete_scn"/></td><!--最大完成事务scn/lsn:-->
+                                            </tr>
+                                            <tr>
+                                                <td translate-once="Cs_zdwcsw"></td><td><input type="text" readonly="readonly" ng-model="$ctrl.data.complete_xid"/></td><!--最大完成事务ID:-->
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="console-cap-info">
+                                        <uib-tabset active="active">
+                                            <uib-tab index="0" heading="{{'Cs_ssrz' | translate}}" ><!--实时日志-->
+                                                <div class="cap-wrong">
+                                                    <div class="cap-wrong-bar clearfix">
+                                                        <div class="cap-log-title">
+                                                            <p translate-once="Cs_rzmc"></p><span ng-bind="$ctrl.data.fileName"></span><!--日志名称：-->
+                                                        </div>
+                                                        <div class="cap-log-option">
+                                                            <select  ng-model="$ctrl.data.freshWay" ng-change="$ctrl.data.isFresh=!$ctrl.data.isFresh">
+                                                                <option value="1" translate-once="Cs_zdsx"></option><!--自动刷新-->
+                                                                <option value="2" translate-once="Cs_sdsx"></option><!--手动刷新-->
+                                                            </select>
+                                                            <button class="btn btn-primary" ng-class="{'disabled':!$ctrl.data.isFresh}" ng-click="$ctrl.getNewLog()" translate-once="FRESH"></button><!--刷新-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="cap-log-table">
+                                                        <textarea readonly ng-bind="$ctrl.data.logs" scroll-glue="true"></textarea>
+                                                    </div>
+                                                </div>
+                                            </uib-tab>
+                                            <uib-tab index="1" heading="{{'Cs_cwxx' | translate}}"><!--错误信息-->
+                                                <div class="cap-wrong">
+                                                    <div class="cap-wrong-bar clearfix">
+                                                        <input type="text" class="search-box" ng-model="$ctrl.errFilter" translate-once-placeholder="SEARCH"><i class="fa fa-search search-icon"></i><!--搜索-->
+                                                    </div>
+                                                    <table class="table" style="margin-bottom: 0;">
+                                                        <colgroup>
+                                                            <col style="width: 10%">
+                                                            <col style="width: 20%">
+                                                            <col style="width: 10%">
+                                                            <col style="width: 60%">
+                                                        </colgroup>
+                                                        <tr>
+                                                            <th></th><th translate-once="Cs_sj"></th><th>ID</th><th translate-once="Cs_cwxq"></th><!--时间 错误详情-->
+                                                        </tr>
+                                                    </table>
+                                                    <div style="height: 245px;overflow: auto;padding: 0;margin: 0;">
+                                                        <table class="table">
+                                                            <colgroup>
+                                                                <col style="width: 10%;word-break: break-all;">
+                                                                <col style="width: 20%;word-break: break-all;">
+                                                                <col style="width: 10%;word-break: break-all;">
+                                                                <col style="width: 60%;word-break: break-all;">
+                                                            </colgroup>
+                                                            <tr ng-repeat="item in ($ctrl.data.errors | filter:{error_message:$ctrl.errFilter}) track by $index">
+                                                                <td><i class="fa fa-warning yellow"></i></td>
+                                                                <td ng-bind="item.error_time"></td>
+                                                                <td ng-bind="item.error_num"></td>
+                                                                <td ng-bind="item.error_message"></td>
+                                                            </tr>
+                                                            <tr ng-show="$ctrl.data.errors.length===0">
+                                                                <td colspan="4" align="center" class="con-text-center">No Data!</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </uib-tab>
+                                        </uib-tabset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="tab-pane" ng-cloak="" ng-class="{'active':$ctrl.cons.currentTab==='tab2'}">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" translate-once="Cs_lltj"></div><!--流量统计-->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="Capture_chart_id"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li ng-class="{'active':$ctrl.cons.currentTab==='tab1'}"><a class="custom-tab" href="javascript:void(0);" ng-click="$ctrl.showTab(1)" aria-expanded="true" translate-once="Cs_yxzt"></a></li><!--运行状态-->
+            <li ng-class="{'active':$ctrl.cons.currentTab==='tab2'}"><a class="custom-tab" href="javascript:void(0);" ng-click="$ctrl.showTab(2)" aria-expanded="false" translate-once="Cs_xntj"></a></li><!--性能统计-->
+        </ul>
+    </div>
+</div>

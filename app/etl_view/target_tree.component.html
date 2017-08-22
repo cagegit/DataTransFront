@@ -1,0 +1,16 @@
+<!--
+目标库列表树
+-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title" ng-bind="::$ctrl.title"></h3>
+</div>
+<div class="modal-body">
+    <div class="rule-bds-edit etl-target-tree">
+        <div id="etlTargetTree" class="ztree"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning btn-sm" type="button" ng-click="$ctrl.cancel()">取消</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-click="$ctrl.ok()">确定</button>
+</div>

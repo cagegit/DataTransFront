@@ -1,0 +1,227 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading">FTP属性</div><!--FTP属性-->
+        <form name="form2" autocomplete="off" novalidate>
+            <div class="panel-body clearfix">
+                <div class="panel panel-default">
+                    <table class="table table-condensed">
+                        <tr ng-cloak="" ng-if="$ctrl.real.com_id.length>0">
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3">
+                                        <label class="text-info">组件ID：</label><!--组件ID：-->
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="ci-label" ng-bind="$ctrl.real.com_id" ng-init="$ctrl.params.ftp_id=false" ng-class="{'accord-pre':$ctrl.params.ftp_id}">1</span>
+                                        <p ng-cloak ng-show="$ctrl.params.ftp_id" ng-class="{'accord-next':$ctrl.params.ftp_id}">FTP组件唯一标示</p><!--FTP组件唯一标示-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <span ng-click="$ctrl.params.ftp_id=!$ctrl.params.ftp_id" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_id,'glyphicon-question-sign':!$ctrl.params.ftp_id}"></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.ftpName.$dirty && form2.ftpName.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.ftpName.$error.required">FTP组件名称不能为空！</div><!--FTP组件名称不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.ftpName.$error.pattern">FTP组件名称只能包含汉字、数字、字母、下划线，长度不超过20位！</div><!--FTP组件名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">FTP组件名称：</label></div><!--FTP组件名称：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input class="form-control" type="text" name="ftpName" ng-init="$ctrl.params.ftp_name=false" ng-class="{'accord-pre':$ctrl.params.ftp_name}" ng-model="$ctrl.property.component_name" required
+                                               ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_name}" ng-show="$ctrl.params.ftp_name" ng-cloak="">FTP组件名称说明</p><!--FTP组件名称说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_name=!$ctrl.params.ftp_name">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_name,'glyphicon-question-sign':!$ctrl.params.ftp_name}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3"><label class="text-info">传输类型：</label></div><!--传输类型：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="form-group" ng-init="$ctrl.params.ftp_type=false" ng-class="{'accord-pre':$ctrl.params.ftp_type}">
+                                            <select class="form-control" ng-model="$ctrl.property.type">
+                                                <option value="qsend">发送</option>
+                                                <option value="qrecv">接收</option>
+                                            </select>
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_type}" ng-show="$ctrl.params.ftp_type" ng-cloak="">传输类型说明</p><!--传输类型说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_type=!$ctrl.params.ftp_type">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_type,'glyphicon-question-sign':!$ctrl.params.ftp_type}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.serIP.$dirty && form2.serIP.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.serIP.$error.required">服务器IP地址不能为空！</div><!--服务器IP地址不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.serIP.$error.pattern">请输入正确的IP地址</div><!--请输入正确的IP地址-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">服务器IP地址：</label></div><!--服务器IP地址：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input class="form-control" type="text" name="serIP" ng-init="$ctrl.params.ftp_ip=false" ng-class="{'accord-pre':$ctrl.params.ftp_ip}" ng-model="$ctrl.property.ip" placeholder="127.0.0.1"
+                                               ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" ng-model-options="{debounce:200}" required/>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_ip}" ng-show="$ctrl.params.ftp_ip" ng-cloak="">服务器IP地址说明</p><!--服务器IP地址说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_ip=!$ctrl.params.ftp_ip">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_ip,'glyphicon-question-sign':!$ctrl.params.ftp_ip}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.userName.$dirty && form2.userName.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.userName.$error.required">用户名不能为空！</div><!--用户名不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.userName.$error.pattern">用户名只能包含汉字、数字、字母、下划线，长度不超过20位！</div><!--用户名只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">用户名：</label></div><!--用户名：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="userName" ng-init="$ctrl.params.ftp_user=false" ng-class="{'accord-pre':$ctrl.params.ftp_user}" ng-model="$ctrl.property.user_name"
+                                                ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" required/>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_user}" ng-show="$ctrl.params.ftp_user" ng-cloak="">用户名说明</p><!--用户名说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_user=!$ctrl.params.ftp_user">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_user,'glyphicon-question-sign':!$ctrl.params.ftp_user}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.passWord.$dirty && form2.passWord.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.passWord.$error.required">密码不能为空！</div><!--密码不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.passWord.$error.pattern">密码长度为6~20位且不能包含空格！</div><!--密码长度为6~20位且不能包含空格！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">密码：</label></div><!--密码：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="password" name="passWord" ng-init="$ctrl.params.ftp_pwd=false" ng-class="{'accord-pre':$ctrl.params.ftp_pwd}" ng-model="$ctrl.property.passwd"
+                                                ng-pattern="/^\S{6,20}$/" ng-model-options="{debounce:300}" required/>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_pwd}" ng-show="$ctrl.params.ftp_pwd" ng-cloak="">密码说明</p><!--密码说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_pwd=!$ctrl.params.ftp_pwd">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_pwd,'glyphicon-question-sign':!$ctrl.params.ftp_pwd}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.storeTime.$dirty && form2.storeTime.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.storeTime.$error.required">数据保存时间不能为空！</div><!--数据保存时间不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.storeTime.$error.pattern">数据保存时间只能为不小于0的整数！</div><!--数据保存时间只能为不小于0的整数！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">数据保存时间：</label></div><!--数据保存时间：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="input-group" ng-init="$ctrl.params.ftp_time=false" ng-class="{'accord-pre':$ctrl.params.ftp_time}">
+                                            <input class="form-control" type="text" name="storeTime" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.save_time" maxlength="5"/>
+                                            <span class="input-group-addon">天</span>
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_time}" ng-show="$ctrl.params.ftp_time" ng-cloak="">数据保存时间的说明</p><!--数据保存时间的说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_time=!$ctrl.params.ftp_time">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_time,'glyphicon-question-sign':!$ctrl.params.ftp_time}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.asyncJg.$dirty && form2.asyncJg.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.asyncJg.$error.required">同步间隔不能为空！</div><!--同步间隔不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.asyncJg.$error.pattern">同步间隔只能为不小于0的整数！</div><!--同步间隔只能为不小于0的整数！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">同步间隔：</label></div><!--同步间隔：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="input-group" ng-init="$ctrl.params.ftp_jg=false" ng-class="{'accord-pre':$ctrl.params.ftp_jg}">
+                                            <input class="form-control" type="text" name="asyncJg" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.wait" maxlength="5"/>
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_jg}" ng-show="$ctrl.params.ftp_jg" ng-cloak="">同步间隔的说明</p><!--同步间隔的说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_jg=!$ctrl.params.ftp_jg">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_jg,'glyphicon-question-sign':!$ctrl.params.ftp_jg}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.transUrl.$dirty && form2.transUrl.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.transUrl.$error.required">传输路径不能为空！</div><!--传输路径不能为空！-->
+                                        <!--<div class="alert alert-danger" ng-show="form2.gropNa.$error.pattern"></div>&lt;!&ndash;传输组名只能包含汉字、数字、字母、下划线，长度不超过20位！&ndash;&gt;-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">传输路径：</label></div><!--传输路径：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="transUrl" ng-init="$ctrl.params.ftp_url=false" ng-class="{'accord-pre':$ctrl.params.ftp_url}" ng-model="$ctrl.property.ftp_path"
+                                                maxlength="50" required/>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_url}" ng-show="$ctrl.params.ftp_url" ng-cloak="">传输路径的说明</p><!--传输路径的说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_url=!$ctrl.params.ftp_url">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_url,'glyphicon-question-sign':!$ctrl.params.ftp_url}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.filePre.$dirty && form2.filePre.$invalid">
+                                        <!--<div class="alert alert-danger" ng-show="form2.filePre.$error.required">文件前缀不能为空！</div>&lt;!&ndash;文件前缀不能为空！&ndash;&gt;-->
+                                        <div class="alert alert-danger" ng-show="form2.filePre.$error.pattern">文件前缀只能包含数字、字母、下划线，且不能以数字开头，长度不超过50位！</div><!--文件前缀只能包含数字、字母、下划线，且不能以数字开头，长度不超过50位！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info">文件前缀：</label></div><!--文件前缀：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="filePre" ng-init="$ctrl.params.ftp_flie=false" ng-class="{'accord-pre':$ctrl.params.ftp_flie}" ng-model="$ctrl.property.ftp_filename"
+                                                ng-pattern="/^[\w](\w|\d){0,49}$/" maxlength="50"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.ftp_flie}" ng-show="$ctrl.params.ftp_flie" ng-cloak="">文件前缀的说明</p><!--文件前缀的说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.ftp_flie=!$ctrl.params.ftp_flie">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ftp_flie,'glyphicon-question-sign':!$ctrl.params.ftp_flie}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix">
+                    <button class="btn btn-sm btn-primary pull-right" ng-disabled="form2.$invalid || $ctrl.isSaving" ng-click="$ctrl.saveFtpInfo()" ng-bind="$ctrl.saveBtnTxt"></button><!--保存-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

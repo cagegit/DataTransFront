@@ -1,0 +1,73 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Db_jbsx"></div><!--基本属性-->
+        <div class="panel-body" >
+            <table class="table table-condensed">
+                <tr ng-cloak="" ng-show="$ctrl.real.group_id.length>0">
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Gp_id"></label><!--组ID：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.real.group_id" ng-class="{'accord-pre':$ctrl.params.gid}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.gid"  ng-class="{'accord-next':$ctrl.params.gid}" translate-once="Gp_wybs"></p><!--组唯一标示-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.gid=!$ctrl.params.gid" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.gid,'glyphicon-question-sign':!$ctrl.params.gid}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Gp_mc"></label><!--组名称：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.groupName" ng-class="{'accord-pre':$ctrl.params.groupName}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.groupName"  ng-class="{'accord-next':$ctrl.params.groupName}" translate-once="Gp_mcsm"></p><!--组名称说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.groupName=!$ctrl.params.groupName" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.groupName,'glyphicon-question-sign':!$ctrl.params.groupName}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Gp_rzblsj"></label><!--日志保留时间：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.logTime+real.hour" ng-class="{'accord-pre':$ctrl.params.log}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.log"  ng-class="{'accord-next':$ctrl.params.log}" translate-once="Gp_rzsj"></p><!--日志保留时间说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.log=!$ctrl.params.log" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.log,'glyphicon-question-sign':!$ctrl.params.log}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3">
+                                <label class="text-info" translate-once="Gp_ms"></label><!--描述：-->
+                            </div>
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.desc" ng-class="{'accord-pre':$ctrl.params.desc}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.desc"  ng-class="{'accord-next':$ctrl.params.desc}" translate-once="Gp_mssm"></p><!--描述说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.desc=!$ctrl.params.desc" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.desc,'glyphicon-question-sign':!$ctrl.params.desc}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

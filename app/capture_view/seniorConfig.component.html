@@ -1,0 +1,780 @@
+<uib-accordion close-others="oneAtATime" >
+    <div uib-accordion-group class="panel panel-default"  is-open="$ctrl.superF" style="margin-top: 10px;margin-bottom:0;">
+        <uib-accordion-heading>
+            {{'Cp_gjxx' | translate}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': $ctrl.superF, 'glyphicon-chevron-down': !$ctrl.superF}"></i>
+        </uib-accordion-heading><!--高级选项-->
+        <ng-form name="formSenior" novalidate>
+            <div class="panel-body clearfix">
+                <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbType==='oracle'">
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">Capture字符集：</label></div><!--Capture字符集：-->
+                                <div class="col-md-8 clearfix">
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.zfj}" type="text" name="nlsLang" ng-model="$ctrl.property.nls_lang" ng-readonly="true"/>
+                                    <p ng-class="{'accord-next':$ctrl.params.zfj}" ng-show="$ctrl.params.zfj" ng-cloak="">Capture字符集说明</p><!--Capture字符集说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zfj=!$ctrl.params.zfj">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zfj,'glyphicon-question-sign':!$ctrl.params.zfj}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.capture_interval.$dirty && formSenior.capture_interval.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.capture_interval.$error.required">抓取日志间隔不能为空！</div><!--抓取日志间隔不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.capture_interval.$error.pattern">抓取日志间隔只能为数字！</div><!--抓取日志间隔不能为空只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqjg}">
+                                        <input type="text" class="form-control" name="capture_interval" placeholder="15" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.capture_interval" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">秒</span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.heartInterval.$dirty && formSenior.heartInterval.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.heartInterval.$error.required" translate-once="Cp_tip3"></div><!--Capture 心跳间隔不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.heartInterval.$error.pattern" translate-once="Cp_tip4"></div><!--Capture 心跳间隔只能为数字！-->
+                                    <!--<div class="alert alert-danger" ng-show="formSenior.heartInval.$error.heartbeat">{{'Cp_tip5' | translate}}</div>&lt;!&ndash;Capture 心跳间隔只能在300-600s之间！&ndash;&gt;-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_xtjg"></label></div><!--Capture 心跳间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.xtjg}">
+                                        <input type="text" class="form-control" name="heartInterval" placeholder="300" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.capture_heartbeat" maxlength="30" min="0"/>
+                                        <span class="input-group-addon" translate-once="SECOND"></span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.xtjg}" ng-show="$ctrl.params.xtjg" ng-cloak="" translate-once="Cp_xtjgsm"></p><!--Capture 心跳间隔的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.xtjg=!$ctrl.params.xtjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.xtjg,'glyphicon-question-sign':!$ctrl.params.xtjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.reStart.$dirty && formSenior.reStart.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.reStart.$error.required" translate-once="Cp_tip6"></div><!--分析重启间隔不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.reStart.$error.pattern" translate-once="Cp_tip7"></div><!--分析重启间隔只能为数字！-->
+                                    <!--<div class="alert alert-danger" ng-show="formSenior.reStart.$error.log">{{'Cp_tip8' | translate}}</div>&lt;!&ndash;分析重启间隔只能在300-3600s之间！&ndash;&gt;-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_fxcqjg"></label></div><!--分析重启间隔：-->
+                                <div  class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.cqjg}">
+                                        <input type="text" class="form-control" placeholder="300" name="reStart" ng-pattern="/^0$|^[1-9][0-9]*$/" required  ng-model="$ctrl.property.logminer_restart_time" maxlength="30" min="0"/>
+                                        <span class="input-group-addon" translate-once="SECOND"></span><!--秒-->
+                                    </div>
+                                    <p  ng-class="{'accord-next':$ctrl.params.cqjg}" ng-show="$ctrl.params.cqjg" ng-cloak="" translate-once="Cp_fxjgzn"></p><!--分析重启间隔只能在300-3600s之间-->
+                                </div>
+                                <div  class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.cqjg=!$ctrl.params.cqjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cqjg,'glyphicon-question-sign':!$ctrl.params.cqjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--预计scn查找时间-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.scnEvaluateTime.$dirty && formSenior.scnEvaluateTime.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.scnEvaluateTime.$error.required">预计scn查找时间不能为空！</div><!--预计scn查找时间不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.scnEvaluateTime.$error.pattern">预计scn查找时间只能为数字！</div><!--预计scn查找时间只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">预计scn查找时间：</label></div><!--预计scn查找时间：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.scnxx}">
+                                        <input type="text" class="form-control" placeholder="20" name="scnEvaluateTime" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.scn_evaluate_time" maxlength="30" min="0"/>
+                                        <span class="input-group-addon" translate-once="SECOND"></span><!--秒-->
+                                    </div>
+                                    <p  ng-class="{'accord-next':$ctrl.params.scnxx}" ng-show="$ctrl.params.scnxx" ng-cloak="">预计scn查找时间的说明</p><!--预计scn查找时间的说明-->
+                                </div>
+                                <div  class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.scnxx=!$ctrl.params.scnxx">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.scnxx,'glyphicon-question-sign':!$ctrl.params.scnxx}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--回查scn上限-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.backScn.$dirty && formSenior.backScn.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.backScn.$error.required">回查scn上限不能为空！</div><!--回查scn上限不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.backScn.$error.pattern">回查scn上限只能为数字！</div><!--回查scn上限只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">回查scn上限：</label></div><!--回查scn上限：-->
+                                <div class="col-md-8 clearfix">
+                                    <input type="text" class="form-control" ng-class="{'accord-pre':$ctrl.params.racscn}" placeholder="10" name="backScn" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.back_scn" maxlength="30" min="0"/>
+                                    <p  ng-class="{'accord-next':$ctrl.params.racscn}" ng-show="$ctrl.params.racscn" ng-cloak="">回查scn上限的说明</p><!--回查scn上限的说明-->
+                                </div>
+                                <div  class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.racscn=!$ctrl.params.racscn">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.racscn,'glyphicon-question-sign':!$ctrl.params.racscn}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.mattSize.$dirty && formSenior.mattSize.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.mattSize.$error.required" translate-once="Cp_tip9"></div><!--事务槽大小不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.mattSize.$error.pattern" translate-once="Cp_tip10"></div><!--事务槽大小只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_swcdx"></label></div><!--事务槽大小：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.swc}">
+                                        <input type="text" class="form-control" placeholder="32" name="mattSize" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.transaction_slot_size" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">K</span>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.swc}" ng-show="$ctrl.params.swc" ng-cloak="" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.swc=!$ctrl.params.swc">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swc,'glyphicon-question-sign':!$ctrl.params.swc}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.mattMax.$dirty && formSenior.mattMax.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.mattMax.$error.required" translate-once="Cp_tip11"></div><!--事务槽最大数不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.mattMax.$error.pattern" translate-once="Cp_tip12"></div><!--事务槽最大数只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_swczds"></label></div><!--事务槽最大数：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.swczd}">
+                                        <input  class="form-control" type="text" placeholder="1000" name="mattMax" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.max_transaction_slot" maxlength="10" min="0"/>
+                                        <span class="input-group-addon" translate-once="NUM"></span><!--个-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.swczd}" ng-show="$ctrl.params.swczd" ng-cloak="" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.swczd=!$ctrl.params.swczd">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swczd,'glyphicon-question-sign':!$ctrl.params.swczd}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.memoSize.$dirty && formSenior.memoSize.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.memoSize.$error.required" translate-once="Cp_tip13"></div><!--内存队列大小不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.memoSize.$error.pattern" translate-once="Cp_tip14"></div><!--内存队列大小只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_ncdldx"></label></div><!--内存队列大小：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.ncdl}">
+                                        <input type="text" class="form-control" placeholder="32" name="memoSize" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.internal_queue_size"  maxlength="30" min="0"/>
+                                        <span class="input-group-addon">M</span>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.ncdl}" ng-show="$ctrl.params.ncdl" ng-cloak="" translate-once="Cp_bzswc"></p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.ncdl=!$ctrl.params.ncdl">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ncdl,'glyphicon-question-sign':!$ctrl.params.ncdl}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_bqzlb"></label></div><!--不抓取lob字段：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.lobzd}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.lob_skip" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.lob_skip" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.lobzd}" ng-show="$ctrl.params.lobzd" ng-cloak="" translate-once="Cp_lbxxsm"></p><!--不抓取lob字段的下限的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.lobzd=!$ctrl.params.lobzd">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.lobzd,'glyphicon-question-sign':!$ctrl.params.lobzd}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--抓取Grant DDL-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">抓取Grant DDL：</label></div><!--抓取Grant DDL：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.skipGrant}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.capture_grant" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.capture_grant" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.skipGrant}" ng-show="$ctrl.params.skipGrant" ng-cloak="">是否抓取grant DDL</p><!--是否抓取grant DDL-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.skipGrant=!$ctrl.params.skipGrant">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.skipGrant,'glyphicon-question-sign':!$ctrl.params.skipGrant}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--全部列更新-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">全部列更新：</label></div><!--全部列更新：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.fullColUpdate}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.full_column_update" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.full_column_update" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.fullColUpdate}" ng-show="$ctrl.params.fullColUpdate" ng-cloak="">对于update delete语句是否设置全部列信息</p><!--对于update delete语句是否设置全部列信息-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.fullColUpdate=!$ctrl.params.fullColUpdate">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.fullColUpdate,'glyphicon-question-sign':!$ctrl.params.fullColUpdate}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--使用在线字典-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">使用在线字典：</label></div><!--使用在线字典：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.onLine}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.use_online_dict" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.use_online_dict" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.onLine}" ng-show="$ctrl.params.onLine" ng-cloak="">使用在线字典的说明</p><!--使用在线字典的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.onLine=!$ctrl.params.onLine">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.onLine,'glyphicon-question-sign':!$ctrl.params.onLine}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--并发-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">并发：</label></div><!--并发：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.bingf}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.concurrent" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.concurrent" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.bingf}" ng-show="$ctrl.params.bingf" ng-cloak="">并发的说明</p><!--并发的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.bingf=!$ctrl.params.bingf">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bingf,'glyphicon-question-sign':!$ctrl.params.bingf}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--并发个数-->
+                    <tr ng-cloak="" ng-show="$ctrl.property.concurrent==='yes'">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.parallel.$dirty && formSenior.parallel.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.parallel.$error.required">并发个数不能为空！</div><!--并发个数不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.parallel.$error.pattern">并发个数只能为数字！</div><!--并发个数只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">并发个数：</label></div><!--并发个数：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.bfgs}">
+                                        <input type="text" class="form-control" placeholder="1" name="parallel" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.parallel" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">个</span>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.bfgs}" ng-show="$ctrl.params.bfgs" ng-cloak="">并发个数的说明</p><!--并发个数的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.bfgs=!$ctrl.params.bfgs">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bfgs,'glyphicon-question-sign':!$ctrl.params.bfgs}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <!--sqlserver高级选项配置-->
+                <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbType==='sqlserver'">
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.captureInterval.$dirty && formSenior.captureInterval.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.captureInterval.$error.required">抓取日志间隔不能为空！</div><!--抓取日志间隔不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.captureInterval.$error.pattern">抓取日志间隔只能为数字！</div><!--抓取日志间隔不能为空只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqjg}">
+                                        <input  class="form-control" type="text" name="captureInterval" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.capture_interval" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">秒</span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.checkpoint_sql.$dirty && formSenior.checkpoint_sql.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.checkpoint_sql.$error.required">Checkpoint间隔不能为空！</div><!--事务槽最大数不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.checkpoint_sql.$error.pattern">Checkpoint间隔只能为数字！</div><!--事务槽最大数只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">Checkpoint间隔：</label></div><!--Checkpoint间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.cpjg}">
+                                        <input  class="form-control" type="text" name="checkpoint_sql" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.checkpoint_interval" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">小时</span><!--小时-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.cpjg}" ng-show="$ctrl.params.cpjg" ng-cloak="">Checkpoint间隔说明</p><!--Checkpoint间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.cpjg=!$ctrl.params.cpjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cpjg,'glyphicon-question-sign':!$ctrl.params.cpjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.snapshotInterval.$dirty && formSenior.snapshotInterval.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.snapshotInterval.$error.required">Snapshot间隔不能为空！</div><!--事务槽最大数不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.snapshotInterval.$error.pattern">Snapshot间隔只能为数字！</div><!--事务槽最大数只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">Snapshot间隔：</label></div><!--Checkpoint间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.ssjg}">
+                                        <input  class="form-control" type="text" name="snapshotInterval" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.snapshot_interval" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">小时</span><!--小时-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.ssjg}" ng-show="$ctrl.params.ssjg" ng-cloak="">Snapshot间隔说明</p><!--Snapshot间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.ssjg=!$ctrl.params.ssjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ssjg,'glyphicon-question-sign':!$ctrl.params.ssjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.clsjk_sql.$dirty && formSenior.clsjk_sql.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.clsjk_sql.$error.required">fetch重连数据库间隔不能为空！</div><!--事务槽最大数不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.clsjk_sql.$error.pattern">fetch重连数据库间隔只能为数字！</div><!--事务槽最大数只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">fetch重连数据库间隔：</label></div><!--fetch重连数据库间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.fccl}">
+                                        <input  class="form-control" type="text" name="clsjk_sql" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.fetch_delay_reconnect" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">秒</span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.fccl}" ng-show="$ctrl.params.fccl" ng-cloak="">fetch重连数据库间隔说明</p><!--fetch重连数据库间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.fccl=!$ctrl.params.fccl">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.fccl,'glyphicon-question-sign':!$ctrl.params.fccl}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">补充日志后全表同步：</label></div><!--补充日志后全表同步：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.bcrztb}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.sync_when_extend_log" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.sync_when_extend_log" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.bcrztb}" ng-show="$ctrl.params.bcrztb" ng-cloak="">补充日志后全表同步的说明</p><!--补充日志后全表同步的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.bcrztb=!$ctrl.params.bcrztb">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bcrztb,'glyphicon-question-sign':!$ctrl.params.bcrztb}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">createTable后加补充日志：</label></div><!--createTable后加补充日志：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.ctbcrz}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.extend_log_when_create" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.extend_log_when_create" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.ctbcrz}" ng-show="$ctrl.params.ctbcrz" ng-cloak="">createTable后加补充日志的说明</p><!--createTable后加补充日志的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.ctbcrz=!$ctrl.params.ctbcrz">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ctbcrz,'glyphicon-question-sign':!$ctrl.params.ctbcrz}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">抓取loader装载数据：</label></div><!--抓取loader装载数据：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqlzz}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.cap_loader_data" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.cap_loader_data" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqlzz}" ng-show="$ctrl.params.zqlzz" ng-cloak="">抓取loader装载数据的说明</p><!--抓取loader装载数据的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqlzz=!$ctrl.params.zqlzz">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqlzz,'glyphicon-question-sign':!$ctrl.params.zqlzz}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--<tr>-->
+                    <!--<td>-->
+                    <!--<div class="row cap-form-tip">-->
+                    <!--<div class="col-md-3"><label class="text-info">忽略未更新字段：</label></div>&lt;!&ndash;忽略未更新字段：&ndash;&gt;-->
+                    <!--<div class="col-md-8 clearfix">-->
+                    <!--<div class="input-group" ng-class="{'accord-pre':$ctrl.params.hlwgx}">-->
+                    <!--<label class="radio-inline"><input type="radio" ng-model="property.full_column_update" value="yes"/>{{'YES' | translate}}</label>&lt;!&ndash;是&ndash;&gt;-->
+                    <!--<label class="radio-inline"><input type="radio" ng-model="property.full_column_update" value="no"/>{{'NO' | translate}}</label>&lt;!&ndash;否&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<p ng-class="{'accord-next':$ctrl.params.hlwgx}" ng-show="$ctrl.params.hlwgx" ng-cloak="">忽略未更新字段的说明</p>&lt;!&ndash;忽略未更新字段的说明&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<div class="col-md-1">-->
+                    <!--<div class="form-tip" ng-click="$ctrl.params.hlwgx=!$ctrl.params.hlwgx">-->
+                    <!--<span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.hlwgx,'glyphicon-question-sign':!$ctrl.params.hlwgx}"></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                </table>
+                <!--mysql高级选项配置-->
+                <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbType!=='oracle' && $ctrl.dbType!=='sqlserver' && $ctrl.dbType!=='db2'">
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.capture_interval.$dirty && formSenior.capture_interval.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.capture_interval.$error.required">抓取日志间隔不能为空！</div><!--抓取日志间隔不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.capture_interval.$error.pattern">抓取日志间隔只能为数字！</div><!--抓取日志间隔不能为空只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqjg}">
+                                        <input  class="form-control" type="text" name="capture_interval" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.capture_interval" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">秒</span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.mattSize_sql.$dirty && formSenior.mattSize_sql.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.mattSize_sql.$error.required">事务槽大小不能为空！</div><!--事务槽大小不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.mattSize_sql.$error.pattern">事务槽大小不能为空！</div><!--事务槽大小不能为空！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">事务槽大小：</label></div><!--事务槽大小：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.swc}">
+                                        <input type="text" class="form-control" placeholder="5" name="mattSize_sql" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.transaction_slot_size" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">K</span>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.swc}" ng-show="$ctrl.params.swc" ng-cloak="">保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G</p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.swc=!$ctrl.params.swc">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swc,'glyphicon-question-sign':!$ctrl.params.swc}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">抓取loader装载数据：</label></div><!--抓取loader装载数据：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqlzz}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.cap_loader_data" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.cap_loader_data" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqlzz}" ng-show="$ctrl.params.zqlzz" ng-cloak="">抓取loader装载数据的说明</p><!--抓取loader装载数据的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqlzz=!$ctrl.params.zqlzz">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqlzz,'glyphicon-question-sign':!$ctrl.params.zqlzz}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <!--db2配置-->
+                <table class="table table-condensed" ng-cloak="" ng-if="$ctrl.dbType ==='db2'">
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.capture_interval.$dirty && formSenior.capture_interval.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.capture_interval.$error.required">抓取日志间隔不能为空！</div><!--抓取日志间隔不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.capture_interval.$error.pattern">抓取日志间隔只能为数字！</div><!--抓取日志间隔不能为空只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">抓取日志间隔：</label></div><!--抓取日志间隔：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqjg}">
+                                        <input  class="form-control" type="text" name="capture_interval" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.capture_interval" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">秒</span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqjg}" ng-show="$ctrl.params.zqjg" ng-cloak="">抓取日志间隔说明</p><!--抓取日志间隔说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqjg=!$ctrl.params.zqjg">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqjg,'glyphicon-question-sign':!$ctrl.params.zqjg}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.mattSize_sql.$dirty && formSenior.mattSize_sql.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.mattSize_sql.$error.required">事务槽大小不能为空！</div><!--事务槽大小不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.mattSize_sql.$error.pattern">事务槽大小不能为空！</div><!--事务槽大小不能为空！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">事务槽大小：</label></div><!--事务槽大小：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.swc}">
+                                        <input type="text" class="form-control" placeholder="5" name="mattSize_sql" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.transaction_slot_size" maxlength="30" min="0"/>
+                                        <span class="input-group-addon">K</span>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.swc}" ng-show="$ctrl.params.swc" ng-cloak="">保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G</p><!--保证事务槽大小 x 事务槽最大数 + 内存队列大小小于1G-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.swc=!$ctrl.params.swc">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swc,'glyphicon-question-sign':!$ctrl.params.swc}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.mattMax.$dirty && formSenior.mattMax.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.mattMax.$error.required" translate-once="Cp_tip11"></div><!--事务槽最大数不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formSenior.mattMax.$error.pattern" translate-once="Cp_tip12"></div><!--事务槽最大数只能为数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Cp_swczds"></label></div><!--事务槽最大数：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.swczd}">
+                                        <input  class="form-control" type="text" placeholder="1000" name="mattMax" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.max_transaction_slot" maxlength="10" min="0"/>
+                                        <span class="input-group-addon" translate-once="NUM"></span><!--个-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.swczd}" ng-show="$ctrl.params.swczd" ng-cloak="">事务槽最大数说明</p><!--事务槽最大数说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.swczd=!$ctrl.params.swczd">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.swczd,'glyphicon-question-sign':!$ctrl.params.swczd}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--New parameters-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.rzcDb2.$dirty && formSenior.rzcDb2.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.rzcDb2.$error.pattern">日志槽大小只能为不小于0的数字！</div><!--日志槽大小只能为不小于0的数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">日志槽大小：</label></div><!--日志槽大小：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.rzcdx}">
+                                        <input  class="form-control" type="text" placeholder="1000" name="rzcDb2" ng-pattern="/^0$|^[1-9][0-9]*$/" ng-model="$ctrl.property.log_slot_size" maxlength="10"/>
+                                        <span class="input-group-addon">K</span><!--K-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.rzcdx}" ng-show="$ctrl.params.rzcdx" ng-cloak="">每个读取日志槽的大小</p><!--每个读取日志槽的大小-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.rzcdx=!$ctrl.params.rzcdx">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.rzcdx,'glyphicon-question-sign':!$ctrl.params.rzcdx}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.mlsDb2.$dirty && formSenior.mlsDb2.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.mlsDb2.$error.pattern">最大日志槽个数只能为不小于0的数字！</div><!--最大日志槽个数只能为不小于0的数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">最大日志槽个数：</label></div><!--最大日志槽个数：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.mlsgs}">
+                                        <input  class="form-control" type="text" placeholder="100" name="mlsDb2" ng-pattern="/^0$|^[1-9][0-9]*$/" ng-model="$ctrl.property.max_log_slot" maxlength="10"/>
+                                        <span class="input-group-addon">K</span><!--K-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.mlsgs}" ng-show="$ctrl.params.mlsgs" ng-cloak="">最大日志槽的个数</p><!--最大日志槽的个数-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.mlsgs=!$ctrl.params.mlsgs">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.mlsgs,'glyphicon-question-sign':!$ctrl.params.mlsgs}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formSenior.urtDb2.$dirty && formSenior.urtDb2.$invalid">
+                                    <div class="alert alert-danger" ng-show="formSenior.urtDb2.$error.pattern">update列命中率只能为0-100的整数！</div><!--update列命中率只能为0-100的整数！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">update列命中率：</label></div><!--update列命中率：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.upmzl}">
+                                        <input  class="form-control" type="text" placeholder="0-100" name="urtDb2" ng-pattern="/^0$|^[1-9][0-9]$/" ng-model="$ctrl.property.update_ratio" maxlength="10"/>
+                                        <span class="input-group-addon">%</span><!--%-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.upmzl}" ng-show="$ctrl.params.upmzl" ng-cloak="">update被改变的列占所有列的最小比例</p><!--update被改变的列占所有列的最小比例-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.upmzl=!$ctrl.params.upmzl">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.upmzl,'glyphicon-question-sign':!$ctrl.params.upmzl}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">抓取loader装载数据：</label></div><!--抓取loader装载数据：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zqlzz}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.cap_loader_data" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.cap_loader_data" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zqlzz}" ng-show="$ctrl.params.zqlzz" ng-cloak="">抓取loader装载数据的说明</p><!--抓取loader装载数据的说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zqlzz=!$ctrl.params.zqlzz">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zqlzz,'glyphicon-question-sign':!$ctrl.params.zqlzz}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--New parameters-->
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">只读取日志：</label></div><!--只读取日志：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.zdqrz}">
+                                        <label class="radio-inline"><input type="radio" name="dqrz" ng-model="$ctrl.property.readlog_only" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" name="dqrz" ng-model="$ctrl.property.readlog_only" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.zdqrz}" ng-show="$ctrl.params.zdqrz" ng-cloak="">只进行日志的读取，不进行日志的分析</p><!--只进行日志的读取，不进行日志的分析-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.zdqrz=!$ctrl.params.zdqrz">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.zdqrz,'glyphicon-question-sign':!$ctrl.params.zdqrz}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">抓取不带cdc属性的建表语句：</label></div><!--抓取不带cdc属性的建表语句：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.bdcdc}">
+                                        <label class="radio-inline"><input type="radio" name="noCdc" ng-model="$ctrl.property.db2_set_cdc" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" name="noCdc" ng-model="$ctrl.property.db2_set_cdc" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.bdcdc}" ng-show="$ctrl.params.bdcdc" ng-cloak="">可以抓取不带data capture changes属性的create table语句，并将其设置成data capture changes属性</p>
+                                    <!--可以抓取不带data capture changes属性的create table语句，并将其设置成data capture changes属性-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.bdcdc=!$ctrl.params.bdcdc">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.bdcdc,'glyphicon-question-sign':!$ctrl.params.bdcdc}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="alert alert-danger" ng-cloak="" ng-show="$ctrl.validErr && $ctrl.validErr.length>0" ng-bind="$ctrl.validErr"></div>
+                <div class="clearfix">
+                    <button type="button" class="btn btn-sm btn-primary pull-right" ng-disabled="formSenior.$invalid" ng-click="$ctrl.saveSeniorConfig()" translate-once="Cp_bcgjxx"></button><!--保存高级选项-->
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</uib-accordion>

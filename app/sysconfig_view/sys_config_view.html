@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dip/main.css">
+    <!--<link rel="stylesheet" type="text/css" href="lib/sweetalert.css">-->
+    <link rel="stylesheet" type="text/css" href="../bower_components/angular-toastr/dist/angular-toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/new_date/jquery.datetimepicker.min.css">
+</head>
+<script>
+
+</script>
+<body class="sys-body clearfix">
+<!-- HEADER -->
+<header class="navbar clearfix sys-header" id="header">
+    <div class="container" id="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="../index.html">
+                <img src="../img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive" height="30" width="120">
+                <!-- <strong>R7 DIP</strong>-->
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+            <div class="visible-xs">
+                <a href="#" class="team-status-toggle switcher btn dropdown-toggle">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+            <!-- /TEAM STATUS FOR MOBILE -->
+            <!-- SIDEBAR COLLAPSE -->
+            <div id="sidebar-collapse" class="sidebar-collapse btn">
+                <i class="fa fa-bars"
+                   data-icon1="fa fa-bars"
+                   data-icon2="fa fa-bars" ></i>
+            </div>
+            <!-- /SIDEBAR COLLAPSE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        <ul class="nav navbar-nav pull-left hidden-xs" id="navbar-left">
+            <li class="dropdown">
+                <a href="../index.html" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="fa fa-product-hunt"></i>
+                    <span class="name">项目</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="../main.html" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="fa fa-users"></i>
+                    <span class="name">主界面</span>
+                    <!--<i class="fa fa-angle-down"></i>-->
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="fa fa-users"></i>
+                    <span class="name">系统配置</span>
+                    <!--<i class="fa fa-angle-down"></i>-->
+                </a>
+            </li>
+        </ul>
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+            <!-- BEGIN NOTIFICATION DROPDOWN -->
+            <li class="dropdown" id="header-notification">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge">6</span>
+                </a>
+                <ul class="dropdown-menu notification">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-bell"></i> 7 Notifications</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-success"><i class="fa fa-user"></i></span>
+									<span class="body">
+										<span class="message">5 users online. </span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>Just now</span>
+										</span>
+									</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-primary"><i class="fa fa-comment"></i></span>
+									<span class="body">
+										<span class="message">Martin commented.</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>19 mins</span>
+										</span>
+									</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-warning"><i class="fa fa-lock"></i></span>
+									<span class="body">
+										<span class="message">DW1 server locked.</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>32 mins</span>
+										</span>
+									</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-info"><i class="fa fa-twitter"></i></span>
+									<span class="body">
+										<span class="message">Twitter connected.</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>55 mins</span>
+										</span>
+									</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-danger"><i class="fa fa-heart"></i></span>
+									<span class="body">
+										<span class="message">Jane liked. </span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>2 hrs</span>
+										</span>
+									</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-warning"><i class="fa fa-exclamation-triangle"></i></span>
+									<span class="body">
+										<span class="message">Database overload.</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>6 hrs</span>
+										</span>
+									</span>
+                        </a>
+                    </li>
+                    <li class="footer">
+                        <a href="#">See all notifications <i class="fa fa-arrow-circle-right"></i></a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END NOTIFICATION DROPDOWN -->
+            <!-- BEGIN INBOX DROPDOWN -->
+            <li class="dropdown" id="header-message">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge">6</span>
+                </a>
+                <ul class="dropdown-menu inbox">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-envelope-o"></i> 3 Messages</span>
+                        <span class="compose pull-right tip-right" title="Compose message"><i class="fa fa-pencil-square-o"></i></span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../img/avatars/avatar2.jpg" alt="" />
+									<span class="body">
+										<span class="from">Jane Doe</span>
+										<span class="message">
+										Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse mole ...
+										</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>Just Now</span>
+										</span>
+									</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../img/avatars/avatar1.jpg" alt="" />
+									<span class="body">
+										<span class="from">Vince Pelt</span>
+										<span class="message">
+										Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse mole ...
+										</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>15 min ago</span>
+										</span>
+									</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../img/avatars/avatar8.jpg" alt="" />
+									<span class="body">
+										<span class="from">Debby Doe</span>
+										<span class="message">
+										Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse mole ...
+										</span>
+										<span class="time">
+											<i class="fa fa-clock-o"></i>
+											<span>2 hours ago</span>
+										</span>
+									</span>
+
+                        </a>
+                    </li>
+                    <li class="footer">
+                        <a href="#">See all messages <i class="fa fa-arrow-circle-right"></i></a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END INBOX DROPDOWN -->
+            <!-- BEGIN TODO DROPDOWN -->
+            <li class="dropdown" id="header-tasks">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i>
+                    <span class="badge">6</span>
+                </a>
+                <ul class="dropdown-menu tasks">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-check"></i> 6 tasks in progress</span>
+                    </li>
+                    <li>
+                        <a href="#">
+									<span class="header clearfix">
+										<span class="pull-left">Software Update</span>
+										<span class="pull-right">60%</span>
+									</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+									<span class="header clearfix">
+										<span class="pull-left">Software Update</span>
+										<span class="pull-right">25%</span>
+									</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                    <span class="sr-only">25% Complete</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+									<span class="header clearfix">
+										<span class="pull-left">Software Update</span>
+										<span class="pull-right">40%</span>
+									</span>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                                    <span class="sr-only">40% Complete</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+									<span class="header clearfix">
+										<span class="pull-left">Software Update</span>
+										<span class="pull-right">70%</span>
+									</span>
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+									<span class="header clearfix">
+										<span class="pull-left">Software Update</span>
+										<span class="pull-right">65%</span>
+									</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" style="width: 35%">
+                                    <span class="sr-only">35% Complete (success)</span>
+                                </div>
+                                <div class="progress-bar progress-bar-warning" style="width: 20%">
+                                    <span class="sr-only">20% Complete (warning)</span>
+                                </div>
+                                <div class="progress-bar progress-bar-danger" style="width: 10%">
+                                    <span class="sr-only">10% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="footer">
+                        <a href="#">See all tasks <i class="fa fa-arrow-circle-right"></i></a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END TODO DROPDOWN -->
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user" id="header-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="../img/avatars/avatar3.jpg" style="visibility: hidden;" />
+                    <span class="username">Admin</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#"><i class="fa fa-eye"></i> Privacy Settings</a></li>
+                    <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+
+</header>
+<div class="sys-layout">
+    <div class="col-md-1 sys-left">
+        <div class="row"  id="myScrollspy">
+            <ul class="nav nav-stacked sys-nav-list">
+                <li class="active"><a href="#nav1">错误检测系统</a></li>
+                <li><a href="#nav2">错误发送系统</a></li>
+                <li><a href="#nav3">上传licence</a></li>
+                <li><a href="#nav4">用户管理</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-10 sys-right">
+        <!--错误检测-->
+        <div class="panel panel-default col-md-12 err-check-panel err-add-height" id="nav1">
+            <div class="panel-heading">
+                <div class="panel-title">错误检测<i class="tit-edit-logo" ng-click=""></i></div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-9 cont-sty">
+                    <form name="formErr" class="form-err">
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-6 clearfix">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">任务标识： </span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="tastTag" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.task_identify"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false"  ng-bind="property.task_identify" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">监控设备服务IP：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" ng- type="text" name="watchIp" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required ng-model="property.monitor_ip"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.monitor_ip" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">监控设备服务端口：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="listenPort" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="property.monitor_port"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.monitor_port" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">检测间隔 (分钟)：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="testTime" ng-pattern="/^([1-9]\d*)|0$/" required ng-model="property.monitor_interval"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.monitor_interval" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">磁盘剩余量下限(G)：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="raminLimit" ng-pattern="/^[1-9]\d*(\.\d*)?|0(\.\d*)?$/" required ng-model="property.free_disk_threshold"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.free_disk_threshold" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">Capture 抓取延时 (分钟)：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="capDelay" ng-pattern="/^([1-9]\d*)|0$/" required ng-model="property.capture_interval_threshold"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.capture_interval_threshold" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-2">
+                                <div class="col-md-12 clearfix"><span class="pull-right int-text">不监听组列表：</span></div>
+                            </div>
+                            <div class="col-md-10">
+                                <textarea class="watch-area watch-area-width" readonly="true"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                <!--表单提示-->
+                                <div class="col-md-6">
+
+                                    <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formErr.tastTag.$dirty && formErr.tastTag.$invalid" ng-focus>
+                                        <div ng-show="formErr.tastTag.$error.required">任务标识不能为空！</div>
+                                        <div ng-show="formErr.tastTag.$error.pattern">任务标识只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！</div>
+                                    </div>
+                                    <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formErr.watchIp.$dirty && formErr.watchIp.$invalid" ng-focus>
+                                        <div ng-show="formErr.watchIp.$error.required">监控设备服务IP不能为空！</div>
+                                        <div ng-show="formErr.watchIp.$error.pattern">请输入正确的IP地址！</div>
+                                    </div>
+                                    <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formErr.listenPort.$dirty && formErr.listenPort.$invalid">
+                                        <div ng-show="formErr.listenPort.$error.required">监控设备服务端口不能为空！</div>
+                                        <div ng-show="formErr.listenPort.$error.pattern">请输入正确的服务端口！</div>
+                                    </div>
+                                    <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formErr.testTime.$dirty && formErr.testTime.$invalid">
+                                        <div ng-show="formErr.testTime.$error.required">检测间隔不能为空！</div>
+                                        <div ng-show="formErr.testTime.$error.pattern">检测间隔只能为大于0的整数！</div>
+                                    </div>
+                                    <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formErr.raminLimit.$dirty && formErr.raminLimit.$invalid">
+                                        <div ng-show="formErr.raminLimit.$error.required">磁盘剩余量下限不能为空！</div>
+                                        <div ng-show="formErr.raminLimit.$error.pattern">磁盘剩余量只能为大于0的数！</div>
+                                    </div>
+                                    <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formErr.capDelay.$dirty && formErr.capDelay.$invalid">
+                                        <div ng-show="formErr.capDelay.$error.required">Capture 抓取延时不能为空！</div>
+                                        <div ng-show="formErr.capDelay.$error.pattern">Capture 抓取延时只能为大于0的整数！</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-default pull-right" type="submit">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--错误发送-->
+        <div class="panel panel-default col-md-12 err-check-panel panel-dis-height panel-line" id="nav2">
+            <div class="panel-heading">
+                <div class="panel-title">错误发送<i class="tit-edit-logo" ng-click=""></i></div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-9 cont-sty">
+                    <form name="formSend" class="form-err">
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-12 sys-group-tit">客户信息</div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">客户名称：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="userName" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.customer_name"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.customer_name" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text">服务器端口：</span></div>
+                                <div class="col-md-6">
+                                    <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="port" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="property.server_port"/>
+                                    <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.server_port" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-row clearfix sys-send-cofig">
+                            <div class="col-md-12 sys-group-tit">发送方式</div>
+
+                            <div class="col-md-6 clearfix">
+                                <div class="col-md-12 sys-send-tit">
+                                    <i class="emial-cont"></i>
+                                    <p>邮件配置</p>
+                                </div>
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">邮件服务器：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="emailIp" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required ng-model="property.conf_mail_server"/>
+                                        <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.conf_mail_server" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                    </div>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">邮件服务器端口：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="emailPort" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="property.conf_mail_server_port"/>
+                                        <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.conf_mail_server_port" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                    </div>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">用户帐号：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="sendUser" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.conf_mail_account"/>
+                                        <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.conf_mail_account" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                    </div>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">帐号密码：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="passward" ng-pattern="/^[^(\s]{1,20}$/" required ng-model="property.conf_account_password"/>
+                                        <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.conf_account_password" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                    </div>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">抄送账户列表：</span></div>
+                                    <div class="col-md-6">
+                                        <textarea class="watch-area"  ng-model="property.cc_mail_lst" readonly="" ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-12 sys-send-tit">
+                                    <i class="message-cont"></i>
+                                    <p>短信配置</p>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">短信发送方式：</span></div>
+                                    <div class="col-md-6 mess-send-way">
+                                        <div class="send-radio" ng-cloak="" ng-show="true" >
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="mesSend" id="optionsRadios3" value="自定义" ng-model="property.sms_sms_self_def" />&nbsp;&nbsp;自定义
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="mesSend" id="optionsRadios4" value="默认"  ng-model="property.sms_sms_self_def" checked/>&nbsp;&nbsp;默认
+                                            </label>
+                                        </div>
+                                        <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.sms_sms_self_def" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                    </div>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">自定义执行程序：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" ng-cloak="" ng-show="true" type="text" name="opeOrder" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.sms_sms_default"/>
+                                        <span class="sys-show-text" ng-cloak="" ng-show="false" ng-bind="property.sms_sms_default" style="background: #eee;padding:5px;margin-bottom:-4px;display: inline-block">44</span>
+                                    </div>
+                                </div>
+
+                                <div class="list-row clearfix">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">手机号码列表：</span></div>
+                                    <div class="col-md-6">
+                                        <textarea class="iphone-area" ng-model="property.defaultimg" readonly="false"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-row clearfix">
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                <!--表单提示-->
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.userName.$dirty && formSend.userName.$invalid">
+                                            <div ng-show="formSend.userName.$error.required">客户名称不能为空！</div>
+                                            <div ng-show="formSend.userName.$error.pattern">客户名称只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！</div>
+                                        </div>
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.port.$dirty && formSend.port.$invalid">
+                                            <div ng-show="formSend.port.$error.required">服务器端口不能为空！</div>
+                                            <div ng-show="formSend.port.$error.pattern">请输入正确的服务器端口！</div>
+                                        </div>
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.emailIp.$dirty && formSend.emailIp.$invalid">
+                                            <div ng-show="formSend.emailIp.$error.required">邮件服务器不能为空！</div>
+                                            <div ng-show="formSend.emailIp.$error.pattern">请输入正确的邮件服务器！</div>
+                                        </div>
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.emailPort.$dirty && formSend.emailPort.$invalid">
+                                            <div ng-show="formSend.testTime.$error.required">邮件服务器端口不能为空！</div>
+                                            <div ng-show="formSend.testTime.$error.pattern">请输入正确的邮件服务器端口！</div>
+                                        </div>
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.sendUser.$dirty && formSend.sendUser.$invalid">
+                                            <div ng-show="formSend.sendUser.$error.required">用户帐号不能为空！</div>
+                                            <div ng-show="formSend.sendUser.$error.pattern">用户帐号只能包含数字、字母、下划线且不超过20位！</div>
+                                        </div>
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.passward.$dirty && formSend.passward.$invalid">
+                                            <div ng-show="formSend.passward.$error.required">帐号密码不能为空！</div>
+                                            <div ng-show="formSend.passward.$error.pattern">帐号密码为1！20位！</div>
+                                        </div>
+                                        <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formSend.opeOrder.$dirty && formSend.opeOrder.$invalid">
+                                            <div ng-show="formSend.opeOrder.$error.required">自定义执行程序不能为空！</div>
+                                            <div ng-show="formSend.opeOrder.$error.pattern">请输入正确的自定义执行程序！</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-default pull-right" type="submit">保存</button>
+                                    <button class="btn btn-default pull-right" type="" style="margin-right:20px;">导出</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="devid-line"></div>
+        </div>
+
+        <!--licence文件上传-->
+        <div class="panel panel-default col-md-12 err-check-panel lice-up-panel " id="nav3">
+            <div class="panel-heading">
+                <div class="panel-title">Licence文件上传</div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-9 lice-cont">
+                    <div class="col-md-10 config-selet-pile">
+                        <span>选择文件：</span>
+                        <div class="selet-file-ope">
+                            <span class="up-search"></span>
+                            <span class="up-search-text">http://localhost:63342/web/app/system-config.html</span>
+                        </div>
+                    </div>
+                    <div class="col-md-10 config-up-pile">
+                        <span>文件上传：</span>
+                        <div class="up-cont">
+                            <span class="up-status"></span>
+                            <div class="up-div">
+                                <span class="up-file-phto"></span>
+                                    <span class="up-file-info">
+                                        <p>photoshop cs6 序列号 adobe</p>
+                                        <p class="up-file-size">135.25k&nbsp;&nbsp;<span>上传成功</span></p>
+                                    </span>
+                                <span class="up-dele-ope">删除</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--用户列表-->
+        <div class="panel panel-default col-md-12 err-check-panel user-list-panel panel-line" id="nav4">
+            <div class="panel-heading">
+                <div class="panel-title config-user-list">
+                    用户列表<i class="tit-edit-logo" ng-click=""></i>
+                    <div class="user-tit-ope">
+                            <span class="user-tit-modi">
+                                <i></i>
+                                <em>添加</em>
+                            </span>
+                            <span class="user-tit-delet">
+                                <i></i>
+                                <em>删除</em>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 0;">
+                <!--正常展示、删除操作-->
+                <div class="display-normal" style="display: none;">
+                    <div class="col-md-9 user-normal-list">
+                        <div class="list-row clearfix user-list-padding">
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user1</div>
+                            </div>
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user2</div>
+                            </div>
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user3</div>
+                            </div>
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user1</div>
+                            </div>
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user2</div>
+                            </div>
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user3</div>
+                            </div>
+                            <div class="user-normal-mess">
+                                <div class="user-normal-phot">
+                                    <span class="dele-tage" ng-show="true"></span>
+                                </div>
+                                <div class="text-center">user1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="devid-line"></div>
+                    <button class="btn btn-default user-cancle">取消</button>
+                </div>
+
+                <!--修改用户-->
+                <div class="display-modify" style="display: none;">
+                    <div class="col-md-9 cont-sty">
+                        <form name="formModi">
+                            <div class="list-row clearfix">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">用户名： </span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control " type="text" name="userList" ng-pattern="/^[a-zA-Z]\w{0,19}$/" ng-maxlength="20" required ng-model="property.user"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">原密码： </span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control " type="text" name="oldPasswd" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.passwd"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-row clearfix">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">新密码：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" type="password" name="newPasswd" ng-pattern="/^[^(\s]{1,20}$/" required ng-model="property.newPasswd"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">确认密码：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" type="password" name="surePasswd" ng-pattern="/^[^(\s]{1,20}$/" required ng-model="property.surePasswd"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix user-bottom-height">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">角色： </span></div>
+                                    <div class="col-md-6 mess-send-way">
+                                        <div class="send-radio">
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="mesSend" value="option1" ng-show="true" checked/>&nbsp;&nbsp;管理员
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="mesSend" value="option2" ng-show="false" checked/>&nbsp;&nbsp;普通用户
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-row clearfix">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                    <!--表单提示-->
+                                    <div class="col-md-6">
+                                        <div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formModi.userList.$dirty && formModi.userList.$invalid">
+                                                <div ng-show="formModi.userList.$error.required">用户名不能为空！</div>
+                                                <div ng-show="formModi.userList.$error.pattern">用户名只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！</div>
+                                            </div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formModi.oldPasswd.$dirty && formModi.oldPasswd.$invalid">
+                                                <div ng-show="formModi.oldPasswd.$error.required">原密码不能为空！</div>
+                                                <div ng-show="formModi.oldPasswd.$error.pattern">原密码输入错误！</div>
+                                            </div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formModi.newPasswd.$dirty && formModi.newPasswd.$invalid">
+                                                <div ng-show="formModi.newPasswd.$error.required">新密码不能为空！</div>
+                                                <div ng-show="formModi.newPasswd.$error.pattern">密码不能包含空白符，长度1~20位！</div>
+                                            </div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formModi.surePasswd.$dirty && formModi.surePasswd.$invalid">
+                                                <div ng-show="formModi.surePasswd.$error.required">请输入确认密码！</div>
+                                                <div ng-show="formModi.surePasswd.$error.pattern">与新密码不一致！</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-default pull-right" type="submit">保存</button>
+                                        <button class="btn btn-default pull-right" type="" style="margin-right:20px;">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="devid-line"></div>
+                </div>
+
+                <!--添加用户-->
+                <div class="display-modify">
+                    <div class="col-md-9 cont-sty">
+                        <form name="formAdd">
+                            <div class="list-row clearfix">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">用户名： </span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control " type="text" name="userList" ng-pattern="/^[a-zA-Z]\w{0,19}$/" ng-maxlength="20" required ng-model="property.user"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                            <div class="list-row clearfix">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">密码：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" type="password" name="newPasswd" ng-pattern="/^[^(\s]{1,20}$/" required ng-model="property.newPasswd"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">确认密码：</span></div>
+                                    <div class="col-md-6">
+                                        <input  class="form-control" type="password" name="surePasswd" ng-pattern="/^[^(\s]{1,20}$/" required ng-model="property.surePasswd"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix user-bottom-height">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text">角色： </span></div>
+                                    <div class="col-md-6 mess-send-way">
+                                        <div class="send-radio">
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="mesSend" value="option1" ng-show="true" checked/>&nbsp;&nbsp;管理员
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-row clearfix">
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                    <!--表单提示-->
+                                    <div class="col-md-6">
+                                        <div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formAdd.userList.$dirty && formAdd.userList.$invalid">
+                                                <div ng-show="formUser.userList.$error.required">用户名不能为空！</div>
+                                                <div ng-show="formUser.userList.$error.pattern">用户名只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！</div>
+                                            </div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formAdd.newPasswd.$dirty && formAdd.newPasswd.$invalid">
+                                                <div ng-show="formUser.newPasswd.$error.required">新密码不能为空！</div>
+                                                <div ng-show="formUser.newPasswd.$error.pattern">密码不能包含空白符，长度1~20位！</div>
+                                            </div>
+                                            <div class="col-md-12 tit-waring" ng-cloak="" ng-show="formAdd.surePasswd.$dirty && formAdd.surePasswd.$invalid">
+                                                <div ng-show="formUser.surePasswd.$error.required">请输入确认密码！</div>
+                                                <div ng-show="formUser.surePasswd.$error.pattern">与新密码不一致！</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4 clearfix"><span class="pull-right int-text"></span></div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-default pull-right" type="submit">保存</button>
+                                        <button class="btn btn-default pull-right" type="" style="margin-right:20px;">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="devid-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="../bower_components/ui-bootstrap/dist/ui-bootstrap-tpls-2.1.3.min.js"></script>
+<script type="text/javascript" src="../bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="../context_menu/context_menu_directive.js"></script>
+<script type="text/javascript" src="../app.js"></script>
+<script type="text/javascript" src="../service/dipHttpService.js"></script>
+<script type="text/javascript" src="../database_view/db_view.js"></script>
+<script type="text/javascript" src="../console_view/console_view.js"></script>
+<script type="text/javascript" src="../group_view/group_view.js"></script>
+<script type="text/javascript" src="../capture_view/cp_view.js"></script>
+<script type="text/javascript" src="../queue_view/queue_view.js"></script>
+<script type="text/javascript" src="../loader_view/loader_view.js"></script>
+<script type="text/javascript" src="../full_syc_view/full_syc_view.js"></script>
+<script type="text/javascript" src="../tclient_view/tclient_view.js"></script>
+<script type="text/javascript" src="../tserver_view/tserver_view.js"></script>
+<script type="text/javascript" src="../lib/echarts.js"></script>
+</body>
+</html>

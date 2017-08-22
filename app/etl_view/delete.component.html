@@ -1,0 +1,56 @@
+<!--删除列界面-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span>
+    </button>
+    <h3 class="modal-title" id="modal-title">删除列</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="etl-condition-modal etl-all-rule">
+        <div class="condition-head">
+            <div class="dropdown">
+                <button id="dLabel" class="btn btn-info btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    操作<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.openApplyToModal()">该策略应用到其他表</a></li>
+                </ul>
+            </div>
+            <div style="margin-bottom: 10px;">搜  索：
+                <input type="text" style="margin-left: 8px;" ng-model="$ctrl.filter" placeholder="搜索字段名称" maxlength="120"></div>
+        </div>
+        <div class="condition-body">
+            <table class="table table-hover">
+                <caption>
+                    <h4>源库及表名：<span ng-bind="$ctrl.utInfo"></span></h4>
+                </caption>
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 50%">
+                    <col style="width: 40%">
+                </colgroup>
+                <tr>
+                    <th><input type="checkbox" ng-model="$ctrl.ckAll" ng-change="$ctrl.changeAll()"></th>
+                    <th>字段名称</th>
+                    <th>字段类型</th>
+                </tr>
+                <tr ng-repeat="item in ($ctrl.selList=($ctrl.addList | filter:{name:$ctrl.filter} | orderBy:'-item.checked')) track by $index">
+                    <td><input type="checkbox" class="etl-delete-son" ng-model="item.checked" ng-change="$ctrl.changeOne(item)"></td>
+                    <td ng-bind="item.name"></td>
+                    <td ng-bind="item.type"></td>
+                </tr>
+            </table>
+        </div>
+        <!--<div class="etl-margin-top10">-->
+            <!--&lt;!&ndash;<button class="btn btn-info btn-sm" ng-click="$ctrl.addColumn()">增加行</button>&ndash;&gt;-->
+            <!--<button class="btn btn-info btn-sm" ng-click="$ctrl.deleteColumn()">删除行</button>-->
+        <!--</div>-->
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveDeleteRule()" ng-disabled="$ctrl.selList.length===0">保存</button>
+    </div>
+    <div class="clearfix"></div>
+</div>

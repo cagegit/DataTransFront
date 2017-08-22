@@ -1,0 +1,217 @@
+<div class="etl-ypz-rule etl-all-rule">
+    <div class="etl-ypz-rule-head">
+        <div class="dropdown">
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                已配置规则<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(1)">增加列</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(2)">映射列</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(3)">删除列</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(4)">记录过滤</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(5)">审计表</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(6)">表过滤</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(7)">操作过滤</a></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeRule(8)">操作转换</a></li>
+            </ul>
+            <b class="current-rule" ng-bind="$ctrl.currentRuleName"></b>
+            <div class="current-cz" ng-cloak="" ng-if="$ctrl.isBgl">
+                <label><input type="radio" ng-model="$ctrl.isInclude" ng-change="$ctrl.changeType()" value="include">包含</label>
+                <label><input type="radio" ng-model="$ctrl.isInclude" ng-change="$ctrl.changeType()" value="exclude">不包含</label>
+            </div>
+            <div class="current-cz" ng-cloak="" ng-if="$ctrl.isCzzh">
+                转换类型：<select ng-model="$ctrl.currentCzzh" ng-change="$ctrl.changeOperation()">
+                    <option value="insert_to_update">insert → update</option>
+                    <option value="update_to_insert_or_delete">update → insert/delete</option>
+                    <option value="delete_to_update">delete → update</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="etl-ypz-rule-body">
+        <ul>
+            <li ng-repeat="item in $ctrl.list track by $index"><a href="javascript:void(0);" ng-click="$ctrl.showDetail(item)" ng-bind="item.user+'.'+item.table"></a></li>
+            <li ng-cloak="" ng-show="$ctrl.list.length===0" class="etl-center"><a href="javascript:void(0);">No Result!</a></li>
+        </ul>
+    </div>
+</div>
+<!--详情页-->
+<script type="text/ng-template" id="cfgRuleDetailModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">配置详情</h3>
+    </div>
+    <div class="modal-body">
+        <div class="cfg-rule-detail-modal">
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===1">
+                <colgroup>
+                    <col style="width: 20%">
+                    <col style="width: 20%">
+                    <col style="width: 60%">
+                </colgroup>
+                <tr>
+                    <td>字段</td>
+                    <td>值类型</td>
+                    <td>字段值</td>
+                </tr>
+                <tr ng-repeat="item in $ct.list track by $index">
+                    <td ng-bind="item.name"></td>
+                    <td ng-bind="item.type"></td>
+                    <td><code ng-bind="item.value"></code></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.loading">
+                    <td colspan="3" class="etl-center">Loading......</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.list.length===0 && !$ct.loading">
+                    <td colspan="3" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===2">
+                <colgroup>
+                    <col style="width: 20%">
+                    <col style="width: 15%">
+                    <col style="width: 20%">
+                    <col style="width: 15%">
+                    <col style="width: 30%">
+                </colgroup>
+                <tr>
+                    <td>源字段名</td>
+                    <td>源类型</td>
+                    <td>映射名</td>
+                    <td>映射类型</td>
+                    <td>映射列值</td>
+                </tr>
+                <tr ng-repeat="item in $ct.list track by $index">
+                    <td ng-bind="item.name"></td>
+                    <td ng-bind="item.type"></td>
+                    <td ng-bind="item.map"></td>
+                    <td ng-bind="item.mapType"></td>
+                    <td><code ng-bind="item.value"></code></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.loading">
+                    <td colspan="5" class="etl-center">Loading......</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.list.length===0 && !$ct.loading">
+                    <td colspan="5" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===3">
+                <colgroup>
+                    <col style="width: 50%">
+                    <col style="width: 50%">
+                </colgroup>
+                <tr>
+                    <td>字段名</td>
+                    <td>字段类型</td>
+                </tr>
+                <tr ng-repeat="item in $ct.list track by $index">
+                    <td ng-bind="item.name"></td>
+                    <td ng-bind="item.type"></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.loading">
+                    <td colspan="2" class="etl-center">Loading......</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.list.length===0 && !$ct.loading">
+                    <td colspan="2" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===4">
+                <colgroup>
+                    <col style="width: 80%">
+                    <col style="width: 20%">
+                </colgroup>
+                <tr>
+                    <td>表达式</td>
+                    <td>是否保留</td>
+                </tr>
+                <tr ng-repeat="item in $ct.list track by $index">
+                    <td><code ng-bind="item.expression | limitTo:60"></code></td>
+                    <td ng-bind="item.option==='yes'?'保留':'不保留'"></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.loading">
+                    <td colspan="2" class="etl-center">Loading......</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.list.length===0 && !$ct.loading">
+                    <td colspan="2" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===5">
+                <colgroup>
+                    <col style="width: 30%">
+                    <col style="width: 30%">
+                    <col style="width: 40%">
+                </colgroup>
+                <tr>
+                    <td>字段名称</td>
+                    <td>值类型</td>
+                    <td>字段值</td>
+                </tr>
+                <tr ng-repeat="item in $ct.list track by $index">
+                    <td ng-bind="item.name"></td>
+                    <td ng-bind="item.desc"></td>
+                    <td ng-bind="item.value"></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.loading">
+                    <td colspan="3" class="etl-center">Loading......</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.list.length===0 && !$ct.loading">
+                    <td colspan="3" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===7">
+                <colgroup>
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 55%">
+                </colgroup>
+                <tr>
+                    <td>增</td>
+                    <td>删</td>
+                    <td>改</td>
+                    <td>表达式</td>
+                </tr>
+                <tr ng-repeat="item in $ct.list track by $index">
+                    <td><input type="checkbox" ng-checked="item.tab_ins" ng-disabled="true"></td>
+                    <td><input type="checkbox" ng-checked="item.tab_del" ng-disabled="true"></td>
+                    <td><input type="checkbox" ng-checked="item.tab_upt" ng-disabled="true"></td>
+                    <td><code ng-bind="item.expression | limitTo:50"></code></td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.loading">
+                    <td colspan="4" class="etl-center">Loading......</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.list.length===0 && !$ct.loading">
+                    <td colspan="4" class="etl-center">No Data!</td>
+                </tr>
+            </table>
+            <table class="table table-bordered" ng-cloak="" ng-if="$ct.model.cnum===8">
+                <colgroup>
+                    <col style="width: 30%">
+                    <col style="width: 70%">
+                </colgroup>
+                <tr>
+                    <td>转换类型：</td>
+                    <td ng-bind="$ct.nowCzzhType">表达式</td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.nowCzzhType==='delete_to_update'">
+                    <td>删除标记：</td>
+                    <td>
+                        <a href="javascript:void(0);" ng-cloak="" ng-hide="$ct.czzhModel.bjs.length===0" ng-click="$ct.showFlags($ct.czzhModel.bjs)">详情</a>
+                        <a href="javascript:void(0);" ng-cloak="" ng-show="$ct.czzhModel.bjs.length===0">无</a>
+                    </td>
+                </tr>
+                <tr ng-cloak="" ng-if="$ct.nowCzzhType==='delete_to_update'">
+                    <td>原值字段：</td>
+                    <td><code ng-bind="$ct.czzhModel.zds"></code></td>
+                </tr>
+                <tr>
+                    <td>表达式：</td>
+                    <td><code ng-bind="$ct.czzhModel.expression"></code></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">关闭</button>
+    </div>
+</script>

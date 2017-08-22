@@ -1,0 +1,97 @@
+<div role="tabpanel" class="tab-pane active" >
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Db_jbsx"></div><!--基本属性-->
+        <form name="form2" novalidate>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tr ng-cloak="" ng-show="$ctrl.real.group_id.length>0">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3">
+                                    <label class="text-info" translate-once="Gp_id"></label><!--组ID：-->
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="ci-label" ng-bind="$ctrl.real.group_id" ng-class="{'accord-pre':$ctrl.params.gid}">1</span>
+                                    <p ng-cloak ng-show="$ctrl.params.gid"  ng-class="{'accord-next':$ctrl.params.gid}" translate-once="Gp_wybs"></p><!--组唯一标示-->
+                                </div>
+                                <div class="col-md-1">
+                                    <span ng-click="$ctrl.params.gid=!$ctrl.params.gid" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.gid,'glyphicon-question-sign':!$ctrl.params.gid}"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="form2.gname.$dirty && form2.gname.$invalid">
+                                    <div class="alert alert-danger" ng-show="form2.gname.$error.required" translate-once="Gp_tip1"></div><!--组名称不能为空！-->
+                                    <div class="alert alert-danger" ng-show="form2.gname.$error.pattern" translate-once="Gp_tip2"></div><!--组名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                </div>
+                                <div class="col-md-12" ng-cloak="" ng-show="$ctrl.back_err.show">
+                                    <div class="alert alert-danger" ng-bind="$ctrl.back_err.msg" translate-once="Gp_tip1"></div><!--组名称不能为空！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Gp_mc"></label></div><!--组名称：-->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.groupName}" name="gname" type="text" ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" required ng-model="$ctrl.property.groupName" />
+                                    <p ng-class="{'accord-next':$ctrl.params.groupName}" ng-show="$ctrl.params.groupName" ng-cloak="" translate-once="Gp_mcsm"></p><!--组名称说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.groupName=!$ctrl.params.groupName">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.groupName,'glyphicon-question-sign':!$ctrl.params.groupName}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="form2.logtime.$dirty && form2.logtime.$invalid">
+                                    <div class="alert alert-danger" ng-show="form2.logtime.$error.required" translate-once="Gp_tip3"></div><!--日志保留时间不能为空！-->
+                                    <div class="alert alert-danger" ng-show="form2.logtime.$error.pattern" translate-once="Gp_tip4"></div><!--日志保留时间只能为大于0的数字！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Gp_rzblsj"></label></div><!--日志保留时间：-->
+                                <div class="col-md-8">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.log}">
+                                        <input class="form-control" name="logtime" type="text" ng-pattern="/^0$|^[1-9][0-9]*$/" required ng-model="$ctrl.property.logTime" />
+                                        <span class="input-group-addon" translate-once="HOUR"></span><!--小时-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.log}" ng-show="$ctrl.params.log" ng-cloak="" translate-once="Gp_rzsj"></p><!--日志保留时间说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.log=!$ctrl.params.log">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.log,'glyphicon-question-sign':!$ctrl.params.log}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="form2.gdesc.$dirty && form2.gdesc.$invalid">
+                                    <div class="alert alert-danger" ng-show="form2.gdesc.$error.maxlength" translate-once="Gp_tip5"></div><!--描述信息不能超过200个字节！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Gp_ms"></label></div><!--描述：-->
+                                <div class="col-md-8">
+                                    <textarea rows="3" cols="5" class="form-control" name="gdesc" ng-class="{'accord-pre':$ctrl.params.desc}" ng-model="$ctrl.property.desc" ng-maxlength="200" ></textarea>
+                                    <p ng-class="{'accord-next':$ctrl.params.desc}" ng-show="$ctrl.params.desc" ng-cloak="" translate-once="Gp_mssm"></p><!--描述说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.desc=!$ctrl.params.desc">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.desc,'glyphicon-question-sign':!$ctrl.params.desc}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix">
+                    <button class="btn btn-sm btn-primary pull-right" ng-disabled="form2.$invalid || $ctrl.isSaving" ng-click="$ctrl.saveGroupInfo()" translate-once="Gp_bcz"></button><!--保存组-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{
+ "apps":[
+   {
+     "name":"worker",
+     "script":"./worker.js",
+     "instances" : 4,
+     "exec_mode":"cluster",
+     "out_file":"../log/node_pm2_out.log",
+     "error_file":"../log/node_pm2_err.log",
+     "merge_logs":true,
+     "log_date_format":"YYYY-MM-DD HH:mm Z",
+     "env": {
+          "NODE_ENV": "production"
+      }
+   }
+ ]
+}
+
+

@@ -1,0 +1,83 @@
+<!--
+表达式编辑界面
+-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title">表达式编辑</h3>
+</div>
+<div class="modal-body">
+<div class="rule-bds-edit">
+    <div class="alert alert-info">
+        <div ng-cloak="" ng-if="$ctrl.type==='large'">
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='yes'">
+表达式范例：列名ID,NAME
+            :ID=1923 AND :NAME='wang'
+            新列值：N:ID=1923 AND N:NAME='wang'
+            旧列值：O:ID=1923 AND O:NAME='wang'
+            </pre>
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='no'">
+表达式范例：列名ID,NAME
+            {ID}=1923 AND {NAME}='wang'
+            新列值：N{ID}=1923 AND N{NAME}='wang'
+            旧列值：O{ID}=1923 AND O{NAME}='wang'
+            </pre>
+        </div>
+        <div ng-cloak="" ng-if="$ctrl.type==='normal'">
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='yes'">
+表达式范例：列名NAME  (注释：sqlserver数据库请使用 substring(:NMAE,1,3))
+            substr(:NAME,1,3)
+            </pre>
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='no'">
+表达式范例：列名NAME
+            @substr({NAME},1,3)
+            </pre>
+        </div>
+        <div ng-cloak="" ng-if="$ctrl.type==='pl'">
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='yes'">
+表达式范例：列名ID,NAME
+            :ID=1923 AND :NAME=%s
+            新列值：N:ID=1923 AND N:NAME=%s
+            旧列值：O:ID=1923 AND O:NAME=%s
+            </pre>
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='no'">
+表达式范例：列名ID,NAME
+            {ID}=1923 AND {NAME}=%s
+            新列值：N{ID}=1923 AND N{NAME}=%s
+            旧列值：O{ID}=1923 AND O{NAME}=%s
+            </pre>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="rule-bds-edit-left">
+            <h4>已选择列名</h4>
+            <ul>
+                <li ng-repeat="row in $ctrl.row.bdList track by $index" ng-bind="row"></li>
+            </ul>
+        </div>
+        <div class="rule-bds-edit-right" ng-class="{'work-area-on':$ctrl.bindNameVisble}">
+            <h4>表达式编辑</h4>
+            <div class="work-area">
+                <ul>
+                    <li ng-repeat="field in $ctrl.row.clist track by $index" ng-bind="field.column_name" ng-click="$ctrl.insertToText(field.column_name)"></li>
+                </ul>
+                <textarea ng-model="$ctrl.row.expression" id="bjq_expression"></textarea>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="rule-bds-edit-footer clearfix">
+        <div class="pull-left">
+            <button class="btn btn-default btn-sm etl-fix-input-right" ng-cloak="" ng-if="$ctrl.isAllowTable" ng-click="$ctrl.selectOneTable()">选择表</button>
+            <button class="btn btn-default btn-sm" ng-click="$ctrl.bindNameVisble=!$ctrl.bindNameVisble">字段变量</button>
+            <label  class="etl-fix-input-left">连接数据库：</label>是 <input type="radio" ng-model="$ctrl.row.connect_db" value="yes">
+            <button class="btn btn-default btn-sm" ng-disabled="$ctrl.row.connect_db==='no'" ng-click="$ctrl.dbConfig()">配置数据库</button>
+            否 <input type="radio"  ng-model="$ctrl.row.connect_db" value="no">
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info btn-sm etl-fix-input-right" ng-click="$ctrl.checkExpression()">合法性检查</button>
+            <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">关闭</button>
+            <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveExpression()">保存</button>
+        </div>
+    </div>
+</div>
+</div>

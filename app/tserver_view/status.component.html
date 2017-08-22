@@ -1,0 +1,42 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tserver</div>
+        <div class="panel-body" >
+            <table class="table">
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_tsyhm"></label></div><!--Tserver用户名:-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.user" ng-class="{'accord-pre':$ctrl.params.serUser}">1</span>
+                                <p ng-cloak ng-show="$ctrl.params.serUser"  ng-class="{'accord-next':$ctrl.params.serUser}" translate-once="Tc_yhmsm"></p><!--Tserver用户名说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.serUser=!$ctrl.params.serUser" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.serUser,'glyphicon-question-sign':!$ctrl.params.serUser}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row cap-form-tip">
+                            <div class="col-md-3"><label class="text-info" translate-once="Tc_tsmm"></label></div><!--Tserver密码:-->
+                            <div class="col-md-8">
+                                <span class="ci-label" ng-bind="$ctrl.property.passwd" ng-class="{'accord-pre':$ctrl.params.serPass}">******</span>
+                                <p ng-cloak ng-show="$ctrl.params.serPass"  ng-class="{'accord-next':$ctrl.params.serPass}" translate-once="Tc_tsmmsm"></p><!--Tserver密码说明-->
+                            </div>
+                            <div class="col-md-1">
+                                <span ng-click="$ctrl.params.serPass=!$ctrl.params.serPass" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.serPass,'glyphicon-question-sign':!$ctrl.params.serPass}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <div class="clearfix">
+                <button class="btn btn-primary pull-right" ng-disabled="$ctrl.isRun" ng-click="$ctrl.startTserver()" translate-once="Ts_qdts"></button><!--启动Tserver-->
+            </div>
+        </div>
+    </div>
+</div>

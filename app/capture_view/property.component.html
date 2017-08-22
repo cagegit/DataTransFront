@@ -1,0 +1,215 @@
+<div role="tabpanel" class="tab-pane" >
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Cp_cpsx"></div><!--Capture属性-->
+        <form name="formQu" novalidate>
+            <div class="panel-body">
+                <div class="capture-property-name cap-form-tip clearfix remove-border" ng-cloak="" ng-show="$ctrl.real.com_id.length>0">
+                    <div class="col-md-3">
+                        <label class="text-info"><span class="red"></span>Capture ID：</label>
+                    </div>
+                    <div class="col-md-8 clearfix">
+                        <span class="ci-label" style="line-height: 30px;" ng-bind="$ctrl.real.com_id" ng-class="{'accord-pre':$ctrl.params.capId}"></span>
+                        <p ng-cloak ng-show="$ctrl.params.capId"  ng-class="{'accord-next':$ctrl.params.capId}" translate-once="Cp_wybs"></p><!--Capture组件唯一标示-->
+                    </div>
+                    <div class="col-md-1">
+                        <span ng-click="$ctrl.params.capId=!$ctrl.params.capId" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.capId,'glyphicon-question-sign':!$ctrl.params.capId}"></span>
+                    </div>
+                </div>
+                <div class="capture-property-name cap-form-tip clearfix remove-border">
+                    <div class="col-md-12" ng-cloak="" ng-show="formQu.capName.$dirty && formQu.capName.$invalid">
+                        <div class="alert alert-danger" ng-show="formQu.capName.$error.required" translate-once="Cp_tip1"></div><!--Capture 名称不能为空！-->
+                        <div class="alert alert-danger" ng-show="formQu.capName.$error.pattern" translate-once="Cp_tip2"></div><!--Capture 名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                    </div>
+                    <div class="col-md-3">
+                        <label class="text-info"><span class="red">*</span>{{'Cp_cpmc' | translate}}</label><!--Capture 名称：-->
+                    </div>
+                    <div class="col-md-8 clearfix">
+                        <input class="form-control" type="text" translate-once-placeholder="Cp_zjmc" name="capName" ng-class="{'accord-pre':$ctrl.params.captureName}" required ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" ng-model="$ctrl.property.captureName"><!--Capture 组件名称-->
+                        <p ng-cloak ng-show="$ctrl.params.captureName"  ng-class="{'accord-next':$ctrl.params.captureName}" translate-once="Cp_mcsm"></p><!--Capture 名称说明-->
+                    </div>
+                    <div class="col-md-1">
+                        <span ng-click="$ctrl.params.captureName=!$ctrl.params.captureName" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.captureName,'glyphicon-question-sign':!$ctrl.params.captureName}"></span>
+                    </div>
+                </div>
+                <div class="panel panel-default col-md-5 capture-selt">
+                    <div class="panel-heading inner-paner" translate-once="Cp_wxlb"></div><!--未选列表-->
+                    <div class="panel-body inner-paner">
+                        <select  name="unselect_user" multiple  class="selt-ul"  ng-model="$ctrl.data.unselModel" >
+                            <option class="list-group-item" value="{{item}}" ng-repeat="item in $ctrl.data.unselList track by $index">{{item}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 capture-selt">
+                    <div class="vertical-center">
+                        <button type="button" class="btn btn-default center-block" ng-click="$ctrl.pushSelect()" ng-bind="$ctrl.data.left"></button>
+                        <button type="button" class="btn btn-default center-block push_select" ng-click="$ctrl.removeSelect()" ng-bind="$ctrl.data.right"></button>
+                    </div>
+                </div>
+                <div class="panel panel-default col-md-5 capture-selt">
+                    <div class="panel-heading inner-paner" translate-once="Cp_yxlb"></div><!--已选列表-->
+                    <div class="panel-body inner-paner">
+                        <select name="select_user" multiple class="selt-ul"  ng-model="$ctrl.data.selModel">
+                            <option class="list-group-item"  value="{{item}}" ng-repeat="item in $ctrl.data.selList track by $index">{{item}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel panel-default" ng-cloak="" ng-if="$ctrl.dbConf.oraclePanel">
+                    <div class="panel-heading">模式和Rac</div><!--源库RAC信息-->
+                    <div class="panel-body">
+                        <div class="row rac-info-panel">
+                            <div class="col-lg-12">
+                                日志分析模式：<label for="log_ol"><input type="radio" id="log_ol" ng-model="$ctrl.logFx.ms" value="zx">在线分析</label>
+                                <label for="log_fl"><input type="radio" id="log_fl" ng-model="$ctrl.logFx.ms" value="lx">离线分析</label>
+                                <a href="javascript:void(0);" ng-cloak="" ng-if="$ctrl.logFx.ms==='lx'" style="margin-left: 10px" ng-click="$ctrl.lxMacConfig()">主机配置</a>
+                            </div>
+                            <div class="clearfix"></div>
+                            <rac-model racs="$ctrl.racs"></rac-model>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <senior-pro db-type="$ctrl.dbConf.nowDB" com-id="$ctrl.real.com_id" property="$ctrl.property" super="$ctrl.data.superConfig" on-save="$ctrl.saveSeniorConfig(pro)"></senior-pro>
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="pull-left">
+                    <div class="alert alert-danger" ng-cloak="" ng-show="$ctrl.data.serErr && $ctrl.data.serErr.length>0" ng-bind="$ctrl.data.serErr"></div>
+                    <div class="alert alert-danger" ng-cloak="" ng-show="$ctrl.data.lxErr && $ctrl.data.lxErr.length>0" ng-bind="$ctrl.data.lxErr"></div>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-sm btn-primary" style="margin-right: 10px" ng-disabled="$ctrl.dbConf.sqlserPanel" ng-cloak=""
+                            ng-click="$ctrl.showSqlPanel()" ng-if="$ctrl.dbConf.nowDB==='sqlserver' || $ctrl.dbConf.nowDB==='db2'">表配置</button><!--表配置-->
+                    <button type="button" class="btn btn-sm btn-primary" ng-disabled="!$ctrl.rac_param_ck || formQu.$invalid || $ctrl.isSaving" ng-click="$ctrl.saveCaptureInfo()" ng-bind="$ctrl.saveBtnTxt"></button><!--保存-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--/sqlserver 列表-->
+    <div class="panel panel-default" ng-cloak="" ng-if="$ctrl.dbConf.sqlserPanel && $ctrl.dbConf.nowDB==='sqlserver'">
+        <div class="panel-heading">
+            sqlServer表配置
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary btn-sm" style="margin-top: -5px;" ng-click="$ctrl.dbConf.sqlserPanel=false">关闭</button><!--关闭-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <uib-tabset active="$ctrl.dbConf.active"  justified="true">
+                <uib-tab index="0" heading="选择要同步的表">
+                    <div class="row" ng-cloak="">
+                        <div class="col-md-12">
+                            <div style="border: 1px solid #ddd;height: 300px;" ng-cloak="" ng-show="!$ctrl.dbConf.sqlLog.isEdit">
+                                <div id="objTree" class="ztree ztreecss" style="height: 280px;overflow: auto"></div>
+                            </div>
+                            <div style="border: 1px solid #ddd;height: 365px;" ng-cloak="" ng-if="$ctrl.dbConf.sqlLog.isEdit">
+                                <table class="table" style="margin-bottom: 0;border-bottom: none;">
+                                    <caption>
+                                        <div class="alert alert-info" style="margin-bottom: 0">
+                                            <i class="fa fa-bullhorn text-warning"></i> 该步骤会对表添加补充日志，添加补充日志后表的truncate操作将不能执行，请确认应用程序中没有对表的truncate操作，然后再点击执行按钮。
+                                        </div>
+                                    </caption>
+                                    <colgroup>
+                                        <col style="width: 10%">
+                                        <col style="width: 25%">
+                                        <col style="width: 25%">
+                                        <col style="width: 25%">
+                                        <col style="width: 15%">
+                                    </colgroup>
+                                    <tr>
+                                        <th><input type="checkbox" id="ckAll" ng-change="$ctrl.qxToggle()" ng-model="$ctrl.dbConf.sqlLog.ckAll"></th>
+                                        <th>用户名</th>
+                                        <th>表名</th>
+                                        <th>操作</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </table>
+                                <div style="height: 208px;overflow:scroll;">
+                                    <table class="table table-striped" id="sqlLogs">
+                                        <colgroup>
+                                            <col style="width: 10%">
+                                            <col style="width: 25%">
+                                            <col style="width: 25%">
+                                            <col style="width: 25%">
+                                            <col style="width: 15%">
+                                        </colgroup>
+                                        <tr ng-repeat="item in $ctrl.dbConf.sqlLog.tables track by $index">
+                                            <td><input type="checkbox" class="sqlTbCbox" id="{{item.cid}}" ng-value="item.data" checked></td>
+                                            <td ng-bind="item.pname">aaa</td>
+                                            <td ng-bind="item.name">bbb</td>
+                                            <td><span class="text-success" ng-show="item.checked">添加</span>
+                                                <span class="text-warning" ng-show="!item.checked">取消</span>补充日志</td>
+                                            <td id="{{item.id}}">无</td>
+                                        </tr>
+                                        <tr ng-cloak="" ng-show="$ctrl.dbConf.sqlLog.tables.length===0">
+                                            <td colspan="5" class="txt-align-center">No Data!</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="height: 30px;line-height: 30px;">
+                                    待添加条数：<span ng-bind="$ctrl.dbConf.sqlLog.totalApp"></span> 已添加条数：<span class="text-success" ng-bind="$ctrl.dbConf.sqlLog.appNum"></span>,
+                                    待取消条数：<span ng-bind="$ctrl.dbConf.sqlLog.totalCan"></span> 已取消条数：<span class="text-success" ng-bind="$ctrl.dbConf.sqlLog.canNum"></span>,
+                                    失败条数：<span class="text-danger" ng-bind="$ctrl.dbConf.sqlLog.error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 clearfix">
+                            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-top: 15px;" ng-cloak="" ng-show="$ctrl.dbConf.sqlLog.isEdit" ng-click="$ctrl.excuteBcLog()" ng-disabled="$ctrl.dbConf.sqlLog.excuteIng" ng-bind="$ctrl.dbConf.sqlLog.excuteBtx"></button>
+                            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-top: 15px;margin-right: 10px;" ng-cloak="" ng-show="$ctrl.dbConf.sqlLog.isEdit" ng-click="$ctrl.cancelZx()">返回</button>
+                            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-top: 15px;" ng-hide="$ctrl.dbConf.sqlLog.isEdit" ng-click="$ctrl.selectTbTables()">选择表</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="配置快照同步表" select="$ctrl.showSqlKzPanel()">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info" style="margin-bottom: 10px">
+                                <i class="fa fa-icon-warning-sign yellow"></i>快照同步用于对表定时做全量同步，该同步方式只适用于表的变化不频繁，且表数据量较少的情况。
+                            </div>
+                            <div style="border: 1px solid #ddd;height: 250px;overflow: auto;">
+                                <div id="objTree1" class="ztree ztreecss"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="$ctrl.dbConf.sqlserPanel=false" style="margin-top: 15px;">关闭</button>
+                                <button type="button" class="btn btn-primary btn-sm" style="margin-top: 15px;margin-right: 5px;"  ng-disabled="$ctrl.isSaving1" ng-click="$ctrl.saveSqlKz()">保存</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+    <!--db2配置表-->
+    <div class="panel panel-default" ng-cloak="" ng-if="$ctrl.dbConf.sqlserPanel && $ctrl.dbConf.nowDB==='db2'">
+        <div class="panel-heading">
+            DB2表配置
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary btn-sm" style="margin-top: -5px;" ng-click="$ctrl.dbConf.sqlserPanel=false">关闭</button><!--关闭-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info" style="margin-bottom: 10px">
+                        <i class="fa fa-icon-warning-sign yellow"></i>DB2数据库，cdc配置，选中代表开启，未选中代表关闭。
+                    </div>
+                    <div style="border: 1px solid #ddd;height: 250px;overflow: auto;">
+                        <div id="objTreeDb2" class="ztree ztreecss"></div>
+                        <div style="text-align: center;" ng-cloak="" ng-show="$ctrl.isBpz">Loading......</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="$ctrl.dbConf.sqlserPanel=false" style="margin-top: 15px;">关闭</button>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-top: 15px;margin-right: 5px;"  ng-disabled="$ctrl.isBpz" ng-click="$ctrl.saveDb2Cdc()">确认</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

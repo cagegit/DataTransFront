@@ -1,0 +1,1 @@
+@-webkit-keyframes flash{0%,100%,50%{opacity:1}25%,75%{opacity:0}}@-moz-keyframes flash{0%,100%,50%{opacity:1}25%,75%{opacity:0}}@-o-keyframes flash{0%,100%,50%{opacity:1}25%,75%{opacity:0}}@keyframes flash{0%,100%,50%{opacity:1}25%,75%{opacity:0}}.flash{-webkit-animation-name:flash;-moz-animation-name:flash;-o-animation-name:flash;animation-name:flash}

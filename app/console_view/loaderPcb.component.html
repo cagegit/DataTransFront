@@ -1,0 +1,55 @@
+<!--loader排除表-->
+<div class="console-loader-area" style="border-top: none;">
+    <div class="console-loader-pan">
+        <table class="table">
+            <colgroup>
+                <col style="width:5%">
+                <col style="width:20%">
+                <col style="width:25%">
+                <col style="width:15%">
+                <col style="width:35%">
+            </colgroup>
+            <tr>
+                <th><input type="checkbox" ng-model="$ctrl.ckAll" ng-change="$ctrl.ckAllChange()" title="全选"></th><!--全选 -->
+                <th>用户名</th><!--用户名 -->
+                <th>表名</th><!--表名 -->
+                <th>排除时间</th><!--排除时间 -->
+                <th>排除原因</th><!--排除原因 -->
+            </tr>
+        </table>
+        <div class="loader-list" id="loader-err-stat" style="height: 250px;">
+            <table class="table">
+                <colgroup>
+                    <col style="width:5%">
+                    <col style="width:20%">
+                    <col style="width:25%">
+                    <col style="width:15%">
+                    <col style="width:35%">
+                </colgroup>
+                <tr ng-repeat="item in $ctrl.pcbList track by $index">
+                    <td><input type="checkbox" class="mainStatList" ng-model="item.checked" ng-change="$ctrl.ckItemChange(item)"></td>
+                    <td ng-bind="item.owner"></td>
+                    <td ng-bind="item.table"></td>
+                    <td ng-bind="item.time"></td>
+                    <td ng-bind="item.reason"></td>
+                </tr>
+                <tr ng-cloak="" ng-show="$ctrl.loading">
+                    <td  class="con-text-center" colspan="5"><img src="../img/15.gif"></td>
+                </tr>
+                <tr ng-cloak="" ng-show="!$ctrl.loading && $ctrl.pcbList.length===0">
+                    <td  class="con-text-center" colspan="5">No Data!</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="cap-foot-bar">
+        <div class="pull-left">
+            <button class="btn box" ng-click="$ctrl.deleteRecords()" style="margin-bottom: 4px">删除</button>
+            <!--<button class="btn box" ng-click="reSyncCkList()" >重新同步选中表</button>-->
+        </div>
+        <div class="pull-right">
+            <div page pre="$ctrl.pagePre()" next="$ctrl.pageNext()"  tiao="$ctrl.tiao()" tt="$ctrl.ptotal" cnum="$ctrl.pnum" snum="$ctrl.fy.snum"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

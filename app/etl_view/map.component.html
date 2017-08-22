@@ -1,0 +1,94 @@
+<!--映射列界面-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title" id="modal-title">映射列规则</h3>
+</div>
+<div class="modal-body" id="modal-body">
+<div class="etl-map-modal  etl-all-rule">
+    <div class="map-head">
+        <div class="dropdown">
+            <button id="dLabel" class="btn btn-info btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                操作<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.openTargetsModal()">获取目标库对应表名</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.openApplyToModal()">该策略应用到其他表</a></li>
+            </ul>
+            <span class="rule-table-name" ng-bind="$ctrl.targetLabel"></span>
+        </div>
+    </div>
+    <div class="map-body">
+        <table class="table table-hover">
+            <colgroup>
+                <col style="width: 5%">
+                <col style="width: 16%">
+                <col style="width: 14%">
+                <col style="width: 16%">
+                <col style="width: 14%">
+                <col style="width: 25%">
+                <col style="width: 10%">
+            </colgroup>
+            <tr>
+                <th><input type="checkbox" ng-model="$ctrl.ckAll" ng-change="$ctrl.changeAll()"></th>
+                <th>字段名称</th>
+                <th>类型</th>
+                <th>映射名</th>
+                <th>类型</th>
+                <th>映射列值</th>
+                <th>编辑</th>
+            </tr>
+            <tr ng-repeat="item in $ctrl.addList | orderBy:'-item.checked' track by $index">
+                <td><input type="checkbox" class="etl-map-son" ng-model="item.checked" ng-change="$ctrl.changeOne(item)"></td>
+                <td ng-bind="item.name"></td>
+                <td ng-bind="item.type"></td>
+                <td>
+                    <select ng-model="item.map" ng-change="item.map?item.checked=true:item.checked=false">
+                        <option value=""></option>
+                        <option ng-repeat="map in item.maps track by $index" value="{{map}}" ng-bind="map"></option>
+                    </select>
+                </td>
+                <td ng-bind="item.type"></td>
+                <td><code ng-bind="item.value"></code></td>
+                <td><a href="javascript:void(0)" class="btn fa fa-edit" ng-click="$ctrl.editColumn(item)"></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveMapRule()">保存</button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--字段值编辑界面-->
+<script type="text/ng-template" id="etlMapModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">编辑列字段</h3>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered">
+            <tr>
+                <td>字段：</td>
+                <td><input type="text" class="form-control" ng-model="$ct.model.map" maxlength="60"></td>
+            </tr>
+            <tr>
+                <td>值类型：</td>
+                <td>表达式</td>
+            </tr>
+            <tr>
+                <td>字段值：</td>
+                <td>
+                    <button class="btn btn-info btn-sm" ng-click="$ct.edit()">表达式编辑</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" type="button" ng-click="$ct.ok()">确定</button>
+    </div>
+</script>

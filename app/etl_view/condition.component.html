@@ -1,0 +1,57 @@
+<!--记录过滤界面-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span>
+    </button>
+    <h3 class="modal-title" id="modal-title">记录过滤</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="etl-condition-modal etl-all-rule">
+        <div class="condition-head">
+            <div class="dropdown">
+                <button id="dLabel" class="btn btn-info btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    操作<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.openApplyToModal()">该策略应用到其他表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="condition-body">
+            <table class="table table-hover">
+                <caption>
+                    <h4>源库及表名：<span ng-bind="$ctrl.utInfo"></span></h4>
+                </caption>
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 45%">
+                    <col style="width: 25%">
+                    <col style="width: 20%">
+                </colgroup>
+                <tr>
+                    <th><input type="checkbox" ng-model="$ctrl.ckAll" ng-change="$ctrl.changeAll()"></th>
+                    <th>表达式</th>
+                    <th>是否保留 <i class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{$ctrl.ruleTip}}"></i></th>
+                    <th>编辑</th>
+                </tr>
+                <tr ng-repeat="item in $ctrl.addList track by $index">
+                    <td><input type="checkbox" class="etl-condition-son" ng-model="item.checked" ng-change="$ctrl.changeOne(item)"></td>
+                    <td><code ng-bind="item.value"></code></td>
+                    <td><label>保留：<input type="radio" value="yes" ng-model="item.option"></label><label>不保留：<input type="radio" ng-model="item.option" value="no"></label></td>
+                    <td><a href="javascript:void(0)" class="btn fa fa-edit" ng-click="$ctrl.editColumn(item)"></a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="etl-margin-top10">
+            <button class="btn btn-info btn-sm" ng-click="$ctrl.addColumn()">增加行</button>
+            <button class="btn btn-info btn-sm" ng-click="$ctrl.deleteColumn()">删除行</button>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">取消</button>
+        <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveConditionRule()">保存</button>
+    </div>
+    <div class="clearfix"></div>
+</div>

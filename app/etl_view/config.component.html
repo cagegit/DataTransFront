@@ -1,0 +1,191 @@
+<div role="tabpanel" class="tab-pane" >
+    <div class="panel panel-default">
+        <form name="formQu" novalidate>
+            <div class="panel-heading">基本属性</div><!--基本属性-->
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tr ng-cloak="" ng-if="$ctrl.etl.etl_id.length>0">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">ETL ID：</label></div><!--ETL ID：-->
+                                <div class="col-md-8 clearfix" >
+                                    <span class="ci-label" style="line-height: 30px;" ng-bind="$ctrl.etl.etl_id" ng-class="{'accord-pre':$ctrl.params.filed8}"></span>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed8}" ng-show="$ctrl.params.filed8" ng-cloak="">ETL唯一标示</p><!--ETL唯一标示-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.filed8=!$ctrl.params.filed8">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.filed8,'glyphicon-question-sign':!$ctrl.params.filed8}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.etl_name.$dirty && formQu.etl_name.$invalid">
+                                    <div uib-alert ng-class="'alert-danger'" ng-show="formQu.etl_name.$error.required">ETL名称不能为空！</div><!--ETL名称不能为空！-->
+                                    <div uib-alert ng-class="'alert-danger'" ng-show="formQu.etl_name.$error.pattern">ETL名称只能包含汉字、数字、字母、下划线，长度不超过20位！</div><!--ETL名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info">ETL名称：</label></div><!--ETL名称：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.filed}" type="text" name="etl_name" ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" ng-model="$ctrl.etl.etl_name" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed}" ng-show="$ctrl.params.filed" ng-cloak="ng-cloak">ETL名称说明</p><!--ETL名称说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.filed=!$ctrl.params.filed">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.filed,'glyphicon-question-sign':!$ctrl.params.filed}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">CHAR字符集：</label></div><!--CHAR字符集：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.filed1}">
+                                        <select class="form-control input-sm" ng-model="$ctrl.etl.etl_char" ng-options="item for item in $ctrl.pool.char_list"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed1}" ng-show="$ctrl.params.filed1" ng-cloak="ng-cloak">CHAR字符集说明</p><!--CHAR字符集说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.filed1=!$ctrl.params.filed1">
+                                        <span class="mark glyphicon"
+                                              ng-class="{'glyphicon-remove-sign':$ctrl.params.filed1,'glyphicon-question-sign':!$ctrl.params.filed1}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">NCHAR字符集：</label></div><!--NCHAR字符集：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.filed2}">
+                                        <select class="form-control input-sm" ng-model="$ctrl.etl.etl_nchar" ng-options="item for item in $ctrl.pool.nchar_list"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed2}" ng-show="$ctrl.params.filed2"
+                                       ng-cloak="ng-cloak">NCHAR字符集说明</p><!--NCHAR字符集说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.filed2=!$ctrl.params.filed2">
+                                        <span class="mark glyphicon"
+                                              ng-class="{'glyphicon-remove-sign':$ctrl.params.filed2,'glyphicon-question-sign':!$ctrl.params.filed2}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">CLOB字符集：</label></div><!--CLOB字符集：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.filed3}">
+                                        <select class="form-control input-sm" ng-model="$ctrl.etl.etl_clob" ng-options="item for item in $ctrl.pool.clob_list"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed3}" ng-show="$ctrl.params.filed3"
+                                       ng-cloak="ng-cloak">CLOB字符集说明</p><!--CLOB字符集说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.filed3=!$ctrl.params.filed3">
+                                        <span class="mark glyphicon"
+                                              ng-class="{'glyphicon-remove-sign':$ctrl.params.filed3,'glyphicon-question-sign':!$ctrl.params.filed3}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">NCLOB字符集：</label></div><!--NCLOB字符集：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.filed4}">
+                                        <select class="form-control input-sm" ng-model="$ctrl.etl.etl_nclob" ng-options="item for item in $ctrl.pool.nlob_list"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed4}" ng-show="$ctrl.params.filed4"
+                                       ng-cloak="ng-cloak">NCLOB字符集说明</p><!--NCLOB字符集说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.filed4=!$ctrl.params.filed4">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.filed4,'glyphicon-question-sign':!$ctrl.params.filed4}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.etl_jg.$dirty && formQu.etl_jg.$invalid">
+                                    <div uib-alert ng-class="'alert-danger'" ng-show="formQu.etl_jg.$error.required">转换间隔时间不能为空！</div><!--转换间隔时间不能为空！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" style="color:#333333 !important;">转换间隔时间：</label></div><!--转换间隔时间：-->
+                                <div class="col-md-8 clearfix" >
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.filed5}">
+                                        <input class="form-control" type="number" name="etl_jg" ng-model="$ctrl.etl.etl_jg" maxlength="10" min="0" required/>
+                                        <span class="input-group-addon">秒</span><!--秒-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed5}" ng-show="$ctrl.params.filed5" ng-cloak="">转换间隔时间说明</p><!--转换间隔时间说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.filed5=!$ctrl.params.filed5">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.filed5,'glyphicon-question-sign':!$ctrl.params.filed5}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">转换通用格式：</label></div><!--转换通用格式：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.filed6}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.etl.etl_gs" value="yes"/>是</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.etl.etl_gs" value="no"/>否</label><!--否-->
+                                        <i class="glyphicon glyphicon-question-sign" style="margin-left: 5px;" tooltip-placement="bottom" uib-tooltip="{{$ctrl.etlGsTip}}"></i>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed6}" ng-show="$ctrl.params.filed6" ng-cloak="ng-cloak">转换通用格式说明</p><!--转换通用格式说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.filed6=!$ctrl.params.filed6">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.filed6,'glyphicon-question-sign':!$ctrl.params.filed6}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-cloak="" ng-if="$ctrl.etl.etl_gs==='yes'">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info">转换字符集：</label></div><!--转换字符集：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.filed7}">
+                                        <select class="form-control input-sm" ng-model="$ctrl.etl.etl_zh" ng-options="item for item in $ctrl.pool.zh_list"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.filed7}" ng-show="$ctrl.params.filed7" ng-cloak="ng-cloak">转换字符集说明</p><!--转换字符集说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.filed7=!$ctrl.params.filed7">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.filed7,'glyphicon-question-sign':!$ctrl.params.filed7}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-sm" ng-disabled="formQu.$invalid || $ctrl.isSave" ng-click="$ctrl.saveEtlConfig()">保存</button><!--保存-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

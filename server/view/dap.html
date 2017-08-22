@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en" id="bigview">
+<head>
+    <meta charset="UTF-8">
+    <title id="tt"></title><!--DIP 项目监控大屏-->
+    <meta name="description" content=""><!--DIP 项目监控大屏-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dp.css">
+</head>
+<body id="main-dp">
+<div class="container dp-container" id="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <div class="main-left">
+                <div class="dp-main-left">
+                    <div class="dp-main-box" id="leftBox">
+                        <a href="javascript:void(0);" class="scroll-up dp-prev"></a>
+                        <div class="scroll-head"></div>
+                        <div class="scroll-main">
+                            <ul>
+                                <li v-for="item in sourceDbs" track-by="g_index">
+                                    <div class="scroll-div">
+                                        <img v-bind:src="item.src" border="0" />
+                                        <p class="db-title"  v-bind="{title:item.name}">{{item.name}}</p>
+                                        <p class="db-info"><span>({{item.speed}}{{i18.tm}})</span></p><!--条/秒-->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="javascript:void(0);" class="scroll-down dp-down"></a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="dp-main-content">
+                    <h1 v-text="i18.sjjhjk"></h1><!--数据交换综合监控-->
+                    <div class="content-info-li"><strong v-text="i18.cxyx"></strong><!--持续运行：-->
+                        <p class="sm-box">{{tj.day}}</p><span v-text="i18.D"></span><!--天-->
+                        <p class="sm-box">{{tj.hour}}</p><span v-text="i18.H"></span><!--小时-->
+                        <p class="sm-box">{{tj.minute}}</p><span v-text="i18.M"></span><!--分-->
+                        <p class="sm-box">{{tj.second}}</p><span v-text="i18.S"></span></div><!--秒-->
+                    <div class="content-info-li"><strong v-text="i18.zqts"></strong><p class="lg-box">{{in_num}}</p><span v-text="i18.t"></span></div><!--抓取条数：条-->
+                    <div class="content-info-li"><strong v-text="i18.zzts"></strong><p class="lg-box">{{out_num}}</p><span v-text="i18.t"></span></div><!--装载条数：条-->
+                    <div class="content-info-li"><strong v-text="i18.zqzl"></strong><p class="lg-box">{{total_g}}</p><span>G</span></div><!--抓取总量：-->
+                    <div class="content-info-trans">
+                        <div class="dp-arrow-left"></div>
+                        <div class="dp-arrow-right"></div>
+                        <div class="dp-trans-mc">
+                             <img src="img/dp/cla.png" border="0"  />
+                        </div>
+                        <div class="dp-trans-tips">
+                            <ul>
+                                <li class="dp-tips-li1" v-text="i18.zcyx"></li><!--正常运行-->
+                                <li class="dp-tips-li2" v-text="i18.yctc"></li><!--异常退出、未启动-->
+                                <li class="dp-tips-li3" v-text="i18.yxcc"></li><!--运行出错-->
+                            </ul>
+                        </div>
+                        <div class="dp-bq-info">
+                            <div>{{i18.xmmc}}<span>{{pname}}</span></div><!--项目名称：-->
+                            <!--<div v-text="i18.syxk"></div>&lt;!&ndash;使用许可：国家电网河南分公司&ndash;&gt;-->
+                            <div v-text="i18.gsjj"></div><!--©2011-2016翱旗创业(北京)科技有限公司-->
+                        </div>
+                    </div>
+                </div>
+                <div class="dp-main-right">
+                    <div class="dp-main-box" id="rightBox">
+                        <a href="javascript:void(0);" class="scroll-up dp-prev"></a>
+                        <div class="scroll-head"></div>
+                        <div class="scroll-main">
+                            <ul>
+                                <li v-for="item in targetDbs" track-by="g_index">
+                                    <div class="scroll-div">
+                                        <img v-bind:src="item.src" border="0" />
+                                        <p class="db-title" v-bind="{title:item.name}">{{item.name}}</p>
+                                        <p class="db-info"><span>({{item.speed}}{{i18.tm}})</span></p><!--条/秒-->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="javascript:void(0);" class="scroll-down dp-down"></a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 main-right">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="dp-right-box-head">
+                        <h3 v-text="i18.yjzy"></h3><!--硬件资源使用情况-->
+                    </div>
+                    <div class="dp-right-box-body">
+                        <div class="dp-gauge" id="cpu_gauge"></div>
+                        <div class="dp-gauge" id="memory_gauge"></div>
+                        <div class="dp-gauge" id="disk_gauge"></div>
+                        <div v-if="chartLoading" style="text-align:center;font-size: 18px;color:#fff;"><strong>Loading......</strong></div>
+                        <div class="dp-double" id="dp-double">
+                            <div class="dp-gauge1" id="net_io"></div>
+                            <div class="dp-gauge1" id="disk_io"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="dp-right-box-head">
+                        <h3 v-text="i18.sjjhtj"></h3><!--数据交换统计-->
+                    </div>
+                    <div class="dp-right-box-body2">
+                        <table class="table">
+                            <colgroup>
+                                <col style="width: 10%">
+                                <col style="width: 30%">
+                                <col style="width: 20%">
+                                <col style="width: 20%">
+                                <col style="width: 20%">
+                            </colgroup>
+                            <tr>
+                                <th v-text="i18.zu"></th><!--组-->
+                                <th v-text="i18.yxsj"></th><!--运行时间-->
+                                <th v-text="i18.zql"></th><!--抓取量(条)-->
+                                <th v-text="i18.zzl"></th><!--装载量(条)-->
+                                <th v-text="i18.zqzlg"></th><!--抓取总量(G)-->
+                            </tr>
+                            <tr v-for="item in groupList" v-bind:class="{'no-data':item.isEmpty}">
+                                <td v-text="item.group">法人数据</td>
+                                <td v-text="item.runtime">20分钟</td>
+                                <td v-text="item.statis">100.00</td>
+                                <td v-text="item.o_statis">100.00</td>
+                                <td v-text="item.throughput">500.00</td>
+                            </tr>
+                            <tr v-show="groupList.length===0">
+                                <td colspan="5" style="text-align: center;">No Data!</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="build/jq.lib.js"></script>
+<script type="text/javascript" src="lib/vue.min.js"></script>
+<script type="text/javascript" src="lib/toastr.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script src="lib/echarts.js"></script>
+<script type="text/javascript">
+    'use strict';
+    $(document).ready(function () {
+    //vue  i18n
+    function initI18n() {
+        var lan = window.localStorage.lang ||'cn';
+        var lang ={
+            cn:{
+                title:'DIP 项目监控大屏',
+                tm:'条/秒',
+                sjjhjk:'数据交换综合监控',
+                cxyx:'持续运行：',
+                D:'天',
+                H:'小时',
+                M:'分',
+                S:'秒',
+                t:'条',
+                zqts:'抓取条数：',
+                zzts:'装载条数：',
+                zqzl:'抓取总量：',
+                zcyx:'正常运行',
+                yctc:'异常退出、未启动',
+                yxcc:'运行出错',
+                xmmc:'项目名称：',
+                syxk:'使用许可：国家电网河南分公司',
+                gsjj:'©2011-2016翱旗创业(北京)科技有限公司',
+                yjzy:'硬件资源使用情况',
+                sjjhtj:'数据交换统计',
+                zu:'组',
+                yxsj:'运行时间',
+                zql:'抓取量(条)',
+                zzl:'装载量(条)',
+                zqzlg:'抓取总量(G)',
+                zymygb:'主页面已关闭！',
+                tip:'Dip提示',
+                timeout:'此页面已过期，请重新登录!',
+                ok:'确定',
+                nczl:'内存总量',
+                ypzl:'硬盘总量',
+                wlio:'网络I/O',
+                cpio:'磁盘I/O'
+            },
+            en:{
+                title: 'DIP project monitoring view screen',
+                tm: 'bar/s',
+                sjjhjk: 'Data exchange monitoring',
+                cxyx: 'Running:',
+                D: 'D',
+                H: 'H',
+                M: 'm',
+                S: 's',
+                t: 'bar',
+                zqts: 'Crawl:',
+                zzts: 'Loading:',
+                zqzl: 'Crawl totals:',
+                zcyx: 'Running success',
+                yctc: 'Abnormal exit, did not start',
+                yxcc: 'Run error',
+                xmmc: 'Project Name:',
+                syxk: 'license:State Grid Henan Branch',
+                gsjj: '©2011-2017 Aoqi Business (Beijing) Technology Co., Ltd.',
+                yjzy: 'Hardware resource usage',
+                sjjhtj: 'Data exchange statistics',
+                zu: 'Group',
+                yxsj: 'Runtime',
+                zql: 'Crawl Amount(Bar)',
+                zzl: 'Load(bar)',
+                zqzlg: 'Total Grab(G)',
+                zymygb: 'The main page is closed! ',
+                tip: 'Dip Tip',
+                timeout: 'This page has expired, please log in again!',
+                ok: 'OK',
+                nczl: 'Total memory',
+                ypzl: 'Total disk',
+                wlio: 'Network I/O',
+                cpio: 'Disk I/O'
+            }
+        };
+        if(lan==='en'){
+            return lang.en;
+        }else{
+            return lang.cn;
+        }
+    }
+    var i18n=initI18n();
+    $('#tt').text(i18n.title);
+    toastr.options = {
+        closeButton: true,
+        positionClass:'toast-top-center'
+    };
+
+    if(window.opener && window.opener.closed) {
+        toastr.error(i18n.zymygb,i18n.tip);
+        setTimeout(function () {
+            window.close();
+        },1000);
+    }
+    /////////参数配置
+    var chart_timer,data_timer,isAuth=false,vm,ds_time=5000,interval_s=ds_time/1000,yb_time=2000,cx_timer,init_timer='',c_timer=0,nowNumber=0;
+    var left_j,right_j;
+    //是否登录的校验
+    var authFail = function () {
+        BootstrapDialog.alert({
+            title: i18n.tip,
+            message: i18n.timeout,
+            type: BootstrapDialog.TYPE_WARNING,
+            closable: false,
+            buttonLabel: i18n.ok,
+            callback: function(result) {
+                window.opener.location.href='/login';
+                window.close();
+            }
+        });
+    };
+
+    // var pid = $.cookie('proId'),pname = $.cookie('proName');
+    var pid = window.localStorage.getItem('proId'), pname =  window.localStorage.getItem('proName');
+    //如果项目名或者项目ID不存在，跳转到index
+    if(!pid || !pname){
+        window.close();
+    }
+    $.ajaxSetup({
+        headers: {'x-xsrf-token': $.cookie('XSRF-TOKEN')}
+    });
+    jqAjax('/isAuth',{},'GET').then(function (res) {
+        if(res.isAuth){
+            isAuth=true;
+        }else{
+            authFail();
+        }
+        initMain();
+    },function (err) {
+        initMain();
+        authFail();
+    });
+
+        require.config({
+            baseUrl:"lib/",
+            paths: {
+                echarts: '.'
+            }
+        });
+
+        function initMain() {
+            vm = new Vue({
+                el:'#container',
+                data:{
+                    sourceDbs:[],
+                    targetDbs:[],
+                    tj:{
+                        day:0,
+                        hour:0,
+                        minute:0,
+                        second:0
+                    },
+                    in_num:'0',
+                    out_num:'0',
+                    groupList:[],
+                    chartLoading:true,
+                    total_g:0,
+                    pname:pname,
+                    i18:i18n
+                },
+                created:function () {
+                    if(!isAuth){
+                       return;
+                    }
+                    getNewData().then(function () {
+                        createTimer();
+                    });
+                    //定时查询数据
+                    data_timer=setInterval(function () {
+                        if(!isAuth){
+                            clearInterval(data_timer);
+                            return;
+                        }
+                        getNewData();
+                    },ds_time);
+                    initCharts();
+                    setTimeout(function () {
+                        scrollLeftDbList();
+                        scrollRightDbList();
+                    },500);
+                }
+            });
+        }
+
+        function create_time(start_time){
+            if($.type(start_time)!=='string'){
+                return null;
+            }
+            start_time=start_time.replace(/-/g,"/");
+            var time_start = new Date(start_time);  // 设定结束时间
+            if($.type(time_start)!=='date'){
+                return null;
+            }
+            time_start = time_start.getTime();
+            var time_now = new Date().getTime();  // 获取当前时间
+            var time_distance = time_now-time_start;  // 结束时间减去当前时间
+            var int_day, int_hour, int_minute, int_second;
+            if(time_distance >= 0){
+                // 天时分秒换算
+                int_day = Math.floor(time_distance/86400000);
+                time_distance -= int_day * 86400000;
+                int_hour = Math.floor(time_distance/3600000);
+                time_distance -= int_hour * 3600000;
+                int_minute = Math.floor(time_distance/60000);
+                time_distance -= int_minute * 60000;
+                int_second = Math.floor(time_distance/1000);
+                var time_str='';
+                if(int_day!==0){
+                    time_str+=int_day+i18n.D;
+                }
+                if(int_hour!==0){
+                    time_str+=int_hour+i18n.H;
+                }
+                if(int_minute!==0){
+                    time_str+=int_minute+i18n.M;
+                }
+                return {str:time_str,day:int_day,hour:int_hour,minute:int_minute,second:int_second,st:time_start};
+            }else{
+                return null;
+            }
+        }
+        function createDateByNumber(now_timer) {
+            var int_day=0,int_hour=0, int_minute=0, int_second=0;
+            var time_distance =new Date().getTime()-now_timer;
+            if(time_distance >= 0) {
+                int_day = Math.floor(time_distance / 86400000);
+                time_distance -= int_day * 86400000;
+                int_hour = Math.floor(time_distance / 3600000);
+                time_distance -= int_hour * 3600000;
+                int_minute = Math.floor(time_distance / 60000);
+                time_distance -= int_minute * 60000;
+                int_second = Math.floor(time_distance / 1000);
+            }
+            return {
+                day: int_day,
+                hour: int_hour,
+                minute: int_minute,
+                second: int_second
+            };
+        }
+
+        function scrollLeftDbList() {
+            left_j =$("#leftBox .scroll-main").jCarouselLite({
+                btnNext: "#leftBox .dp-down",
+                btnPrev: "#leftBox .dp-prev",
+                vertical: true,
+                circular: false,
+                start: 0,
+                scroll: 1,
+                speed: 500,
+                visible:6,
+                mouseWheel:true
+            });
+        }
+        function scrollRightDbList() {
+            right_j =$("#rightBox .scroll-main").jCarouselLite({
+                btnNext: "#rightBox .dp-down",
+                btnPrev: "#rightBox .dp-prev",
+                vertical: true,
+                circular: false,
+                start: 0,
+                scroll: 1,
+                speed: 500,
+                visible:6,
+                mouseWheel:true
+            });
+        }
+
+        function jqAjax(url,data,type) {
+            var dtd = $.Deferred(),tp= type || 'POST';
+            $.ajax({
+                type:tp,
+                dataType:'json',
+                url:url,
+                data:data,
+                cache:false
+            }).success(function (data) {
+                dtd.resolve(data);
+            }).error(function (req, status, err) {
+                dtd.reject(err);
+            });
+            return dtd.promise();
+        }
+
+        function getNewData(){
+            var xml='<dip_command>\
+                    <command>query_display_status</command>\
+                    <command_data>\
+                        <projectid>'+pid+'</projectid>\
+                    </command_data>\
+                   </dip_command>';
+            var url='/dipserver/query_display_status';
+            return jqAjax(url,{xmlDoc:xml}).then(function (data) {
+                if (data.command_return === "SUCCESS") {
+                    var res = data.return_data;
+                    var arr =[],group_arr=[],sources=[],targets=[],groupList=[],g_caps=0,g_loaders=0,g_time='',total_num=0,s_i=0,t_i=0;
+                    if(res){
+                        if(res.disp_infos){
+                            if($.isArray(res.disp_infos.disp_info)){
+                                arr=res.disp_infos.disp_info;
+                            }else{
+                                arr.push(res.disp_infos.disp_info);
+                            }
+                        }
+                        if(res.group_infos){
+                            if($.isArray(res.group_infos.group_info)){
+                                group_arr=res.group_infos.group_info;
+                            }else{
+                                group_arr.push(res.group_infos.group_info);
+                            }
+                        }
+                        if(res.proj_last_time && res.proj_last_time.length>=10){
+                            init_timer=res.proj_last_time;
+                        }else{
+                            init_timer='';
+                            vm.tj.day=0;
+                            vm.tj.hour=0;
+                            vm.tj.minute=0;
+                            vm.tj.second=0;
+                        }
+                    }
+                    $.each(arr,function (idx, val) {
+                        var i_src='';
+                        if(val.type==='0'){
+                            if(val.status==='not load' || val.status==='not start' || val.status==='not started'){
+                                i_src='/img/dp/error.png';
+                            }else if(val.status==='running'){
+                                i_src='/img/dp/nor.png';
+                            }else{
+                                i_src='/img/dp/warning.png';
+                            }
+                            sources.push({src:i_src,speed:parseInt(val.speed),name:val.group+'.'+val.db,g_id:val.group_id,g_index:s_i++});
+                        }else if(val.type==='1'){
+                            if(val.status==='not load' || val.status==='not start' || val.status==='not started'){
+                                i_src='/img/dp/error.png';
+                            }else if(val.status==='running'){
+                                i_src='/img/dp/nor.png';
+                            }else{
+                                i_src='/img/dp/warning.png';
+                            }
+                            targets.push({src:i_src,speed:parseInt(val.speed),name:val.group+'.'+val.db,g_id:val.group_id,g_index:t_i++});
+                        }
+                    });
+                    if(sources.length===vm.sourceDbs.length){
+                        $.each(sources,function (ii, val) {
+                            $.each(vm.sourceDbs,function (i, v) {
+                                if(v.g_index===val.g_index){
+                                    v.src=val.src;
+                                    v.speed=val.speed;
+                                    v.name=val.name;
+                                    return false;
+                                }
+                            });
+                        });
+                    }else{
+                        vm.sourceDbs=sources;
+                        setTimeout(function () {
+                            if(left_j)left_j("#leftBox .scroll-main");
+                        },200);
+                    }
+                    if(targets.length===vm.targetDbs.length){
+                        $.each(targets,function (ii, val) {
+                            $.each(vm.targetDbs,function (i, v) {
+                                if(v.g_index===val.g_index){
+                                    v.src=val.src;
+                                    v.speed=val.speed;
+                                    v.name=val.name;
+                                    return false;
+                                }
+                            });
+                        });
+                    }else{
+                        vm.targetDbs=targets;
+                        setTimeout(function () {
+                            if(right_j)right_j("#rightBox .scroll-main");
+                        },200);
+                    }
+                    $.each(group_arr,function (idx,val) {
+                        var runtime=create_time(val.last_time),caps=parseInt(val.src_statis),loads=parseInt(val.des_statis),item={},da=parseFloat(val.throughput);
+                        if(runtime){
+                            g_time=runtime.str;
+                        }else{
+                            g_time='0';
+                        }
+                        g_caps+=caps;
+                        g_loaders+=loads;
+                        total_num+=da;
+                        item.group=val.group;
+                        item.statis=val.src_statis;
+                        item.o_statis=val.des_statis;
+                        item.throughput=val.throughput;
+                        item.runtime = g_time;
+                        item.isEmpty = g_time==='0' && val.src_statis === '0' && val.src_statis === '0' && val.throughput === '0.00';
+                        groupList.push(item);
+                    });
+                    g_caps=g_caps+'';
+                    g_loaders=g_loaders+'';
+                    vm.in_num=g_caps.replace(/(\d)(?=(?:\d{3})+$)/g,'$1,');
+                    vm.out_num=g_loaders.replace(/(\d)(?=(?:\d{3})+$)/g,'$1,');
+                    vm.groupList=groupList;
+                    vm.total_g=total_num.toFixed(2);
+                } else {
+                    var err = data.error_message || ((data.return_data && data.return_data.error_message) || 'Error!');
+                    toastr.error(err,+i18n.tip);
+                }
+            });
+        }
+
+        function createTimer(){
+            var cx;
+            cx_timer = setInterval(function () {
+                if(init_timer===''){
+                    c_timer=0;
+                    return;
+                }
+                if(c_timer===0){
+                    cx= create_time(init_timer);
+                    nowNumber=parseInt(cx.st);
+                }else if(c_timer===1801){
+                    c_timer=0;
+                    cx= create_time(init_timer);
+                    nowNumber=parseInt(cx.st);
+                }else{
+                    cx= createDateByNumber(nowNumber);
+                }
+                vm.tj.day=cx.day;
+                vm.tj.hour=cx.hour;
+                vm.tj.minute=cx.minute;
+                vm.tj.second=cx.second;
+                c_timer++;
+            },1000);
+        }
+
+        function getDivProperty() {
+            var rq = {},boxBody=$('.dp-right-box-body');
+            rq.width=boxBody.width();
+            rq.height=boxBody.height();
+            if(rq.width>0 && rq.height>0){
+                var child_w=Math.floor(rq.width/3),child_h=Math.floor((rq.height-30)/2);
+                $('#cpu_gauge').width(child_w).height(child_h);
+                $('#memory_gauge').width(child_w).height(child_h);
+                $('#disk_gauge').width(child_w).height(child_h);
+                $('#dp-double').width(child_w*2);
+                $('#net_io').width(child_w).height(child_h);
+                $('#disk_io').width(child_w).height(child_h);
+            }
+        }
+        function initCharts() {
+            getDivProperty();
+            var cpuOption = {
+                backgroundColor: 'rgba(0,0,0,0)',
+                title: {
+                    text: "CPU",
+                    x: "center",
+                    y:'bottom',
+                    textStyle: {
+                        fontWeight: 'bolder',
+                        color:'white'
+                    }
+                },
+                series : [
+                    {
+                        type:'gauge',
+                        splitNumber: 10,       // 分割段数，默认为5
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: [[0.2, '#08FF08'],[0.8, '#1E8FFF'],[1, '#EE6029']],
+                                width: 2
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            splitNumber: 5,   // 每份split细分多少段
+                            length :5,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            show: true,        // 默认显示，属性show控制显示与否
+                            length :10,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'white'
+                            }
+                        },
+                        pointer : {
+                            width : 5
+                        },
+                        title : {
+                            show : true,
+                            offsetCenter: [0, '-40%'],       // x, y，单位px
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bold',
+                                color:'white'
+                            }
+                        },
+                        detail : {
+                            formatter:'{value}%',
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white',
+                                fontWeight: 'normal',
+                                fontSize:'14'
+                            }
+                        },
+                        data:[{value: 20, name: ''}]
+                    }
+                ]
+            };
+
+            var memoryOption = {
+                backgroundColor: 'rgba(0,0,0,0)',
+                title: {
+                    text:"内存总量2G",
+                    x: "center",
+                    y:'bottom',
+                    textStyle: {
+                        fontWeight: 'bolder',
+                        color:'white'
+                    }
+                },
+                series : [
+                    {
+                        name:'Memory',
+                        type:'gauge',
+                        splitNumber: 10,       // 分割段数，默认为5
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: [[0.2, '#08FF08'],[0.8, '#4896E1'],[1, '#EE6029']],
+                                width: 2
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            splitNumber: 5,   // 每份split细分多少段
+                            length :5,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            show: true,        // 默认显示，属性show控制显示与否
+                            length :10,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'white'
+                            }
+                        },
+                        pointer : {
+                            width : 5
+                        },
+                        title : {
+                            show : true,
+                            offsetCenter: [0, '-40%'],       // x, y，单位px
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bold',
+                                color:'white'
+                            }
+                        },
+                        detail : {
+                            formatter:'{value}%',
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white',
+                                fontWeight: 'normal',
+                                fontSize:'14'
+                            }
+                        },
+                        data:[{value: 30, name: ''}]
+                    }
+                ]
+            };
+
+            var diskOption = {
+                backgroundColor: 'rgba(0,0,0,0)',
+                title: {
+                    text: "硬盘总量100G",
+                    x: "center",
+                    y:'bottom',
+                    textStyle: {
+                        fontWeight: 'bolder',
+                        color:'white'
+                    }
+                },
+                series : [
+                    {
+                        name:'Disk',
+                        type:'gauge',
+                        splitNumber: 10,       // 分割段数，默认为5
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: [[0.2, '#08FF08'],[0.8, '#4896E1'],[1, '#EE6029']],
+                                width: 2
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            splitNumber: 5,   // 每份split细分多少段
+                            length :5,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            show: true,        // 默认显示，属性show控制显示与否
+                            length :10,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'white'
+                            }
+                        },
+                        pointer : {
+                            width : 5
+                        },
+                        title : {
+                            show : true,
+                            offsetCenter: [0, '-40%'],       // x, y，单位px
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bold',
+                                color:'white'
+                            }
+                        },
+                        detail : {
+                            formatter:'{value}%',
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white',
+                                fontWeight: 'normal',
+                                fontSize:'14'
+                            }
+                        },
+                        data:[{value: 60, name: ''}]
+                    }
+                ]
+            };
+
+            var nioOption = {
+                backgroundColor: 'rgba(0,0,0,0)',
+                title: {
+                    text: i18n.wlio,
+                    x: "center",
+                    y:'bottom',
+                    textStyle: {
+                        fontWeight: 'bolder',
+                        color:'white'
+                    }
+                },
+                series : [
+                    {
+                        name:'Disk',
+                        type:'gauge',
+                        splitNumber: 10,       // 分割段数，默认为5
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: [[0.2, '#08FF08'],[0.8, '#4896E1'],[1, '#EE6029']],
+                                width: 2
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            splitNumber: 5,   // 每份split细分多少段
+                            length :5,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            show: true,        // 默认显示，属性show控制显示与否
+                            length :10,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'white'
+                            }
+                        },
+                        pointer : {
+                            width : 5
+                        },
+                        title : {
+                            show : true,
+                            offsetCenter: [0, '-40%'],       // x, y，单位px
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bold',
+                                color:'white'
+                            }
+                        },
+                        detail : {
+                            formatter:'{value}M/s',
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white',
+                                fontWeight: 'normal',
+                                fontSize:'14'
+                            }
+                        },
+                        data:[{value: 32, name: ''}]
+                    }
+                ]
+            };
+
+            var dioOption = {
+                backgroundColor: 'rgba(0,0,0,0)',
+                title: {
+                    text: i18n.cpio,
+                    x: "center",
+                    y:'bottom',
+                    textStyle: {
+                        fontWeight: 'bolder',
+                        color:'white'
+                    }
+                },
+                series : [
+                    {
+                        name:'Disk',
+                        type:'gauge',
+                        splitNumber: 10,       // 分割段数，默认为5
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: [[0.2, '#08FF08'],[0.8, '#4896E1'],[1, '#EE6029']],
+                                width: 2
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            splitNumber: 5,   // 每份split细分多少段
+                            length :5,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            show: true,        // 默认显示，属性show控制显示与否
+                            length :10,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'white'
+                            }
+                        },
+                        pointer : {
+                            width : 5
+                        },
+                        title : {
+                            show : true,
+                            offsetCenter: [0, '-40%'],       // x, y，单位px
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bold',
+                                color:'white'
+                            }
+                        },
+                        detail : {
+                            formatter:'{value}%',
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                color: 'white',
+                                fontWeight: 'normal',
+                                fontSize:'14'
+                            }
+                        },
+                        data:[{value: 82, name: ''}]
+                    }
+                ]
+            };
+            var cChart,mChart,dChart,netIoChart,diskIoChart;
+            var handlerChart = function () {
+                cChart.setOption(cpuOption);
+                mChart.setOption(memoryOption,true);
+                dChart.setOption(diskOption,true);
+                netIoChart.setOption(nioOption,true);
+                diskIoChart.setOption(dioOption,true);
+                vm.chartLoading=false;
+            };
+            var charts = function () {
+                var chart_xml='<dip_command><command>query_display_procinfo</command></dip_command>';
+                var url ='/dipserver/query_display_procinfo';
+                return jqAjax(url,{xmlDoc:chart_xml}).then(function (data) {
+                    if (data.command_return === "SUCCESS") {
+                        if(data && data.return_data){
+                           var res = data.return_data;
+                           cpuOption.series[0].data[0].value=res.cpu_info;
+                           memoryOption.title.text=i18n.nczl+res.mem_total+"G";
+                           memoryOption.series[0].data[0].value= (parseFloat(res.mem_used)/parseFloat(res.mem_total)).toFixed(2);
+                           diskOption.title.text=i18n.ypzl+res.disk_total+"G";
+                           diskOption.series[0].data[0].value= ((parseFloat(res.disk_used)/parseFloat(res.disk_total))*100).toFixed(2);
+                           nioOption.series[0].data[0].value=(parseFloat(res.networkIORecv)+parseFloat(res.networkIOSend)).toFixed(2);
+                           dioOption.series[0].data[0].value=res.diskIOUsage;
+                        }
+                        handlerChart();
+                    }else {
+                        var err = data.error_message || ((data.return_data && data.return_data.error_message) || 'Error!');
+                        toastr.error(err,i18n.tip);
+                        handlerChart();
+                    }
+                });
+            };
+            require(['echarts','echarts/chart/gauge','echarts/theme/dark','echarts/zrender/tool/color'],function (ec,b,i,d) {
+                cChart = ec.init(document.getElementById("cpu_gauge"),i);
+                mChart = ec.init(document.getElementById("memory_gauge"),i);
+                dChart = ec.init(document.getElementById("disk_gauge"),i);
+                netIoChart = ec.init(document.getElementById("net_io"),i);
+                diskIoChart = ec.init(document.getElementById("disk_io"),i);
+                charts();
+                chart_timer = setInterval(function () {
+                    if(!isAuth){
+                        clearInterval(chart_timer);
+                        return;
+                    }
+                    charts();
+                },yb_time);
+                setTimeout(function (){
+                    window.onresize = function () {
+                        getDivProperty();
+                        cChart.resize();
+                        mChart.resize();
+                        dChart.resize();
+                        netIoChart.resize();
+                        diskIoChart.resize();
+                    }
+                },200);
+            });
+        }
+    });
+</script>
+</body>
+</html>

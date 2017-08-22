@@ -1,0 +1,361 @@
+<div role="tabpanel" class="tab-pane" >
+    <div class="panel panel-default">
+        <form name="formQu" autocomplete="off" novalidate>
+            <div class="panel-heading" translate-once="Db_jbsx"></div><!--基本属性-->
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tr ng-cloak="" ng-show="$ctrl.real.comId.length>0">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_id"></label></div><!--数据库ID：-->
+                                <div class="col-md-8 clearfix" >
+                                    <span class="ci-label" style="line-height: 30px;" ng-bind="$ctrl.real.comId" ng-class="{'accord-pre':$ctrl.params.comId}"></span>
+                                    <p ng-class="{'accord-next':$ctrl.params.comId}" ng-show="$ctrl.params.comId" ng-cloak="" translate-once="Db_wybs"></p><!--数据库唯一标示-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.comId=!$ctrl.params.comId">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.comId,'glyphicon-question-sign':!$ctrl.params.comId}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.data_name.$dirty && formQu.data_name.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.data_name.$error.required" translate-once="Db_tip1"></div><!--数据库名称不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formQu.data_name.$error.pattern" translate-once="Db_tip2"></div><!--数据库名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_mc"></label></div><!--数据库名称：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.dataName}" type="text" name="data_name" ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" ng-model="$ctrl.property.dbName" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.dataName}" ng-show="$ctrl.params.dataName" ng-cloak="" translate-once="Db_tip3"></p><!--数据库名称说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.dataName=!$ctrl.params.dataName">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.dataName,'glyphicon-question-sign':!$ctrl.params.dataName}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_mb"></label></div><!--数据库模板：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.dataModel}">
+                                        <select  class="form-control input-sm" ng-model="$ctrl.model.modelCk" ng-change="$ctrl.changeMb()" ng-options="item.db_name group by item.db_type for item in $ctrl.model.modelList"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.dataModel}" ng-show="$ctrl.params.dataModel" ng-cloak="" translate-once="Db_tip4"></p><!--数据库模板说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.dataModel=!$ctrl.params.dataModel">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.dataModel,'glyphicon-question-sign':!$ctrl.sparams.dataModel}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_lx"></label></div><!--数据库类型：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="from-group" ng-class="{'accord-pre':$ctrl.params.dataType}">
+                                        <select class="form-control input-sm" ng-model="$ctrl.property.dbType" ng-options="x for x in $ctrl.allowDbs" ng-change="$ctrl.changeDbType()"></select>
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.dataType}" ng-show="$ctrl.params.dataType" ng-cloak="" translate-once="Db_tip5"></p><!--数据库类型说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.dataType=!$ctrl.params.dataType">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.dataType,'glyphicon-question-sign':!$ctrl.params.dataType}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_zwbh"></label></div><!--作为捕获数据源：-->
+                                <div class="col-md-8 clearfix">
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.dataCap}">
+                                        <label class="radio-inline"><input type="radio" ng-disabled="$ctrl.real.com_readonly" ng-model="$ctrl.property.bh" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-disabled="$ctrl.real.com_readonly" ng-model="$ctrl.property.bh" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.dataCap}" ng-show="$ctrl.params.dataCap" ng-cloak="" translate-once="Db_tip6"></p><!--首次配置完成后将不可更改-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip" ng-click="$ctrl.params.dataCap=!$ctrl.params.dataCap">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.dataCap,'glyphicon-question-sign':!$ctrl.params.dataCap}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.serv_name.$dirty && formQu.serv_name.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.serv_name.$error.required" translate-once="Db_tip7"></div><!--Service不能为空！-->
+                                    <!--<div class="alert alert-danger" ng-show="formQu.serv_name.$error.pattern" translate-once="Db_tip8"></div>&lt;!&ndash;Service名称只能包含数字、字母、下划线、小数点，不能以数字、下划线开头，长度不超过20位！&ndash;&gt;-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" style="color:#333333 !important;" translate-once="Db_smc"></label></div><!--Service名称：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.serName}" type="text" name="serv_name" ng-model="$ctrl.property.serviceName" maxlength="64" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.serName}" ng-show="$ctrl.params.serName" ng-cloak="" translate-once="Db_tip9"></p><!--Service名称说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.serName=!$ctrl.params.serName">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.serName,'glyphicon-question-sign':!$ctrl.params.serName}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.ipadd.$dirty && formQu.ipadd.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.ipadd.$error.required" translate-once="Db_tip10"></div><!--服务器地址不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formQu.ipadd.$error.pattern" translate-once="Db_tip11"></div><!--请输入有效的服务器地址-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_fwqdz"></label></div><!--服务器地址：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.ipAdd}" type="text"  placeholder="127.0.0.1" name="ipadd" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" ng-model="$ctrl.property.ipAddress" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.ipAdd}" ng-show="$ctrl.params.ipAdd" ng-cloak="" translate-once="Db_tip12"></p><!--服务器地址说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.ipAdd=!$ctrl.params.ipAdd">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.ipAdd,'glyphicon-question-sign':!$ctrl.params.ipAdd}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.por.$dirty && formQu.por.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.por.$error.required" translate-once="Db_tip13"></div><!--端口不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formQu.por.$error.pattern" translate-once="Db_tip14"></div><!--请输入有效的端口-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_port"></label></div><!--端口：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" placeholder="1521" ng-class="{'accord-pre':$ctrl.params.porAdd}" type="text" name="por" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" ng-model="$ctrl.property.port" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.porAdd}" ng-show="$ctrl.params.porAdd" ng-cloak="" translate-once="Db_tip15"></p><!--端口说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.porAdd=!$ctrl.params.porAdd">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.porAdd,'glyphicon-question-sign':!$ctrl.params.porAdd}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.user.$dirty && formQu.user.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.user.$error.required" translate-once="Db_tip16"></div><!--用户名不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formQu.user.$error.pattern" translate-once="Db_tip17"></div><!--用户名只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_uname"></label></div><!--用户名：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.userName}" type="text" name="user" ng-pattern="/^[a-zA-Z]\w{0,19}$/" ng-model="$ctrl.property.uName" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.userName}" ng-show="$ctrl.params.userName" ng-cloak="" translate-once="Db_tip18"></p><!--用户名说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.userName=!$ctrl.params.userName">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.userName,'glyphicon-question-sign':!$ctrl.params.userName}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.pas.$dirty && formQu.pas.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.pas.$error.required" translate-once="Db_tip19"></div><!--密码不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formQu.pas.$error.pattern" translate-once="Db_tip20"></div><!--密码不能包含空白符，长度1~20位！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_pwd"></label></div><!--密码：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.pass}" type="password" name="pas" ng-pattern="/^[^(\s]{1,20}$/" ng-model="$ctrl.property.uPwd" required/>
+                                    <p ng-class="{'accord-next':$ctrl.params.pass}" ng-show="$ctrl.params.pass" ng-cloak="" translate-once="Db_tip21"></p><!--密码说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.pass=!$ctrl.params.pass">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.pass,'glyphicon-question-sign':!$ctrl.params.pass}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_bcwmb"></label></div><!--保存为模板：-->
+                                <div class="col-md-8 clearfix" >
+                                    <div class="input-group" ng-class="{'accord-pre':$ctrl.params.isModel}">
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.model.isModel" value="yes" ng-change="$ctrl.modelIsCheck()"/>{{'YES' | translate}}</label><!--是-->
+                                        <label class="radio-inline"><input type="radio" ng-model="$ctrl.model.isModel" value="no" ng-change="$ctrl.modelIsCheck()"/>{{'NO' | translate}}</label><!--否-->
+                                    </div>
+                                    <p ng-class="{'accord-next':$ctrl.params.isModel}" ng-show="$ctrl.params.isModel" ng-cloak="" translate-once="Db_tip22"></p><!--保存为模板说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.isModel=!$ctrl.params.isModel">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.isModel,'glyphicon-question-sign':!$ctrl.params.isModel}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-cloak="" ng-show="$ctrl.model.isModel==='yes'">
+                        <td>
+                            <div class="row cap-form-tip">
+                                <div class="col-md-12" ng-show="formQu.mdName.$dirty && formQu.mdName.$invalid">
+                                    <div class="alert alert-danger" ng-show="formQu.mdName.$error.dbmodel" translate-once="Db_tip23"></div><!--模板名称不能为空！-->
+                                    <div class="alert alert-danger" ng-show="formQu.mdName.$error.pattern" translate-once="Db_tip24"></div><!--模板名称只能为字母、数字或者中文，长度不超过10位！-->
+                                </div>
+                                <div class="col-md-3"><label class="text-info" translate-once="Db_mbm"></label></div><!--模板名称：-->
+                                <div class="col-md-8 clearfix" >
+                                    <input class="form-control" ng-class="{'accord-pre':$ctrl.params.modelName}" name="mdName" ng-pattern="/^[\u4e00-\u9fa5a-zA-Z0-9]{0,10}$/" maxlength="10" type="text" ng-model="$ctrl.model.mdName"/>
+                                    <p ng-class="{'accord-next':$ctrl.params.modelName}" ng-show="$ctrl.params.modelName" ng-cloak="" translate-once="Db_tip25"></p><!--模板名称说明-->
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-tip clearfix" ng-click="$ctrl.params.modelName=!$ctrl.params.modelName">
+                                        <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.modelName,'glyphicon-question-sign':!$ctrl.params.modelName}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix">
+                    <button class="btn btn-sm btn-primary pull-right" ng-disabled="formQu.$invalid || $ctrl.isSaving" ng-click="$ctrl.saveDbInfo()" ng-bind="$ctrl.saveBtnTxt"></button><!--保存-->
+                    <button class="btn btn-sm btn-primary pull-right" style="margin-right: 10px" ng-click="$ctrl.toSqlEfg()" ng-cloak="" ng-if="($ctrl.property.dbType==='sqlserver' || $ctrl.property.dbType==='oracle') && $ctrl.property.bh==='yes'">必要环境配置</button><!--sql环境配置-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--/sqlserver必要环境准备-->
+    <div class="panel panel-default" ng-cloak="" ng-if="$ctrl.property.dbType==='sqlserver' && $ctrl.sqlEnv.isSqlSer">
+        <div class="panel-heading">
+            <div class="clearfix">
+                <h5 class="pull-left" >sqlServer必要环境准备</h5><!--sqlServer必要环境准备-->
+                <button class="btn btn-primary pull-right btn-sm" style="margin-top: -5px; margin-left: 5px;" ng-click="$ctrl.sqlEnv.isSqlSer=false">关闭</button>
+                <button ng-show="$ctrl.sqlEnv.reset || ($ctrl.sqlEnv.logHf.isDone && $ctrl.sqlEnv.bgbh.isDone && $ctrl.sqlEnv.bypz.isDone)" class="btn btn-primary pull-right btn-sm" style="margin-top: -5px;" tooltip-placement="bottom" uib-tooltip="重置sqlServer必要环境" ng-click="$ctrl.resetSqlCfg()" >重置</button><!--重置配置-->
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <tr>
+                        <th>配置环境</th><th>状态</th><th>操作</th>
+                    </tr>
+                    <tr ng-class="{'success':$ctrl.sqlEnv.logHf.isDone,'warning':!$ctrl.sqlEnv.logHf.isDone}">
+                        <td>日志恢复模式</td>
+                        <td><span ng-class="{'text-success':$ctrl.sqlEnv.logHf.isDone,'text-warning':!$ctrl.sqlEnv.logHf.isDone}" ng-bind="$ctrl.sqlEnv.logHf.status">完整</span></td>
+                        <td><a href="javascript:void(0);" ng-click="$ctrl.start_sql_log()" ng-show="!$ctrl.sqlEnv.logHf.isDone">修改</a><span ng-cloak="" ng-show="$ctrl.sqlEnv.logHf.isDone" class="fa fa-check text-success"></span></td>
+                    </tr>
+                    <tr ng-class="{'success':$ctrl.sqlEnv.bgbh.isDone,'warning':!$ctrl.sqlEnv.bgbh.isDone}">
+                        <td>启用变更捕获</td>
+                        <td><span ng-class="{'text-success':$ctrl.sqlEnv.bgbh.isDone,'text-warning':!$ctrl.sqlEnv.bgbh.isDone}" ng-bind="$ctrl.sqlEnv.bgbh.status">未启用</span></td>
+                        <td><a href="javascript:void(0);" ng-click="$ctrl.start_sql_cdc()" ng-show="!$ctrl.sqlEnv.bgbh.isDone">修改</a><span ng-cloak="" ng-show="$ctrl.sqlEnv.bgbh.isDone" class="fa fa-check text-success"></span></td>
+                    </tr>
+                    <tr ng-class="{'success':$ctrl.sqlEnv.bypz.isDone,'warning':!$ctrl.sqlEnv.bypz.isDone}">
+                        <td>R7必要配置</td>
+                        <td><span ng-class="{'text-success':$ctrl.sqlEnv.bypz.isDone,'text-warning':!$ctrl.sqlEnv.bypz.isDone}" ng-bind="$ctrl.sqlEnv.bypz.status">已完成</span></td>
+                        <td><a href="javascript:void(0);" ng-click="$ctrl.start_sql_r7()" ng-show="!$ctrl.sqlEnv.bypz.isDone">修改</a><span ng-cloak="" ng-show="$ctrl.sqlEnv.bypz.isDone" class="fa fa-check text-success"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--sqlserver必要环境准备/-->
+    <!--/oracle数据预处理-->
+    <div class="panel panel-default" ng-cloak="" ng-if="$ctrl.sqlEnv.isOracle && $ctrl.property.dbType==='oracle'">
+        <div class="panel-heading">
+            <div class="clearfix">
+                <h5 class="pull-left" translate-once="Db_ycl"></h5><!--数据库预处理-->
+                <button class="btn btn-primary pull-right btn-sm" style="margin-top: -5px; margin-left: 5px;" ng-click="$ctrl.sqlEnv.isOracle=false">关闭</button>
+                <button class="btn btn-primary pull-right btn-sm" style="margin-top: -5px;" tooltip-placement="bottom" uib-tooltip="{{'Db_csycl' | translate}}" ng-click="$ctrl.createScript()" translate-once="Db_csycl"></button><!--产生预处理脚本-->
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <div>
+                        <label class="radio-inline" for="add_qb">
+                            <input type="radio" class="radio" id="add_qb" ng-model="$ctrl.data.cb" value="all" ng-change="$ctrl.changeBc()" /><!--全库添加补充日志-->
+                            {{'Db_qktjbc' | translate}}
+                        </label>
+                        <label class="radio-inline" for="add_tb">
+                            <input type="radio" class="radio" ng-model="$ctrl.data.cb" id="add_tb" value="table" ng-change="$ctrl.changeBc()" />基于表补充日志<!--基于表补充日志-->
+                        </label>
+                    </div>
+                    <div id="objTree" class="ztree ztreecss"></div>
+                </div>
+                <div class="col-md-5">
+                    <div class="ych_jb">
+                        <textarea rows="20" readonly="readonly" ng-bind="$ctrl.data.scripts"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--oracle数据预处理/-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="clearfix"> <h5 class="pull-left" translate-once="Db_hjcs"></h5><!--环境测试-->
+                <button class="btn btn-primary pull-right btn-sm" style="margin-top: -5px;" tooltip-placement="bottom" uib-tooltip="{{'Db_csljhj' | translate}}" ng-click="$ctrl.testDbInfo()" ng-disabled="$ctrl.isTesting" translate-once="Db_cslj"></button><!--测试数据库连接及数据库环境 测试数据库连接-->
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" ng-cloak="" ng-show="$ctrl.data.testing">
+                <tr class="test-env">
+                    <th translate-once="DESC"></th><!--描述-->
+                    <th translate-once="STATUS"></th><!--状态-->
+                    <th translate-once="DETAIL"></th><!--详细-->
+                </tr>
+                <tr ng-hide="$ctrl.property.bh==='no'">
+                    <td translate-once="Db_gdrzms"></td><!--归档日志模式-->
+                    <td ng-bind="$ctrl.data.gd.status">success</td>
+                    <td ng-bind="$ctrl.data.gd.message">ARCHIVELOG</td>
+                </tr>
+                <tr>
+                    <td translate-once="Db_bb"></td><!--数据库版本-->
+                    <td ng-bind="$ctrl.data.dbv.status">success</td>
+                    <td ng-bind="$ctrl.data.dbv.message">11.2.0.1.0</td>
+                </tr>
+                <tr>
+                    <td translate-once="Db_yhqxjc"></td><!--用户权限检查-->
+                    <td ng-bind="$ctrl.data.auth.status">success</td>
+                    <td ng-bind="$ctrl.data.auth.message"></td>
+                </tr>
+                <tr ng-hide="$ctrl.property.dbType==='mysql' || $ctrl.property.dbType==='db2'">
+                    <td translate-once="Db_dbmsjc"></td><!--DBMS权限检查-->
+                    <td ng-bind="$ctrl.data.dbms.status">success</td>
+                    <td ng-bind="$ctrl.data.dbms.message"></td>
+                </tr>
+                <tr ng-hide="$ctrl.property.bh==='no' || $ctrl.property.dbType==='sqlserver'|| $ctrl.property.dbType==='mysql' || $ctrl.property.dbType==='db2'">
+                    <td translate-once="Db_bcrz"></td><!--补充日志-->
+                    <td ng-bind="$ctrl.data.bcrz.status">success</td>
+                    <td ng-bind="$ctrl.data.bcrz.message"></td>
+                </tr>
+            </table>
+            <table class="table table-bordered test-db-empty"  ng-cloak="" ng-hide="$ctrl.data.testing">
+                <tr>
+                    <td align="center" ng-bind-html="$ctrl.data.dbTestInfo"></td><!--测试数据库连接信息测试展示区域-->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

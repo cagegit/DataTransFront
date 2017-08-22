@@ -1,0 +1,68 @@
+<div class="etl-pt-rule">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="etl-pt-name">规则集类型：</span>
+            <select class="etl-pt-type" ng-model="$ctrl.ruleType" ng-change="$ctrl.changeRuleType()">
+                <option value="filter" name="filter" >批量过滤</option>
+                <option value="insert" name="insert">insert → update</option>
+                <option value="update" name="update">update → insert/delete</option>
+                <!--<option value="delete" name="delete">delete → update</option>-->
+            </select>
+        </div>
+        <div class="col-md-4">
+            <div class="etl-pt-left" id="etlPtRulePanel">
+                <input type="text" placeholder="搜索规则集" ng-model="$ctrl.ruleFilter" maxlength="200">
+                <div class="etl-pt-left-body">
+                    <ul>
+                        <li ng-repeat="item in ($ctrl.rules | filter:{name:$ctrl.ruleFilter}) track by $index">
+                            <input type="checkbox" ng-model="item.checked" class="etl-pt-li-son" ng-click="$ctrl.getCodes(item,$event)">
+                            <a href="javascript:void(0);" ng-bind="item.name" ng-click="$ctrl.getCodes(item,$event)"></a>
+                        </li>
+                        <li ng-cloak="" ng-if="$ctrl.rules.length===0">
+                            <a href="javascript:void(0);">No Rules!</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="etl-pt-right">
+                <input type="text" placeholder="搜索变量名" ng-model="$ctrl.codeFilter" maxlength="200">
+                <div class="etl-pt-body">
+                    <table class="table table-striped table-hover">
+                        <colgroup>
+                            <col style="width: 10%">
+                            <col style="width: 40%">
+                            <col style="width: 50%">
+                        </colgroup>
+                        <tr>
+                            <td><input type="checkbox" title="全选" ng-model="$ctrl.ckAll" ng-change="$ctrl.checkAll()"></td>
+                            <td>变量名</td>
+                            <td>变量值</td>
+                        </tr>
+                        <tr ng-repeat="item in ($ctrl.selCodes=($ctrl.codes | filter:{name:$ctrl.codeFilter})) track by $index">
+                            <td><input type="checkbox" ng-model="item.checked" ng-change="$ctrl.checkOne()"></td>
+                            <td ng-bind="item.code"></td>
+                            <td><input type="text" ng-model="item.value" maxlength="80"></td>
+                        </tr>
+                        <tr ng-cloak="" ng-if="$ctrl.codes.length===0">
+                            <td colspan="3" class="etl-center">No Data!</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="etl-pt-foot clearfix">
+                    <div class="pull-left">
+                        <!--<button class="btn btn-info btn-sm" ng-disabled="$ctrl.rules.length===0" ng-click="$ctrl.addNewColumn()">增加列</button>-->
+                        <button class="btn btn-info btn-sm" ng-disabled="$ctrl.selCodes.length===0" ng-click="$ctrl.deleteColumn()">删除列</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 etl-pt-footer">
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm" ng-disabled="$ctrl.rules.length===0" ng-click="$ctrl.saveApplyRuleInfo()">保存</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

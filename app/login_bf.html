@@ -1,0 +1,207 @@
+<!DOCTYPE html class='login-html'>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js login-html"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="ThemeBucket">
+    <title>登陆</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login1.css">
+</head>
+<body class="login-body" >
+<div class="login-box login-center" ng-controller="loginCtrl">
+    <div class="login-iner-box">
+        <div class="login-logo"></div>
+
+        <form role="form" name="form" novalidate>
+            <div class="form-panel">
+                <div class="lang-selet">
+                    <a href="javascript:void(0);" class="lang-text lang-margin" ng-class="{'lang-border-right':lang=='cn'}" ng-click="changeLang('cn')" ng-bind="'100005' | translate" ng-cloak>简体中文</a>
+                    <a href="javascript:void(0);" class="lang-text" ng-class="{'lang-border-left':lang=='en'}" ng-click="changeLang('en')" ng-cloak>English</a>
+                </div>
+                <div class="form-group login-input">
+                    <div class="user-input">
+                        <input type="text" ng-focus="userDel = true"  ng-blur="userDel = false" name="userName" value=" {{ userDel }}? '':this.value" ng-cloak ng-model="property.uname" required class="form-control login-input-sty input-bar" ng-class="{'err-box':form.userName.$dirty && form.userName.$error.required }" placeholder="{{'100008' | translate}}" />
+                        <i class="user-ico"></i>
+                        <i class="user-del"  ng-show="userDel" ng-click="userDel = true"></i>
+                    </div>
+                    <div class="pass-input">
+                        <input type="password" ng-if = "!passOpen" name="password" ng-cloak ng-model="property.upwd" required class="form-control login-input-sty input-bar" ng-class="{'err-box':form.password.$dirty && form.password.$error.required }" placeholder="{{'100009' | translate}}" />
+                        <input type="text" ng-if = "passOpen" name="text" ng-cloak ng-model="property.upwd" required class="form-control login-input-sty input-bar" ng-class="{'err-box':form.password.$dirty && form.password.$error.required }" placeholder="{{'100009' | translate}}" />
+                        <i class="pass-ico"></i>
+                        <i ng-class="{'pass-close':!passOpen,'pass-open':passOpen}" ng-click="passOpen =!passOpen"></i>
+                    </div>
+                    <div class="login-err-info" ng-cloak="ng-cloak" ng-show="form.userName.$dirty || form.password.$dirty">
+                        <div class="alert-user text-danger" ng-show="form.userName.$dirty && form.userName.$error.required" ng-cloak><i class="tri-ico"></i><i class="err-ico"></i><span>{{'100006' | translate}}</span></div>
+                        <div class="alert-pass text-danger" ng-show="form.password.$dirty && form.password.$error.required" ng-cloak><i class="tri-ico"></i><i class="err-ico"></i><span>{{'100007' | translate}}</span></div>
+                        <!--<%if(message){%>-->
+                        <div class="alert text-danger" ng-cloak="ng-cloak" ng-hide="form.userName.$dirty || form.password.$dirty" ng-cloak><%=message && message[0]%></div>
+                        <!--<%}%>-->
+                    </div>
+                </div>
+                <div class="form-group login-radio clearfix">
+                    <label class="checkbox-inline ">
+                        <input type="radio" value="normal" ng-model="property.auth" ng-cloak="">&nbsp;{{'100003' | translate}}
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="radio" value="super" ng-model="property.auth" ng-cloak="">&nbsp;{{'100004' | translate}}
+                    </label>
+                </div>
+                <button class="login-sure" title="登陆" value="" ng-click="loginIn()">{{'100012' | translate}}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="login-copr vertical-center">©2011-2016翱旗创业(北京)科技有限公司 版权所有</div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script type="text/javascript">
+    var myApp = angular.module('myApp',['pascalprecht.translate','toastr']);
+    myApp.config(['$httpProvider','$translateProvider',function($httpProvider,$translateProvider) {
+        var lang = window.localStorage.lang ||'cn';
+        console.log(lang);
+        $translateProvider.preferredLanguage(lang);
+        $translateProvider.useStaticFilesLoader({
+            prefix: './i18n/',
+            suffix: '.json'
+        });
+        // Enable escaping of HTML
+        $translateProvider.useSanitizeValueStrategy('escapeParameters');
+        // Disable IE ajax request caching
+        if (!$httpProvider.defaults.headers.get) {
+            $httpProvider.defaults.headers.get = {};
+        }
+        $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+        $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        // Override $http service's default transformRequest
+        $httpProvider.defaults.transformRequest = [function(data) {
+            /**
+             * The workhorse; converts an object to x-www-form-urlencoded serialization.
+             * @param {Object} obj
+             * @return {String}
+             */
+            var param = function(obj) {
+                var query = '';
+                var name, value, fullSubName, subName, subValue, innerObj, i;
+
+                for (name in obj) {
+                    value = obj[name];
+
+                    if (value instanceof Array) {
+                        for (i = 0; i < value.length; ++i) {
+                            subValue = value[i];
+                            fullSubName = name + '[' + i + ']';
+                            innerObj = {};
+                            innerObj[fullSubName] = subValue;
+                            query += param(innerObj) + '&';
+                        }
+                    } else if (value instanceof Object) {
+                        for (subName in value) {
+                            subValue = value[subName];
+                            fullSubName = name + '[' + subName + ']';
+                            innerObj = {};
+                            innerObj[fullSubName] = subValue;
+                            query += param(innerObj) + '&';
+                        }
+                    } else if (value !== undefined && value !== null) {
+                        query += encodeURIComponent(name) + '='
+                                + encodeURIComponent(value) + '&';
+                    }
+                }
+
+                return query.length ? query.substr(0, query.length - 1) : query;
+            };
+
+            return angular.isObject(data) && String(data) !== '[object File]'
+                    ? param(data)
+                    : data;
+        }];
+
+    }]);
+    myApp.service('tipsService',['toastr',function (toastr) {
+        function tipsErr(msg, title, position) {
+            msg = msg || "";
+            title = title || 'Dip提示';
+            position = position || {positionClass:"toast-top-center"};
+            toastr.error(msg,title);
+        }
+        function tipsWarning(msg, title, position) {
+            msg = msg || "";
+            title = title || 'Dip提示';
+            position = position || {positionClass:"toast-top-center"};
+            toastr.warning(msg,title);
+        }
+        function tipsSuccess(msg, title, position) {
+            msg = msg || "";
+            title = title || 'Dip提示';
+            position = position || {positionClass:"toast-top-center"};
+            toastr.success(msg,title);
+        }
+        function tipsInfo(msg, title, position) {
+            msg = msg || "";
+            title = title || 'Dip提示';
+            position = position || {positionClass:"toast-top-center"};
+            toastr.info(msg,title);
+        }
+        return {
+            error:tipsErr,
+            warning:tipsWarning,
+            success:tipsSuccess,
+            info:tipsInfo
+        };
+    }]);
+    myApp.controller('loginCtrl',['$scope','$http','$translate','tipsService','$filter',function ($scope,$http,$translate,dipT,$filter) {
+        $scope.property ={
+            uname:'',
+            upwd:'',
+            auth:'normal'
+        };
+        $scope.userDel = false;
+        $scope.lang=window.localStorage.lang;
+        $scope.userDel=false;
+        $scope.passOpen=false;
+        console.log($scope.userDel);
+        $scope.loginIn = function () {
+            var dd = {uname:$scope.property.uname,upwd:$scope.property.upwd,auth:$scope.property.auth};
+            $http({
+                method:"post",
+                url:'/loginIn',
+                data:dd,
+                timeout:6000
+            })
+                    .error(function (data, status, headers, config) {
+                        var msg = $filter('translate')('100010');
+                        dipT.error(msg,'Dip Info');
+                    });
+        };
+        $scope.changeLang = function (lan) {
+            if(lan === window.localStorage.lang){
+                return;
+            }
+            if(lan ==='cn'){
+                $scope.lang='cn';
+                $translate.use(lan);
+                window.localStorage.lang = lan;
+                window.location.reload();
+            }else if(lan==='en'){
+                $scope.lang='en';
+                $translate.use(lan);
+                window.localStorage.lang = lan;
+                window.location.reload();
+            }
+        }
+    }]);
+</script>
+</body>
+</html>

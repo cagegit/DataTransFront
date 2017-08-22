@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title">添加列表</h3>
+</div>
+<div class="modal-body">
+    <div class="customsLoaderList">
+        <div class="alert alert-info customsLoaderHead">
+            请输入以换行或者逗号分隔的数据。
+        </div>
+        <textarea class="customsLoaderTab" ng-model="$ctrl.handle.newStr" maxlength="2000"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning btn-sm" type="button" ng-click="$ctrl.cancel()">取消</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-click="$ctrl.saveCustoms()">保存</button>
+</div>

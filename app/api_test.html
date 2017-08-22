@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DIP 数据集成平台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="build/index.min.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style type="text/css">
+        body{
+            min-width: 600px;
+        }
+        .main-api-box{
+            width: 600px;
+            min-width: 600px;
+            margin: 10% auto 0;
+        }
+        .main-api-box h1{
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .main-api-box .row{
+            margin-bottom: 10px;
+        }
+        .text-area-res{
+            width: 100%;
+            height: 100%;
+        }
+        .api-btn{
+            margin-right: 10px;
+        }
+        .text-area-success{
+            color: #3c763d;
+            background-color: #dff0d8;
+        }
+        .text-area-error{
+            color: #a94442;
+            background-color: #f2dede;
+        }
+        .api-tips{
+            line-height: 2;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body ng-controller="apiCtrl">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- HEADER -->
+<div class="container">
+    <div class="main-api-box">
+        <h1>DIP 接口测试工具</h1>
+        <form name="apiForm" novalidate>
+            <div class="row">
+                <div class="col-lg-3"><span class="red">*</span>URL：</div>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="apiUrl" placeholder="发送的URL" required maxlength="100" ng-model="api.url"/>
+                </div>
+                <div class="col-lg-12" ng-cloak="" ng-show="apiForm.apiUrl.$dirty && apiForm.apiUrl.$invalid">
+                    <div class="alert-danger" ng-show="apiForm.apiUrl.$error.required">数据库名称不能为空！</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3"><span class="red">*</span>请求数据：</div>
+                <div class="col-lg-9">
+                    <textarea class="form-control" name="apiPost" placeholder="发送后台的JSON格式数据" rows="3" maxlength="3000" ng-model="api.data" ></textarea>
+                </div>
+                <div class="col-lg-12" ng-cloak="" ng-show="apiForm.apiPost.$dirty && apiForm.apiPost.$invalid">
+                    <div class="alert-danger" ng-show="apiForm.apiPost.$error.required">请求数据不能为空！</div>
+                </div>
+            </div>
+            <!--<div class="row">-->
+                <!--<div class="col-lg-3">加密后数据：</div>-->
+                <!--<div class="col-lg-9">-->
+                    <!--<textarea class="form-control" name="apiMd5" maxlength="300" rows="3" ></textarea>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="row">
+                <div class="col-lg-3">返回结果：</div>
+                <div class="col-lg-9">
+                   <textarea  class="form-control" ng-class="{'text-area-error':api.error&&api.result.length>0,'text-area-success':api.success&&api.result.length>0}" rows="6" ng-bind="api.result"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pull-left">
+                        <div class="alert-danger api-tips" ng-cloak="" ng-show="api.tips.length>0" ng-bind="api.tips"></div>
+                        <div class="alert-success api-tips" ng-cloak="" ng-show="api.tips.length>0 && api.success" ng-bind="api.tips"></div>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-primary api-btn" type="reset" ng-click="reset()">重置</button>
+                        <button class="btn btn-primary" ng-disabled="apiForm.$invalid" ng-click="sendData()">测试</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /HEADER -->
+<div class="copyright">
+    <div class="copyright-cont clearfix">
+        <div class="bottom-logo"></div>
+        <div class="copy-info">
+            <p>©2011-2016翱旗创业(北京)科技有限公司</p>
+            <p>版本：5.0</p>
+            <span>使用许可：国家电网河南分公司</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-md5/angular-md5.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script type="text/javascript" src="sysconfig_view/api_index.js"></script>
+<script type="text/javascript" src="service/dipHttpService.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+</body>
+</html>

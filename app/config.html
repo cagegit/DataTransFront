@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dip 系统配置</title>
+    <meta name="description" content="Dip 系统配置">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dip/main2.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dip/new_main.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+</head>
+<body class="sys-body" ng-controller="configCtrl"  data-spy="scroll" data-target="#scrollspy">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- HEADER -->
+<header class="navbar" >
+    <div class="container" id="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="/index">
+                <img src="img/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive">
+                <h3>数据集成平台</h3>
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+            <div class="visible-xs">
+                <a href="#" class="team-status-toggle switcher btn dropdown-toggle">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+            <!-- /TEAM STATUS FOR MOBILE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        <ul class="nav navbar-nav pull-left hidden-xs" id="navbar-left">
+            <li class="dropdown">
+                <a href="/index" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="main-ico"></i>
+                    <span class="name">项目</span>
+                </a>
+            </li>
+            <li class="dropdown active">
+                <a href="#" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">
+                    <i class="config-ico"></i>
+                    <span class="name">系统设置</span>
+                </a>
+                <span class="nav-bottom-bar"></span>
+            </li>
+        </ul>
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="img/avatars/avatar3.jpg" style="visibility: hidden;" />
+                    <span class="username">Admin</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+            <!-- \END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+
+</header>
+<!--/HEADER -->
+<div class="container" >
+    <div class="row">
+        <div class="col-md-2" >
+            <div id="scrollspy">
+                <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="50">
+                    <li class="active"><a href="#section-1">错误检测系统</a></li>
+                    <li><a href="#section-2">错误发送系统</a></li>
+                    <li><a href="#section-3">上传licence</a></li>
+                    <li><a href="#section-4">用户管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default" id="section-1">
+                <div class="panel-heading">
+                    <div class="panel-title">错误检测系统  <i class="fa fa-edit" ng-click="err_cfg_edit()"></i></div>
+                </div>
+                <div class="panel-body">
+                    <form name="formErr" class="form-err" novalidate>
+                        <div class="row row-margin">
+                            <div class="col-md-2 col-sm-6"><span class="int-text">任务标识： </span></div>
+                            <div class="col-md-4 col-sm-6">
+                                <input  class="form-control" ng-cloak="" ng-show="err_cf.isEdit" type="text" name="tastTag" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.task_identify"/>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit"  ng-bind="property.task_identify" >44</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6"><span class="int-text">监控设备服务IP：</span></div>
+                            <div class="col-md-4 col-sm-6">
+                                <input  class="form-control" ng-cloak="" ng-show="err_cf.isEdit" type="text" name="watchIp" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required ng-model="property.monitor_ip"/>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit" ng-bind="property.monitor_ip">44</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2 col-sm-6 row-margin"><span class="int-text">监控设备服务端口：</span></div>
+                            <div class="col-md-4 col-sm-6 row-margin">
+                                <input  class="form-control" ng-cloak="" ng-show="err_cf.isEdit" type="text" name="listenPort" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="property.monitor_port"/>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit" ng-bind="property.monitor_port">44</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 row-margin"><span class="int-text">检测间隔：</span></div>
+                            <div class="col-md-4 col-sm-6 row-margin">
+                                <div class="input-group" ng-cloak="" ng-show="err_cf.isEdit" >
+                                    <input  class="form-control" type="text" name="testTime" ng-pattern="/^([1-9]){1,20}$/" required ng-model="property.monitor_interval"/>
+                                    <div class="input-group-addon">分</div>
+                                </div>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit" ng-bind="property.monitor_interval+'分'">44</span>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="col-md-2 col-sm-6 row-margin"><span class="int-text">磁盘剩余量下限：</span></div>
+                            <div class="col-md-4 col-sm-6 row-margin">
+                                <div class="input-group" ng-cloak="" ng-show="err_cf.isEdit">
+                                    <input  class="form-control" type="text" name="raminLimit" ng-pattern="/^([1-9]){1,5}$/" required ng-model="property.free_disk_threshold"/>
+                                    <div class="input-group-addon">G</div>
+                                </div>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit" ng-bind="property.free_disk_threshold+'G'">44</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 row-margin"><span class="int-text">Capture抓取延时：</span></div>
+                            <div class="col-md-4 col-sm-6 row-margin">
+                                <div class="input-group" ng-cloak="" ng-show="err_cf.isEdit">
+                                    <input  class="form-control" type="text" name="capDelay" ng-pattern="/^([1-9]){0,20}$/" required ng-model="property.capture_interval_threshold"/>
+                                    <div class="input-group-addon">分</div>
+                                </div>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit" ng-bind="property.capture_interval_threshold+'分'">44</span>
+                            </div>
+                        </div>
+
+                        <div class="row row-margin">
+                            <div class="col-md-2 col-sm-6">
+                                <span class="int-text">不监听组列表：</span>
+                            </div>
+                            <div class="col-md-10 col-sm-6">
+                                <textarea class="watch-area watch-area-width" ng-cloak="" ng-show="err_cf.isEdit" ng-model="property.listenList"></textarea>
+                                <span class="cf-ci-label" ng-show="!err_cf.isEdit" ng-bind="property.listenList"></span>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-cloak="" ng-show="err_cf.isEdit" >
+                            <div class="col-md-8 col-sm-6">
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formErr.tastTag.$dirty && formErr.tastTag.$invalid">
+                                    <div ng-show="formErr.tastTag.$error.required">任务标识不能为空！</div>
+                                    <div ng-show="formErr.tastTag.$error.pattern">任务标识只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formErr.watchIp.$dirty && formErr.watchIp.$invalid">
+                                    <div ng-show="formErr.watchIp.$error.required">监控设备服务IP不能为空！</div>
+                                    <div ng-show="formErr.watchIp.$error.pattern">请输入正确的IP地址！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formErr.listenPort.$dirty && formErr.listenPort.$invalid">
+                                    <div ng-show="formErr.listenPort.$error.required">监控设备服务端口不能为空！</div>
+                                    <div ng-show="formErr.listenPort.$error.pattern">请输入正确的服务端口！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formErr.testTime.$dirty && formErr.testTime.$invalid">
+                                    <div ng-show="formErr.testTime.$error.required">检测间隔不能为空！</div>
+                                    <div ng-show="formErr.testTime.$error.pattern">检测间隔只能为大于0的数字且长度不超过20位数！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formErr.raminLimit.$dirty && formErr.raminLimit.$invalid">
+                                    <div ng-show="formErr.raminLimit.$error.required">磁盘剩余量下限不能为空！</div>
+                                    <div ng-show="formErr.raminLimit.$error.pattern">磁盘剩余量只能为大于0的数字且长度超过5位数！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formErr.capDelay.$dirty && formErr.capDelay.$invalid">
+                                    <div ng-show="formErr.capDelay.$error.required">Capture 抓取延时不能为空！</div>
+                                    <div ng-show="formErr.capDelay.$error.pattern">Capture 抓取延时只能为大于0的数字且长度不超过20位数！</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="pull-right">
+                                    <button class="btn btn-primary btn-sm"  style="margin-right: 10px;" ng-click="err_cf.isEdit=false">取消</button>
+                                    <button class="btn btn-primary btn-sm" ng-disabled="formErr.$invalid" ng-click="saveErrJcxt()">保存</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--错误发送系统-->
+            <div class="panel panel-default" id="section-2">
+                <div class="panel-heading">
+                    <div class="panel-title">错误发送系统<i class="fa fa-edit" ng-click="err_fs_edit()"></i></div>
+                </div>
+                <form name="formSend" class="form-err" novalidate>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 user-mes-tit"><h4>客户信息</h4></div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12"><span class="red">*</span><span class="int-text">客户名称：</span></div>
+                                    <div class="col-md-8 col-sm-12">
+                                        <input  class="form-control" ng-cloak="" ng-show="err_fs.isEdit" type="text" name="userName" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.customer_name"/>
+                                        <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.customer_name">44</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12"><span class="red">*</span><span class="int-text">服务器端口：</span></div>
+                                    <div class="col-md-8 col-sm-12">
+                                        <input  class="form-control" ng-cloak="" ng-show="err_fs.isEdit" type="text" name="port" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="property.server_port"/>
+                                        <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.server_port">44</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 send-ways">
+                                <h4>发送方式</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 sys-send-tit">
+                                        <i class="emial-cont"></i>
+                                        <p>邮件配置</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 row-margin"><span class="red">*</span><span class="int-text">邮件服务器IP：</span></div>
+                                    <div class="col-md-8 col-sm-12 row-margin">
+                                        <input  class="form-control" ng-cloak="" ng-show="err_fs.isEdit" type="text" name="emailIp" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required ng-model="property.mail_server"/>
+                                        <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.mail_server">44</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 row-margin"><span class="red">*</span><span class="int-text">邮件服务器端口：</span></div>
+                                    <div class="col-md-8 col-sm-12 row-margin">
+                                        <input  class="form-control" ng-cloak="" ng-show="err_fs.isEdit" type="text" name="emailPort" ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="property.mail_port"/>
+                                        <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.mail_port">44</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 row-margin"><span class="red">*</span><span class="int-text">用户帐号：</span></div>
+                                    <div class="col-md-8 col-sm-12 row-margin">
+                                        <input  class="form-control" ng-cloak="" ng-show="err_fs.isEdit" type="text" name="sendUser" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required ng-model="property.user"/>
+                                        <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.user">44</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 row-margin"><span class="red">*</span><span class="int-text">帐号密码：</span></div>
+                                    <div class="col-md-8 col-sm-12 row-margin">
+                                        <input  class="form-control" ng-cloak="" ng-show="err_fs.isEdit" type="password" name="passward" ng-pattern="/.{1,19}$/" required ng-model="property.password"/>
+                                        <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.password">44</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 row-margin"><span class="int-text">抄送账户列表：</span></div>
+                                    <div class="col-md-8 col-sm-12 row-margin">
+                                        <textarea class="watch-area" ng-cloak="" ng-show="err_fs.isEdit"  ng-model="property.address_list" ></textarea>
+                                        <div class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.address_list"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                               <div class="row">
+                                   <div class="col-md-12 sys-send-tit">
+                                       <i class="message-cont"></i>
+                                       <p>短信配置</p>
+                                   </div>
+                                   <div class="col-md-4 col-sm-12 row-margin"><span class="int-text">短信发送方式：</span></div>
+                                   <div class="col-md-8 col-sm-12 row-margin">
+                                       <div class="send-radio" ng-cloak="" ng-show="err_fs.isEdit" >
+                                           <label class="checkbox-inline">
+                                               <input type="checkbox" ng-model="property.method_c" ng-change="mcChange()"/>&nbsp;&nbsp;自定义
+                                           </label>
+                                           <label class="checkbox-inline">
+                                               <input type="checkbox" ng-model="property.method_d"/>&nbsp;&nbsp;默认
+                                           </label>
+                                       </div>
+                                       <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.method">44</span>
+                                   </div>
+                                   <div class="col-md-4 col-sm-12 row-margin"><span class="int-text">自定义执行程序：</span></div>
+                                   <div class="col-md-8 col-sm-12 row-margin">
+                                       <input  class="form-control" ng-cloak="" ng-disabled="property.method_d && !property.method_c" ng-show="err_fs.isEdit" type="text" name="opeOrder" ng-pattern="/.{0,99}$/" ng-model="property.exe_full_path"/>
+                                       <span class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.exe_full_path">44</span>
+                                   </div>
+                                   <div class="col-md-4 col-sm-12 row-margin"><span class="int-text">手机号码列表：</span></div>
+                                   <div class="col-md-8 col-sm-12 row-margin">
+                                       <textarea class="iphone-area" ng-cloak="" ng-show="err_fs.isEdit" ng-model="property.phone_number_list"></textarea>
+                                       <div class="cf-ci-label" ng-show="!err_fs.isEdit" ng-bind="property.phone_number_list"></div>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-cloak="" ng-show="err_fs.isEdit">
+                            <div class="col-md-8">
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.userName.$dirty && formSend.userName.$invalid">
+                                    <div ng-show="formSend.userName.$error.required">客户名称不能为空！</div>
+                                    <div ng-show="formSend.userName.$error.pattern">客户名称只能包含数字、字母、下划线，不能以数字、下划线开头，长度不超过20位！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.port.$dirty && formSend.port.$invalid">
+                                    <div ng-show="formSend.port.$error.required">服务器端口不能为空！</div>
+                                    <div ng-show="formSend.port.$error.pattern">请输入正确的服务器端口！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.emailIp.$dirty && formSend.emailIp.$invalid">
+                                    <div ng-show="formSend.emailIp.$error.required">邮件服务器不能为空！</div>
+                                    <div ng-show="formSend.emailIp.$error.pattern">邮件服务器IP地址格式不合法！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.emailPort.$dirty && formSend.emailPort.$invalid">
+                                    <div ng-show="formSend.testTime.$error.required">邮件服务器端口不能为空！</div>
+                                    <div ng-show="formSend.testTime.$error.pattern">邮件服务器端口格式不合法！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.sendUser.$dirty && formSend.sendUser.$invalid">
+                                    <div ng-show="formSend.sendUser.$error.required">用户帐号不能为空！</div>
+                                    <div ng-show="formSend.sendUser.$error.pattern">用户帐号只能包含数字、字母、下划线且不超过20位！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.passward.$dirty && formSend.passward.$invalid">
+                                    <div ng-show="formSend.passward.$error.required">帐号密码不能为空！</div>
+                                    <div ng-show="formSend.passward.$error.pattern">帐号密码长度不能超过20位！</div>
+                                </div>
+                                <div class="alert alert-danger" ng-cloak="" ng-show="formSend.opeOrder.$dirty && formSend.opeOrder.$invalid">
+                                    <div ng-show="formSend.opeOrder.$error.required">自定义执行程序不能为空！</div>
+                                    <div ng-show="formSend.opeOrder.$error.pattern">自定义执行程序长度不能超过100位！</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="pull-right">
+                                    <button class="btn btn-primary btn-sm" style="margin-right:10px;" ng-click="err_fs.isEdit=false">取消</button>
+                                    <button class="btn btn-primary btn-sm" style="margin-right:10px;" ng-click="outputErrSendInfo()">导出</button>
+                                    <button class="btn btn-primary btn-sm" ng-click="saveErrSendInfo()">保存</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--/错误发送系统-->
+            <!--上传license-->
+            <div class="panel panel-default lice-up-panel" id="section-3">
+                <div class="panel-heading">
+                    <div class="panel-title">Licence文件上传</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row lice-cont">
+                        <div class="col-md-12 config-selet-pile">
+                            <span>选择文件：</span>
+                            <div class="selet-file-ope">
+                                <span class="up-search" ng-click="selectFile()"></span>
+                                <span class="up-search-text" ng-bind="licenseUp.file_name"></span>
+                                <input ng-cloak="" style="display: none;" type="file" id="file" name="myfile" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 config-up-pile">
+                            <span>文件上传：</span>
+                            <div class="up-cont">
+                                <span class="up-status" ng-click="uploadFile()"></span>
+                                <div class="up-div">
+                                    <span ng-bind="licenseUp.status" ng-class="{'red':licenseUp.isDone===2,'green':licenseUp.isDone===3}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/上传license-->
+            <!--用户列表-->
+            <div class="panel panel-default" id="section-4">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                        <div class="panel-title config-user-list" ng-bind="userCfg.panelTitle">用户列表</div><i class="tit-edit-logo" ng-click=""></i>
+                    </div>
+                    <div class="pull-right">
+                        <div class="user-tit-ope">
+                            <span class="user-tit-modi" ng-click="addUser()">
+                                <i></i>
+                                <em>添加</em>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div ng-cloak="" ng-show="userCfg.isAdd">
+                       <form name="userForm" novalidate>
+                        <table class="table">
+                            <tr>
+                                <td><span class="red">*</span>用户名：</td>
+                                <td><input class="form-control" name="userName" ng-model="userM.uname" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="red">*</span>密码：</td>
+                                <td><input class="form-control" name="userPass" ng-model="userM.pass" ng-pattern="/^\S{1,19}$/" required type="password"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="red">*</span>确认密码：</td>
+                                <td><input class="form-control" name="userConPass" cpass ng-model="userM.cpass" ng-pattern="/^\S{8,20}$/" required type="password"></td>
+                            </tr>
+                            <tr>
+                                <td>角色</td><td><select class="form-control"  ng-model="userM.role"><option value="super">管理员</option></select></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="pull-left">
+                                        <div class="alert alert-danger" ng-cloak="" ng-show="userForm.userName.$dirty && userForm.userName.$invalid">
+                                            <div ng-show="userForm.userName.$error.required">用户名不能为空！</div>
+                                            <div ng-show="userForm.userName.$error.pattern">用户名只能包含数字、字母、下划线且不超过20位！</div>
+                                        </div>
+                                        <div class="alert alert-danger" ng-cloak="" ng-show="userForm.userPass.$dirty && userForm.userPass.$invalid">
+                                            <div ng-show="userForm.userPass.$error.required">密码不能为空！</div>
+                                            <div ng-show="userForm.userPass.$error.pattern">密码长度不能超过20位！</div>
+                                        </div>
+                                        <div class="alert alert-danger" ng-cloak="" ng-show="userForm.userConPass.$dirty && userForm.userConPass.$invalid">
+                                            <div ng-show="userForm.userConPass.$error.required">确认密码不能为空！</div>
+                                            <div ng-show="userForm.userConPass.$error.pattern">确认密码长度不能超过20位！</div>
+                                            <div ng-show="userForm.userConPass.$error.cpass">确认密码跟密码不一致！</div>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button  class="btn btn-primary btn-sm" ng-click="userCfg.isAdd=false;userCfg.panelTitle='用户列表'">取消</button>
+                                        <button  class="btn btn-primary btn-sm" ng-disabled="userForm.$invalid" ng-click="saveUserInfo()">保存</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </td>
+                            </tr>
+                        </table>
+                       </form>
+                    </div>
+                    <div ng-cloak="" ng-show="userCfg.isEdit">
+                        <form name="userEditForm" novalidate>
+                            <table class="table">
+                                <tr>
+                                    <td>用户名：</td>
+                                    <td><input class="form-control" name="userName" ng-model="userE.uname" ng-disabled="userCfg.isEdit" ng-pattern="/^[a-zA-Z]\w{0,19}$/" required type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="red">*</span>新密码：</td>
+                                    <td><input class="form-control" name="userPass" ng-model="userE.pass" ng-pattern="/^.{1,19}$/" required type="password"></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="red">*</span>确认密码：</td>
+                                    <td><input class="form-control" name="userConPass" epass ng-model="userE.cpass" ng-pattern="/^.{1,19}$/" required type="password"></td>
+                                </tr>
+                                <tr>
+                                    <td>角色</td><td ng-bind="userE.role==='super_admin'?'超级管理员':'管理员'"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="pull-left">
+                                            <div class="alert alert-danger" ng-cloak="" ng-show="userEditForm.userPass.$dirty && userEditForm.userPass.$invalid">
+                                                <div ng-show="userEditForm.userPass.$error.required">密码不能为空！</div>
+                                                <div ng-show="userEditForm.userPass.$error.pattern">密码长度不能超过20位！</div>
+                                            </div>
+                                            <div class="alert alert-danger" ng-cloak="" ng-show="userEditForm.userConPass.$dirty && userEditForm.userConPass.$invalid">
+                                                <div ng-show="userEditForm.userConPass.$error.required">确认密码不能为空！</div>
+                                                <div ng-show="userEditForm.userConPass.$error.pattern">确认密码长度不能超过20位！</div>
+                                                <div ng-show="userEditForm.userConPass.$error.epass">确认密码跟密码不一致！</div>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right">
+                                            <button  class="btn btn-primary btn-sm" ng-click="userCfg.isEdit=false;userCfg.panelTitle='用户列表'">取消</button>
+                                            <button  class="btn btn-primary btn-sm" ng-disabled="userEditForm.$invalid" ng-click="saveEditUserInfo()">修改</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="dip-user-tab" ng-hide="userCfg.isAdd || userCfg.isEdit">
+                        <table class="table table-bordered">
+                            <colgroup>
+                                <col style="width: 35%">
+                                <col style="width: 35%">
+                                <col style="width: 30%">
+                            </colgroup>
+                            <tr>
+                                <th>用户名</th><th>权限</th><th>操作</th>
+                            </tr>
+                        </table>
+                        <div class="dip-user-tab-list">
+                            <table class="table">
+                                <colgroup>
+                                    <col style="width: 35%">
+                                    <col style="width: 35%">
+                                    <col style="width: 30%">
+                                </colgroup>
+                                <tr ng-repeat="user in userList">
+                                    <td ng-bind="user.user">admin</td>
+                                    <td ng-bind="user.authority">普通用户</td>
+                                    <td><i class="fa fa-edit green fa-first-pos" ng-click="editUser(user)"></i><i class="fa fa-remove red" ng-hide="user.role==='super_admin'" ng-click="deleteUser(user)"></i></td>
+                                </tr>
+                                <tr ng-cloak="" ng-show="userList.length===0">
+                                    <td colspan="3" class="txt-align-center">
+                                        No Data!
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/用户列表-->
+        </div>
+    </div>
+</div>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script type="text/javascript" src="bower_components/ui-bootstrap/dist/ui-bootstrap-tpls-2.1.3.min.js"></script>
+<script type="text/javascript" src="sysconfig_view/sys_config_view.js"></script>
+<script type="text/javascript" src="service/dipHttpService.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#file').on('change',function () {
+            console.log('file change');
+            var appElement = document.querySelector('[ng-controller=configCtrl]');
+            var scope = angular.element(appElement).scope();
+            scope.changeBtn();
+            scope.$apply();
+        });
+    });
+</script>
+</body>
+</html>

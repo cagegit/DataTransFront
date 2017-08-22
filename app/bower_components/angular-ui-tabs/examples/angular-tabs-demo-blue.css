@@ -1,0 +1,46 @@
+.angular-tabs-example {
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+
+    position: relative;
+    padding: 15px 0 0 0;
+    margin-bottom: 15px;
+    background-color: #3F8DC9;
+    height: 265px;
+}
+
+input {
+    color: #888;
+    width: 40%;
+    padding: 0px 0px 0px 5px;
+    border: 1px solid #C5E2FF;
+    background: #FBFBFB;
+    outline: 0;
+    -webkit-box-shadow: inset 0px 1px 6px #ECF3F5;
+    box-shadow: inset 0px 1px 6px #ECF3F5;
+    font: 200 12px/25px Arial, Helvetica, sans-serif;
+    height: 30px;
+    line-height: 15px;
+}
+
+.ui-tab-system-view {
+    height: 211px;
+}
+
+form div {
+    margin: 5px 0;
+}
+form label {
+    width: 110px;
+    display: inline-block;
+}
+
+div.bindings {
+    margin-top: 20px;
+    border-top: 1px solid rgb(221, 221, 221);
+    padding-top: 15px;
+}
+
+div.bindings label {
+    font-weight: 800;
+}

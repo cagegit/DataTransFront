@@ -1,0 +1,38 @@
+<!--
+  应用到其他表
+-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title">应用到其他表</h3>
+</div>
+<div class="modal-body">
+    <div class="etl-apply-other">
+        <div class="a-header">
+            搜索：<input type="text" maxlength="100" placeholder="表名" ng-model="$ctrl.filter">
+        </div>
+        <div class="a-body">
+            <ul class="list-ul clearfix">
+                <li>
+                    <div class="list-li-left">
+                        <input type="checkbox" title="全选" ng-model="$ctrl.ckAll" ng-change="$ctrl.checkAll()">
+                    </div>
+                    <div class="list-li-right">
+                        表名
+                    </div>
+                </li>
+            </ul>
+            <div class="apply-list">
+                <table>
+                    <tr ng-repeat="item in ($ctrl.localDics=($ctrl.tables | filter:{name:$ctrl.filter})) track by $index ">
+                        <td><input type="checkbox" class="etl-apply-input" ng-model="item.checked" ng-change="$ctrl.selectOne(item)"></td>
+                        <td ng-bind="item.name"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning btn-sm" type="button" ng-click="$ctrl.cancel()">取消</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-click="$ctrl.ok()">确定</button>
+</div>

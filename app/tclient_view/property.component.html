@@ -1,0 +1,259 @@
+<div role="tabpanel" class="tab-pane active">
+    <div class="panel panel-default">
+        <div class="panel-heading" translate-once="Tc_cszj"></div><!--传输组件-->
+        <form name="form2" autocomplete="off" novalidate>
+            <div class="panel-body clearfix">
+                <div class="panel panel-default">
+                    <table class="table table-condensed">
+                        <tr ng-cloak="" ng-show="$ctrl.real.com_id.length>0">
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3">
+                                        <label class="text-info" translate-once="Tc_zjid"></label><!--组件ID:-->
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="ci-label" ng-bind="$ctrl.real.com_id" ng-class="{'accord-pre':$ctrl.params.tcid}">1</span>
+                                        <p ng-cloak ng-show="$ctrl.params.tcid"  ng-class="{'accord-next':$ctrl.params.tcid}" translate-once="Tc_wybs"></p><!--组件唯一标示-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <span ng-click="$ctrl.params.tcid=!$ctrl.params.tcid" class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.tcid,'glyphicon-question-sign':!$ctrl.params.tcid}"></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.moduNa.$dirty && form2.moduNa.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.moduNa.$error.required" translate-once="Tc_tip1"></div><!--Tclient组件名称不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.moduNa.$error.pattern" translate-once="Tc_tip2"></div><!--Tclient组件名称只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                    </div>
+                                    <div  class="col-md-12" ng-cloak="" ng-show="$ctrl.serverErr!==''" >
+                                        <div class="alert alert-danger" ng-bind="$ctrl.serverErr"></div>
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_zjmc"></label></div><!--Tclient组件名称:-->
+                                    <div class="col-md-8 clearfix">
+                                        <input class="form-control" type="text" name="moduNa" ng-class="{'accord-pre':$ctrl.params.cliModu}"  ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" required ng-model="$ctrl.property.component_name"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliModu}" ng-show="$ctrl.params.cliModu" ng-cloak="" translate-once="Tc_mcsm"></p><!--Tclient组件名称说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliModu=!$ctrl.params.cliModu">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliModu,'glyphicon-question-sign':!$ctrl.params.cliModu}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.serIP.$dirty && form2.serIP.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.serIP.$error.required" translate-once="Tc_tip3"></div><!--服务器IP地址不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.serIP.$error.pattern" translate-once="Tc_tip4"></div><!--请输入正确的IP地址-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_fwqip"></label></div><!--服务器IP地址：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input class="form-control" type="text" name="serIP" ng-class="{'accord-pre':$ctrl.params.cliIpd}"  ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$/" required ng-model="$ctrl.property.ip"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliIpd}" ng-show="$ctrl.params.cliIpd" ng-cloak="" translate-once="Tc_ipsm"></p><!--服务器IP地址说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliIpd=!$ctrl.params.cliIpd">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliIpd,'glyphicon-question-sign':!$ctrl.params.cliIpd}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.por.$dirty && form2.por.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.por.$error.required" translate-once="Tc_tip5"></div><!--端口不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.por.$error.pattern" translate-once="Tc_tip6"></div><!--请输入正确的端口-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_dk"></label></div><!--端口：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="por" ng-class="{'accord-pre':$ctrl.params.cliPor}"  ng-pattern="/^[1-9]$|(^[1-9][0-9]$)|(^[1-9][0-9][0-9]$)|(^[1-9][0-9][0-9][0-9]$)|(^[1-6][0-5][0-5][0-3][0-5]$)/" required ng-model="$ctrl.property.port"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliPor}" ng-show="$ctrl.params.cliPor" ng-cloak="" translate-once="Tc_dksm"></p><!--端口说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliPor=!$ctrl.params.cliPor">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliPor,'glyphicon-question-sign':!$ctrl.params.cliPor}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_sjklx"></label></div><!--数据库类型：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="form-group" ng-class="{'accord-pre':$ctrl.params.cliOra}">
+                                            <select class="form-control" ng-model="$ctrl.property.db_type">
+                                                <!--<option value=""></option>-->
+                                                <option ng-repeat="x in $ctrl.allowDbs track by $index" value="{{x}}" ng-bind="x"></option>
+                                            </select>
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliOra}" ng-show="$ctrl.params.cliOra" ng-cloak="" translate-once="Tc_sjksm"></p><!--数据库类型说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliOra=!$ctrl.params.cliOra">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliOra,'glyphicon-question-sign':!$ctrl.params.cliOra}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.gropNa.$dirty && form2.gropNa.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.gropNa.$error.required" translate-once="Tc_tip7"></div><!--传输组名不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.gropNa.$error.pattern" translate-once="Tc_tip8"></div><!--传输组名只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_cszm"></label></div><!--传输组名：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="gropNa" ng-class="{'accord-pre':$ctrl.params.cliGrop}"  ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" required ng-model="$ctrl.property.group_name"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliGrop}" ng-show="$ctrl.params.cliGrop" ng-cloak="" translate-once="Tc_cszmsm"></p><!--传输组名说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliGrop=!$ctrl.params.cliGrop">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliGrop,'glyphicon-question-sign':!$ctrl.params.cliGrop}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.tranQue.$dirty && form2.tranQue.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.tranQue.$error.required" translate-once="Tc_tip9"></div><!--传输队列名不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.tranQue.$error.pattern" translate-once="Tc_tip10"></div><!--传输队列名只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_csdlm"></label></div><!--传输队列名：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="tranQue" ng-class="{'accord-pre':$ctrl.params.cliQue}"  ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" required ng-model="$ctrl.property.queue_name"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliQue}" ng-show="$ctrl.params.cliQue" ng-cloak="" translate-once="Tc_dlmsm"></p><!--传输队列名说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliQue=!$ctrl.params.cliQue">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliQue,'glyphicon-question-sign':!$ctrl.params.cliQue}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.userNa.$dirty && form2.userNa.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.userNa.$error.required" translate-once="Tc_tip11"></div><!--Tserver用户名不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.userNa.$error.pattern" translate-once="Tc_tip12"></div><!--Tserver用户名只能包含汉字、数字、字母、下划线，长度不超过20位！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_tsyhm"></label></div><!--Tserver用户名：-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="text" name="userNa" ng-class="{'accord-pre':$ctrl.params.cliUser}"  ng-pattern="/^[a-zA-Z\u4E00-\u9FA5](\w|[\u4E00-\u9FA5]|\d){0,19}$/" required ng-model="$ctrl.property.user"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliUser}" ng-show="$ctrl.params.cliUser" ng-cloak="" translate-once="Tc_yhmsm"></p><!--Tserver用户名说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliUser=!$ctrl.params.cliUser">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliUser,'glyphicon-question-sign':!$ctrl.params.cliUser}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-12" ng-show="form2.passW.$dirty && form2.passW.$invalid">
+                                        <div class="alert alert-danger" ng-show="form2.passW.$error.required" translate-once="Tc_tip13"></div><!--Tserver密码不能为空！-->
+                                        <div class="alert alert-danger" ng-show="form2.passW.$error.pattern" translate-once="Tc_tip14"></div><!--Tserver密码长度为8~20位且不能包含空格！-->
+                                    </div>
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_tsmm"></label></div><!--Tserver密码:-->
+                                    <div class="col-md-8 clearfix">
+                                        <input  class="form-control" type="password" name="passW" ng-class="{'accord-pre':$ctrl.params.cliPass}"  ng-pattern="/^\S{8,20}$/" required ng-model="$ctrl.property.passwd"/>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliPass}" ng-show="$ctrl.params.cliPass" ng-cloak="" translate-once="Tc_tsmmsm"></p><!--Tserver密码说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliPass=!$ctrl.params.cliPass">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliPass,'glyphicon-question-sign':!$ctrl.params.cliPass}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--<tr>-->
+                        <!--<td>-->
+                        <!--<div class="row cap-form-tip">-->
+                        <!--<div class="col-md-12" ng-show="form2.pkg_size.$dirty && form2.pkg_size.$invalid">-->
+                        <!--<div class="alert alert-danger" ng-show="form2.pkg_size.$error.required">传输包大小不能为空！</div>-->
+                        <!--<div class="alert alert-danger" ng-show="form2.pkg_size.$error.pattern">单个文件大小只能为大于0的数字且长度不超过20位</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-3"><label class="text-info">传输包大小：</label></div>-->
+                        <!--<div class="col-md-8 clearfix">-->
+                        <!--<div class="input-group" ng-class="{'accord-pre':$ctrl.params.cliPacksize}">-->
+                        <!--<input class="form-control" type="text" name="pkg_size" ng-pattern="/^\+?[1-9][0-9]{0,19}$/" required ng-model="property.pkg_size"/>-->
+                        <!--<span class="input-group-addon">kb</span>-->
+                        <!--</div>-->
+                        <!--<p ng-class="{'accord-next':$ctrl.params.cliPacksize}" ng-show="$ctrl.params.cliPacksize" ng-cloak="">传输包大小说明</p>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-1">-->
+                        <!--<div class="form-tip" ng-click="$ctrl.params.cliPacksize=!$ctrl.params.cliPacksize">-->
+                        <!--<span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliPacksize,'glyphicon-question-sign':!$ctrl.params.cliPacksize}"></span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_ys"></label></div><!--压缩：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="input-group" ng-class="{'accord-pre':$ctrl.params.cliCompre}">
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.compress" value="yes"/>{{'YES' | translate}}</label><!--是-->
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.compress" value="no"/>{{'NO' | translate}}</label><!--否-->
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliCompre}" ng-show="$ctrl.params.cliCompre" ng-cloak="" translate-once="Tc_yssm"></p><!--压缩说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliCompre=!$ctrl.params.cliCompre">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliCompre,'glyphicon-question-sign':!$ctrl.params.cliCompre}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row cap-form-tip">
+                                    <div class="col-md-3"><label class="text-info" translate-once="Tc_jm"></label></div><!--加密：-->
+                                    <div class="col-md-8 clearfix">
+                                        <div class="input-group" ng-class="{'accord-pre':$ctrl.params.cliEnc}">
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.encrypt" value="yes"/>SM4</label><!--SM4-->
+                                            <label class="radio-inline"><input type="radio" ng-model="$ctrl.property.encrypt" value="no"/>AES</label><!--AES-->
+                                        </div>
+                                        <p ng-class="{'accord-next':$ctrl.params.cliEnc}" ng-show="$ctrl.params.cliEnc" ng-cloak="" translate-once="Tc_jmsm"></p><!--加密说明-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-tip" ng-click="$ctrl.params.cliEnc=!$ctrl.params.cliEnc">
+                                            <span class="mark glyphicon" ng-class="{'glyphicon-remove-sign':$ctrl.params.cliEnc,'glyphicon-question-sign':!$ctrl.params.cliEnc}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix">
+                    <button class="btn btn-sm btn-primary pull-right" ng-disabled="form2.$invalid || $ctrl.isSaving" ng-click="$ctrl.saveTcpInfo()" ng-bind="$ctrl.saveBtnTxt"></button><!--保存-->
+                </div>
+            </div>
+            </form>
+        </div>
+</div>

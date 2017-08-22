@@ -1,0 +1,23 @@
+<div class="pull-left">
+    <h4 ng-bind="$ctrl.etl_title" style="line-height:40px;"></h4>
+</div>
+<div class="pull-right" style="margin-bottom: 10px;">
+    <div class="dropdown">
+        <button id="dLabel" class="btn btn-primary btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ETL操作<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="right: 0 !important;left: auto;" role="menu" aria-labelledby="btn-append-to-body">
+            <li role="menuitem"><a href="javascript:void(0);" ui-sref=".config" ng-click="$ctrl.changeJob(1)">ETL属性</a></li>
+            <li class="divider"></li>
+            <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeJob(2)">规则配置</a></li>
+            <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeJob(3)">表过滤</a></li>
+            <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeJob(4)">操作过滤</a></li>
+            <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeJob(6)">已配置规则</a></li>
+            <li class="divider"></li>
+            <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeJob(5)">批量配置</a></li>
+            <li role="menuitem"><a href="javascript:void(0);" ng-click="$ctrl.changeJob(7)">批量配置值绑定</a></li>
+        </ul>
+    </div>
+</div>
+<div class="clearfix"></div>
+<ui-view></ui-view>

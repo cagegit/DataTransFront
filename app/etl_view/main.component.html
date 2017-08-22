@@ -1,0 +1,23 @@
+<div class="modal-dialog slide-panel" id="modal-dialog" ng-cloak ng-show="$ctrl.dialog">
+    <div class="modal-content slide-bg-color">
+        <div class="modal-header header-bg-color" style="z-index:999">
+            <button type="button" class="close" ng-click="$ctrl.redirectTo('/')" ><span class="fa fa-close"></span></button>
+            <h4 class="modal-title">ETL配置</h4><!--ETL配置-->
+        </div>
+        <div class="modal-body slide-bg-color">
+            <div class="panel slide-bg-color">
+                <div class="panel-body ">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{'active':$ctrl.current===1}"><a href="javascript:void(0);" ng-click="$ctrl.changeTo('status')" class="nav-size">状态</a></li><!--状态-->
+                        <li role="presentation" ng-class="{'active':$ctrl.current===2}"><a href="javascript:void(0);" ng-click="$ctrl.changeTo('property')" class="nav-size">配置</a></li><!--配置-->
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <ui-view></ui-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

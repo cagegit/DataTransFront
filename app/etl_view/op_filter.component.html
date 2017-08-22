@@ -1,0 +1,64 @@
+<div class="etl-bgl">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="etl-bgl-left">
+                <div class="etl-bgl-head">
+                    <input type="text" placeholder="用户名搜索" ng-model="$ctrl.userFilter">
+                </div>
+                <div class="etl-bgl-body">
+                    <ul>
+                        <li ng-repeat="uname in $ctrl.users | filter:$ctrl.userFilter track by $index"><a href="javascript:void(0);" ng-click="$ctrl.getTable(uname,$event)" title="{{uname}}" ng-bind="uname"></a></li>
+                        <li ng-cloak="" ng-if="$ctrl.users.length===0"><a href="javascript:void(0);" >No Users!</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="etl-bgl-left">
+                <div class="etl-bgl-head2">
+                    <input type="text" placeholder="表名搜索" ng-model="$ctrl.tableFilter">
+                </div>
+                <div class="etl-bgl-body">
+                    <table class="table">
+                        <colgroup>
+                            <col style="width: 54%">
+                            <col style="width: 12%">
+                            <col style="width: 12%">
+                            <col style="width: 12%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <tr class="czgl-tr">
+                            <td>表名</td>
+                            <td><label title="全选">增<input type="checkbox" ng-model="$ctrl.ckAllIns" ng-click="$ctrl.checkAll(1)"></label></td>
+                            <td><label title="全选">删<input type="checkbox" ng-model="$ctrl.ckAllDel" ng-click="$ctrl.checkAll(2)"></label></td>
+                            <td><label title="全选">改<input type="checkbox" ng-model="$ctrl.ckAllUpt" ng-click="$ctrl.checkAll(3)"></label></td>
+                            <td>操作</td>
+                        </tr>
+                        <tr ng-repeat="item in ($ctrl.selTables=($ctrl.tables | filter:{name:$ctrl.tableFilter})) track by $index">
+                            <td><a href="javascript:void(0)" ng-bind="item.name"></a></td>
+                            <td><label>增<input type="checkbox" ng-model="item.tab_ins" ng-click="$ctrl.checkOne(item,1)"></label></td>
+                            <td><label>删<input type="checkbox" ng-model="item.tab_del" ng-click="$ctrl.checkOne(item,2)"></label></td>
+                            <td><label>改<input type="checkbox" ng-model="item.tab_upt" ng-click="$ctrl.checkOne(item,3)"></label></td>
+                            <td><a class="btn fa fa-edit" ng-click="$ctrl.editExpression(item)"></a></td>
+                        </tr>
+                        <tr ng-cloak="" ng-if="$ctrl.loading">
+                            <td colspan="5" class="etl-center"><a href="javascript:void(0)">Loading......</a></td>
+                        </tr>
+                        <tr ng-cloak=""ng-if="!$ctrl.loading && $ctrl.tables.length===0">
+                            <td colspan="5" class="etl-center"><a href="javascript:void(0)">No User!</a></td>
+                        </tr>
+                        <tr ng-cloak="" ng-if="$ctrl.tables.length>0 && $ctrl.selTables.length===0">
+                            <td colspan="5" class="etl-center"><a href="javascript:void(0)">No Result!</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 etl-margin-top10">
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveEtlCzglRule()">保存</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

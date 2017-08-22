@@ -1,0 +1,148 @@
+<!--操作转换模块-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <h3 class="modal-title">操作转换</h3>
+</div>
+<div class="modal-body">
+    <div class="rule-bds-edit">
+        <div class="alert alert-info">
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='yes'">
+表达式范例：列名ID,NAME
+            :ID=1923 AND :NAME='wang'
+            新列值：N:ID=1923 AND N:NAME='wang'
+            旧列值：O:ID=1923 AND O:NAME='wang'
+            </pre>
+            <pre ng-cloak="" ng-show="$ctrl.row.connect_db==='no'">
+表达式范例：列名ID,NAME
+            {ID}=1923 AND {NAME}='wang'
+            新列值：N{ID}=1923 AND N{NAME}='wang'
+            旧列值：O{ID}=1923 AND O{NAME}='wang'
+            </pre>
+        </div>
+        <div class="clearfix">
+            <div class="etl-margin-bottom10 etl-line-height30">
+                转换类型：<select ng-model="$ctrl.operate" ng-change="$ctrl.changeOperation()">
+                <option class=""></option>
+                <option value="inserttoupdate">insert → update</option>
+                <option value="updatetoinsert">update → insert/delete</option>
+                <option value="deletetoupdate">delete → update</option>
+            </select>
+            <div class="etl-delete-div" ng-cloak="" ng-if="$ctrl.operate==='deletetoupdate'">
+                <button class="btn btn-info btn-sm" ng-click="$ctrl.deleteFlag()">删除标记</button>
+                <button class="btn btn-info btn-sm" ng-click="$ctrl.keepFieldList()">保留原值字段</button>
+            </div>
+            </div>
+            <div class="rule-bds-edit-left">
+                <h4>已选择列名</h4>
+                <ul>
+                    <li ng-repeat="row in $ctrl.row.bdList track by $index" ng-bind="row"></li>
+                </ul>
+            </div>
+            <div class="rule-bds-edit-right" ng-class="{'work-area-on':$ctrl.bindNameVisble}">
+                <h4>表达式编辑</h4>
+                <div class="work-area">
+                    <ul>
+                        <li ng-repeat="field in $ctrl.row.clist track by $index" ng-bind="field.column_name" ng-click="$ctrl.insertToText(field.column_name)"></li>
+                    </ul>
+                    <textarea ng-model="$ctrl.row.expression" id="bjq_expression"></textarea>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="rule-bds-edit-footer clearfix">
+            <div class="pull-left">
+                <button class="btn btn-default btn-sm" ng-click="$ctrl.bindNameVisble=!$ctrl.bindNameVisble">字段变量</button>
+                <label class="etl-fix-input-left">连接数据库：</label>是 <input type="radio" ng-model="$ctrl.row.connect_db" value="yes">
+                <button class="btn btn-default btn-sm" ng-disabled="$ctrl.row.connect_db==='no'" ng-click="$ctrl.dbConfig()">配置数据库</button>
+                否 <input type="radio"  ng-model="$ctrl.row.connect_db" value="no">
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-info btn-sm etl-fix-input-right" ng-click="$ctrl.checkExpression()">合法性检查</button>
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.cancel()">关闭</button>
+                <button class="btn btn-primary btn-sm" ng-click="$ctrl.saveExpression()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--删除标记弹框-->
+<script type="text/ng-template" id="delete_flag.model.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title" id="modal-title1">删除标记</h3>
+    </div>
+    <div class="modal-body" id="modal-body1">
+        <div class="etl-operation-delete">
+            <table class="table table-bordered">
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 35%">
+                    <col style="width: 20%">
+                    <col style="width: 35%">
+                </colgroup>
+                <tr>
+                    <td><input type="checkbox" title="全选" ng-model="$ct.ckAll" ng-change="$ct.changeCA()"></td>
+                    <td>字段名称</td>
+                    <td>值类型</td>
+                    <td>字段值</td>
+                </tr>
+                <tr ng-repeat="item in $ct.flags track by $index">
+                    <td><input type="checkbox" ng-model="item.checked" ng-change="$ct.sonChange(item)"></td>
+                    <td><input type="text" maxlength="60" ng-model="item.name"></td>
+                    <td>固定字符串</td>
+                    <td><input type="text" maxlength="60" ng-model="item.value"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left">
+            <button class="btn btn-default btn-sm" type="button" ng-click="$ct.addRow()">增加行</button>
+            <button class="btn btn-default btn-sm" type="button" ng-click="$ct.removeRow()">删除行</button>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">取消</button>
+            <button class="btn btn-primary btn-sm" type="button" ng-click="$ct.ok()">保存</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+<!--保留原值字段-->
+<script type="text/ng-template" id="keepFieldList.model.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ct.cancel()" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title" id="modal-title">保留原值字段</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+       <div class="row">
+           <div class="panel panel-default col-md-5 etl-delete-box">
+               <div class="panel-heading inner-paner">不保留</div><!--不保留-->
+               <div class="panel-body inner-paner">
+                   <select name="unselect_user" multiple class="etl-delete-select" ng-model="$ct.unselModel" >
+                       <option class="list-group-item" value="{{item}}" ng-repeat="item in $ct.unselList track by $index">{{item}}</option>
+                   </select>
+               </div>
+           </div>
+           <div class="col-md-2 etl-delete-box">
+               <div class="vertical-center">
+                   <button class="btn btn-default center-block" ng-click="$ct.pushSelect()" ng-bind="$ct.left"></button>
+                   <button class="btn btn-default center-block push_select" ng-click="$ct.removeSelect()" ng-bind="$ct.right"></button>
+               </div>
+           </div>
+           <div class="panel panel-default col-md-5 etl-delete-box">
+               <div class="panel-heading inner-paner">保留</div><!--保留-->
+               <div class="panel-body inner-paner">
+                   <select name="select_user" multiple class="etl-delete-select"  ng-model="$ct.selModel">
+                       <option class="list-group-item"  value="{{item}}" ng-repeat="item in $ct.selList track by $index">{{item}}</option>
+                   </select>
+               </div>
+           </div>
+       </div>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button class="btn btn-warning btn-sm" type="button" ng-click="$ct.cancel()">取消</button>
+            <button class="btn btn-primary btn-sm" type="button" ng-click="$ct.ok()">保存</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</script>
