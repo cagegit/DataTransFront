@@ -1,10 +1,21 @@
 # DataTransFront 数据实时同步前端代码
  
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
+数据库数据实时传输操作平台，包含：用户登录权限管理、项目管理、运行平台、模块配置、实时状态统计、大屏展示、全同步等。
+ 
+前端代码  目录
+```
+app/
 
-The seed contains a sample AngularJS application and is preconfigured to install the Angular
-framework and a bunch of development and testing tools for instant web development gratification.
+```
+后台代码  目录
+```
+work.js
+business/
 
-The seed app doesn't do much, just shows how to wire two controllers and views together.
+```
+
+![Dip main page](docs/zhu2.png)
+
+![Dip main page](docs/zhu1.png)
+
+![Dip main page](docs/dp.png)
